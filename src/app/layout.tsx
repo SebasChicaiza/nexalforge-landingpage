@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StickyHeader from "@/components/StickyHeader";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Gtm from "@/components/Gtm";
+import ConsentBanner from "@/components/ConsentBanner";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -11,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.nexalforge.com"), // <-- ajusta dominio prod
+  metadataBase: new URL("https://www.nexalforge.com"),
   title: {
     default: "NexalForge — Potencia tus operaciones con IA",
     template: "%s · NexalForge",
@@ -44,11 +46,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head></head>
+      {/* GTM + Consent Mode (usa next/script dentro) */}
+      <Gtm />
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Noscript de GTM — si tu <Gtm /> ya lo incluye, puedes quitar este bloque */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
         <StickyHeader />
         {children}
+
+        <ConsentBanner />
         <GoogleAnalytics />
 
         {/* JSON-LD Organization */}

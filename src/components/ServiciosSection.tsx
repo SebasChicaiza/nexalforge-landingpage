@@ -16,10 +16,12 @@ export default function ServiciosSection() {
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <h2 className="text-3xl font-bold md:text-4xl">Servicios & productos</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Servicios & productos
+            </h2>
             <p className="mt-2 max-w-2xl text-neutral-600">
-              Soluciones listas para impactar KPIs en semanas. Integraciones con tu
-              stack actual, métricas claras y ejecución segura.
+              Soluciones listas para impactar KPIs en semanas. Integraciones con
+              tu stack actual, métricas claras y ejecución segura.
             </p>
           </div>
           <a
@@ -39,7 +41,7 @@ export default function ServiciosSection() {
               "Lead scoring + recomendaciones",
               "Integración CRM (HubSpot, Pipedrive)",
             ]}
-            priceLabel="Desde USD $499 setup + $149/mes"
+            priceLabel="Desde USD $100 setup + $50/mes"
           />
 
           <ServicioCard
@@ -50,7 +52,7 @@ export default function ServiciosSection() {
               "RAG con tu base de conocimiento",
               "KPIs de CSAT/tiempos de resolución",
             ]}
-            priceLabel="Desde USD $399 setup + $129/mes"
+            priceLabel="Desde USD $100 setup + $50/mes"
           />
 
           <ServicioCard
@@ -174,7 +176,9 @@ function Trust({ stat, label }: { stat: string; label: string }) {
   return (
     <div className="rounded-xl border border-neutral-200 bg-white px-4 py-3 text-center">
       <div className="text-xl font-extrabold text-[#8B1E2D]">{stat}</div>
-      <div className="text-xs uppercase tracking-wide text-neutral-500">{label}</div>
+      <div className="text-xs uppercase tracking-wide text-neutral-500">
+        {label}
+      </div>
     </div>
   );
 }
