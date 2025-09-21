@@ -5,12 +5,14 @@ import StickyHeader from "@/components/StickyHeader";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Gtm from "@/components/Gtm";
 import ConsentBanner from "@/components/ConsentBanner";
+import Script from "next/script";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+const FB_PIXEL_ID = "1921792838718264";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.nexalforge.com"),
@@ -46,7 +48,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <head></head>
+      <head>
+        {/* Carga del SDK */}
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+          `}
+        </Script>
+
+        {/* init + PageView inicial */}
+        <Script id="fb-pixel-init" strategy="afterInteractive">
+          {`
+            if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+              window.fbq('init', '${FB_PIXEL_ID}');
+              window.fbq('track', 'PageView');
+            }
+          `}
+        </Script>
+      </head>
       {/* GTM + Consent Mode (usa next/script dentro) */}
       <Gtm />
 
@@ -83,6 +109,14 @@ export default function RootLayout({
             }),
           }}
         />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+          />
+        </noscript>
       </body>
     </html>
   );
