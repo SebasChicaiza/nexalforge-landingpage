@@ -519,7 +519,7 @@ export default function NexalForgeLandingWireframe() {
           </div>
           <div>
             <div className="mb-2 font-semibold text-[#2A2A2A]">Contacto</div>
-            <p>nexalforge@outlook.es</p>
+            <p>contact@nexalforge.com</p>
             <p>Quito, Ecuador</p>
           </div>
         </div>
