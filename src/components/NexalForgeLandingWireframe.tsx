@@ -17,27 +17,32 @@ import ServiciosSection from "@/components/ServiciosSection";
 
 import RoiSection from "@/components/RoiSection";
 import ContactForm from "@/components/ContactForm";
+import { HeroText } from "./HeroText";
+import Footer from "./Footer";
 
 export default function NexalForgeLandingWireframe() {
   return (
     <div className="min-h-screen w-full bg-white text-[#2A2A2A]">
       {/* HERO v2 – imagen lateral alineada al texto */}
-      <section id="hero" className="relative isolate overflow-hidden bg-black">
+      <section
+        id="hero"
+        className="relative isolate overflow-hidden bg-black min-h-[calc(100svh-var(--nf-header-h,0px))] flex items-center"
+      >
         {/* Gradientes de profundidad y legibilidad */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/90 via-black/70 to-black/90" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/60 to-[#1a0c0d]" />
 
         {/* CONTENIDO */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pt-24 md:pt-32 pb-16 md:pb-24 min-h-[90svh]">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 py-16 md:py-24">
           {/* Grid responsive: columna única en mobile, dos en md+ */}
           <div className="grid items-center gap-8 md:gap-10 md:grid-cols-[minmax(0,560px)_minmax(0,520px)] lg:grid-cols-[minmax(0,680px)_minmax(0,520px)]">
-            {/* Imagen primero en mobile para impacto visual; vuelve a la derecha en md+ */}
+            {/* Imagen primero en mobile; a la derecha en md+ */}
             <div className="order-first md:order-none">
               <div
                 className="relative mx-auto w-full max-w-[520px] sm:max-w-[640px] lg:max-w-none lg:w-[720px]
-                   aspect-[4/3] sm:aspect-[3/2] overflow-hidden rounded-2xl sm:rounded-3xl
-                   border border-white/10 bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.45)]
-                   md:ml-0 lg:-ml-8 xl:-ml-16"
+                     aspect-[4/3] sm:aspect-[3/2] overflow-hidden rounded-2xl sm:rounded-3xl
+                     border border-white/10 bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.45)]
+                     md:ml-0 lg:-ml-8 xl:-ml-16"
               >
                 <Image
                   src="/hero-img.png"
@@ -54,15 +59,7 @@ export default function NexalForgeLandingWireframe() {
 
             {/* Columna de texto */}
             <div className="text-white max-w-[58ch] text-center md:text-left">
-              <h1 className="mb-5 mt-2 text-4xl leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-                Potencia tus operaciones <br className="hidden sm:block" /> con
-                IA, hoy.
-              </h1>
-              <p className="mb-8 text-base sm:text-lg text-white/90">
-                Implementamos agentes y automatizaciones que{" "}
-                <b>mejoran ventas</b>, <b>reducen tiempos</b> y{" "}
-                <b>recortan costos</b>.
-              </p>
+              <HeroText />
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
                 <a
                   href="#contacto"
@@ -81,6 +78,7 @@ export default function NexalForgeLandingWireframe() {
           </div>
         </div>
       </section>
+
       <section id="servicios"></section>
       <ServiciosSection />
 
@@ -459,75 +457,6 @@ export default function NexalForgeLandingWireframe() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-neutral-200 bg-white py-10 text-sm text-neutral-600">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-4">
-          <div>
-            <div className="mb-3 flex items-center gap-2">
-              <Link href="/" className="inline-flex items-center">
-                <Image
-                  src="/logo-nexal.png"
-                  alt="NexalForge"
-                  width={160}
-                  height={40}
-                  priority
-                  className="h-14 w-auto object-contain"
-                />
-              </Link>{" "}
-            </div>
-            <p>IA aplicada para mover tus KPIs en semanas, no meses.</p>
-          </div>
-          <div>
-            <div className="mb-2 font-semibold text-[#2A2A2A]">Empresa</div>
-            <ul className="space-y-1">
-              <li>
-                <a className="hover:underline" href="#casos">
-                  Casos
-                </a>
-              </li>
-              <li>
-                <a className="hover:underline" href="#servicios">
-                  Servicios
-                </a>
-              </li>
-              <li>
-                <a className="hover:underline" href="#proceso">
-                  Proceso
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="mb-2 font-semibold text-[#2A2A2A]">Recursos</div>
-            <ul className="space-y-1">
-              <li>
-                <a className="hover:underline" href="#recursos">
-                  Guías
-                </a>
-              </li>
-              <li>
-                <a className="hover:underline" href="#">
-                  Checklist
-                </a>
-              </li>
-              <li>
-                <a className="hover:underline" href="#">
-                  Plantillas
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="mb-2 font-semibold text-[#2A2A2A]">Contacto</div>
-            <p>contact@nexalforge.com</p>
-            <p>Quito, Ecuador</p>
-          </div>
-        </div>
-        <div className="mx-auto mt-8 max-w-7xl px-4 text-xs text-neutral-500">
-          © {new Date().getFullYear()} NexalForge. Todos los derechos
-          reservados.
-        </div>
-      </footer>
     </div>
   );
 }

@@ -6,6 +6,15 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Gtm from "@/components/Gtm";
 import ConsentBanner from "@/components/ConsentBanner";
 import Script from "next/script";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Footer from "@/components/Footer";
+
+export const headingFont = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-heading",
+});
+
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -76,9 +85,7 @@ export default function RootLayout({
       {/* GTM + Consent Mode (usa next/script dentro) */}
       <Gtm />
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${headingFont.variable}`}>
         {/* Noscript de GTM — si tu <Gtm /> ya lo incluye, puedes quitar este bloque */}
         <noscript>
           <iframe
@@ -91,6 +98,7 @@ export default function RootLayout({
 
         <StickyHeader />
         {children}
+        <Footer />
 
         <ConsentBanner />
         <GoogleAnalytics />
