@@ -34,7 +34,7 @@ const SelectWire = forwardRef<HTMLSelectElement, SelectWireProps>(
           )}
           {...props}
         >
-          <option value="" disabled selected hidden>
+          <option value="disabled" selected hidden>
             Selecciona…
           </option>
           {options.map((opt, i) => {
