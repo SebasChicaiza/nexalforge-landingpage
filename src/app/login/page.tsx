@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
+import { motion, type TargetAndTransition } from "framer-motion";
 import Image from "next/image";
 import { Cpu, Brain, CircuitBoard, Network, CloudCog, Bot, Code2, Database, Server, ShieldCheck, SatelliteDish, Workflow } from "lucide-react";
 import axios from "axios";
@@ -244,8 +244,8 @@ export default function NexalForgeLogin() {
 }
 
 function IconField() {
-const floatInitial = { y: 0, x: 0, opacity: 1, rotate: 0, scale: 1 };
-const float = (i: number) => ({
+const floatInitial: TargetAndTransition = { y: 0, x: 0, opacity: 1, rotate: 0, scale: 1 };
+const float = (i: number): TargetAndTransition => ({
   y: [0, -20, 0],
   x: [0, 10, 0],
   rotate: [0, 200, 0],
