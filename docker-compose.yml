@@ -1,0 +1,25 @@
+services:
+  landing:
+    build: .
+    container_name: landing
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Ajusta estas si usas NextAuth/URLs
+      # - NEXTAUTH_URL=https://landing.tudominio.com
+      # - NEXTAUTH_COOKIE_DOMAIN=.tudominio.com   # si compartes cookie subdominios
+      # - DATABASE_URL=postgres://...
+      # - cualquier otra VAR necesaria
+    expose: ["3000"]
+    healthcheck:
+      # evita /robots.txt si no existe
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks: [nexalforge_net]
+    restart: unless-stopped
+
+networks:
+  nexalforge_net:
+    external: true
