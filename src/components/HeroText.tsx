@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const container = {
   hidden: { opacity: 0 },
@@ -9,7 +9,7 @@ const container = {
   }),
 };
 
-const itemRight: Variants  = {
+const itemRight = {
   hidden: { opacity: 0, x: 40 },
   visible: {
     opacity: 1,
