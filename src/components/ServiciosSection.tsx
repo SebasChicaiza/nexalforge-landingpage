@@ -83,7 +83,7 @@ export default function ServiciosSection() {
             bullets={[
               "ETL/ELT y unificación de fuentes",
               "Modelos y métricas gobernadas",
-              "Looker/Metabase/Grafana",
+              "Looker/metabase/Grafana",
             ]}
             priceLabel="Desde USD $499 por dashboard"
           />

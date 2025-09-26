@@ -1,15 +1,139 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+//// --------- Autenticación ---------
+model Usuario {
+  id             String  @id @default(cuid())
+  correo         String  @unique
+  password       String // bcrypt/argon2
+  nombre         String?
+  avatarUrl      String?
+  activo         Boolean @default(true)
+  estado_borrado Boolean @default(false)
+
+  roles          UsuarioRol[]
+  publicaciones  Publicacion[] @relation("AutorPublicacion")
+
+  creadoEn       DateTime @default(now())
+  actualizadoEn  DateTime @updatedAt
+}
+
+model Rol {
+  id        Int        @id @default(autoincrement())
+  nombre    String     @unique // p.ej. "ADMIN", "USER", "EDITOR"
+  usuarios  UsuarioRol[]
+
+  creadoEn  DateTime @default(now())
+}
+
+model UsuarioRol {
+  usuarioId String
+  rolId     Int
+
+  usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  rol       Rol     @relation(fields: [rolId], references: [id], onDelete: Cascade)
+
+  @@id([usuarioId, rolId])
+  @@index([rolId])
+}
+
+//// --------- Blog ---------
+model Publicacion {
+  id             String  @id @default(cuid())
+  slug           String  @unique
+  titulo         String
+  extracto       String  @db.Text
+  contenidoMd    String? @db.Text
+  portadaUrl     String?
+
+  // Normalizado: Categoria -> FK
+  categoriaId    String
+  categoria      Categoria @relation(fields: [categoriaId], references: [id])
+
+  // Normalizado: Estado -> FK
+  estadoId       Int
+  estado         Estado    @relation(fields: [estadoId], references: [id])
+
+  minutosLectura Int
+  publicadoEn    DateTime? // ordenar por más recientes/antiguas
+
+  autorId        String?
+  autor          Usuario?  @relation("AutorPublicacion", fields: [autorId], references: [id])
+
+  etiquetas      PublicacionEtiqueta[]
+  vistas         VistaPublicacion[]
+
+  estado_borrado Boolean @default(false)
+
+  creadoEn       DateTime @default(now())
+  actualizadoEn  DateTime @updatedAt
+
+  @@index([categoriaId])
+  @@index([publicadoEn, estadoId])
+}
+
+model Categoria {
+  id        String   @id @default(cuid())
+  nombre    String   @unique
+  posts     Publicacion[]
+
+  creadoEn  DateTime @default(now())
+}
+
+model Estado {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @unique   // "BORRADOR" | "PUBLICADO" | "PROGRAMADO" | "ARCHIVADO"
+  posts     Publicacion[]
+
+  creadoEn  DateTime @default(now())
+}
+
+model Etiqueta {
+  id        String                @id @default(cuid())
+  nombre    String
+  slug      String                @unique
+  posts     PublicacionEtiqueta[]
+
+  creadoEn  DateTime @default(now())
+
+  @@unique([nombre])
+}
+
+model PublicacionEtiqueta {
+  publicacionId String
+  etiquetaId    String
+
+  publicacion   Publicacion @relation(fields: [publicacionId], references: [id], onDelete: Cascade)
+  etiqueta      Etiqueta    @relation(fields: [etiquetaId], references: [id], onDelete: Cascade)
+
+  @@id([publicacionId, etiquetaId])
+  @@index([etiquetaId])
+}
+
+model VistaPublicacion {
+  id            String  @id @default(cuid())
+  publicacionId String
+  usuarioId     String? // opcional si el visitante está logueado
+  ipHash        String? // opcional: hash corto para deduplicar
+  agenteUsuario String? // user-agent
+
+  creadoEn      DateTime @default(now())
+
+  publicacion   Publicacion @relation(fields: [publicacionId], references: [id], onDelete: Cascade)
+
+  @@index([publicacionId, creadoEn])
+}
+
+//// --------- Newsletter (sidebar) ---------
+model SuscriptorNewsletter {
+  id        String   @id @default(cuid())
+  correo    String   @unique
+  origen    String? // p.ej. "blog_sidebar"
+  creadoEn  DateTime @default(now())
 }
