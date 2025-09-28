@@ -62,7 +62,7 @@ export default function AdminBlogPage() {
         if (!canceled) setData(json);
       } catch (e: unknown) {
         if (!canceled) {
-          const message = e instanceof Error ? e.message : 'Failed to load';
+          const message = e instanceof Error ? e.message : 'No se pudo cargar';
           setError(message);
         }
       } finally {
@@ -90,16 +90,16 @@ export default function AdminBlogPage() {
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold text-neutral-900">Blog posts</h1>
+            <h1 className="text-2xl font-semibold text-neutral-900">Publicaciones del blog</h1>
             <p className="mt-1 text-sm text-neutral-500">
-              Manage and review your publications.
+              Administra y revisa tus publicaciones.
             </p>
           </div>
           <Link
             href="/admin/blog/new"
             className="inline-flex items-center rounded-xl bg-neutral-900 px-4 py-2 text-sm font-medium text-white shadow hover:shadow-md transition-shadow"
           >
-            + New post
+            + Nueva publicación
           </Link>
         </div>
 
@@ -108,7 +108,7 @@ export default function AdminBlogPage() {
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Search by title or excerpt…"
+              placeholder="Buscar por título o extracto…"
               className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder-neutral-400 shadow-sm outline-none focus:border-neutral-400 focus:ring-0"
             />
             <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">⌘K</span>
@@ -120,13 +120,13 @@ export default function AdminBlogPage() {
             <table className="min-w-full divide-y divide-neutral-200">
               <thead className="bg-neutral-50">
                 <tr>
-                  <Th>Title</Th>
-                  <Th className="min-w-[120px]">Category</Th>
-                  <Th className="min-w-[120px]">Status</Th>
-                  <Th className="min-w-[120px]">Published</Th>
-                  <Th className="min-w-[120px]">Updated</Th>
-                  <Th className="text-right min-w-[100px]">Read min</Th>
-                  <Th className="min-w-[140px]">Actions</Th>
+                  <Th>Título</Th>
+                  <Th className="min-w-[120px]">Categoría</Th>
+                  <Th className="min-w-[120px]">Estado</Th>
+                  <Th className="min-w-[120px]">Publicado</Th>
+                  <Th className="min-w-[120px]">Actualizado</Th>
+                  <Th className="text-right min-w-[100px]">Min. lectura</Th>
+                  <Th className="min-w-[140px]">Acciones</Th>
                 </tr>
               </thead>
 
@@ -142,7 +142,7 @@ export default function AdminBlogPage() {
                 {!loading && error && (
                   <tr>
                     <td colSpan={7} className="px-6 py-10 text-center text-sm text-red-600">
-                      Failed to load: {error}
+                      Error al cargar: {error}
                     </td>
                   </tr>
                 )}
@@ -150,7 +150,7 @@ export default function AdminBlogPage() {
                 {!loading && !error && data?.rows.length === 0 && (
                   <tr>
                     <td colSpan={7} className="px-6 py-10 text-center text-sm text-neutral-500">
-                      No posts found.
+                      No se encontraron publicaciones.
                     </td>
                   </tr>
                 )}
@@ -179,13 +179,13 @@ export default function AdminBlogPage() {
                           href={`/blog/${r.slug}`}
                           className="rounded-lg border border-neutral-200 px-3 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50"
                         >
-                          View
+                          Ver
                         </Link>
                         <Link
                           href={`/admin/blog/${r.id}/edit`}
                           className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:shadow"
                         >
-                          Edit
+                          Editar
                         </Link>
                       </div>
                     </Td>
@@ -200,12 +200,12 @@ export default function AdminBlogPage() {
             <div className="text-xs text-neutral-500">
               {data ? (
                 <>
-                  Page <span className="font-medium text-neutral-800">{data.page}</span> of{' '}
+                  Página <span className="font-medium text-neutral-800">{data.page}</span> de{' '}
                   <span className="font-medium text-neutral-800">
                     {totalPages}
                   </span>
                   {` • `}
-                  {data.total} total
+                  {data.total} en total
                 </>
               ) : '—'}
             </div>
@@ -215,14 +215,14 @@ export default function AdminBlogPage() {
                 disabled={page <= 1 || loading}
                 className="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm text-neutral-700 disabled:opacity-50"
               >
-                Prev
+                Anterior
               </button>
               <button
                 onClick={() => setPage((p) => p + 1)}
                 disabled={loading || (data ? page >= totalPages : false)}
                 className="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm text-neutral-700 disabled:opacity-50"
               >
-                Next
+                Siguiente
               </button>
             </div>
           </div>

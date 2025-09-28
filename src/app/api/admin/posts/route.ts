@@ -171,3 +171,51 @@ export async function POST(req: Request) {
   console.error('[POST /admin/posts] Exhausted retries for slug');
   return new NextResponse('Error creating post', { status: 500 });
 }
+
+
+export async function GET(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const q = searchParams.get('q') ?? '';
+    const page = Math.max(1, Number(searchParams.get('page') ?? '1'));
+    const take = Math.min(Math.max(1, Number(searchParams.get('take') ?? '20')), 100);
+    const skip = (page - 1) * take;
+
+    console.log('[GET /api/admin/posts] q=', q, 'page=', page, 'take=', take); // <-- debería verse
+
+    const where = q
+      ? {
+          OR: [
+            { titulo: { contains: q, mode: 'insensitive' as const } },
+            { extracto: { contains: q, mode: 'insensitive' as const } },
+          ],
+        }
+      : {};
+
+    const [rows, total] = await Promise.all([
+      prisma.publicacion.findMany({
+        where,
+        orderBy: [{ actualizadoEn: 'desc' }],
+        skip,
+        take,
+        select: {
+          id: true,
+          slug: true,
+          titulo: true,
+          publicadoEn: true,
+          minutosLectura: true,
+          creadoEn: true,
+          actualizadoEn: true,
+          estado: { select: { id: true, nombre: true } },
+          categoria: { select: { id: true, nombre: true } },
+        },
+      }),
+      prisma.publicacion.count({ where }),
+    ]);
+
+    return NextResponse.json({ rows, total, page, take }, { headers: { 'Cache-Control': 'no-store' } });
+  } catch (e) {
+    console.error('[GET /api/admin/posts] error:', e);
+    return new NextResponse('Error fetching posts', { status: 500 });
+  }
+}
