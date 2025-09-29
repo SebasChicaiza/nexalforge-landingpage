@@ -7,14 +7,38 @@ import Image from "next/image";
 type NavLink = { label: string; href: string };
 
 const SERVICES: NavLink[] = [
-  { label: "Agente IA para Ventas", href: "#svc-ventas" },
-  { label: "Agente IA para Soporte", href: "#svc-soporte" },
-  { label: "Desarrollo Web Empresarial", href: "#svc-web" },
-  { label: "Automatización Operativa", href: "#svc-automatizacion" },
-  { label: "Predicción & Forecasting", href: "#svc-forecasting" },
-  { label: "Capa de Datos & Dashboards", href: "#svc-datos" },
-  { label: "Sprint de Implementación", href: "#svc-sprint" },
+  { label: "Agente IA para Ventas", href: "/" },
+  { label: "Agente IA para Soporte", href: "/" },
+  { label: "Desarrollo Web Empresarial", href: "/" },
+  { label: "Automatización Operativa", href: "/" },
+  { label: "Predicción & Forecasting", href: "/" },
+  { label: "Capa de Datos & Dashboards", href: "/" },
+  { label: "Sprint de Implementación", href: "/" },
 ];
+
+function useAuthFlag() {
+  const [isLogged, setIsLogged] = useState<boolean | null>(null); // null=unknown (first render)
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const res = await fetch("/api/auth/session", { cache: "no-store" });
+        const json = (await res.json()) as { loggedIn: boolean };
+        if (alive) setIsLogged(Boolean(json.loggedIn));
+      } catch {
+        if (alive) setIsLogged(false);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return isLogged;
+}
+async function logoutAndReload() {
+  await fetch("/api/auth/logout", { method: "POST" });
+  window.location.reload();
+}
 
 export default function StickyHeader() {
   const [solid, setSolid] = useState(false);
@@ -44,8 +68,7 @@ export default function StickyHeader() {
     const wrap = desktopWrapRef.current;
     const to = e.relatedTarget as Node | null;
     // si el destino sigue dentro del wrapper, no cerrar
-    if (wrap && to && wrap.contains(to)) 
-      return;
+    if (wrap && to && wrap.contains(to)) return;
     // cierre suave para permitir micro-gaps
     hoverCloseTimer.current = window.setTimeout(() => {
       setDesktopServicesOpen(false);
@@ -129,6 +152,7 @@ export default function StickyHeader() {
     ? "bg-black/85 backdrop-blur border-b border-white/10"
     : "bg-transparent";
 
+  const isLogged = useAuthFlag();
   return (
     <>
       <header
@@ -247,18 +271,28 @@ export default function StickyHeader() {
             <a className="hover:opacity-80" href="#roi">
               Calcula tu ROI
             </a>
-            <a className="hover:opacity-80" href="/blog">
+            <Link className="hover:opacity-80" href="/blog">
               Blog
-            </a>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href="#contacto"
-              className="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-white hover:bg-white/20 md:inline-block"
-            >
-              Agendar demo
-            </a>
+            {/* Login / Logout (client) */}
+            {isLogged ? (
+              <button
+                onClick={logoutAndReload}
+                className="hidden md:inline-block rounded-full border border-white/30 bg-white/10 px-4 py-2 text-white hover:bg-white/20"
+              >
+                Cerrar Sesión
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-white hover:bg-white/20 md:inline-block"
+              >
+                Iniciar Sesion
+              </Link>
+            )}
 
             {/* Hamburger (mobile) */}
             <button
@@ -424,13 +458,22 @@ export default function StickyHeader() {
           </ul>
 
           <div className="mt-4 border-t border-white/10 pt-4">
-            <a
-              href="#contacto"
-              onClick={() => setMobileOpen(false)}
-              className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20"
-            >
-              Agendar demo
-            </a>
+          {isLogged ? (
+              <button
+                onClick={logoutAndReload}
+                className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20"
+              >
+                Cerrar Sesión
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileOpen(false)}
+                className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20"
+              >
+                Iniciar Sesion
+              </Link>
+            )}
           </div>
 
           {/* glow accent */}

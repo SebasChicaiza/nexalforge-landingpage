@@ -70,7 +70,7 @@ export async function POST(req: Request) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       path: "/",
-      maxAge: remember ? 60 * 60 * 24 * 30 : undefined, // 30 days if remember, otherwise session cookie
+      maxAge: remember ? 60 * 60 * 24 * 5 : undefined, // 5 days if remember, otherwise session cookie
     });
 
     const res = NextResponse.json(
