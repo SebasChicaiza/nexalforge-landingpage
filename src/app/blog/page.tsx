@@ -499,7 +499,17 @@ function PostCard({
 }) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all hover:shadow-xl">
-      {/* ...image block unchanged... */}
+      <a href={href} className="block focus:outline-none focus:ring-2 focus:ring-offset-2" aria-label={title}>
+        <div className="relative h-40 w-full overflow-hidden bg-neutral-100">
+          <SafeImage
+            src={cover}
+            alt={title}
+            fill
+            sizes="(max-width:768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        </div>
+      </a>
       <div className="p-4">
         <div className="mb-1.5 flex items-center gap-2 text-xs text-neutral-600">
           <span className="rounded-full border px-2 py-0.5">{category}</span>
