@@ -1,22 +1,58 @@
+// app/api/blog/posts/route.ts
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 import { PostUpsertSchema } from '@/lib/validatorsBlog';
 import { slugify } from '@/lib/slugify';
 import { Prisma } from '@prisma/client';
+import { verify } from 'jsonwebtoken';
 
-/* ——— helpers ——— */
+/* ——— auth helpers ——— */
+
+const JWT_SECRET = process.env.JWT_SECRET || '';
+
+type JwtPayloadNF = {
+  exp: number;
+  email: string;
+  userName: string;
+  roles: string[];
+  iat: number;
+};
+
+async function getUserFromCookie(): Promise<JwtPayloadNF | null> {
+  const jar = await cookies();                 // 👈 await
+  const token = jar.get('nf_jwt')?.value;      // 👈 now .get exists
+  if (!token || !JWT_SECRET) return null;
+  try {
+    const payload = verify(token, JWT_SECRET) as JwtPayloadNF;
+    if (!payload || !Array.isArray(payload.roles) || typeof payload.email !== 'string') {
+      return null;
+    }
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+function hasRole(user: JwtPayloadNF | null, role: string): boolean {
+  return !!user && Array.isArray(user.roles) && user.roles.includes(role);
+}
+
+/* ——— helpers (kept from your code) ——— */
 
 function logPreviewBody(json: unknown) {
   try {
-    const obj = typeof json === 'object' && json ? json as Record<string, unknown> : {};
+    const obj = typeof json === 'object' && json ? (json as Record<string, unknown>) : {};
     const short = {
       ...obj,
-      extracto: typeof obj.extracto === 'string'
-        ? obj.extracto.slice(0, 160) + (obj.extracto.length > 160 ? '…' : '')
-        : obj.extracto,
-      contenidoMd: typeof obj.contenidoMd === 'string'
-        ? obj.contenidoMd.slice(0, 160) + (obj.contenidoMd.length > 160 ? '…' : '')
-        : obj.contenidoMd,
+      extracto:
+        typeof obj.extracto === 'string'
+          ? obj.extracto.slice(0, 160) + (obj.extracto.length > 160 ? '…' : '')
+          : obj.extracto,
+      contenidoMd:
+        typeof obj.contenidoMd === 'string'
+          ? obj.contenidoMd.slice(0, 160) + (obj.contenidoMd.length > 160 ? '…' : '')
+          : obj.contenidoMd,
     };
     console.log('[POST /blog/posts] body preview:', short);
   } catch {
@@ -50,9 +86,15 @@ async function makeUniqueSlug(base: string) {
   return slug;
 }
 
-/* ——— POST ——— */
+/* ——— POST (role-protected) ——— */
 
 export async function POST(req: Request) {
+  // 🔐 allow only Admin
+  const user = await getUserFromCookie();
+  if (!hasRole(user, 'Admin')) {
+    return new NextResponse('No autorizado', { status: 401 });
+  }
+
   const t0 = Date.now();
 
   // 1) Parse JSON safely
@@ -94,7 +136,7 @@ export async function POST(req: Request) {
     data.minutosLectura ??
     Math.max(1, Math.round((data.contenidoMd ?? '').split(/\s+/).filter(Boolean).length / 220));
 
-  // 6) FK pre-checks (avoid integrity 500s)
+  // 6) FK pre-checks
   const [cat, est] = await Promise.all([
     prisma.categoria.findUnique({ where: { id: data.categoriaId }, select: { id: true, nombre: true } }),
     prisma.estado.findUnique({ where: { id: data.estadoId }, select: { id: true, nombre: true } }),
@@ -146,15 +188,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ id: created.id });
     } catch (e: unknown) {
       if (isPrismaKnownError(e)) {
-        // Unique constraint on slug
         if (e.code === 'P2002') {
           console.warn('[POST /blog/posts] P2002 slug conflict, retrying… attempt', attempt + 1);
-          // tweak slug and retry
           const suffix = attempt === MAX_RETRIES ? `-${Date.now()}` : `-${attempt + 1}`;
           slug = slug.endsWith(suffix) ? `${slug}-${Math.floor(Math.random() * 1000)}` : `${slug}${suffix}`;
           continue;
         }
-        // FK/constraint errors are unlikely here due to pre-checks, but log if any
         console.error('[POST /blog/posts] Prisma known error:', {
           code: e.code,
           meta: e.meta,
@@ -167,11 +206,11 @@ export async function POST(req: Request) {
     }
   }
 
-  // Should not reach here
   console.error('[POST /blog/posts] Exhausted retries for slug');
   return new NextResponse('Error creating post', { status: 500 });
 }
 
+/* ——— GET (no auth) ——— */
 
 export async function GET(req: Request) {
   try {
@@ -209,9 +248,9 @@ export async function GET(req: Request) {
           creadoEn: true,
           actualizadoEn: true,
           portadaUrl: true,
+          estado_borrado: true,
           estado: { select: { id: true, nombre: true } },
           categoria: { select: { id: true, nombre: true } },
-          // 👇 include etiquetas via junction, but only the tag fields we need
           etiquetas: {
             select: {
               etiqueta: { select: { id: true, nombre: true, slug: true } },
@@ -222,7 +261,6 @@ export async function GET(req: Request) {
       prisma.publicacion.count({ where }),
     ]);
 
-    // Flatten etiquetas to a simple array
     const rowsOut = rows.map((r) => ({
       ...r,
       etiquetas: r.etiquetas.map((pe) => pe.etiqueta),
@@ -237,3 +275,4 @@ export async function GET(req: Request) {
     return new NextResponse('Error fetching posts', { status: 500 });
   }
 }
+/* ——— PUT and DELETE are in /[id]/route.ts ——— */

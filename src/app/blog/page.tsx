@@ -79,6 +79,7 @@ type PostRow = {
   creadoEn: string;
   actualizadoEn: string;
   portadaUrl: string | null;
+  estado_borrado?: boolean;
   estado: { id: number; nombre: string };
   categoria: { id: string; nombre: string };
   etiquetas: { id: string; nombre: string; slug: string }[];
@@ -172,13 +173,17 @@ export default function BlogPage() {
   );
 
   const filtered = useMemo(() => {
-    let list = items.filter((p) => {
-      const byCat = category === "All" || p.categoria?.nombre === category;
-      const byTag =
-        !tagSlug ||
-        p.etiquetas.some((t) => t.slug === tagSlug || t.nombre === tagSlug);
-      return byCat && byTag;
-    });
+    let list = items
+      .filter((p) => p.estado_borrado !== true)
+      .filter((p) => p.estado.nombre === "PUBLICADO")
+      .filter((p) => {
+        const byCat = category === "All" || p.categoria?.nombre === category;
+        const byTag =
+          !tagSlug ||
+          p.etiquetas.some((t) => t.slug === tagSlug || t.nombre === tagSlug);
+        return byCat && byTag;
+      });
+
     list = list.sort((a, b) => {
       const da = +new Date(a.publicadoEn ?? a.creadoEn);
       const db = +new Date(b.publicadoEn ?? b.creadoEn);
@@ -309,7 +314,7 @@ export default function BlogPage() {
                     category={p.categoria?.nombre ?? "General"}
                     date={p.publicadoEn ?? p.creadoEn}
                     readingMins={p.minutosLectura ?? 1}
-                    excerpt={p.extracto} // 👈 here
+                    excerpt={p.extracto}
                     tags={p.etiquetas}
                     onTagClick={(slug) => setTagSlug(slug)}
                   />
@@ -499,7 +504,11 @@ function PostCard({
 }) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all hover:shadow-xl">
-      <a href={href} className="block focus:outline-none focus:ring-2 focus:ring-offset-2" aria-label={title}>
+      <a
+        href={href}
+        className="block focus:outline-none focus:ring-2 focus:ring-offset-2"
+        aria-label={title}
+      >
         <div className="relative h-40 w-full overflow-hidden bg-neutral-100">
           <SafeImage
             src={cover}

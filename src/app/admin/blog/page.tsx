@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 type Row = {
   id: string;
@@ -11,6 +11,7 @@ type Row = {
   minutosLectura: number | null;
   creadoEn: string;
   actualizadoEn: string;
+  estado_borrado?: boolean;
   estado?: { id: number; nombre: string } | null;
   categoria?: { id: string; nombre: string } | null;
 };
@@ -23,20 +24,58 @@ type ApiResp = {
 };
 
 function fmtDate(d?: string | null) {
-  if (!d) return '—';
+  if (!d) return "—";
   const dt = new Date(d);
-  if (Number.isNaN(dt.getTime())) return '—';
-  return dt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+  if (Number.isNaN(dt.getTime())) return "—";
+  return dt.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
 }
 
 export default function AdminBlogPage() {
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState("");
   const [page, setPage] = useState(1);
   const take = 20;
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<ApiResp | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  async function softDelete(id: string) {
+    const res = await fetch(`/api/blog/posts/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("No se pudo eliminar");
+    // refresh local state
+    setData((prev) =>
+      prev
+        ? {
+            ...prev,
+            rows: prev.rows.map((x) =>
+              x.id === id ? { ...x, estado_borrado: true } : x
+            ),
+          }
+        : prev
+    );
+  }
+  async function restore(id: string) {
+    const res = await fetch(`/api/blog/posts/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ estado_borrado: false }),
+    });
+    if (!res.ok) throw new Error("No se pudo reactivar");
+    setData((prev) =>
+      prev
+        ? {
+            ...prev,
+            rows: prev.rows.map((x) =>
+              x.id === id ? { ...x, estado_borrado: false } : x
+            ),
+          }
+        : prev
+    );
+  }
 
   // debounce query
   const [dq, setDQ] = useState(q);
@@ -51,18 +90,18 @@ export default function AdminBlogPage() {
       setLoading(true);
       setError(null);
       try {
-        const url = new URL('/api/blog/posts', window.location.origin);
-        url.searchParams.set('page', String(page));
-        url.searchParams.set('take', String(take));
-        if (dq.trim()) url.searchParams.set('q', dq.trim());
+        const url = new URL("/api/blog/posts", window.location.origin);
+        url.searchParams.set("page", String(page));
+        url.searchParams.set("take", String(take));
+        if (dq.trim()) url.searchParams.set("q", dq.trim());
 
-        const res = await fetch(url.toString(), { cache: 'no-store' });
+        const res = await fetch(url.toString(), { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json: ApiResp = await res.json();
         if (!canceled) setData(json);
       } catch (e: unknown) {
         if (!canceled) {
-          const message = e instanceof Error ? e.message : 'No se pudo cargar';
+          const message = e instanceof Error ? e.message : "No se pudo cargar";
           setError(message);
         }
       } finally {
@@ -90,7 +129,9 @@ export default function AdminBlogPage() {
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold text-neutral-900">Publicaciones del blog</h1>
+            <h1 className="text-2xl font-semibold text-neutral-900">
+              Publicaciones del blog
+            </h1>
             <p className="mt-1 text-sm text-neutral-500">
               Administra y revisa tus publicaciones.
             </p>
@@ -111,7 +152,6 @@ export default function AdminBlogPage() {
               placeholder="Buscar por título o extracto…"
               className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder-neutral-400 shadow-sm outline-none focus:border-neutral-400 focus:ring-0"
             />
-            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">⌘K</span>
           </div>
         </div>
 
@@ -126,6 +166,7 @@ export default function AdminBlogPage() {
                   <Th className="min-w-[120px]">Publicado</Th>
                   <Th className="min-w-[120px]">Actualizado</Th>
                   <Th className="text-right min-w-[100px]">Min. lectura</Th>
+                  <Th className="min-w-[120px]">Estado borrado</Th>
                   <Th className="min-w-[140px]">Acciones</Th>
                 </tr>
               </thead>
@@ -141,7 +182,10 @@ export default function AdminBlogPage() {
 
                 {!loading && error && (
                   <tr>
-                    <td colSpan={7} className="px-6 py-10 text-center text-sm text-red-600">
+                    <td
+                      colSpan={7}
+                      className="px-6 py-10 text-center text-sm text-red-600"
+                    >
                       Error al cargar: {error}
                     </td>
                   </tr>
@@ -149,48 +193,105 @@ export default function AdminBlogPage() {
 
                 {!loading && !error && data?.rows.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="px-6 py-10 text-center text-sm text-neutral-500">
+                    <td
+                      colSpan={7}
+                      className="px-6 py-10 text-center text-sm text-neutral-500"
+                    >
                       No se encontraron publicaciones.
                     </td>
                   </tr>
                 )}
 
-                {!loading && !error && data?.rows.map((r) => (
-                  <tr key={r.id} className="hover:bg-neutral-50/60">
-                    <Td>
-                      <div className="flex flex-col">
-                        <span className="font-medium text-neutral-900">{r.titulo}</span>
-                        <span className="text-xs text-neutral-500">/{r.slug}</span>
-                      </div>
-                    </Td>
-                    <Td>{r.categoria?.nombre ?? '—'}</Td>
-                    <Td>
-                      <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium
-                        border-neutral-200 text-neutral-700 bg-neutral-50">
-                        {r.estado?.nombre ?? '—'}
-                      </span>
-                    </Td>
-                    <Td>{fmtDate(r.publicadoEn)}</Td>
-                    <Td>{fmtDate(r.actualizadoEn)}</Td>
-                    <Td className="text-right">{r.minutosLectura ?? '—'}</Td>
-                    <Td>
-                      <div className="flex items-center gap-2">
-                        <Link
-                          href={`/blog/${r.slug}`}
-                          className="rounded-lg border border-neutral-200 px-3 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50"
+                {!loading &&
+                  !error &&
+                  data?.rows.map((r) => (
+                    <tr key={r.id} className="hover:bg-neutral-50/60">
+                      <Td>
+                        <div className="flex flex-col">
+                          <span className="font-medium text-neutral-900">
+                            {r.titulo}
+                          </span>
+                          <span className="text-xs text-neutral-500">
+                            /{r.slug}
+                          </span>
+                        </div>
+                      </Td>
+                      <Td>{r.categoria?.nombre ?? "—"}</Td>
+                      <Td>
+                        <span
+                          className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium
+                        border-neutral-200 text-neutral-700 bg-neutral-50"
                         >
-                          Ver
-                        </Link>
-                        <Link
-                          href={`/admin/blog/${r.id}/edit`}
-                          className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:shadow"
-                        >
-                          Editar
-                        </Link>
-                      </div>
-                    </Td>
-                  </tr>
-                ))}
+                          {r.estado?.nombre ?? "—"}
+                        </span>
+                      </Td>
+                      <Td>{fmtDate(r.publicadoEn)}</Td>
+                      <Td>{fmtDate(r.actualizadoEn)}</Td>
+                      <Td className="text-right">{r.minutosLectura ?? "—"}</Td>
+                      <Td>
+                        {(() => {
+                          const isInactive = r.estado_borrado === true; // true => "Inactivo", false/undefined => "Activo"
+                          return (
+                            <span
+                              className={[
+                                "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium",
+                                isInactive
+                                  ? "border-red-200 text-red-700 bg-red-50"
+                                  : "border-green-200 text-green-700 bg-green-50",
+                              ].join(" ")}
+                            >
+                              {isInactive ? "Inactivo" : "Activo"}
+                            </span>
+                          );
+                        })()}
+                      </Td>
+
+                      <Td>
+                        <div className="flex items-center gap-2">
+                          <Link
+                            href={`/blog/${r.slug}`}
+                            className="rounded-lg border border-neutral-200 px-3 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50"
+                          >
+                            Ver
+                          </Link>
+                          <Link
+                            href={`/admin/blog/${r.id}/edit`}
+                            className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:shadow"
+                          >
+                            Editar
+                          </Link>
+
+                          {r.estado_borrado ? (
+                            <button
+                              onClick={() => restore(r.id)}
+                              className="rounded-lg border border-green-200 bg-green-600/10 px-3 py-1.5 text-xs font-medium text-green-700 hover:bg-green-600/20 transition-colors"
+                              title="Reactivar publicación"
+                            >
+                              Reactivar
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                if (
+                                  confirm(
+                                    "¿Seguro que deseas enviar esta publicación a la papelera?"
+                                  )
+                                ) {
+                                  softDelete(r.id).catch((e) =>
+                                    alert((e as Error).message)
+                                  );
+                                }
+                              }}
+                              className="rounded-lg border border-red-200 bg-red-600/10 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-600/20 transition-colors"
+                              title="Enviar a la papelera"
+                            >
+                              Eliminar
+                            </button>
+                          )}
+                        </div>
+                      </Td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -200,14 +301,20 @@ export default function AdminBlogPage() {
             <div className="text-xs text-neutral-500">
               {data ? (
                 <>
-                  Página <span className="font-medium text-neutral-800">{data.page}</span> de{' '}
+                  Página{" "}
+                  <span className="font-medium text-neutral-800">
+                    {data.page}
+                  </span>{" "}
+                  de{" "}
                   <span className="font-medium text-neutral-800">
                     {totalPages}
                   </span>
                   {` • `}
                   {data.total} en total
                 </>
-              ) : '—'}
+              ) : (
+                "—"
+              )}
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -227,7 +334,6 @@ export default function AdminBlogPage() {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -237,8 +343,8 @@ function Th(props: React.PropsWithChildren<{ className?: string }>) {
   return (
     <th
       className={
-        'px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-neutral-600 ' +
-        (props.className ?? '')
+        "px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-neutral-600 " +
+        (props.className ?? "")
       }
     >
       {props.children}
@@ -248,7 +354,12 @@ function Th(props: React.PropsWithChildren<{ className?: string }>) {
 
 function Td(props: React.PropsWithChildren<{ className?: string }>) {
   return (
-    <td className={'whitespace-nowrap px-6 py-4 text-sm text-neutral-800 ' + (props.className ?? '')}>
+    <td
+      className={
+        "whitespace-nowrap px-6 py-4 text-sm text-neutral-800 " +
+        (props.className ?? "")
+      }
+    >
       {props.children}
     </td>
   );
