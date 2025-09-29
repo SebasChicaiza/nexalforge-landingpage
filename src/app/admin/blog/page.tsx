@@ -51,7 +51,7 @@ export default function AdminBlogPage() {
       setLoading(true);
       setError(null);
       try {
-        const url = new URL('/api/admin/posts', window.location.origin);
+        const url = new URL('/api/blog/posts', window.location.origin);
         url.searchParams.set('page', String(page));
         url.searchParams.set('take', String(take));
         if (dq.trim()) url.searchParams.set('q', dq.trim());

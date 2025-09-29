@@ -1,162 +1,217 @@
 "use client";
 
-// at the top of app/blog/page.tsx
-import PostCard, {
-  SkeletonCard,
-  type Post as PostType,
-} from "@/components/PostCard";
-import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 
-// --- Brand tokens ---
+function isAbsoluteUrl(src?: string | null) {
+  return !!src && /^https?:\/\//i.test(src);
+}
+
+function SafeImage({
+  src,
+  alt,
+  className,
+  fill,
+  sizes,
+}: {
+  src?: string | null;
+  alt: string;
+  className?: string;
+  fill?: boolean;
+  sizes?: string;
+}) {
+  if (!src) {
+    return (
+      <div className="flex h-full w-full items-center justify-center text-neutral-400">
+        Sin portada
+      </div>
+    );
+  }
+
+  // If it’s an absolute external URL, render unoptimized to skip the whitelist
+  if (isAbsoluteUrl(src)) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill={fill}
+        sizes={sizes}
+        className={className}
+        unoptimized
+        // NOTE: unoptimized bypasses the domain check
+      />
+    );
+  }
+
+  // Relative (local) paths are fine with regular Image
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill={fill}
+      sizes={sizes}
+      className={className}
+    />
+  );
+}
+
+/** ───────────────── Brand ───────────────── */
 const BRAND = {
-  primary: "#8B1E2D", // Nexal red
+  primary: "#8B1E2D",
   primaryHover: "#B84550",
   text: "#2A2A2A",
 };
 
-// --- Mock data (replace with your CMS/fetch later) ---
-type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: string; // ISO
-  cover?: string;
-  category: "AI" | "LLMs" | "Automation" | "Infra" | "Product";
-  tags: string[];
-  readingMins: number;
+/** ───────────────── Types (from your APIs) ───────────────── */
+type MetaResp = {
+  categorias: { id: string; nombre: string }[];
+  estados: { id: number; nombre: string }[];
+  etiquetas: { id: string; nombre: string; slug: string; count: number }[];
 };
 
-const POSTS: Post[] = [
-  {
-    slug: "agents-venta-whatsapp-2025",
-    title: "Agentes de venta en WhatsApp: qué funciona en 2025",
-    excerpt:
-      "Del intent al booking en un solo hilo. Qué prompts, flows y handoffs convierten mejor.",
-    date: "2025-09-18",
-    cover: "/blog/whatsapp-agents.jpg",
-    category: "Automation",
-    tags: ["WhatsApp", "N8N", "Handoff"],
-    readingMins: 6,
-  },
-  {
-    slug: "rag-estrategias-low-latency",
-    title: "RAG low-latency para e-commerce: 3 patrones prácticos",
-    excerpt:
-      "Cachés, chunking semántico y colas. Cómo bajar p95 y mantener calidad.",
-    date: "2025-09-12",
-    cover: "/blog/rag-latency.jpg",
-    category: "LLMs",
-    tags: ["RAG", "Caching", "Embeddings"],
-    readingMins: 8,
-  },
-  {
-    slug: "observabilidad-llm-en-produccion",
-    title: "Observabilidad LLM en producción: señales que importan",
-    excerpt:
-      "Deja de mirar solo tokens. Confianza, cobertura, rutas y costos por intento.",
-    date: "2025-09-05",
-    cover: "/blog/observability.jpg",
-    category: "Product",
-    tags: ["Analytics", "Routing", "Costs"],
-    readingMins: 7,
-  },
-  {
-    slug: "infra-costos-multitenant",
-    title: "Infra multi-tenant sin dolor: costos y límites reales",
-    excerpt:
-      "Postgres schemas + RLS, colas y workers. Dónde se rompen las cosas.",
-    date: "2025-08-30",
-    cover: "/blog/multitenant.jpg",
-    category: "Infra",
-    tags: ["Postgres", "RLS", "Queues"],
-    readingMins: 9,
-  },
-  {
-    slug: "ux-prompts-agentes",
-    title: "UX de prompts para agentes conversacionales",
-    excerpt:
-      "Estructuras, fallback y memoria. Diseño de experiencias que no frustran.",
-    date: "2025-08-22",
-    cover: "/blog/ux-prompts.jpg",
-    category: "AI",
-    tags: ["Prompting", "Memory", "UX"],
-    readingMins: 5,
-  },
-];
+type PostRow = {
+  id: string;
+  slug: string;
+  titulo: string;
+  extracto: string;
+  publicadoEn: string | null;
+  minutosLectura: number | null;
+  creadoEn: string;
+  actualizadoEn: string;
+  portadaUrl: string | null;
+  estado: { id: number; nombre: string };
+  categoria: { id: string; nombre: string };
+  etiquetas: { id: string; nombre: string; slug: string }[];
+};
+type PostsResp = { rows: PostRow[]; total: number; page: number; take: number };
 
-const CATEGORIES = [
-  "All",
-  "AI",
-  "LLMs",
-  "Automation",
-  "Infra",
-  "Product",
-] as const;
-type CategoryFilter = (typeof CATEGORIES)[number];
-
-const TAGS = Array.from(new Set(POSTS.flatMap((p) => p.tags))).sort();
-
-// --- Helpers ---
-function formatDate(iso: string) {
+/** ───────────────── Helpers ───────────────── */
+function formatDate(iso?: string | null) {
+  if (!iso) return "";
   return new Date(iso).toLocaleDateString("es-EC", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
 }
+const cn = (...xs: (string | false | null | undefined)[]) =>
+  xs.filter(Boolean).join(" ");
 
-// --- UI ---
+/** ───────────────── Page ───────────────── */
 export default function BlogPage() {
-  const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<CategoryFilter>("All");
-  const [tag, setTag] = useState<string | null>(null);
-  const [sort, setSort] = useState<"new" | "old">("new");
-  const [limit, setLimit] = useState(6);
+  const [meta, setMeta] = useState<MetaResp | null>(null);
+  const [items, setItems] = useState<PostRow[]>([]);
+  const [page, setPage] = useState(1);
+  const [take] = useState(12);
+  const [total, setTotal] = useState(0);
 
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<string>("All");
+  const [tagSlug, setTagSlug] = useState<string | null>(null);
+  const [sort, setSort] = useState<"new" | "old">("new");
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  // initial load (meta + first page)
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 7000); // 1s demo
-    return () => clearTimeout(t);
+    let ok = true;
+    (async () => {
+      setLoading(true);
+      try {
+        const [m, p] = await Promise.all([
+          fetch("/api/blog/meta", { cache: "no-store" }).then((r) => r.json()),
+          fetch(`/api/blog/posts?page=1&take=${take}`, {
+            cache: "no-store",
+          }).then((r) => r.json()),
+        ]);
+        if (!ok) return;
+        setMeta(m);
+        setItems((p as PostsResp).rows);
+        setTotal((p as PostsResp).total);
+        setPage(1);
+      } finally {
+        if (ok) setLoading(false);
+      }
+    })();
+    return () => {
+      ok = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // search (refetch page 1 when query changes)
   useEffect(() => {
-    setLoading(true);
-    const t = setTimeout(() => setLoading(false), 450);
-    return () => clearTimeout(t);
-  }, [query, category, tag, sort]);
+    let ok = true;
+    const t = setTimeout(async () => {
+      setLoading(true);
+      try {
+        const qs = new URLSearchParams({ page: "1", take: String(take) });
+        if (query.trim()) qs.set("q", query.trim());
+        const p: PostsResp = await fetch(`/api/blog/posts?${qs}`, {
+          cache: "no-store",
+        }).then((r) => r.json());
+        if (!ok) return;
+        setItems(p.rows);
+        setTotal(p.total);
+        setPage(1);
+      } finally {
+        if (ok) setLoading(false);
+      }
+    }, 250);
+    return () => {
+      ok = false;
+      clearTimeout(t);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
-  // how many skeletons to show (grid-friendly)
-  const skeletonCount = 6;
+  // derived UI data
+  const categories = useMemo(
+    () => ["All", ...(meta?.categorias?.map((c) => c.nombre) ?? [])],
+    [meta]
+  );
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    let list = POSTS.filter((p) => {
-      const matchesQ =
-        !q ||
-        p.title.toLowerCase().includes(q) ||
-        p.excerpt.toLowerCase().includes(q) ||
-        p.tags.some((t) => t.toLowerCase().includes(q));
-      const matchesCat = category === "All" || p.category === category;
-      const matchesTag = !tag || p.tags.includes(tag);
-      return matchesQ && matchesCat && matchesTag;
+    let list = items.filter((p) => {
+      const byCat = category === "All" || p.categoria?.nombre === category;
+      const byTag =
+        !tagSlug ||
+        p.etiquetas.some((t) => t.slug === tagSlug || t.nombre === tagSlug);
+      return byCat && byTag;
     });
-
-    list = list.sort((a, b) =>
-      sort === "new"
-        ? +new Date(b.date) - +new Date(a.date)
-        : +new Date(a.date) - +new Date(b.date)
-    );
-
+    list = list.sort((a, b) => {
+      const da = +new Date(a.publicadoEn ?? a.creadoEn);
+      const db = +new Date(b.publicadoEn ?? b.creadoEn);
+      return sort === "new" ? db - da : da - db;
+    });
     return list;
-  }, [query, category, tag, sort]);
+  }, [items, category, tagSlug, sort]);
 
-  const visible = filtered.slice(0, limit);
-  const canLoadMore = filtered.length > visible.length;
+  const canLoadMore = filtered.length < total;
+
+  async function loadMore() {
+    if (!canLoadMore) return;
+    setLoadingMore(true);
+    try {
+      const qs = new URLSearchParams({
+        page: String(page + 1),
+        take: String(take),
+      });
+      if (query.trim()) qs.set("q", query.trim());
+      const p: PostsResp = await fetch(`/api/blog/posts?${qs}`, {
+        cache: "no-store",
+      }).then((r) => r.json());
+      setItems((prev) => [...prev, ...p.rows]);
+      setPage(p.page);
+      setTotal(p.total);
+    } finally {
+      setLoadingMore(false);
+    }
+  }
 
   return (
     <main className="bg-white text-[color:var(--text,#2A2A2A)]">
-      {/* Hero header */}
+      {/* Header */}
       <section className="border-b border-neutral-200 bg-neutral-50/60">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
           <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
@@ -195,20 +250,21 @@ export default function BlogPage() {
               </div>
             </div>
           </div>
+
           {/* Category pills */}
           <div className="mt-6 flex flex-wrap gap-2">
-            {CATEGORIES.map((c) => {
+            {categories.map((c) => {
               const active = c === category;
               return (
                 <button
                   key={c}
                   onClick={() => setCategory(c)}
-                  className={[
+                  className={cn(
                     "rounded-full border px-3 py-1.5 text-sm transition-colors",
                     active
                       ? "border-transparent text-white"
-                      : "border-neutral-300 text-neutral-700 hover:bg-neutral-100",
-                  ].join(" ")}
+                      : "border-neutral-300 text-neutral-700 hover:bg-neutral-100"
+                  )}
                   style={active ? { background: BRAND.primary } : undefined}
                 >
                   {c}
@@ -224,13 +280,13 @@ export default function BlogPage() {
         {/* Posts */}
         <div>
           {/* Tag filter summary */}
-          {tag && (
+          {tagSlug && (
             <div className="mb-4 flex items-center gap-2 text-sm">
               <span className="rounded-full bg-neutral-100 px-3 py-1">
-                Tag: <b>{tag}</b>
+                Tag: <b>{tagSlug}</b>
               </span>
               <button
-                onClick={() => setTag(null)}
+                onClick={() => setTagSlug(null)}
                 className="text-neutral-500 hover:underline"
               >
                 Limpiar
@@ -240,22 +296,28 @@ export default function BlogPage() {
 
           {/* Cards */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {loading
-              ? Array.from({ length: skeletonCount }).map((_, i) => (
+            {loading && items.length === 0
+              ? Array.from({ length: 6 }).map((_, i) => (
                   <SkeletonCard key={i} />
                 ))
-              : visible.map((post) => (
+              : filtered.map((p) => (
                   <PostCard
-                    key={post.slug}
-                    post={post}
-                    onTagClick={(t) => setTag(t)}
-                    // variant="compact"
+                    key={p.id}
+                    title={p.titulo}
+                    href={`/blog/${p.slug}`}
+                    cover={p.portadaUrl ?? undefined}
+                    category={p.categoria?.nombre ?? "General"}
+                    date={p.publicadoEn ?? p.creadoEn}
+                    readingMins={p.minutosLectura ?? 1}
+                    excerpt={p.extracto} // 👈 here
+                    tags={p.etiquetas}
+                    onTagClick={(slug) => setTagSlug(slug)}
                   />
                 ))}
           </div>
 
           {/* Empty state */}
-          {visible.length === 0 && (
+          {!loading && filtered.length === 0 && (
             <div className="rounded-xl border border-neutral-200 bg-white p-6 text-center text-neutral-600">
               No encontramos artículos con esos filtros.
             </div>
@@ -265,8 +327,9 @@ export default function BlogPage() {
           {canLoadMore && (
             <div className="mt-8 flex justify-center">
               <button
-                onClick={() => setLimit((n) => n + 6)}
-                className="rounded-full px-5 py-2.5 text-sm text-white"
+                onClick={loadMore}
+                disabled={loadingMore}
+                className="rounded-full px-5 py-2.5 text-sm text-white disabled:opacity-60"
                 style={{ background: BRAND.primary }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.background = BRAND.primaryHover)
@@ -275,7 +338,7 @@ export default function BlogPage() {
                   (e.currentTarget.style.background = BRAND.primary)
                 }
               >
-                Cargar más
+                {loadingMore ? "Cargando…" : "Cargar más"}
               </button>
             </div>
           )}
@@ -291,7 +354,12 @@ export default function BlogPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => setSort("new")}
-                className={`rounded-full px-3 py-1.5 text-sm ${sort === "new" ? "text-white" : "border border-neutral-300 text-neutral-700"}`}
+                className={cn(
+                  "rounded-full px-3 py-1.5 text-sm",
+                  sort === "new"
+                    ? "text-white"
+                    : "border border-neutral-300 text-neutral-700"
+                )}
                 style={
                   sort === "new" ? { background: BRAND.primary } : undefined
                 }
@@ -300,7 +368,12 @@ export default function BlogPage() {
               </button>
               <button
                 onClick={() => setSort("old")}
-                className={`rounded-full px-3 py-1.5 text-sm ${sort === "old" ? "text-white" : "border border-neutral-300 text-neutral-700"}`}
+                className={cn(
+                  "rounded-full px-3 py-1.5 text-sm",
+                  sort === "old"
+                    ? "text-white"
+                    : "border border-neutral-300 text-neutral-700"
+                )}
                 style={
                   sort === "old" ? { background: BRAND.primary } : undefined
                 }
@@ -310,28 +383,38 @@ export default function BlogPage() {
             </div>
           </div>
 
-          {/* Tags */}
-          <div className="rounded-2xl border border-neutral-200 bg-white p-4">
-            <div className="mb-2 text-sm font-semibold text-[#2A2A2A]">
-              Tags
+          {/* Tags cloud (from meta) */}
+          {meta?.etiquetas?.length ? (
+            <div className="rounded-2xl border border-neutral-200 bg-white p-4">
+              <div className="mb-2 text-sm font-semibold text-[#2A2A2A]">
+                Tags
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {meta.etiquetas.map((t) => {
+                  const active = tagSlug === t.slug || tagSlug === t.nombre;
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => setTagSlug(active ? null : t.slug)}
+                      className={cn(
+                        "rounded-full px-3 py-1.5 text-xs",
+                        active
+                          ? "text-white"
+                          : "border border-neutral-300 text-neutral-700"
+                      )}
+                      style={active ? { background: BRAND.primary } : undefined}
+                      aria-pressed={active}
+                    >
+                      #{t.nombre}{" "}
+                      {!!t.count && (
+                        <span className="opacity-50">({t.count})</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {TAGS.map((t) => {
-                const active = tag === t;
-                return (
-                  <button
-                    key={t}
-                    onClick={() => setTag(active ? null : t)}
-                    className={`rounded-full px-3 py-1.5 text-xs ${active ? "text-white" : "border border-neutral-300 text-neutral-700"}`}
-                    style={active ? { background: BRAND.primary } : undefined}
-                    aria-pressed={active}
-                  >
-                    #{t}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          ) : null}
 
           {/* Newsletter */}
           <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50">
@@ -389,5 +472,87 @@ export default function BlogPage() {
         </aside>
       </section>
     </main>
+  );
+}
+
+/** ───────────────── Local Cards ───────────────── */
+function PostCard({
+  title,
+  href,
+  cover,
+  category,
+  date,
+  readingMins,
+  excerpt, // 👈 new
+  tags,
+  onTagClick,
+}: {
+  title: string;
+  href: string;
+  cover?: string;
+  category: string;
+  date: string;
+  readingMins: number;
+  excerpt?: string; // 👈 new
+  tags: { slug: string; nombre: string }[];
+  onTagClick?: (slug: string) => void;
+}) {
+  return (
+    <article className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all hover:shadow-xl">
+      {/* ...image block unchanged... */}
+      <div className="p-4">
+        <div className="mb-1.5 flex items-center gap-2 text-xs text-neutral-600">
+          <span className="rounded-full border px-2 py-0.5">{category}</span>
+          <span aria-hidden>•</span>
+          <time dateTime={date}>{formatDate(date)}</time>
+          <span aria-hidden>•</span>
+          <span>{readingMins} min</span>
+        </div>
+
+        <a href={href}>
+          <h3 className="line-clamp-2 text-[15px] font-semibold text-[#2A2A2A]">
+            {title}
+          </h3>
+        </a>
+
+        {!!excerpt && (
+          <p className="mt-1 line-clamp-3 text-sm text-neutral-600">
+            {excerpt}
+          </p>
+        )}
+
+        {!!tags?.length && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {tags.map((t) => (
+              <button
+                key={t.slug}
+                onClick={() => onTagClick?.(t.slug)}
+                className="rounded-full border border-neutral-300 px-2.5 py-1 text-[11px] text-neutral-700 hover:bg-neutral-50"
+              >
+                #{t.nombre}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div
+        className="pointer-events-none h-1 w-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        style={{ background: BRAND.primary }}
+      />
+    </article>
+  );
+}
+
+function SkeletonCard() {
+  return (
+    <div className="animate-pulse overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+      <div className="h-40 w-full bg-neutral-100" />
+      <div className="space-y-2 p-4">
+        <div className="h-3 w-24 rounded bg-neutral-200" />
+        <div className="h-4 w-3/4 rounded bg-neutral-200" />
+        <div className="h-3 w-full rounded bg-neutral-100" />
+        <div className="h-3 w-5/6 rounded bg-neutral-100" />
+      </div>
+    </div>
   );
 }

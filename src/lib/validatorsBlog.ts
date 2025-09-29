@@ -60,7 +60,7 @@ export const PostUpsertSchema = z.object({
 /* Tipos útiles para tu UI / endpoints */
 export type PostUpsertInput = z.infer<typeof PostUpsertSchema>;
 
-/* Opcional: esquemas ligeros para /api/admin/posts/meta (por si te sirven en el cliente) */
+/* Opcional: esquemas ligeros para /api/blog/meta (por si te sirven en el cliente) */
 export const CategoriaOptionSchema = z.object({
   id: z.string(),
   nombre: z.string(),
@@ -76,7 +76,7 @@ export const AdminPostsMetaSchema = z.object({
 export type CategoriaOption = z.infer<typeof CategoriaOptionSchema>;
 export type EstadoOption = z.infer<typeof EstadoOptionSchema>;
 
-/* Opcional: query schema para listado /api/admin/posts */
+/* Opcional: query schema para listado /api/blog/posts */
 export const AdminPostsQuerySchema = z.object({
   q: emptyToUndefined(trim).optional(),
   estado: emptyToUndefined(trim).optional(),     // id numérico o nombre

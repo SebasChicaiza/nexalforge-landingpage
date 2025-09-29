@@ -29,7 +29,7 @@ type Props = {
   estados: EstadoOption[];
   onSaved?: (id: string) => void;
   // Cuando mode === 'edit' se requiere initial.id
-  submitTo?: string; // override de endpoint (por defecto: POST /api/admin/posts o PUT /api/admin/posts/:id)
+  submitTo?: string; // override de endpoint (por defecto: POST /api/blog/posts o PUT /api/blog/posts/:id)
 };
 
 export default function BlogForm({
@@ -93,8 +93,8 @@ export default function BlogForm({
       const endpoint =
         submitTo ??
         (mode === 'edit' && values.id
-          ? `/api/admin/posts/${values.id}`
-          : `/api/admin/posts`);
+          ? `/api/blog/posts/${values.id}`
+          : `/api/blog/posts`);
 
       const method = mode === 'edit' ? 'PUT' : 'POST';
 
@@ -112,8 +112,9 @@ export default function BlogForm({
       const json = (await res.json()) as { id: string };
       setMsg('Guardado con éxito.');
       onSaved?.(json.id);
-    } catch (e: any) {
-      setErr(e?.message ?? 'Ocurrió un error al guardar.');
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : 'Failed to load';
+      setErr(message);
     } finally {
       setSending(false);
     }

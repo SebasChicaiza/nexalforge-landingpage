@@ -35,7 +35,7 @@ export default function NewBlogPage() {
       setError(null);
       try {
         // Debe devolver { categorias: {id,nombre}[], estados: {id,nombre}[] }
-        const res = await fetch('/api/admin/posts/meta', { cache: 'no-store' });
+        const res = await fetch('/api/blog/meta', { cache: 'no-store' });
         if (!res.ok) throw new Error(`No se pudo cargar metadata (HTTP ${res.status})`);
         const meta = (await res.json()) as {
           categorias: CategoriaOption[];
@@ -103,7 +103,7 @@ export default function NewBlogPage() {
             // Redirige al editor tras crear
             router.push(`/admin/blog/${id}/edit`);
           }}
-          // BlogForm hará POST a /api/admin/posts por defecto
+          // BlogForm hará POST a /api/blog/posts por defecto
         />
       </div>
     </div>

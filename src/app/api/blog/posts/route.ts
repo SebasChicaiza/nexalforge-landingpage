@@ -18,9 +18,9 @@ function logPreviewBody(json: unknown) {
         ? obj.contenidoMd.slice(0, 160) + (obj.contenidoMd.length > 160 ? '…' : '')
         : obj.contenidoMd,
     };
-    console.log('[POST /admin/posts] body preview:', short);
+    console.log('[POST /blog/posts] body preview:', short);
   } catch {
-    console.log('[POST /admin/posts] body preview: <unserializable>');
+    console.log('[POST /blog/posts] body preview: <unserializable>');
   }
 }
 
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
   try {
     json = await req.json();
   } catch (e) {
-    console.error('[POST /admin/posts] JSON parse error:', e);
+    console.error('[POST /blog/posts] JSON parse error:', e);
     return new NextResponse('Invalid JSON body', { status: 400 });
   }
   logPreviewBody(json);
@@ -68,27 +68,27 @@ export async function POST(req: Request) {
   // 2) Validate with Zod
   const parsed = PostUpsertSchema.safeParse(json);
   if (!parsed.success) {
-    console.warn('[POST /admin/posts] Validation error:', parsed.error.flatten());
+    console.warn('[POST /blog/posts] Validation error:', parsed.error.flatten());
     return new NextResponse(parsed.error.message, { status: 400 });
   }
   const data = parsed.data;
-  console.log('[POST /admin/posts] Parsed keys:', Object.keys(data));
+  console.log('[POST /blog/posts] Parsed keys:', Object.keys(data));
 
   // 3) Compute slug
   const slugBase = data.slug || data.titulo;
   let slug = await makeUniqueSlug(slugBase);
-  console.log('[POST /admin/posts] Initial slug:', slug);
+  console.log('[POST /blog/posts] Initial slug:', slug);
 
   // 4) Upsert tags
   const tagIds = await ensureTags(data.etiquetas ?? []);
-  console.log('[POST /admin/posts] tags count:', tagIds.length);
+  console.log('[POST /blog/posts] tags count:', tagIds.length);
 
   // 5) Normalize date & minutes
   let publicadoEn: Date | null = null;
   if (data.publicadoEn) {
     const dt = new Date(data.publicadoEn);
     if (!Number.isNaN(dt.getTime())) publicadoEn = dt;
-    else console.warn('[POST /admin/posts] Invalid publicadoEn -> null:', data.publicadoEn);
+    else console.warn('[POST /blog/posts] Invalid publicadoEn -> null:', data.publicadoEn);
   }
   const minutosLectura =
     data.minutosLectura ??
@@ -100,14 +100,14 @@ export async function POST(req: Request) {
     prisma.estado.findUnique({ where: { id: data.estadoId }, select: { id: true, nombre: true } }),
   ]);
   if (!cat) {
-    console.error('[POST /admin/posts] categoriaId not found:', data.categoriaId);
+    console.error('[POST /blog/posts] categoriaId not found:', data.categoriaId);
     return new NextResponse('categoriaId inválido', { status: 400 });
   }
   if (!est) {
-    console.error('[POST /admin/posts] estadoId not found:', data.estadoId);
+    console.error('[POST /blog/posts] estadoId not found:', data.estadoId);
     return new NextResponse('estadoId inválido', { status: 400 });
   }
-  console.log('[POST /admin/posts] FKs OK ->', { categoria: cat.nombre, estado: est.nombre });
+  console.log('[POST /blog/posts] FKs OK ->', { categoria: cat.nombre, estado: est.nombre });
 
   // 7) Create with retry on unique slug conflict (P2002)
   const MAX_RETRIES = 3;
@@ -142,33 +142,33 @@ export async function POST(req: Request) {
         select: { id: true },
       });
 
-      console.log('[POST /admin/posts] Created id:', created.id, 'in', Date.now() - t0, 'ms');
+      console.log('[POST /blog/posts] Created id:', created.id, 'in', Date.now() - t0, 'ms');
       return NextResponse.json({ id: created.id });
     } catch (e: unknown) {
       if (isPrismaKnownError(e)) {
         // Unique constraint on slug
         if (e.code === 'P2002') {
-          console.warn('[POST /admin/posts] P2002 slug conflict, retrying… attempt', attempt + 1);
+          console.warn('[POST /blog/posts] P2002 slug conflict, retrying… attempt', attempt + 1);
           // tweak slug and retry
           const suffix = attempt === MAX_RETRIES ? `-${Date.now()}` : `-${attempt + 1}`;
           slug = slug.endsWith(suffix) ? `${slug}-${Math.floor(Math.random() * 1000)}` : `${slug}${suffix}`;
           continue;
         }
         // FK/constraint errors are unlikely here due to pre-checks, but log if any
-        console.error('[POST /admin/posts] Prisma known error:', {
+        console.error('[POST /blog/posts] Prisma known error:', {
           code: e.code,
           meta: e.meta,
           message: e.message,
         });
       } else {
-        console.error('[POST /admin/posts] Unexpected error:', e);
+        console.error('[POST /blog/posts] Unexpected error:', e);
       }
       return new NextResponse('Error creating post', { status: 500 });
     }
   }
 
   // Should not reach here
-  console.error('[POST /admin/posts] Exhausted retries for slug');
+  console.error('[POST /blog/posts] Exhausted retries for slug');
   return new NextResponse('Error creating post', { status: 500 });
 }
 
@@ -181,16 +181,17 @@ export async function GET(req: Request) {
     const take = Math.min(Math.max(1, Number(searchParams.get('take') ?? '20')), 100);
     const skip = (page - 1) * take;
 
-    console.log('[GET /api/admin/posts] q=', q, 'page=', page, 'take=', take); // <-- debería verse
+    console.log('[GET /api/blog/posts] q=', q, 'page=', page, 'take=', take);
 
-    const where = q
-      ? {
-          OR: [
-            { titulo: { contains: q, mode: 'insensitive' as const } },
-            { extracto: { contains: q, mode: 'insensitive' as const } },
-          ],
-        }
-      : {};
+    const where =
+      q.trim().length > 0
+        ? {
+            OR: [
+              { titulo: { contains: q, mode: 'insensitive' as const } },
+              { extracto: { contains: q, mode: 'insensitive' as const } },
+            ],
+          }
+        : {};
 
     const [rows, total] = await Promise.all([
       prisma.publicacion.findMany({
@@ -202,20 +203,37 @@ export async function GET(req: Request) {
           id: true,
           slug: true,
           titulo: true,
+          extracto: true,
           publicadoEn: true,
           minutosLectura: true,
           creadoEn: true,
           actualizadoEn: true,
+          portadaUrl: true,
           estado: { select: { id: true, nombre: true } },
           categoria: { select: { id: true, nombre: true } },
+          // 👇 include etiquetas via junction, but only the tag fields we need
+          etiquetas: {
+            select: {
+              etiqueta: { select: { id: true, nombre: true, slug: true } },
+            },
+          },
         },
       }),
       prisma.publicacion.count({ where }),
     ]);
 
-    return NextResponse.json({ rows, total, page, take }, { headers: { 'Cache-Control': 'no-store' } });
+    // Flatten etiquetas to a simple array
+    const rowsOut = rows.map((r) => ({
+      ...r,
+      etiquetas: r.etiquetas.map((pe) => pe.etiqueta),
+    }));
+
+    return NextResponse.json(
+      { rows: rowsOut, total, page, take },
+      { headers: { 'Cache-Control': 'no-store' } }
+    );
   } catch (e) {
-    console.error('[GET /api/admin/posts] error:', e);
+    console.error('[GET /api/blog/posts] error:', e);
     return new NextResponse('Error fetching posts', { status: 500 });
   }
 }
