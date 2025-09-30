@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import NewsletterForm from "@/components/newsletter/NewsletterForm";
 
 function isAbsoluteUrl(src?: string | null) {
   return !!src && /^https?:\/\//i.test(src);
@@ -431,37 +432,7 @@ export default function BlogPage() {
                 Enviamos ideas accionables de IA y automatización. 1–2
                 correos/mes.
               </p>
-              <form
-                className="mt-3 flex gap-2"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert("Suscrito (demo). Conecta tu endpoint más tarde.");
-                }}
-              >
-                <label className="sr-only" htmlFor="newsletter-email">
-                  Email
-                </label>
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  required
-                  placeholder="tu@email.com"
-                  className="w-full flex-1 rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm outline-none placeholder:text-neutral-400 focus:border-neutral-400"
-                />
-                <button
-                  type="submit"
-                  className="rounded-xl px-4 text-sm text-white"
-                  style={{ background: BRAND.primary }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = BRAND.primaryHover)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = BRAND.primary)
-                  }
-                >
-                  Suscribirme
-                </button>
-              </form>
+              < NewsletterForm origen="blog_sidebar" />
             </div>
             <div className="relative h-20 w-full">
               <Image

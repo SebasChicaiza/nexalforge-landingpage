@@ -6,6 +6,7 @@ import { motion, type TargetAndTransition } from "framer-motion";
 import Image from "next/image";
 import { Cpu, Brain, CircuitBoard, Network, CloudCog, Bot, Code2, Database, Server, ShieldCheck, SatelliteDish, Workflow } from "lucide-react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 /**
  * Asunciones de compilación (de tu tsconfig.json):
@@ -34,6 +35,7 @@ const hasUpperLower = /(?=.*[a-z])(?=.*[A-Z])/;
 export default function NexalForgeLogin() {
   const [isVisible, setIsVisible] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const router = useRouter();
 
   const {
     register,
@@ -53,6 +55,8 @@ export default function NexalForgeLogin() {
 
     const response = await axios.post('/api/auth/login', values);
     console.log("Respuesta del servidor:", response);
+
+    router.push('/admin/blog');
 
     await new Promise((r) => setTimeout(r, 600));
     if (values.email.includes("fail")) {
