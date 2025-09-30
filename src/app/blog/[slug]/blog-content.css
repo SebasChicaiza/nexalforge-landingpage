@@ -1,0 +1,94 @@
+.blog-content {
+  color: #0f172a;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+/* Headings */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: #0b1220;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1.8rem 0 0.8rem;
+}
+.blog-content h1 { font-size: 2.25rem; border-bottom: 2px solid #eef2f7; padding-bottom: .5rem; }
+.blog-content h2 { font-size: 1.75rem; margin-top: 2rem; }
+.blog-content h3 { font-size: 1.35rem; }
+
+/* Texto, enlaces */
+.blog-content p { margin: 0 0 1rem; }
+.blog-content a:hover { text-decoration: none; cursor:auto; }
+
+/* Código inline y bloques */
+.blog-content code {
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95em;
+}
+.blog-content pre {
+  background: #0b1220;
+  color: #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  overflow: auto;
+  border: 1px solid #1118271a;
+  margin: 1.25rem 0;
+}
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Listas */
+.blog-content ul, .blog-content ol { padding-left: 1.5rem; margin: 0 0 1rem; }
+.blog-content li { margin: 0.35rem 0; }
+
+/* Citas */
+.blog-content blockquote {
+  margin: 1rem 0;
+  padding: .75rem 1rem;
+  border-left: 4px solid #f59e0b; /* acento Nexal Forge */
+  background: #fff8e6;
+  color: #6b7280;
+  border-radius: 6px;
+}
+
+/* Tablas */
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.blog-content thead th {
+  text-align: left;
+  background: #f8fafc;
+}
+.blog-content th, .blog-content td {
+  border: 1px solid #e5e7eb;
+  padding: .6rem .75rem;
+}
+.blog-content tbody tr:nth-child(odd) td { background: #fafafa; }
+
+/* HR e imágenes */
+.blog-content hr {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 2rem 0;
+}
+.blog-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin: 1rem 0;
+}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import NewsletterForm from "@/components/newsletter/NewsletterForm";
+import AdminBlogsButton from "@/components/blog/AdminBlogsButton";
 
 function isAbsoluteUrl(src?: string | null) {
   return !!src && /^https?:\/\//i.test(src);
@@ -229,6 +230,9 @@ export default function BlogPage() {
                 Tendencias en IA, automatización y tecnología aplicada. Curado
                 por NexalForge.
               </p>
+              <div className="mt-6">
+                <AdminBlogsButton />
+              </div>
             </div>
             {/* Search */}
             <div className="w-full md:w-[420px]">
@@ -432,7 +436,7 @@ export default function BlogPage() {
                 Enviamos ideas accionables de IA y automatización. 1–2
                 correos/mes.
               </p>
-              < NewsletterForm origen="blog_sidebar" />
+              <NewsletterForm origen="blog_sidebar" />
             </div>
             <div className="relative h-20 w-full">
               <Image
