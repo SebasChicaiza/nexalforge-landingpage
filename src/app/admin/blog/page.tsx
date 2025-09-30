@@ -166,7 +166,7 @@ export default function AdminBlogPage() {
                   <Th className="min-w-[120px]">Publicado</Th>
                   <Th className="min-w-[120px]">Actualizado</Th>
                   <Th className="text-right min-w-[100px]">Min. lectura</Th>
-                  <Th className="min-w-[120px]">Estado borrado</Th>
+                  <Th className="min-w-[120px]">Estado</Th>
                   <Th className="min-w-[140px]">Acciones</Th>
                 </tr>
               </thead>

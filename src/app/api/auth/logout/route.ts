@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
   // If a browser form posts (text/html expected), redirect after clearing cookie
   if (accept.includes('text/html')) {
-    const res = NextResponse.redirect(new URL('/', req.url), { status: 303 });
+    const res = NextResponse.redirect(new URL('/login', req.url), { status: 303 });
     res.headers.set('Set-Cookie', cleared);
     return res;
   }
