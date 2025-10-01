@@ -18,11 +18,10 @@ import ServiciosSection from "@/components/ServiciosSection";
 import RoiSection from "@/components/RoiSection";
 import ContactForm from "@/components/ContactForm";
 import { HeroText } from "./HeroText";
-import Footer from "./Footer";
 
 export default function NexalForgeLandingWireframe() {
   return (
-    <div className="min-h-screen w-full bg-black text-[#2A2A2A]">
+    <div className="min-h-screen w-full bg-white text-[#2A2A2A]">
       {/* HERO v2 – imagen lateral alineada al texto */}
       <section
         id="hero"

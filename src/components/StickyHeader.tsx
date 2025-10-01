@@ -1,13 +1,18 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 type NavLink = { label: string; href: string };
 
-const SERVICES: NavLink[] = [
+const TOP_LINKS: NavLink[] = [
+  { label: "Características", href: "#caracteristicas" },
+  { label: "Empresa", href: "#empresa" },
+  { label: "ROI Calculator", href: "#roi" },
+];
+
+const SOLUTIONS: NavLink[] = [
   { label: "Agente IA para Ventas", href: "/" },
   { label: "Agente IA para Soporte", href: "/" },
   { label: "Desarrollo Web Empresarial", href: "/" },
@@ -17,15 +22,16 @@ const SERVICES: NavLink[] = [
   { label: "Sprint de Implementación", href: "/" },
 ];
 
+// --- auth shim (client) ---
 function useAuthFlag() {
-  const [isLogged, setIsLogged] = useState<boolean | null>(null); // null=unknown (first render)
+  const [isLogged, setIsLogged] = useState<boolean | null>(null);
   useEffect(() => {
     let alive = true;
     (async () => {
       try {
         const res = await fetch("/api/auth/session", { cache: "no-store" });
-        const json = (await res.json()) as { loggedIn: boolean };
-        if (alive) setIsLogged(Boolean(json.loggedIn));
+        const json = (await res.json()) as { loggedIn?: boolean };
+        if (alive) setIsLogged(Boolean(json?.loggedIn));
       } catch {
         if (alive) setIsLogged(false);
       }
@@ -43,18 +49,11 @@ async function logoutAndReload() {
 
 export default function StickyHeader() {
   const [solid, setSolid] = useState(false);
-  const headerRef = useRef<HTMLElement | null>(null);
-  const [headerH, setHeaderH] = useState<number>(0);
-
-  // Mobile off-canvas
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  // Desktop mega menu open (Servicios)
-  const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
-  const desktopWrapRef = useRef<HTMLDivElement | null>(null);
-
-  // control de hover (cierre diferido)
+  // Desktop: Soluciones (mega)
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const hoverCloseTimer = useRef<number | null>(null);
 
   const openDesktop = () => {
@@ -62,21 +61,17 @@ export default function StickyHeader() {
       clearTimeout(hoverCloseTimer.current);
       hoverCloseTimer.current = null;
     }
-    setDesktopServicesOpen(true);
+    setSolutionsOpen(true);
   };
-
   const scheduleCloseIfOutside = (e: React.PointerEvent) => {
-    const wrap = desktopWrapRef.current;
     const to = e.relatedTarget as Node | null;
-    // si el destino sigue dentro del wrapper, no cerrar
+    const wrap = e.currentTarget as HTMLElement;
     if (wrap && to && wrap.contains(to)) return;
-    // cierre suave para permitir micro-gaps
     hoverCloseTimer.current = window.setTimeout(() => {
-      setDesktopServicesOpen(false);
+      setSolutionsOpen(false);
       hoverCloseTimer.current = null;
     }, 120);
   };
-
   const cancelScheduledClose = () => {
     if (hoverCloseTimer.current) {
       clearTimeout(hoverCloseTimer.current);
@@ -84,13 +79,10 @@ export default function StickyHeader() {
     }
   };
 
-  // Transparent header only while hero is ≥30% visible
+  // Transparente sobre #hero; un poco más denso al salir
   useEffect(() => {
     const hero = document.getElementById("hero");
-    if (!hero) {
-      setSolid(true);
-      return;
-    }
+    if (!hero) return; // si no hay hero, mantiene el estado por defecto (ligero)
     const io = new IntersectionObserver(
       ([entry]) =>
         setSolid(!(entry.isIntersecting && entry.intersectionRatio >= 0.3)),
@@ -100,98 +92,80 @@ export default function StickyHeader() {
     return () => io.disconnect();
   }, []);
 
-  // Measure header height & spacer
-  useLayoutEffect(() => {
-    if (!headerRef.current) return;
-    const measure = () => {
-      const rect = headerRef.current!.getBoundingClientRect();
-      setHeaderH(rect.height);
-      document.documentElement.style.setProperty(
-        "--nf-header-h",
-        `${Math.ceil(rect.height)}px`
-      );
-    };
-    const ro = new ResizeObserver(measure);
-    ro.observe(headerRef.current);
-    measure();
-    window.addEventListener("resize", measure);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  // Lock scroll when mobile menu opens
+  // Bloquear scroll cuando el drawer abre
   useEffect(() => {
     const root = document.documentElement;
-    if (mobileOpen) {
-      const prev = root.style.overflow;
-      root.style.overflow = "hidden";
-      const t = setTimeout(() => closeBtnRef.current?.focus(), 10);
-      const onKey = (e: KeyboardEvent) =>
-        e.key === "Escape" && setMobileOpen(false);
-      window.addEventListener("keydown", onKey);
-      return () => {
-        root.style.overflow = prev;
-        window.removeEventListener("keydown", onKey);
-        clearTimeout(t);
-      };
-    }
+    if (!mobileOpen) return;
+    const prev = root.style.overflow;
+    root.style.overflow = "hidden";
+    const t = setTimeout(() => closeBtnRef.current?.focus(), 10);
+    const onKey = (e: KeyboardEvent) =>
+      e.key === "Escape" && setMobileOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      root.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+      clearTimeout(t);
+    };
   }, [mobileOpen]);
 
-  // Close desktop mega with ESC
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) =>
-      e.key === "Escape" && setDesktopServicesOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const base =
-    "fixed inset-x-0 top-0 z-50 transition-colors duration-300 will-change-[background-color]";
-  const bg = solid
-    ? "bg-black/85 backdrop-blur border-b border-white/10"
-    : "bg-transparent";
-
   const isLogged = useAuthFlag();
+
+  // ======= overlay styles (modal-like, no layout space) =======
+  // El wrapper no tiene fondo ni height; solo el "pill" lo tiene.
+  const shell =
+    "fixed inset-x-0 top-2 z-50 pointer-events-none px-2 sm:px-4 md:px-6 pt-2 sm:pt-3"; // overlay desde el inicio
+  const pillBase =
+    "pointer-events-auto mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 " +
+    "backdrop-blur-md supports-[backdrop-filter]:backdrop-saturate-150 " +
+    "border-white/10 text-white shadow-lg transition-all duration-300 " +
+    // brillo sutil (sheen) encima del glass:
+    "relative after:content-[''] after:absolute after:inset-0 after:rounded-2xl " +
+    "after:bg-[linear-gradient(135deg,rgba(255,255,255,0.36),rgba(255,255,255,0)_22%)] after:pointer-events-none after:opacity-80";
+  // Cristal negro claro: más “clear” cuando está sobre el hero; un poco más denso al scrollear.
+  // Usamos fallbacks por si tu Tailwind no genera variantes con alfa para colores custom.
+  const pillLoose =
+    "bg-[rgb(8_8_9_/_0.72)] bg-nf-background/75 bg-gradient-to-br from-nf-primary-600/10 to-nf-primary-500/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+  const pillSolid =
+    "bg-[rgb(8_8_9_/_0.86)] bg-nf-background/88 bg-gradient-to-br from-nf-primary-600/10 to-nf-primary-500/5 shadow-[0_10px_40px_rgba(0,0,0,0.45)]";
+
   return (
     <>
-      <header
-        ref={headerRef}
-        className={`${base} ${bg}`}
-        style={{ paddingTop: "env(safe-area-inset-top)" }}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 text-white">
-          <Link href="/" className="inline-flex items-center">
+      <header className={shell} style={{ paddingTop: "env(safe-area-inset-top)" }}>
+        <div className={`${pillBase} ${solid ? pillSolid : pillLoose}`}>
+          {/* Logo */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+          >
             <Image
               src="/logo-blanco-nf.png"
               alt="NexalForge"
-              width={160}
-              height={40}
+              width={144}
+              height={36}
               priority
-              className="h-14 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-6 md:flex">
-            {/* Servicios with simplified mega dropdown */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {/* Soluciones (dropdown) */}
             <div
               className="relative"
-              ref={desktopWrapRef}
               onPointerEnter={openDesktop}
               onPointerLeave={scheduleCloseIfOutside}
             >
               <button
-                className="inline-flex items-center gap-1 hover:opacity-80"
+                className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
                 aria-haspopup="true"
-                aria-expanded={desktopServicesOpen}
-                onClick={() => setDesktopServicesOpen((v) => !v)}
+                aria-expanded={solutionsOpen}
+                onClick={() => setSolutionsOpen((v) => !v)}
               >
-                Servicios
+                Soluciones
                 <svg
                   className={`h-4 w-4 transition-transform ${
-                    desktopServicesOpen ? "rotate-180" : ""
+                    solutionsOpen ? "rotate-180" : ""
                   }`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -204,17 +178,16 @@ export default function StickyHeader() {
                 </svg>
               </button>
 
-              {/* Mega panel: simple list of services */}
+              {/* Mega panel */}
               <div
-                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[560px] -translate-x-1/2 rounded-2xl border border-white/10 bg-neutral-950/95 p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
-                  desktopServicesOpen
+                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[600px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+                  solutionsOpen
                     ? "pointer-events-auto opacity-100 translate-y-0"
                     : "pointer-events-none opacity-0 -translate-y-1"
                 }`}
                 onPointerEnter={cancelScheduledClose}
                 onPointerLeave={scheduleCloseIfOutside}
               >
-                {/* subtle glow */}
                 <div
                   aria-hidden
                   className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl"
@@ -224,12 +197,12 @@ export default function StickyHeader() {
                   }}
                 />
                 <ul className="grid grid-cols-1 gap-1 sm:grid-cols-2">
-                  {SERVICES.map((s) => (
+                  {SOLUTIONS.map((s) => (
                     <li key={s.label}>
                       <Link
                         href={s.href}
-                        className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.98rem] text-white/90 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
-                        onClick={() => setDesktopServicesOpen(false)}
+                        className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.98rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                        onClick={() => setSolutionsOpen(false)}
                       >
                         {s.label}
                         <svg
@@ -250,15 +223,14 @@ export default function StickyHeader() {
                   ))}
                 </ul>
 
-                {/* CTA row */}
                 <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
                   <span className="text-sm text-white/80">
                     ¿Listo para automatizar tu atención?
                   </span>
                   <a
                     href="#contacto"
-                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/20 shadow-[0_10px_30px_-10px_rgba(139,30,45,0.45)]"
-                    onClick={() => setDesktopServicesOpen(false)}
+                    className="rounded-full bg-nf-primary-500 px-4 py-2 text-sm font-medium text-white hover:bg-nf-primary-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 shadow-[0_8px_30px_rgb(139,30,45,0.25)]"
+                    onClick={() => setSolutionsOpen(false)}
                   >
                     Agendar demo
                   </a>
@@ -266,40 +238,47 @@ export default function StickyHeader() {
               </div>
             </div>
 
-            <a className="hover:opacity-80" href="#proceso">
-              Proceso
-            </a>
-            <a className="hover:opacity-80" href="#roi">
-              Calcula tu ROI
-            </a>
-            <Link className="hover:opacity-80" href="/blog">
-              Blog
-            </Link>
+            {TOP_LINKS.map((l) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                className="rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+              >
+                {l.label}
+              </Link>
+            ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-            {/* Login / Logout (client) */}
+          {/* Right side */}
+          <div className="flex items-center gap-2 sm:gap-3">
             {isLogged ? (
               <button
                 onClick={logoutAndReload}
-                className="hidden md:inline-block rounded-full border border-white/30 bg-white/10 px-4 py-2 text-white hover:bg-white/20"
+                className="hidden rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
               >
-                Cerrar Sesión
+                Cerrar sesión
               </button>
             ) : (
               <Link
                 href="/login"
-                className="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-white hover:bg-white/20 md:inline-block"
+                className="hidden rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
               >
-                Iniciar Sesion
+                Inicio de sesión
               </Link>
             )}
+
+            <Link
+              href="#contacto"
+              className="rounded-xl bg-nf-primary-500 px-4 py-2 font-medium text-white hover:bg-nf-primary-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 shadow-[0_8px_30px_rgb(139,30,45,0.25)] transition-colors"
+            >
+              Pruébelo gratis ahora
+            </Link>
 
             {/* Hamburger (mobile) */}
             <button
               aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
               onClick={() => setMobileOpen(true)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 backdrop-blur transition hover:bg-white/20 md:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 backdrop-blur transition hover:bg-white/20 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
             >
               <span className="relative block h-4 w-5">
                 <span
@@ -323,25 +302,22 @@ export default function StickyHeader() {
         </div>
       </header>
 
-      {/* Spacer */}
-      <div aria-hidden style={{ height: headerH }} />
+      {/* IMPORTANTE: sin “spacer”; el header es puro overlay y no ocupa lugar */}
 
-      {/* Mobile overlay */}
-      <button
-        aria-hidden={!mobileOpen}
-        onClick={() => setMobileOpen(false)}
-        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      />
+      {/* Overlay mobile: solo existe cuando está abierto (no hay barras negras fantasma) */}
+      {mobileOpen && (
+        <button
+          aria-hidden={!mobileOpen}
+          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 z-[45] bg-black/60 backdrop-blur-sm md:hidden"
+        />
+      )}
 
-      {/* Mobile off-canvas */}
+      {/* Drawer mobile */}
       <aside
         role="dialog"
         aria-modal="true"
-        className={`fixed right-0 top-0 z-[70] h-screen w-[86%] max-w-[22rem] transform bg-neutral-950/95 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl transition-transform duration-300 md:hidden ${
+        className={`fixed right-0 top-0 z-[70] h-screen w-[86%] max-w-[22rem] transform bg-[rgb(8_8_9_/_0.95)] text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl transition-transform duration-300 md:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
@@ -355,15 +331,15 @@ export default function StickyHeader() {
             <Image
               src="/logo-blanco-nf.png"
               alt="NexalForge"
-              width={140}
-              height={36}
-              className="h-10 w-auto object-contain"
+              width={136}
+              height={34}
+              className="h-9 w-auto object-contain"
             />
           </Link>
           <button
             ref={closeBtnRef}
             onClick={() => setMobileOpen(false)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/10 hover:bg-white/20"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/10 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
             aria-label="Cerrar menú"
           >
             <svg
@@ -381,21 +357,20 @@ export default function StickyHeader() {
           </button>
         </div>
 
-        {/* Mobile content */}
         <div className="overflow-y-auto px-4 py-3">
-          {/* Servicios simple list (toggleable group) */}
+          {/* Soluciones */}
           <div className="mb-2">
             <button
               onClick={() =>
                 document
-                  .getElementById("mobile-servicios")!
+                  .getElementById("mobile-soluciones")!
                   .classList.toggle("hidden")
               }
-              className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5"
-              aria-controls="mobile-servicios"
+              className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+              aria-controls="mobile-soluciones"
               aria-expanded={false}
             >
-              <span>Servicios</span>
+              <span>Soluciones</span>
               <svg
                 className="h-5 w-5 transition-transform"
                 viewBox="0 0 20 20"
@@ -410,15 +385,15 @@ export default function StickyHeader() {
             </button>
 
             <ul
-              id="mobile-servicios"
+              id="mobile-soluciones"
               className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
             >
-              {SERVICES.map((s) => (
+              {SOLUTIONS.map((s) => (
                 <li key={s.label}>
                   <Link
                     href={s.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block rounded px-3 py-1.5 text-sm text-white/90 hover:bg-white/5 hover:text-white"
+                    className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
                   >
                     {s.label}
                   </Link>
@@ -427,57 +402,40 @@ export default function StickyHeader() {
             </ul>
           </div>
 
-          {/* Other links */}
+          {/* Links principales */}
           <ul className="mt-2 space-y-1">
-            <li>
-              <a
-                href="#proceso"
-                onClick={() => setMobileOpen(false)}
-                className="block rounded-lg px-3 py-3 hover:bg-white/5"
-              >
-                Proceso
-              </a>
-            </li>
-            <li>
-              <a
-                href="#roi"
-                onClick={() => setMobileOpen(false)}
-                className="block rounded-lg px-3 py-3 hover:bg-white/5"
-              >
-                Calcula tu ROI
-              </a>
-            </li>
-            <li>
-              <Link
-                href="/blog"
-                onClick={() => setMobileOpen(false)}
-                className="block rounded-lg px-3 py-3 hover:bg-white/5"
-              >
-                Blog
-              </Link>
+            {TOP_LINKS.map((l) => (
+              <li key={l.label}>
+                <Link
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block rounded-lg px-3 py-3 text-white/95 hover:text-white hover:bg-white/5"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+            <li className="pt-1">
+              {isLogged ? (
+                <button
+                  onClick={logoutAndReload}
+                  className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                >
+                  Cerrar sesión
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                >
+                  Inicio de sesión
+                </Link>
+              )}
             </li>
           </ul>
 
-          <div className="mt-4 border-t border-white/10 pt-4">
-          {isLogged ? (
-              <button
-                onClick={logoutAndReload}
-                className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20"
-              >
-                Cerrar Sesión
-              </button>
-            ) : (
-              <Link
-                href="/login"
-                onClick={() => setMobileOpen(false)}
-                className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20"
-              >
-                Iniciar Sesion
-              </Link>
-            )}
-          </div>
-
-          {/* glow accent */}
+          {/* glow */}
           <div
             aria-hidden
             className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full blur-3xl"
