@@ -125,7 +125,7 @@ export default function AdminBlogPage() {
   }, [data]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-20">
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>

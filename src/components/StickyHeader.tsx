@@ -7,9 +7,11 @@ import Image from "next/image";
 type NavLink = { label: string; href: string };
 
 const TOP_LINKS: NavLink[] = [
-  { label: "Características", href: "#caracteristicas" },
-  { label: "Empresa", href: "#empresa" },
+  { label: "Procesos", href: "#proceso" },
+  // { label: "Empresa", href: "#empresa" },
   { label: "ROI Calculator", href: "#roi" },
+  { label: "Blog", href: "/blog" },
+  
 ];
 
 const SOLUTIONS: NavLink[] = [

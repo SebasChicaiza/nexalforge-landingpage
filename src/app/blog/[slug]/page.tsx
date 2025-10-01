@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
-import './blog-content.css';
+import "./blog-content.css";
 
 function normalizeMarkdown(input: string): string {
   let s = (input ?? "").replace(/\r\n/g, "\n");
@@ -37,18 +37,22 @@ async function renderMarkdown(md?: string | null) {
   const source = normalizeMarkdown(md);
 
   try {
-    const ReactMarkdown = (await import('react-markdown')).default;
-    const remarkGfm = (await import('remark-gfm')).default;
-    const rehypeSlug = (await import('rehype-slug')).default;
-    const rehypeAutolinkHeadings = (await import('rehype-autolink-headings')).default;
-    const rehypeSanitize = (await import('rehype-sanitize')).default;
+    const ReactMarkdown = (await import("react-markdown")).default;
+    const remarkGfm = (await import("remark-gfm")).default;
+    const rehypeSlug = (await import("rehype-slug")).default;
+    const rehypeAutolinkHeadings = (await import("rehype-autolink-headings"))
+      .default;
+    const rehypeSanitize = (await import("rehype-sanitize")).default;
 
     return (
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[
           rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: 'wrap', properties: { className: 'no-underline' } }],
+          [
+            rehypeAutolinkHeadings,
+            { behavior: "wrap", properties: { className: "no-underline" } },
+          ],
           rehypeSanitize, // <= sanitización on
         ]}
       >
@@ -63,7 +67,6 @@ async function renderMarkdown(md?: string | null) {
     );
   }
 }
-
 
 function fmtDate(d?: Date | null) {
   if (!d) return null;
@@ -195,7 +198,7 @@ export default async function BlogPostPage({
   const tags = post.etiquetas.map((e) => e.etiqueta);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-20">
       <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
         {/* Breadcrumbs */}
         <nav className="mb-6 text-sm text-neutral-500">
@@ -276,8 +279,8 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <article className="blog-content mt-8">
-  {await renderMarkdown(post.contenidoMd)}
-</article>
+          {await renderMarkdown(post.contenidoMd)}
+        </article>
 
         {/* Tags */}
         {tags.length > 0 && (

@@ -92,7 +92,7 @@ export default function NewBlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-20">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <BlogForm
           mode="create"

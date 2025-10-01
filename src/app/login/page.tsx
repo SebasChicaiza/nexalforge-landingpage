@@ -4,7 +4,20 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion, type TargetAndTransition } from "framer-motion";
 import Image from "next/image";
-import { Cpu, Brain, CircuitBoard, Network, CloudCog, Bot, Code2, Database, Server, ShieldCheck, SatelliteDish, Workflow } from "lucide-react";
+import {
+  Cpu,
+  Brain,
+  CircuitBoard,
+  Network,
+  CloudCog,
+  Bot,
+  Code2,
+  Database,
+  Server,
+  ShieldCheck,
+  SatelliteDish,
+  Workflow,
+} from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -47,28 +60,27 @@ export default function NexalForgeLogin() {
     mode: "onChange",
   });
 
-  const password = watch("password");  
+  const password = watch("password");
 
   const onSubmit = async (values: LoginValues): Promise<void> => {
     console.log("Valores del formulario:", values);
     setServerError(null);
 
-    const response = await axios.post('/api/auth/login', values);
+    const response = await axios.post("/api/auth/login", values);
     console.log("Respuesta del servidor:", response);
 
-    router.push('/admin/blog');
+    router.push("/admin/blog");
 
     await new Promise((r) => setTimeout(r, 600));
     if (values.email.includes("fail")) {
       setServerError("Credenciales inválidas. Intenta de nuevo.");
     }
-  }
-
+  };
 
   const strength = getPasswordStrength(password);
 
   return (
-    <div className="relative min-h-screen bg-neutral-50 text-neutral-900 flex items-center justify-center p-6 overflow-hidden">
+    <div className="relative min-h-screen bg-neutral-50 text-neutral-900 flex items-center justify-center p-6 pt-25 overflow-hidden"> {/*Change pt-25 if use another navbar*/}
       {/* Fondo con patrón radial sutil */}
       <div
         aria-hidden
@@ -248,121 +260,223 @@ export default function NexalForgeLogin() {
 }
 
 function IconField() {
-const floatInitial: TargetAndTransition = { y: 0, x: 0, opacity: 1, rotate: 0, scale: 1 };
-const float = (i: number): TargetAndTransition => ({
-  y: [0, -20, 0],
-  x: [0, 10, 0],
-  rotate: [0, 200, 0],
-  scale: [1, 1.1, 1],
-  opacity: [0.55, 1, 0.55],
-  transition: {
-    duration: 6 + (i % 5),
-    ease: "easeInOut",
-    repeat: Infinity,
-    repeatType: "mirror",
-    delay: (i % 4) * 0.3,
-  },
-});
+  const floatInitial: TargetAndTransition = {
+    y: 0,
+    x: 0,
+    opacity: 1,
+    rotate: 0,
+    scale: 1,
+  };
+  const float = (i: number): TargetAndTransition => ({
+    y: [0, -20, 0],
+    x: [0, 10, 0],
+    rotate: [0, 200, 0],
+    scale: [1, 1.1, 1],
+    opacity: [0.55, 1, 0.55],
+    transition: {
+      duration: 6 + (i % 5),
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "mirror",
+      delay: (i % 4) * 0.3,
+    },
+  });
 
+  const size = "w-7 h-7";
+  const cls = "text-[#8B1E2D]/40";
 
-const size = "w-7 h-7";
-const cls = "text-[#8B1E2D]/40";
-
-
-return (
-<div aria-hidden className="pointer-events-none absolute inset-0 z-0 select-none">
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-0 select-none"
+    >
       {/* Primer conjunto de iconos */}
       <div className="pointer-events-none absolute inset-0 z-0 select-none">
         {/* Anillo superior-izquierdo */}
-        <motion.div className="absolute top-[10%] left-[30%]" initial={floatInitial} animate={float(0)}>
+        <motion.div
+          className="absolute top-[10%] left-[30%]"
+          initial={floatInitial}
+          animate={float(0)}
+        >
           <Cpu className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[16%] left-[18%]" initial={floatInitial} animate={float(1)}>
+        <motion.div
+          className="absolute top-[16%] left-[18%]"
+          initial={floatInitial}
+          animate={float(1)}
+        >
           <Code2 className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[22%] left-[6%]" initial={floatInitial} animate={float(2)}>
+        <motion.div
+          className="absolute top-[22%] left-[6%]"
+          initial={floatInitial}
+          animate={float(2)}
+        >
           <Workflow className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
 
         {/* Lado superior-derecho */}
-        <motion.div className="absolute top-[18%] right-[14%]" initial={floatInitial} animate={float(3)}>
+        <motion.div
+          className="absolute top-[18%] right-[14%]"
+          initial={floatInitial}
+          animate={float(3)}
+        >
           <Brain className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[8%] right-[8%]" initial={floatInitial} animate={float(4)}>
+        <motion.div
+          className="absolute top-[8%] right-[8%]"
+          initial={floatInitial}
+          animate={float(4)}
+        >
           <SatelliteDish className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
 
         {/* Anillo medio */}
-        <motion.div className="absolute top-[36%] left-[86%]" initial={floatInitial} animate={float(5)}>
+        <motion.div
+          className="absolute top-[36%] left-[86%]"
+          initial={floatInitial}
+          animate={float(5)}
+        >
           <CloudCog className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[44%] left-[16%]" initial={floatInitial} animate={float(6)}>
+        <motion.div
+          className="absolute top-[44%] left-[16%]"
+          initial={floatInitial}
+          animate={float(6)}
+        >
           <CircuitBoard className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[40%] right-[22%]" initial={floatInitial} animate={float(7)}>
+        <motion.div
+          className="absolute top-[40%] right-[22%]"
+          initial={floatInitial}
+          animate={float(7)}
+        >
           <Server className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
 
         {/* Anillo inferior-izquierdo */}
-        <motion.div className="absolute bottom-[22%] left-[12%]" initial={floatInitial} animate={float(8)}>
+        <motion.div
+          className="absolute bottom-[22%] left-[12%]"
+          initial={floatInitial}
+          animate={float(8)}
+        >
           <Database className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[16%] left-[22%]" initial={floatInitial} animate={float(9)}>
+        <motion.div
+          className="absolute bottom-[16%] left-[22%]"
+          initial={floatInitial}
+          animate={float(9)}
+        >
           <ShieldCheck className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
 
         {/* Anillo inferior-derecho */}
-        <motion.div className="absolute bottom-[24%] right-[10%]" initial={floatInitial} animate={float(10)}>
+        <motion.div
+          className="absolute bottom-[24%] right-[10%]"
+          initial={floatInitial}
+          animate={float(10)}
+        >
           <Network className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[14%] right-[20%]" initial={floatInitial} animate={float(11)}>
+        <motion.div
+          className="absolute bottom-[14%] right-[20%]"
+          initial={floatInitial}
+          animate={float(11)}
+        >
           <Bot className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
       </div>
 
       {/* Segundo conjunto de iconos */}
       <div className="pointer-events-none absolute inset-0 z-0 select-none">
-        <motion.div className="absolute top-[30%] left-[8%]" initial={floatInitial} animate={float(12)}>
+        <motion.div
+          className="absolute top-[30%] left-[8%]"
+          initial={floatInitial}
+          animate={float(12)}
+        >
           <Cpu className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[40%] left-[25%]" initial={floatInitial} animate={float(13)}>
+        <motion.div
+          className="absolute top-[40%] left-[25%]"
+          initial={floatInitial}
+          animate={float(13)}
+        >
           <Code2 className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[50%] right-[15%]" initial={floatInitial} animate={float(14)}>
+        <motion.div
+          className="absolute top-[50%] right-[15%]"
+          initial={floatInitial}
+          animate={float(14)}
+        >
           <Workflow className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[30%] left-[30%]" initial={floatInitial} animate={float(15)}>
+        <motion.div
+          className="absolute bottom-[30%] left-[30%]"
+          initial={floatInitial}
+          animate={float(15)}
+        >
           <Brain className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[28%] right-[32%]" initial={floatInitial} animate={float(16)}>
+        <motion.div
+          className="absolute top-[28%] right-[32%]"
+          initial={floatInitial}
+          animate={float(16)}
+        >
           <SatelliteDish className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[5%] left-[50%]" initial={floatInitial} animate={float(17)}>
+        <motion.div
+          className="absolute bottom-[5%] left-[50%]"
+          initial={floatInitial}
+          animate={float(17)}
+        >
           <CloudCog className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[15%] right-[55%]" initial={floatInitial} animate={float(18)}>
+        <motion.div
+          className="absolute top-[15%] right-[55%]"
+          initial={floatInitial}
+          animate={float(18)}
+        >
           <CircuitBoard className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[40%] right-[40%]" initial={floatInitial} animate={float(19)}>
+        <motion.div
+          className="absolute bottom-[40%] right-[40%]"
+          initial={floatInitial}
+          animate={float(19)}
+        >
           <Server className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[25%] left-[80%]" initial={floatInitial} animate={float(20)}>
+        <motion.div
+          className="absolute bottom-[25%] left-[80%]"
+          initial={floatInitial}
+          animate={float(20)}
+        >
           <Database className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[60%] left-[70%]" initial={floatInitial} animate={float(21)}>
+        <motion.div
+          className="absolute top-[60%] left-[70%]"
+          initial={floatInitial}
+          animate={float(21)}
+        >
           <ShieldCheck className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute bottom-[8%] right-[75%]" initial={floatInitial} animate={float(22)}>
+        <motion.div
+          className="absolute bottom-[8%] right-[75%]"
+          initial={floatInitial}
+          animate={float(22)}
+        >
           <Network className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
-        <motion.div className="absolute top-[75%] left-[45%]" initial={floatInitial} animate={float(23)}>
+        <motion.div
+          className="absolute top-[75%] left-[45%]"
+          initial={floatInitial}
+          animate={float(23)}
+        >
           <Bot className={`${size} ${cls}`} strokeWidth={1.6} />
         </motion.div>
       </div>
     </div>
-);
+  );
 }
-
 
 function PasswordStrengthBar({ strength }: { strength: Strength }) {
   const labels: Record<Strength, string> = {

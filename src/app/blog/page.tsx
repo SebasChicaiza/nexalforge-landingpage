@@ -217,7 +217,7 @@ export default function BlogPage() {
   }
 
   return (
-    <main className="bg-white text-[color:var(--text,#2A2A2A)]">
+    <main className="bg-white text-[color:var(--text,#2A2A2A)] pt-12">
       {/* Header */}
       <section className="border-b border-neutral-200 bg-neutral-50/60">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
