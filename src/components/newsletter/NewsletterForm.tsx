@@ -81,7 +81,7 @@ export default function NewsletterForm({ origen = "blog_sidebar" }: Props) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-xl px-4 text-sm text-white"
+        className="rounded-xl px-4 text-sm text-white cursor-pointer hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 transition-colors"
         style={{ background: BRAND.primary }}
         onMouseEnter={(e) =>
           (e.currentTarget.style.background = BRAND.primaryHover)

@@ -11,7 +11,7 @@ type AppJWTPayload = JWTPayload & {
 const JWT_SECRET = process.env.JWT_SECRET ?? "";
 
 // Public pages that don’t require auth
-const PUBLIC_PREFIXES = ["/", "/login", "/blog"];
+const PUBLIC_PREFIXES = ["/", "/login", "/blog", "/politicas-privacidad"];
 const isPublicPath = (p: string) =>
   PUBLIC_PREFIXES.some((x) => p === x || p.startsWith(`${x}/`));
 

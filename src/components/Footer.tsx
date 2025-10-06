@@ -10,7 +10,7 @@ export default function Footer() {
       role="contentinfo"
       className="border-t border-neutral-200 bg-white py-10 text-sm text-neutral-600"
     >
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-5">
         {/* Brand / Intro */}
         <div>
           <div className="mb-3 flex items-center gap-2">
@@ -71,6 +71,22 @@ export default function Footer() {
             </li>
           </ul>
         </nav>
+        <nav aria-label="Empresa">
+          <div className="mb-2 font-semibold text-[#2A2A2A]">Policas</div>
+          <ul className="space-y-1">
+            <li>
+              <a className="hover:underline" href="/politicas-privacidad">
+                Politicas de Privacidad
+              </a>
+            </li>
+            <li>
+              <a className="hover:underline" href="/cookies">
+                Politicas de Cookies
+              </a>
+            </li>
+          </ul>
+        </nav>
+
 
         {/* Contacto */}
         <div>

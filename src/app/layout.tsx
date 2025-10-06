@@ -4,7 +4,8 @@ import "./globals.css";
 import StickyHeader from "@/components/StickyHeader";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Gtm from "@/components/Gtm";
-import ConsentBanner from "@/components/ConsentBanner";
+import ConsentBanner from "@/components/consent/ConsentBanner";
+import WhatsAppOptInCard from "@/components/consent/WhatsAppOptInCard";
 import Script from "next/script";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
@@ -101,6 +102,13 @@ export default function RootLayout({
         <Footer />
 
         <ConsentBanner />
+        <WhatsAppOptInCard
+          businessName="Nexal Forge"
+          purposes={["atencion_cliente", "transaccional"]}
+          privacyUrl="/politicas-privacidad"
+          origin="web"
+        />
+          
         <GoogleAnalytics />
 
         {/* JSON-LD Organization */}

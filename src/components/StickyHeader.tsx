@@ -3,15 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import BrandCtaLink from "./buttons/BrandCtaLink";
+import { ArrowRight } from "lucide-react";
+import { hasJwtCookie, watchJwtCookie } from "@/lib/auth-events";
+import { usePathname } from "next/navigation";
 
 type NavLink = { label: string; href: string };
 
 const TOP_LINKS: NavLink[] = [
   { label: "Procesos", href: "#proceso" },
-  // { label: "Empresa", href: "#empresa" },
   { label: "ROI Calculator", href: "#roi" },
   { label: "Blog", href: "/blog" },
-  
 ];
 
 const SOLUTIONS: NavLink[] = [
@@ -24,12 +26,22 @@ const SOLUTIONS: NavLink[] = [
   { label: "Sprint de Implementación", href: "/" },
 ];
 
-// --- auth shim (client) ---
+// --- realtime auth flag
 function useAuthFlag() {
   const [isLogged, setIsLogged] = useState<boolean | null>(null);
+  const pathname = usePathname();
+
   useEffect(() => {
     let alive = true;
-    (async () => {
+
+    // 1) instant optimistic state from cookie
+    setIsLogged(hasJwtCookie());
+
+    // 2) cookie watcher (updates within ~200ms)
+    const stopWatch = watchJwtCookie((v) => alive && setIsLogged(v));
+
+    // 3) confirm with server (handles expiry, etc.)
+    const confirm = async () => {
       try {
         const res = await fetch("/api/auth/session", { cache: "no-store" });
         const json = (await res.json()) as { loggedIn?: boolean };
@@ -37,17 +49,58 @@ function useAuthFlag() {
       } catch {
         if (alive) setIsLogged(false);
       }
-    })();
+    };
+    confirm();
+
+    // 4) re-confirm when route changes (e.g., after redirect post-login)
+    // this also covers cases where the cookie is set during navigation
+    confirm();
+
     return () => {
       alive = false;
+      stopWatch();
+    };
+  }, [pathname]);
+
+  // Also listen to cross-tab broadcasts (optional but nice)
+  useEffect(() => {
+    let bc: BroadcastChannel | null = null;
+    try {
+      bc = new BroadcastChannel("nf-auth");
+      bc.onmessage = (e) => {
+        if (e?.data?.type === "login") setIsLogged(true);
+        if (e?.data?.type === "logout") setIsLogged(false);
+      };
+    } catch {}
+
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "nf_auth_event") {
+        if (e.newValue?.includes("login")) setIsLogged(true);
+        if (e.newValue?.includes("logout")) setIsLogged(false);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+
+    return () => {
+      bc?.close();
+      window.removeEventListener("storage", onStorage);
     };
   }, []);
+
   return isLogged;
 }
-async function logoutAndReload() {
-  await fetch("/api/auth/logout", { method: "POST" });
-  window.location.reload();
+
+async function logoutAndNotify() {
+  try {
+    await fetch("/api/auth/logout", { method: "POST" });
+  } finally {
+    window.location.href = "/login"; // redirect to home
+  }
 }
+
+
+
+
 
 export default function StickyHeader() {
   const [solid, setSolid] = useState(false);
@@ -133,7 +186,10 @@ export default function StickyHeader() {
 
   return (
     <>
-      <header className={shell} style={{ paddingTop: "env(safe-area-inset-top)" }}>
+      <header
+        className={shell}
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
+      >
         <div className={`${pillBase} ${solid ? pillSolid : pillLoose}`}>
           {/* Logo */}
           <Link
@@ -255,7 +311,7 @@ export default function StickyHeader() {
           <div className="flex items-center gap-2 sm:gap-3">
             {isLogged ? (
               <button
-                onClick={logoutAndReload}
+                onClick={logoutAndNotify}
                 className="hidden rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
               >
                 Cerrar sesión
@@ -263,18 +319,16 @@ export default function StickyHeader() {
             ) : (
               <Link
                 href="/login"
-                className="hidden rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
+                className="hidden rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
               >
                 Inicio de sesión
               </Link>
             )}
 
-            <Link
-              href="#contacto"
-              className="rounded-xl bg-nf-primary-500 px-4 py-2 font-medium text-white hover:bg-nf-primary-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 shadow-[0_8px_30px_rgb(139,30,45,0.25)] transition-colors"
-            >
-              Pruébelo gratis ahora
-            </Link>
+            <BrandCtaLink href="#contacto" ringOffset="dark" className="gap-2">
+              Pruébelo gratis{" "}
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </BrandCtaLink>
 
             {/* Hamburger (mobile) */}
             <button
@@ -420,7 +474,7 @@ export default function StickyHeader() {
             <li className="pt-1">
               {isLogged ? (
                 <button
-                  onClick={logoutAndReload}
+                  onClick={logoutAndNotify}
                   className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
                 >
                   Cerrar sesión

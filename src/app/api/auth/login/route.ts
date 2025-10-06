@@ -5,6 +5,7 @@ import { serialize } from "cookie";
 import { prisma } from "@/lib/prisma";
 import * as z from "zod";
 import bcrypt from "bcryptjs";
+import { broadcastAuth } from "@/lib/auth-events";
 
 export const runtime = "nodejs";
 
@@ -85,6 +86,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
     res.headers.set("Set-Cookie", serializedToken);
+    broadcastAuth("login");
     return res;
   } catch (err) {
     console.error("Login error:", err);

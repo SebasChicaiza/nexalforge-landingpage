@@ -137,3 +137,31 @@ model SuscriptorNewsletter {
   origen    String? // p.ej. "blog_sidebar"
   creadoEn  DateTime @default(now())
 }
+
+//// --------- Politicas de privacidad---------
+
+model WaConsent {
+  id            String        @id @default(uuid())
+  userId        String?
+  phoneE164     String
+  channel       String        @default("whatsapp")
+  purposes      String[]      // ['atencion_cliente','transaccional',...]
+  policyVersion String
+  textShown     String
+  textHash      String
+  origin        String        // 'web' | 'app' | 'qr' | 'wa'
+  locale        String        @default("es-EC")
+  status        String 
+  grantedAt     DateTime      @default(now())
+  revokedAt     DateTime?
+  optoutMethod  String?
+  ip            String?
+  userAgent     String?
+  referrer      String?
+  evidence      Json?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([phoneE164], map: "wa_consent_phone_idx")
+}
+

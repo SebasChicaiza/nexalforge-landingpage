@@ -63,14 +63,29 @@ function getStyledInputCls(hasError: boolean) {
  * @param hasError - Whether to apply error styling.
  */
 function getStyledTextareaCls(hasError: boolean) {
-  return `${baseInputCls.replace('text-sm', 'text-sm')} ${ // Textarea usually needs its own class, keep text-sm
-    hasError
-      ? 'border-red-500 focus:!border-red-500'
-      : 'focus:border-neutral-500'
+  return `${baseInputCls.replace('text-sm', 'text-sm')} ${
+    hasError ? 'border-red-500 focus:!border-red-500' : 'focus:border-neutral-500'
   }`;
 }
 
 // --- END: MODIFIED STYLE HELPERS ---
+
+// Util: parsea texto a array de etiquetas (sin duplicados, sin vacíos)
+function parseTags(text: string): string[] {
+  return Array.from(
+    new Set(
+      text
+        .split(',')
+        .map((s) => s.trim())
+        .filter((s) => s.length > 0)
+    )
+  );
+}
+
+// Util: normaliza el texto de etiquetas desde un array
+function stringifyTags(tags?: string[]): string {
+  return (tags ?? []).join(', ');
+}
 
 export default function BlogForm({
   mode,
@@ -93,6 +108,11 @@ export default function BlogForm({
     etiquetas: initial?.etiquetas ?? [],
     id: initial?.id,
   }));
+
+  // 👇 Nuevo: estado de texto crudo para el input de etiquetas
+  const [etiquetasText, setEtiquetasText] = useState<string>(() =>
+    stringifyTags(initial?.etiquetas)
+  );
 
   const [sending, setSending] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -138,6 +158,12 @@ export default function BlogForm({
       return;
     }
 
+    // Asegura sincronía final: normaliza texto de etiquetas -> array
+    const finalEtiquetas = parseTags(etiquetasText);
+    if (finalEtiquetas.join('|') !== (values.etiquetas ?? []).join('|')) {
+      set('etiquetas', finalEtiquetas);
+    }
+
     setSending(true);
     setMsg(null);
     setErr(null);
@@ -145,6 +171,7 @@ export default function BlogForm({
     try {
       const payload = {
         ...values,
+        etiquetas: finalEtiquetas,
         minutosLectura: values.minutosLectura ?? autoMinutes,
         publicadoEn: values.publicadoEn ? new Date(values.publicadoEn).toISOString() : null,
       };
@@ -371,13 +398,17 @@ export default function BlogForm({
             <Field label="Etiquetas" hint="Separa por comas (ej: ia, automatización, ventas)">
               <input
                 className={getStyledInputCls(false)}
-                value={(values.etiquetas ?? []).join(', ')}
-                onChange={(e) =>
-                  set(
-                    'etiquetas',
-                    e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
-                  )
-                }
+                value={etiquetasText}
+                onChange={(e) => {
+                  const t = e.target.value;
+                  setEtiquetasText(t);                // Mantiene lo que el usuario escribe (incluye comas finales)
+                  set('etiquetas', parseTags(t));      // Mantiene el array sincronizado
+                }}
+                onBlur={() => {
+                  // Normaliza visualmente al salir del campo (opcional)
+                  const normalized = stringifyTags(parseTags(etiquetasText));
+                  setEtiquetasText(normalized);
+                }}
                 placeholder="ej: ia, automatización, ventas"
               />
             </Field>
@@ -429,35 +460,28 @@ export default function BlogForm({
 
       {/* Small styles: higher contrast inputs, better focus ring, consistent sizing */}
       <style jsx global>{`
-        /* Reset and apply common input styles for high contrast */
         .nf-input,
         .nf-textarea {
-            /* Inherit baseInputCls properties for consistency, though we use the specific helpers above now */
             @apply w-full rounded-xl border border-neutral-300 bg-white px-3.5 py-2.5 text-sm text-neutral-900 
             placeholder-neutral-500 shadow-sm outline-none transition-[box-shadow,border-color] duration-150;
         }
 
-        /* Consistent Focus Ring using Brand color */
         .nf-input:focus,
         .nf-textarea:focus,
         .custom-select-arrow:focus {
-          border-color: ${BRAND.primary} !important; /* Force border color on focus */
+          border-color: ${BRAND.primary} !important;
           box-shadow: 0 0 0 3px ${BRAND.primaryRing} !important;
         }
         
-        /* Ensure selects look like inputs across browsers with a simple arrow */
         .custom-select-arrow {
-            /* Keep original padding/text/border styles from baseInputCls */
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
-            
-            /* Using a simple SVG arrow for cross-browser consistency */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd' /%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.75rem center;
             background-size: 1.2em 1.2em;
-            padding-right: 2.75rem !important; /* Make space for the arrow */
+            padding-right: 2.75rem !important;
         }
       `}</style>
     </form>

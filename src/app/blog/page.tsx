@@ -1,9 +1,11 @@
+// app/blog/page.tsx
 "use client";
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import NewsletterForm from "@/components/newsletter/NewsletterForm";
 import AdminBlogsButton from "@/components/blog/AdminBlogsButton";
+import { AnimatePresence, motion } from "framer-motion";
 
 function isAbsoluteUrl(src?: string | null) {
   return !!src && /^https?:\/\//i.test(src);
@@ -30,7 +32,6 @@ function SafeImage({
     );
   }
 
-  // If it’s an absolute external URL, render unoptimized to skip the whitelist
   if (isAbsoluteUrl(src)) {
     return (
       <Image
@@ -40,12 +41,10 @@ function SafeImage({
         sizes={sizes}
         className={className}
         unoptimized
-        // NOTE: unoptimized bypasses the domain check
       />
     );
   }
 
-  // Relative (local) paths are fine with regular Image
   return (
     <Image
       src={src}
@@ -64,7 +63,7 @@ const BRAND = {
   text: "#2A2A2A",
 };
 
-/** ───────────────── Types (from your APIs) ───────────────── */
+/** ───────────────── Types ───────────────── */
 type MetaResp = {
   categorias: { id: string; nombre: string }[];
   estados: { id: number; nombre: string }[];
@@ -100,6 +99,9 @@ function formatDate(iso?: string | null) {
 const cn = (...xs: (string | false | null | undefined)[]) =>
   xs.filter(Boolean).join(" ");
 
+const EASE = [0.2, 0, 0, 1] as const;
+const DURATION = 0.22;
+
 /** ───────────────── Page ───────────────── */
 export default function BlogPage() {
   const [meta, setMeta] = useState<MetaResp | null>(null);
@@ -114,6 +116,10 @@ export default function BlogPage() {
   const [sort, setSort] = useState<"new" | "old">("new");
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  // control de expansión de categorías
+  const [showAllCats, setShowAllCats] = useState(false);
+  const MAX_CATS = 8;
 
   // initial load (meta + first page)
   useEffect(() => {
@@ -168,12 +174,33 @@ export default function BlogPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  // derived UI data
-  const categories = useMemo(
-    () => ["All", ...(meta?.categorias?.map((c) => c.nombre) ?? [])],
-    [meta]
-  );
+  // Popularidad de categorías con los items cargados
+  const categoryStats = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const p of items) {
+      const name = p.categoria?.nombre ?? "General";
+      counts.set(name, (counts.get(name) ?? 0) + 1);
+    }
+    const known = meta?.categorias?.map((c) => c.nombre).filter(Boolean) ?? [];
+    const uniqueNames = Array.from(new Set([...known, ...counts.keys()]));
+    const stats = uniqueNames.map((nombre) => ({
+      nombre,
+      count: counts.get(nombre) ?? 0,
+    }));
+    stats.sort(
+      (a, b) => b.count - a.count || a.nombre.localeCompare(b.nombre, "es")
+    );
+    return stats;
+  }, [items, meta]);
 
+  // Lista visible (limitada o completa). "All" siempre primero
+  const categories = useMemo(() => {
+    const ordered = categoryStats.map((s) => s.nombre);
+    const trimmed = showAllCats ? ordered : ordered.slice(0, MAX_CATS);
+    return ["All", ...trimmed];
+  }, [categoryStats, showAllCats]);
+
+  // derived UI data
   const filtered = useMemo(() => {
     let list = items
       .filter((p) => p.estado_borrado !== true)
@@ -262,25 +289,55 @@ export default function BlogPage() {
           </div>
 
           {/* Category pills */}
-          <div className="mt-6 flex flex-wrap gap-2">
-            {categories.map((c) => {
-              const active = c === category;
-              return (
-                <button
-                  key={c}
-                  onClick={() => setCategory(c)}
-                  className={cn(
-                    "rounded-full border px-3 py-1.5 text-sm transition-colors",
-                    active
-                      ? "border-transparent text-white"
-                      : "border-neutral-300 text-neutral-700 hover:bg-neutral-100"
-                  )}
-                  style={active ? { background: BRAND.primary } : undefined}
+          <div className="mt-6">
+            {/* Contenedor con animación de layout para altura suave */}
+            <motion.div
+              layout
+              className="flex flex-wrap items-center gap-2"
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+            >
+              <AnimatePresence initial={false} mode="popLayout">
+                {categories.map((c) => {
+                  const active = c === category;
+                  return (
+                    <motion.button
+                      key={c}
+                      layout
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: DURATION }}
+                      onClick={() => setCategory(c)}
+                      className={cn(
+                        "rounded-full border px-3 py-1.5 text-sm transition-colors cursor-pointer",
+                        active
+                          ? "border-transparent text-white"
+                          : "border-neutral-300 text-neutral-700 hover:bg-neutral-100"
+                      )}
+                      style={active ? { background: BRAND.primary } : undefined}
+                      aria-pressed={active}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {c}
+                    </motion.button>
+                  );
+                })}
+              </AnimatePresence>
+
+              {/* Toggle ver todas/menos */}
+              {categoryStats.length > MAX_CATS && (
+                <motion.button
+                  layout
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => setShowAllCats((v) => !v)}
+                  className="rounded-full border px-3 py-1.5 text-sm text-white cursor-pointer"
+                  style={{ background: BRAND.primary }}
+                  aria-expanded={showAllCats}
                 >
-                  {c}
-                </button>
-              );
-            })}
+                  {showAllCats ? "Ver menos" : "Ver todas las categorías"}
+                </motion.button>
+              )}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -290,41 +347,72 @@ export default function BlogPage() {
         {/* Posts */}
         <div>
           {/* Tag filter summary */}
-          {tagSlug && (
-            <div className="mb-4 flex items-center gap-2 text-sm">
-              <span className="rounded-full bg-neutral-100 px-3 py-1">
-                Tag: <b>{tagSlug}</b>
-              </span>
-              <button
-                onClick={() => setTagSlug(null)}
-                className="text-neutral-500 hover:underline"
+          <AnimatePresence initial={false}>
+            {tagSlug && (
+              <motion.div
+                className="mb-4 flex items-center gap-2 text-sm"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: DURATION, ease: EASE }}
               >
-                Limpiar
-              </button>
-            </div>
-          )}
+                <span className="rounded-full bg-neutral-100 px-3 py-1">
+                  Tag: <b>{tagSlug}</b>
+                </span>
+                <button
+                  onClick={() => setTagSlug(null)}
+                  className="text-neutral-500 hover:underline cursor-pointer"
+                >
+                  Limpiar
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {loading && items.length === 0
-              ? Array.from({ length: 6 }).map((_, i) => (
-                  <SkeletonCard key={i} />
-                ))
-              : filtered.map((p) => (
-                  <PostCard
-                    key={p.id}
-                    title={p.titulo}
-                    href={`/blog/${p.slug}`}
-                    cover={p.portadaUrl ?? undefined}
-                    category={p.categoria?.nombre ?? "General"}
-                    date={p.publicadoEn ?? p.creadoEn}
-                    readingMins={p.minutosLectura ?? 1}
-                    excerpt={p.extracto}
-                    tags={p.etiquetas}
-                    onTagClick={(slug) => setTagSlug(slug)}
-                  />
-                ))}
-          </div>
+          {/* Cards Grid with animations on sort/tag/category changes */}
+          <motion.div
+            layout
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            transition={{ duration: 0.28, ease: EASE }}
+          >
+            <AnimatePresence mode="popLayout" initial={false}>
+              {loading && items.length === 0
+                ? Array.from({ length: 6 }).map((_, i) => (
+                    <motion.div
+                      key={`skeleton-${i}`}
+                      layout
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: DURATION, ease: EASE }}
+                    >
+                      <SkeletonCard />
+                    </motion.div>
+                  ))
+                : filtered.map((p) => (
+                    <motion.div
+                      key={p.id}
+                      layout
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: DURATION, ease: EASE }}
+                    >
+                      <PostCard
+                        title={p.titulo}
+                        href={`/blog/${p.slug}`}
+                        cover={p.portadaUrl ?? undefined}
+                        category={p.categoria?.nombre ?? "General"}
+                        date={p.publicadoEn ?? p.creadoEn}
+                        readingMins={p.minutosLectura ?? 1}
+                        excerpt={p.extracto}
+                        tags={p.etiquetas}
+                        onTagClick={(slug) => setTagSlug(slug)}
+                      />
+                    </motion.div>
+                  ))}
+            </AnimatePresence>
+          </motion.div>
 
           {/* Empty state */}
           {!loading && filtered.length === 0 && (
@@ -362,10 +450,11 @@ export default function BlogPage() {
               Ordenar
             </div>
             <div className="flex gap-2">
-              <button
+              <motion.button
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setSort("new")}
                 className={cn(
-                  "rounded-full px-3 py-1.5 text-sm",
+                  "rounded-full px-3 py-1.5 text-sm cursor-pointer",
                   sort === "new"
                     ? "text-white"
                     : "border border-neutral-300 text-neutral-700"
@@ -375,11 +464,12 @@ export default function BlogPage() {
                 }
               >
                 Más recientes
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setSort("old")}
                 className={cn(
-                  "rounded-full px-3 py-1.5 text-sm",
+                  "rounded-full px-3 py-1.5 text-sm cursor-pointer",
                   sort === "old"
                     ? "text-white"
                     : "border border-neutral-300 text-neutral-700"
@@ -389,7 +479,7 @@ export default function BlogPage() {
                 }
               >
                 Más antiguas
-              </button>
+              </motion.button>
             </div>
           </div>
 
@@ -403,11 +493,12 @@ export default function BlogPage() {
                 {meta.etiquetas.map((t) => {
                   const active = tagSlug === t.slug || tagSlug === t.nombre;
                   return (
-                    <button
+                    <motion.button
                       key={t.id}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setTagSlug(active ? null : t.slug)}
                       className={cn(
-                        "rounded-full px-3 py-1.5 text-xs",
+                        "rounded-full px-3 py-1.5 text-xs cursor-pointer",
                         active
                           ? "text-white"
                           : "border border-neutral-300 text-neutral-700"
@@ -415,11 +506,10 @@ export default function BlogPage() {
                       style={active ? { background: BRAND.primary } : undefined}
                       aria-pressed={active}
                     >
-                      #{t.nombre}{" "}
-                      {!!t.count && (
+                      #{t.nombre} {!!t.count && (
                         <span className="opacity-50">({t.count})</span>
                       )}
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
@@ -463,7 +553,7 @@ function PostCard({
   category,
   date,
   readingMins,
-  excerpt, // 👈 new
+  excerpt,
   tags,
   onTagClick,
 }: {
@@ -473,7 +563,7 @@ function PostCard({
   category: string;
   date: string;
   readingMins: number;
-  excerpt?: string; // 👈 new
+  excerpt?: string;
   tags: { slug: string; nombre: string }[];
   onTagClick?: (slug: string) => void;
 }) {
