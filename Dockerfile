@@ -1,6 +1,6 @@
 # ---------- DEPS ----------
 FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat bash wget
+RUN apk add --no-cache libc6-compat bash wget openssl
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
@@ -9,9 +9,11 @@ RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 FROM node:20-alpine AS builder
 ENV NODE_ENV=production
 WORKDIR /app
+RUN apk add --no-cache bash wget openssl
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# opcional: desactivar telemetría
+COPY prisma ./prisma
+RUN npx --yes prisma generate
 RUN npx --yes next telemetry disable || true
 RUN npm run build
 
@@ -20,23 +22,21 @@ FROM node:20-alpine AS runner
 ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /app
-RUN apk add --no-cache bash wget
+RUN apk add --no-cache bash wget openssl
 
-# Copiamos el standalone si existe
-COPY --from=builder /app/.next/standalone ./       
-# Estaticos y public contiene server.js si hay standalone
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
-
-# Fallback para "next start" (necesita node_modules y el .next completo)
+COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
 
-# Script de arranque: intenta distintas rutas antes de caer a next start
 RUN printf '%s\n' \
   '#!/bin/sh' \
   'set -e' \
+  'if [ "${MIGRATE_ON_START:-true}" = "true" ]; then' \
+  '  echo "[prisma] migrate deploy"; npx prisma migrate deploy; fi' \
   'if [ -f "./server.js" ]; then' \
   '  echo "[start] usando ./server.js (standalone root)"; exec node ./server.js; fi' \
   'if [ -f "./.next/standalone/server.js" ]; then' \
