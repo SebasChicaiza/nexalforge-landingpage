@@ -102,12 +102,15 @@ export default function RootLayout({
         <Footer />
 
         <ConsentBanner />
+        {/* 
         <WhatsAppOptInCard
           businessName="Nexal Forge"
           purposes={["atencion_cliente", "transaccional"]}
           privacyUrl="/politicas-privacidad"
           origin="web"
         />
+        */}
+        
           
         <GoogleAnalytics />
 
