@@ -1,45 +1,72 @@
 // src/app/sitemap.ts
 import type { MetadataRoute } from "next";
+import { prisma } from "@/lib/prisma";
 
 const BASE_URL = "https://www.nexalforge.com";
 
-// Simula tu fuente de posts (MDX/DB/CMS). Devuelve { slug, updatedAt }.
-async function getBlogPosts() {
-  // TODO: reemplaza por tu fetch real (Prisma, FS, CMS…)
-  return [
-    { slug: "agente-ia-en-whatsapp", updatedAt: new Date("2025-09-30") },
-    { slug: "tendencias-y-avances-de-la-inteligencia-artificial-en-septiembre-de-2025", updatedAt: new Date("2025-10-01") }
-  ];
+type SitemapPost = {
+  slug: string;
+  updatedAt: Date;
+};
+
+type PostRow = {
+  slug: string;
+  actualizadoEn: Date;
+  publicadoEn: Date | null;
+  creadoEn: Date;
+};
+
+async function getBlogPosts(): Promise<SitemapPost[]> {
+  const rows: PostRow[] = await prisma.publicacion.findMany({
+    where: {
+      estado_borrado: false,
+      estado: { nombre: "PUBLICADO" },
+    },
+    select: {
+      slug: true,
+      actualizadoEn: true,
+      publicadoEn: true,
+      creadoEn: true,
+    },
+    orderBy: { actualizadoEn: "desc" },
+  });
+
+  return rows.map((row): SitemapPost => {
+    const maybeUpdatedAt = row.actualizadoEn ?? row.publicadoEn;
+    return {
+      slug: row.slug,
+      updatedAt: maybeUpdatedAt ?? row.creadoEn,
+    };
+  });
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();
+  const now = new Date();
 
   return [
     {
       url: `${BASE_URL}/`,
       priority: 1.0,
-      changefreq: "weekly",
-      lastModified: new Date(),
+      changeFrequency: "weekly",
+      lastModified: now,
     },
     {
       url: `${BASE_URL}/blog`,
       priority: 0.9,
-      changefreq: "weekly",
-      lastModified: new Date(),
+      changeFrequency: "weekly",
+      lastModified: now,
     },
-    // Páginas estáticas útiles (sin #)
     {
       url: `${BASE_URL}/politicas-privacidad`,
       priority: 0.3,
-      changefreq: "yearly",
-      lastModified: new Date(),
+      changeFrequency: "yearly",
+      lastModified: now,
     },
-    // Entradas del blog
-    ...posts.map((p) => ({
+    ...posts.map((p): MetadataRoute.Sitemap[number] => ({
       url: `${BASE_URL}/blog/${p.slug}`,
       priority: 0.8,
-      changefreq: "monthly",
+      changeFrequency: "monthly",
       lastModified: p.updatedAt,
     })),
   ];
