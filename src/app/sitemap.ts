@@ -2,6 +2,8 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 const BASE_URL = "https://www.nexalforge.com";
 
 type SitemapPost = {
@@ -17,27 +19,32 @@ type PostRow = {
 };
 
 async function getBlogPosts(): Promise<SitemapPost[]> {
-  const rows: PostRow[] = await prisma.publicacion.findMany({
-    where: {
-      estado_borrado: false,
-      estado: { nombre: "PUBLICADO" },
-    },
-    select: {
-      slug: true,
-      actualizadoEn: true,
-      publicadoEn: true,
-      creadoEn: true,
-    },
-    orderBy: { actualizadoEn: "desc" },
-  });
+  try {
+    const rows: PostRow[] = await prisma.publicacion.findMany({
+      where: {
+        estado_borrado: false,
+        estado: { nombre: "PUBLICADO" },
+      },
+      select: {
+        slug: true,
+        actualizadoEn: true,
+        publicadoEn: true,
+        creadoEn: true,
+      },
+      orderBy: { actualizadoEn: "desc" },
+    });
 
-  return rows.map((row): SitemapPost => {
-    const maybeUpdatedAt = row.actualizadoEn ?? row.publicadoEn;
-    return {
-      slug: row.slug,
-      updatedAt: maybeUpdatedAt ?? row.creadoEn,
-    };
-  });
+    return rows.map((row): SitemapPost => {
+      const maybeUpdatedAt = row.actualizadoEn ?? row.publicadoEn;
+      return {
+        slug: row.slug,
+        updatedAt: maybeUpdatedAt ?? row.creadoEn,
+      };
+    });
+  } catch (error) {
+    console.warn("[sitemap] Falling back to static routes; failed to fetch posts", error);
+    return [];
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
