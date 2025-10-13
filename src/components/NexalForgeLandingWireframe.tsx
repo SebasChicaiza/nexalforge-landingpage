@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import ServiciosSection from "@/components/ServiciosSection";
+import NexiVideo from "@/components/NexiVideo";
 
 import RoiSection from "@/components/RoiSection";
 import ContactForm from "@/components/ContactForm";
@@ -38,18 +39,18 @@ export default function NexalForgeLandingWireframe() {
             {/* Imagen primero en mobile; a la derecha en md+ */}
             <div className="order-first md:order-none">
               <div
-                className="relative mx-auto w-full max-w-[520px] sm:max-w-[640px] lg:max-w-none lg:w-[720px]
+                className="relative mx-auto w-full max-w-[520px] sm:max-w-[640px] lg:max-w-none lg:w-[660px]
                      aspect-[4/3] sm:aspect-[3/2] overflow-hidden rounded-2xl sm:rounded-3xl
-                     border border-white/10 bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.45)]
-                     md:ml-0 lg:-ml-8 xl:-ml-16"
+                      bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.45)]
+                     md:mx-auto lg:mx-auto" 
               >
                 <Image
-                  src="/hero-img.png"
+                  src="/hero_nexal_cabeza.png"
                   alt="Automatiza. Predice. Crece."
                   fill
                   priority
                   sizes="(min-width:1280px) 720px, (min-width:1024px) 640px, (min-width:640px) 85vw, 100vw"
-                  className="object-cover md:object-contain md:object-right-top"
+                  className="object-cover md:object-contain md:object-center" 
                 />
                 {/* Máscara solo en md+ para evitar recorte raro en móviles */}
                 <div className="pointer-events-none absolute inset-0 hidden md:block md:[mask-image:linear-gradient(to_left,black,transparent_65%)]" />
@@ -80,6 +81,17 @@ export default function NexalForgeLandingWireframe() {
 
       <section id="servicios"></section>
       <ServiciosSection />
+
+      <NexiVideo
+        id="casos"
+        srcMp4="/nexi.mp4"
+        poster="/Nexi.png"
+        eyebrow="NexalForge"
+        title="Resultados Orgánicos Impulsados por IA"
+        description="La IA permite que tu empresa trabaje sin descanso, aprenda de cada interacción y se adapte automáticamente para mejorar resultados con mínima intervención manual."
+        ctaHref="#servicios"
+        ctaLabel="Nuestros servicios"
+      />
 
       {/* RESULTADOS */}
       <section id="resultados" className="bg-white py-16 md:py-20">
@@ -455,7 +467,6 @@ export default function NexalForgeLandingWireframe() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
