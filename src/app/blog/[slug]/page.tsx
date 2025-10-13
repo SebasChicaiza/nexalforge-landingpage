@@ -40,21 +40,35 @@ async function renderMarkdown(md?: string | null) {
     const ReactMarkdown = (await import("react-markdown")).default;
     const remarkGfm = (await import("remark-gfm")).default;
     const rehypeSlug = (await import("rehype-slug")).default;
-    const rehypeAutolinkHeadings = (await import("rehype-autolink-headings"))
-      .default;
+    const rehypeAutolinkHeadings = (await import("rehype-autolink-headings")).default;
     const rehypeSanitize = (await import("rehype-sanitize")).default;
+
+    // Nota: si TypeScript se queja por los types de components, puedes tiparlo como `any`
+    const components: import("react-markdown").Components = {
+      table: ({ node, ...props }) => (
+        <div
+          className="nf-table-wrapper"
+          role="region"
+          aria-label="Tabla desplazable"
+          tabIndex={0}
+        >
+           <table
+        {...props}
+        className={["nf-table", (props as any).className].filter(Boolean).join(" ")}
+      />
+        </div>
+      ),
+    };
 
     return (
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[
           rehypeSlug,
-          [
-            rehypeAutolinkHeadings,
-            { behavior: "wrap", properties: { className: "no-underline" } },
-          ],
-          rehypeSanitize, // <= sanitización on
+          [rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: "no-underline" } }],
+          rehypeSanitize,
         ]}
+        components={components}
       >
         {source}
       </ReactMarkdown>
@@ -67,6 +81,7 @@ async function renderMarkdown(md?: string | null) {
     );
   }
 }
+
 
 function fmtDate(d?: Date | null) {
   if (!d) return null;

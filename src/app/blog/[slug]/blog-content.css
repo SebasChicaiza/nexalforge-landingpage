@@ -92,3 +92,76 @@
   border: 1px solid #e5e7eb;
   margin: 1rem 0;
 }
+
+/* ==== Tablas NexalForge: scrollable y legibles en móvil ==== */
+.blog-content .nf-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+  padding-bottom: .25rem;
+}
+
+.blog-content .nf-table {
+  border-collapse: collapse;
+  width: max-content;    /* permite crecer más que el contenedor */
+  min-width: 100%;
+  table-layout: fixed;   /* respeta anchos asignados por columna */
+}
+
+/* Estilo base de celdas */
+.blog-content .nf-table th,
+.blog-content .nf-table td {
+  white-space: nowrap;   /* por defecto no cortar palabras */
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* Limpia <p> internos que mete react-markdown */
+.blog-content .nf-table td p,
+.blog-content .nf-table th p { margin: 0; }
+
+/* Encabezado pegajoso (opcional) */
+.blog-content .nf-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  z-index: 1;
+}
+
+/* ===== Layout móvil ===== */
+@media (max-width: 640px) {
+  /* Suma ~830px para provocar scroll horizontal y evitar compresión extrema */
+  .blog-content .nf-table { min-width: 830px; font-size: .9rem; }
+
+  /* Col 1: Canal */
+  .blog-content .nf-table th:nth-child(1),
+  .blog-content .nf-table td:nth-child(1) { width: 120px; }
+
+  /* Col 2: Voz */
+  .blog-content .nf-table th:nth-child(2),
+  .blog-content .nf-table td:nth-child(2) { width: 110px; }
+
+  /* Col 3: Extensión */
+  .blog-content .nf-table th:nth-child(3),
+  .blog-content .nf-table td:nth-child(3) { width: 120px; }
+
+  /* Col 4: Emojis */
+  .blog-content .nf-table th:nth-child(4),
+  .blog-content .nf-table td:nth-child(4) { width: 90px; }
+
+  /* Cols 5–6 (texto largo): sí envuelven para no crecer infinito */
+  .blog-content .nf-table th:nth-child(5),
+  .blog-content .nf-table td:nth-child(5),
+  .blog-content .nf-table th:nth-child(6),
+  .blog-content .nf-table td:nth-child(6) {
+    width: 195px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  /* Ajuste de padding compacto */
+  .blog-content .nf-table th,
+  .blog-content .nf-table td { padding: .5rem .6rem; }
+}
