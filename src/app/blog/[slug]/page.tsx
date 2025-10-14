@@ -7,6 +7,8 @@ import crypto from "crypto";
 import "./blog-content.css";
 import type { ComponentProps } from "react";
 
+type BlogPostPageParams = { slug: string };
+
 function normalizeMarkdown(input: string): string {
   let s = (input ?? "").replace(/\r\n/g, "\n");
 
@@ -145,9 +147,9 @@ async function recordView(publicacionId: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<BlogPostPageParams>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const post = await prisma.publicacion.findUnique({
     where: { slug },
@@ -194,9 +196,9 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<BlogPostPageParams>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const post = await getPost(slug);
 
