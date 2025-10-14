@@ -1,11 +1,11 @@
 // app/blog/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
-import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 import "./blog-content.css";
+import type { ComponentProps } from "react";
 
 function normalizeMarkdown(input: string): string {
   let s = (input ?? "").replace(/\r\n/g, "\n");
@@ -30,7 +30,6 @@ function normalizeMarkdown(input: string): string {
   return s;
 }
 
-// Optional markdown renderer (graceful fallback if the dep is missing)
 // --- renderer ---
 async function renderMarkdown(md?: string | null) {
   if (!md) return null;
@@ -40,22 +39,25 @@ async function renderMarkdown(md?: string | null) {
     const ReactMarkdown = (await import("react-markdown")).default;
     const remarkGfm = (await import("remark-gfm")).default;
     const rehypeSlug = (await import("rehype-slug")).default;
-    const rehypeAutolinkHeadings = (await import("rehype-autolink-headings")).default;
+    const rehypeAutolinkHeadings = (await import("rehype-autolink-headings"))
+      .default;
     const rehypeSanitize = (await import("rehype-sanitize")).default;
 
-    // Nota: si TypeScript se queja por los types de components, puedes tiparlo como `any`
+    // Tipamos <table> para evitar any
+    type TableProps = ComponentProps<"table"> & { node?: unknown };
+
     const components: import("react-markdown").Components = {
-      table: ({ node, ...props }) => (
+      table: ({ node: _node, className, ...props }: TableProps) => (
         <div
           className="nf-table-wrapper"
           role="region"
           aria-label="Tabla desplazable"
           tabIndex={0}
         >
-           <table
-        {...props}
-        className={["nf-table", (props as any).className].filter(Boolean).join(" ")}
-      />
+          <table
+            {...props}
+            className={["nf-table", className].filter(Boolean).join(" ")}
+          />
         </div>
       ),
     };
@@ -65,7 +67,10 @@ async function renderMarkdown(md?: string | null) {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[
           rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: "no-underline" } }],
+          [
+            rehypeAutolinkHeadings,
+            { behavior: "wrap", properties: { className: "no-underline" } },
+          ],
           rehypeSanitize,
         ]}
         components={components}
@@ -81,7 +86,6 @@ async function renderMarkdown(md?: string | null) {
     );
   }
 }
-
 
 function fmtDate(d?: Date | null) {
   if (!d) return null;
@@ -115,22 +119,20 @@ async function getPost(slug: string) {
 
 async function recordView(publicacionId: string) {
   try {
+    // ✅ headers() es async en Next 15
     const h = await headers();
-    const ipRaw =
-      h.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      h.get("x-real-ip") ||
-      "";
+
+    const forwarded = h.get("x-forwarded-for");
+    const ipRaw = forwarded?.split(",")[0]?.trim() || h.get("x-real-ip") || "";
+
     const ipHash = ipRaw
       ? crypto.createHash("sha256").update(ipRaw).digest("hex").slice(0, 16)
       : null;
+
     const agenteUsuario = h.get("user-agent") ?? null;
 
     await prisma.vistaPublicacion.create({
-      data: {
-        publicacionId,
-        ipHash,
-        agenteUsuario,
-      },
+      data: { publicacionId, ipHash, agenteUsuario },
     });
   } catch {
     // swallow (never break the page render due to analytics)
@@ -143,9 +145,9 @@ async function recordView(publicacionId: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const post = await prisma.publicacion.findUnique({
     where: { slug },
@@ -192,9 +194,9 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const post = await getPost(slug);
 
