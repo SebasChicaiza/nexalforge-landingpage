@@ -5,8 +5,6 @@ import {
   Clock,
   LineChart,
   BadgeDollarSign,
-  ShieldCheck,
-  CheckCircle2,
   Sparkles,
   Zap,
   Wrench,
@@ -46,7 +44,7 @@ export default function NexalForgeLandingWireframe() {
               >
                 <Image
                   src="/hero_nexal_cabeza.png"
-                  alt="Automatiza. Predice. Crece."
+                  alt="Soluciones de inteligencia artificial y automatización para empresas en Latinoamérica"
                   fill
                   priority
                   sizes="(min-width:1280px) 720px, (min-width:1024px) 640px, (min-width:640px) 85vw, 100vw"
@@ -73,6 +71,105 @@ export default function NexalForgeLandingWireframe() {
                 >
                   Ver caso en 60s
                 </a>
+                <Link
+                  href="/asistente-virtual-nexi"
+                  className="rounded-full border border-white/30 bg-white/10 px-5 py-3 text-white hover:bg-white/20"
+                >
+                  Conoce al asistente Nexi
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-14 md:py-16">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold md:text-4xl">
+                ¿Qué hace Nexal Forge por tu empresa?
+              </h2>
+              <p className="text-neutral-700">
+                Ayudamos a empresas de Latinoamérica a
+                implementar soluciones de inteligencia artificial prácticas (somos un equipo con base en Ecuador):
+                agentes de IA para ventas y soporte, automatización operativa
+                con n8n/Make, modelos de predicción y forecasting, capa de datos
+                unificada y sprints de implementación listos para producción.
+              </p>
+              <ul className="grid gap-2 text-neutral-700">
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 h-2 w-2 rounded-full bg-[#8B1E2D]" />
+                  <div>
+                    <strong>Agente IA para Ventas:</strong> automatiza
+                    prospección, seguimiento y lead scoring con inteligencia
+                    artificial.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 h-2 w-2 rounded-full bg-[#8B1E2D]" />
+                  <div>
+                    <strong>Agente IA para Soporte (Nexi):</strong> asistente
+                    virtual de IA en WhatsApp, Instagram y Messenger con handoff
+                    humano.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 h-2 w-2 rounded-full bg-[#8B1E2D]" />
+                  <div>
+                    <strong>Automatización Operativa:</strong> flujos con IA que
+                    conectan CRM, ERP y facturación para eliminar tareas
+                    repetitivas.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 h-2 w-2 rounded-full bg-[#8B1E2D]" />
+                  <div>
+                    <strong>Predicción & Forecasting:</strong> modelos de
+                    demanda, ventas y churn para decisiones de inventario y
+                    crecimiento.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 h-2 w-2 rounded-full bg-[#8B1E2D]" />
+                  <div>
+                    <strong>Capa de Datos y Dashboards:</strong> métricas
+                    gobernadas y tableros ejecutivos en tiempo real.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-2 h-2 w-2 rounded-full bg-[#8B1E2D]" />
+                  <div>
+                    <strong>Sprint de Implementación de IA:</strong> MVP de IA
+                    en dos semanas con capacitación incluida.
+                  </div>
+                </li>
+              </ul>
+            </div>
+              <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#8B1E2D]">
+                Soluciones de IA en español y multilenguaje
+              </div>
+              <h3 className="mt-3 text-xl font-semibold text-[#2A2A2A]">
+                Trabajamos con empresas de toda Latam
+              </h3>
+              <p className="mt-2 text-neutral-700">
+                Servicio con foco en español y opción multilenguaje, implementación remota o híbrida, enfoque en KPIs de negocio. Conecta con nuestros agentes de IA o dirígete a Nexi, el asistente virtual para WhatsApp e Instagram.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link
+                  href="/asistente-virtual-nexi"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#8B1E2D] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#B84550]"
+                >
+                  Ver el asistente virtual Nexi
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="#contacto"
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-4 py-2 text-sm font-semibold text-[#2A2A2A] transition hover:border-[#8B1E2D] hover:text-[#8B1E2D]"
+                >
+                  Hablar con un especialista
+                </a>
               </div>
             </div>
           </div>
@@ -92,6 +189,56 @@ export default function NexalForgeLandingWireframe() {
         ctaHref="#servicios"
         ctaLabel="Nuestros servicios"
       />
+
+      <section className="bg-[#0B0B0B] py-16 text-white md:py-20">
+        <div className="mx-auto max-w-7xl px-4">
+          <h2 className="text-3xl font-bold md:text-4xl">
+            ¿Por qué trabajar con Nexal Forge para tus proyectos de IA?
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Enfoque en KPIs",
+                desc: "Diseñamos proyectos de IA para mover ingresos, reducir tiempos y costos medibles.",
+              },
+              {
+                title: "Experiencia en agentes de IA",
+                desc: "Implementamos asistentes virtuales, automatización operativa y analítica avanzada.",
+              },
+              {
+                title: "Acompañamiento Latam",
+                desc: "Soporte para empresas de toda Latinoamérica, con base en Ecuador y foco en español.",
+              },
+              {
+                title: "Sprints rápidos",
+                desc: "MVP de IA en semanas; iteramos con datos reales y feedback de tu equipo.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-sm backdrop-blur"
+              >
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm text-white/80">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3 text-sm">
+            <Link
+              href="/asistente-virtual-nexi"
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/15"
+            >
+              Conocer el asistente virtual Nexi
+            </Link>
+            <a
+              href="#contacto"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-white hover:bg-white/10"
+            >
+              Agenda una llamada
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* RESULTADOS */}
       <section id="resultados" className="bg-white py-16 md:py-20">
@@ -413,24 +560,40 @@ export default function NexalForgeLandingWireframe() {
       <section id="faq" className="bg-[#F5F5F5] py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <h2 className="text-3xl font-bold md:text-4xl">
-            Preguntas frecuentes
+            Preguntas frecuentes sobre nuestras soluciones de IA
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <FAQ
-              q="¿Cuánto tarda ver resultados?"
-              a="Generalmente medimos un KPI en 2–3 semanas tras el primer sprint."
+              q="¿Qué tipo de proyectos de inteligencia artificial implementa Nexal Forge?"
+              a="Implementamos agentes de IA para ventas y soporte, automatización operativa, modelos de predicción y dashboards ejecutivos para empresas en toda Latinoamérica (somos un equipo con base en Ecuador)."
             />
             <FAQ
-              q="¿Qué acceso necesitan?"
-              a="Solo los mínimos para operar; trabajamos con cuentas de servicio y logs."
+              q="¿Puedo empezar solo con un agente de IA para ventas o soporte?"
+              a="Sí. Puedes iniciar con un agente IA específico y luego escalar a automatización operativa, forecasting o capa de datos según tus necesidades."
             />
             <FAQ
-              q="¿Qué pasa si no vemos impacto?"
-              a="Ajustamos sin costo el primer mes o pausamos el proyecto."
+              q="¿Trabajan solo en Ecuador o en toda la región?"
+              a="Trabajamos con empresas de toda Latinoamérica. La implementación puede ser remota o híbrida, con foco en español y opción multilenguaje."
             />
             <FAQ
-              q="¿Se integra con mis herramientas?"
-              a="Sí, trabajamos con CRM, helpdesk, hojas de cálculo, n8n/Make/Zapier, entre otros."
+              q="¿Cuánto tiempo tarda un proyecto típico de automatización operativa?"
+              a="Un MVP inicial puede estar listo en 2–4 semanas, dependiendo de la cantidad de procesos, integraciones y validaciones que debamos cubrir."
+            />
+            <FAQ
+              q="¿Necesito un equipo técnico interno para implementar soluciones de IA?"
+              a="No es obligatorio. Nos encargamos de la parte técnica; tu equipo define procesos, tono y contenidos. Entregamos capacitación básica y documentación."
+            />
+            <FAQ
+              q="¿Dónde puedo ver más detalles del asistente virtual para WhatsApp?"
+              a={
+                <>
+                  Visita la página de nuestro chatbot Nexi. Es un{" "}
+                  <Link className="text-[#8B1E2D] underline" href="/asistente-virtual-nexi">
+                    asistente virtual de IA para WhatsApp e Instagram
+                  </Link>{" "}
+                  con handoff humano y panel web.
+                </>
+              }
             />
           </div>
         </div>
@@ -446,7 +609,7 @@ export default function NexalForgeLandingWireframe() {
               </h2>
               <p className="mt-2 text-neutral-600">
                 Agenda un diagnóstico de 15 minutos. Te respondemos en &lt;24h,
-                sin compromiso.
+                sin compromiso, para empresas en toda Latinoamérica.
               </p>
               <ul className="mt-4 space-y-1 text-sm text-neutral-600">
                 <li className="flex items-center gap-2">
@@ -488,7 +651,7 @@ function Card({ icon, title, kpi, children }: CardProps) {
       <div className="mt-1 text-sm text-[#8B1E2D]">{kpi}</div>
       <p className="mt-3 text-neutral-600">{children}</p>
       <a
-        href="#"
+        href="#contacto"
         className="mt-4 inline-flex items-center text-sm text-[#8B1E2D] hover:underline"
       >
         Ver cómo lo logramos <ArrowRight className="ml-1 h-4 w-4" />
@@ -497,80 +660,11 @@ function Card({ icon, title, kpi, children }: CardProps) {
   );
 }
 
-type StepProps = { number: string; title: string; desc: string };
-function Step({ number, title, desc }: StepProps) {
-  return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-      <div className="mb-2 text-sm text-neutral-500">Paso {number}</div>
-      <h3 className="text-lg font-semibold text-[#2A2A2A]">{title}</h3>
-      <p className="mt-2 text-neutral-600">{desc}</p>
-    </div>
-  );
-}
-
-type CaseCardProps = { title: string; before: string; after: string };
-function CaseCard({ title, before, after }: CaseCardProps) {
-  return (
-    <div className="overflow-hidden rounded-2xl border border-neutral-200 shadow-sm">
-      <div className="aspect-video w-full bg-gradient-to-br from-neutral-200 to-neutral-300" />
-      <div className="p-6">
-        <div className="text-sm text-neutral-500">{title}</div>
-        <h3 className="mt-1 text-lg font-semibold">Problema → Resultado</h3>
-        <ul className="mt-3 space-y-1 text-sm text-neutral-600">
-          <li>
-            <span className="font-medium">Antes:</span> {before}
-          </li>
-          <li>
-            <span className="font-medium">Después:</span> {after}
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-type PlanCardProps = {
-  title: string;
-  price: string;
-  features: string[];
-  highlighted?: boolean;
-};
 function Tag({ children }: { children: React.ReactNode }) {
   return (
     <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-white/80">
       {children}
     </span>
-  );
-}
-
-function PlanCard({ title, price, features, highlighted }: PlanCardProps) {
-  return (
-    <div
-      className={`${
-        highlighted ? "border-[#8B1E2D]" : "border-neutral-200"
-      } relative rounded-2xl border bg-white p-6 shadow-sm`}
-    >
-      {highlighted && (
-        <div className="absolute right-4 top-4 rounded-full bg-[#8B1E2D] px-2 py-0.5 text-xs font-medium text-white">
-          Recomendado
-        </div>
-      )}
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <div className="mt-1 text-2xl font-extrabold text-[#8B1E2D]">{price}</div>
-      <ul className="mt-4 space-y-2 text-sm text-neutral-600">
-        {features.map((f, i) => (
-          <li key={i} className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-[#8B1E2D]" /> {f}
-          </li>
-        ))}
-      </ul>
-      <a
-        href="#contacto"
-        className="mt-5 block rounded-full bg-[#8B1E2D] px-4 py-2 text-center text-white hover:bg-[#B84550]"
-      >
-        Quiero este plan
-      </a>
-    </div>
   );
 }
 

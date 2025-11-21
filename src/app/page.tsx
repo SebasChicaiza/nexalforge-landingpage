@@ -1,6 +1,14 @@
 // src/app/page.tsx
+import type { Metadata } from "next";
 import NexalForgeLandingWireframe from "@/components/NexalForgeLandingWireframe";
 import JsonLd from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  title:
+    "Soluciones de IA y automatización para empresas en Latinoamérica | Nexal Forge",
+  description:
+    "Nexal Forge implementa agentes de IA para ventas y soporte, automatización operativa, predicción de demanda y dashboards ejecutivos. Soluciones de inteligencia artificial para empresas de Latinoamérica con equipo basado en Ecuador.",
+};
 
 export default function Home() {
   return (

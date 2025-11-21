@@ -1,5 +1,5 @@
 "use client";
-import { motion, type Variants,  useReducedMotion } from "framer-motion";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
 
 const container = {
   hidden: { opacity: 0 },
@@ -9,15 +9,15 @@ const container = {
   }),
 };
 
-const itemRight: Variants  = {
+const itemRight: Variants = {
   hidden: { opacity: 0, x: 40 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
       type: "tween" as const,
-      duration: 1,  
-      ease: [0.17, 0.67, 0.83, 0.67]
+      duration: 1,
+      ease: [0.17, 0.67, 0.83, 0.67],
     },
   },
 };
@@ -44,15 +44,17 @@ export function HeroText() {
                    font-sans"
         style={{ fontFamily: "var(--font-heading)" }}
       >
-        Potencia tus operaciones <br className="hidden sm:block" /> con IA, hoy.
+        Inteligencia Artificial y automatización para empresas
+        <br className="hidden sm:block" />
       </motion.h1>
 
       <motion.p
         variants={itemRight}
-        className="mb-8 text-base sm:text-lg text-white/90 max-w-[58ch]"
+        className="mb-8 text-base sm:text-lg text-white/90 max-w-[48ch]"
       >
-        Implementamos agentes y automatizaciones que <b>mejoran ventas</b>,{" "}
-        <b>reducen tiempos</b> y <b>recortan costos</b>.
+        Agentes de IA, automatización operativa y dashboards para mover tus KPIs
+        en semanas. Somos una empresa ecuatoriana que trabaja para toda Latam,
+        con foco en español y capacidad multilenguaje.
       </motion.p>
     </motion.div>
   );
