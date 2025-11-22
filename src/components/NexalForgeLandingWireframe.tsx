@@ -668,7 +668,7 @@ function Tag({ children }: { children: React.ReactNode }) {
   );
 }
 
-type FAQProps = { q: string; a: string };
+type FAQProps = { q: string; a: ReactNode };
 function FAQ({ q, a }: FAQProps) {
   return (
     <details className="rounded-xl border border-neutral-200 bg-white p-4">
