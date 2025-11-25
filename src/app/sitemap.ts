@@ -65,6 +65,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
     },
     {
+      url: `${BASE_URL}/asistente-virtual-nexi`,
+      priority: 0.9,
+      changeFrequency: "monthly",
+      lastModified: now,
+    },
+    {
       url: `${BASE_URL}/politicas-privacidad`,
       priority: 0.3,
       changeFrequency: "yearly",

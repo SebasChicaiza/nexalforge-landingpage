@@ -55,18 +55,28 @@ export default function Footer() {
           <div className="mb-2 font-semibold text-[#2A2A2A]">Recursos</div>
           <ul className="space-y-1">
             <li>
-              <a className="hover:underline" href="#recursos">
-                Guías
+            <Link className="hover:underline" href="/blog">
+              Blog y guías
+            </Link>
+            </li>
+            <li>
+              <a
+                className="hover:underline"
+                href="https://developers.facebook.com/docs/whatsapp/cloud-api/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Documentación WhatsApp Business
               </a>
             </li>
             <li>
-              <a className="hover:underline" href="#">
-                Checklist
-              </a>
-            </li>
-            <li>
-              <a className="hover:underline" href="#">
-                Plantillas
+              <a
+                className="hover:underline"
+                href="https://www.twilio.com/docs/conversations"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Twilio Conversations / Flex
               </a>
             </li>
           </ul>

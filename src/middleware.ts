@@ -11,7 +11,7 @@ type AppJWTPayload = JWTPayload & {
 const JWT_SECRET = process.env.JWT_SECRET ?? "";
 
 // Public pages that don’t require auth
-const PUBLIC_PREFIXES = ["/", "/login", "/blog", "/politicas-privacidad", "/nexi.mp4", "/soluciones"];
+const PUBLIC_PREFIXES = ["/", "/login", "/blog", "/politicas-privacidad", "/nexi.mp4", "/asistente-virtual-nexi", "/soluciones"];
 const isPublicPath = (p: string) =>
   PUBLIC_PREFIXES.some((x) => p === x || p.startsWith(`${x}/`));
 
@@ -20,6 +20,19 @@ const isAdminPath = (p: string) => p === "/admin" || p.startsWith("/admin/");
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get("host") || "";
+
+  // Redirect www to apex to avoid duplicate content
+  if (
+    host.startsWith("www.") &&
+    !host.includes("localhost") &&
+    !host.startsWith("127.0.0.1")
+  ) {
+    const apex = host.replace(/^www\./, "");
+    const url = new URL(request.url);
+    url.host = apex;
+    return NextResponse.redirect(url, 301);
+  }
 
   // Lightweight marker to confirm middleware hit (DevTools > Network)
   const res = NextResponse.next();
@@ -62,7 +75,7 @@ export async function middleware(request: NextRequest) {
 
     if (claims.sub) res.headers.set("x-nf-user", String(claims.sub));
     return res;
-  } catch (err) {
+  } catch {
     const redirect = NextResponse.redirect(new URL("/login", request.url));
     redirect.cookies.delete("nf_jwt");
     return redirect;
