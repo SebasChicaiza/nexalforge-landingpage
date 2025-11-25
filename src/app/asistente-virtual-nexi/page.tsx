@@ -5,7 +5,9 @@ import {
   ArrowRight,
   CheckCircle2,
   Laptop,
+  Mail,
   MessageSquare,
+  PhoneCall,
   ShieldCheck,
   Sparkles,
   Workflow,
@@ -13,6 +15,8 @@ import {
 import JsonLd from "@/components/JsonLd";
 import NexiHeroCtas from "@/components/NexiHeroCtas";
 import NexiDemoForm from "@/components/NexiDemoForm";
+import NexiFaqAccordion from "@/components/NexiFaqAccordion";
+import NexiStepsCarousel from "@/components/NexiStepsCarousel";
 
 const WHATSAPP_LINK =
   "https://wa.me/593963305344?text=Hola%2C%20Nexi.%20Quiero%20informaci%C3%B3n...";
@@ -74,6 +78,11 @@ const steps = [
     copy: "Si detecta un tema complejo, transfiere la conversación a un agente humano desde la plataforma.",
   },
 ];
+
+const stepsWithMedia = steps.map((step, idx) => ({
+  ...step,
+  image: `/nexi-agente/step-${idx + 1}.png`, // reemplaza con tus imágenes
+}));
 
 const tasks = [
   {
@@ -219,6 +228,24 @@ const faqs = [
   },
 ];
 
+const contactOptions = [
+  {
+    label: "Llamada WhatsApp",
+    value: "+593 963 305 344",
+    icon: PhoneCall,
+  },
+  {
+    label: "Mensaje Instagram / WhatsApp / Messenger",
+    value: "Conversaciones en el mismo hilo",
+    icon: MessageSquare,
+  },
+  {
+    label: "Email + CRM",
+    value: "Respuestas y conexión a tu sistema",
+    icon: Mail,
+  },
+];
+
 export default function NexiProductPage() {
   return (
     <main className="bg-white text-[#0C0C10]">
@@ -294,9 +321,9 @@ export default function NexiProductPage() {
 
             <div className="relative">
               <div className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4 shadow-[0_25px_60px_rgba(0,0,0,0.45)] backdrop-blur">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white/5">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image
-                    src="/nexi-agente/nexi-multicanal.png"
+                    src="/nexi-agente/NexiChat.png"
                     alt="Nexi, asistente virtual de IA atendiendo conversaciones de WhatsApp, Instagram y Messenger"
                     fill
                     sizes="(min-width: 1024px) 520px, 90vw"
@@ -315,60 +342,91 @@ export default function NexiProductPage() {
           aria-labelledby="h2-que-es-nexi"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <h2
-              id="h2-que-es-nexi"
-              className="text-3xl font-semibold text-[#0F0F10] sm:text-4xl"
-            >
-              ¿Qué es Nexi y en qué se diferencia de un chatbot tradicional?
-            </h2>
-            <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
-              <div className="space-y-4 text-lg text-neutral-700">
-                <p>
-                  Nexi es un asistente virtual de IA en español que atiende las
-                  conversaciones de tu empresa en WhatsApp, Instagram y
-                  Messenger. Usa modelos de lenguaje y una base de conocimiento
-                  propia para responder con información real, no solo flujos
-                  rígidos.
-                </p>
-                <p>
-                  Un chatbot tradicional sigue reglas fijas y se rompe
-                  fácilmente cuando la pregunta varía. Nexi entiende lenguaje
-                  natural, mantiene el contexto y aprende de nueva información.
-                  Cuando detecta un tema sensible, transfiere la conversación a
-                  tu equipo humano.
-                </p>
-              </div>
-              <div className="h-full rounded-3xl border border-neutral-200 bg-gradient-to-br from-[#FFF5F7] via-white to-[#F7E8EC] p-6 shadow-[0_18px_55px_rgba(0,0,0,0.08)]">
-                <div className="mb-4 overflow-hidden rounded-2xl">
+            <div className="overflow-hidden rounded-[28px] border border-neutral-200 bg-white shadow-[0_20px_70px_rgba(0,0,0,0.08)]">
+              <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
+                <div className="relative h-full min-h-[360px] bg-neutral-900">
                   <Image
                     src="/nexi-agente/nexi-aprendiendo.png"
                     alt="Nexi aprendiendo de los servicios, políticas y procesos de una empresa"
-                    width={900}
-                    height={680}
-                    className="h-auto w-full rounded-2xl object-cover"
+                    width={1200}
+                    height={900}
+                    className="h-full w-full object-cover"
+                    priority
                   />
+                  <div className="absolute bottom-6 left-6 right-6 sm:right-auto">
+                    <div className="w-full max-w-[360px] rounded-2xl bg-white/95 p-4 shadow-[0_20px_45px_rgba(0,0,0,0.25)] backdrop-blur">
+                      <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-neutral-600">
+                        <span className="rounded-full bg-neutral-100 px-2 py-1 text-neutral-700">
+                          Nexi multicanal
+                        </span>
+                        <span className="text-neutral-500">En vivo</span>
+                      </div>
+                      <ul className="space-y-2">
+                        {contactOptions.map(({ label, value, icon: Icon }) => (
+                          <li
+                            key={label}
+                            className="flex items-start gap-3 rounded-xl px-3 py-2 transition hover:bg-neutral-50"
+                          >
+                            <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#0F172A] text-white">
+                              <Icon className="h-4 w-4" />
+                            </span>
+                            <div className="leading-tight">
+                              <div className="text-sm font-semibold text-neutral-900">
+                                {label}
+                              </div>
+                              <div className="text-xs text-neutral-600">
+                                {value}
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3 text-neutral-800">
-                  <MessageSquare className="mt-1 h-6 w-6 text-[#8B1E2D]" />
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold">
-                      Configuración guiada + personalización
-                    </h3>
-                    <p className="text-sm text-neutral-700">
-                      Incluimos talleres breves con tu equipo para mapear
-                      servicios, tono y excepciones. Nexi nace con tu
-                      conocimiento, no con respuestas genéricas.
-                    </p>
-                    <div className="flex flex-wrap gap-2 text-xs text-neutral-600">
-                      <span className="rounded-full bg-white px-3 py-1 shadow-sm">
-                        Entrenamos con tus FAQs reales
-                      </span>
-                      <span className="rounded-full bg-white px-3 py-1 shadow-sm">
-                        Sin código para tu equipo
-                      </span>
-                      <span className="rounded-full bg-white px-3 py-1 shadow-sm">
-                        Control humano cuando lo necesites
-                      </span>
+                <div className="relative flex h-full flex-col justify-center gap-4 bg-gradient-to-br from-[#360e0e] via-[#360e0e] to-[#451010] px-6 py-12 text-white sm:px-10">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_40%)]" />
+                  <div className="relative space-y-5">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/80">
+                      <MessageSquare className="h-4 w-4" />
+                      Asistente virtual Nexi
+                    </div>
+                    <h2
+                      id="h2-que-es-nexi"
+                      className="text-3xl font-semibold sm:text-4xl"
+                    >
+                      ¿Qué es Nexi y en qué se diferencia de un chatbot
+                      tradicional?
+                    </h2>
+                    <div className="space-y-3 text-base text-white/80">
+                      <p>
+                        Nexi es un asistente virtual de IA en español que
+                        atiende las conversaciones de tu empresa en WhatsApp,
+                        Instagram y Messenger. Usa modelos de lenguaje y una
+                        base de conocimiento propia para responder con
+                        información real, no solo flujos rígidos.
+                      </p>
+                      <p>
+                        Un chatbot tradicional sigue reglas fijas y se rompe
+                        fácilmente cuando la pregunta varía. Nexi entiende
+                        lenguaje natural, mantiene el contexto y aprende de
+                        nueva información. Cuando detecta un tema sensible,
+                        transfiere la conversación a tu equipo humano.
+                      </p>
+                    </div>
+                    <div className="grid gap-3 text-sm text-white/80">
+                      <div className="flex items-start gap-2">
+                        <ShieldCheck className="mt-0.5 h-4 w-4 text-[#7CD4FF]" />
+                        <span>Base de conocimiento real + flujos guiados.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Sparkles className="mt-0.5 h-4 w-4 text-[#FFD3DC]" />
+                        <span>Modelo en español que mantiene contexto.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Laptop className="mt-0.5 h-4 w-4 text-[#9AE6B4]" />
+                        <span>Deriva casos sensibles a tu equipo en el panel.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -379,63 +437,36 @@ export default function NexiProductPage() {
 
         <section
           id="como-funciona-nexi"
-          className="bg-neutral-50 py-16 md:py-20"
+          className="relative overflow-hidden bg-gradient-to-br from-[#0A0A0B] via-[#120C12] to-[#1A1015] py-16 md:py-20"
           aria-labelledby="h2-como-funciona"
         >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <h2
-              id="h2-como-funciona"
-              className="text-3xl font-semibold sm:text-4xl text-[#0F0F10]"
-            >
-              ¿Cómo funciona el asistente virtual Nexi?
-            </h2>
-            <div className="mt-6">
-              <Image
-                src="/nexi-agente/como-funciona-diagrama.png"
-                alt="Diagrama del flujo del asistente virtual Nexi desde el mensaje del cliente hasta el equipo humano"
-                width={1600}
-                height={900}
-                className="mx-auto mb-8 w-full max-w-3xl rounded-3xl object-cover"
-              />
-            </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              {steps.map((step, idx) => (
-                <div
-                  key={step.title}
-                  className="rounded-2xl border border-neutral-200 bg-white/95 p-6 shadow-[0_18px_35px_rgba(0,0,0,0.06)]"
-                >
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-semibold text-[#111111]">
-                      {step.title}
-                    </h3>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#8B1E2D] text-white">
-                      {idx + 1}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-neutral-700">{step.copy}</p>
-                </div>
-              ))}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.08),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.06),transparent_30%)]" />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="text-center">
+              <h2
+                id="h2-como-funciona"
+                className="text-3xl font-semibold sm:text-4xl text-white"
+              >
+                ¿Cómo funciona el asistente virtual Nexi?
+              </h2>
+              <p className="mt-3 text-base text-white/75">
+                Un recorrido claro de cómo Nexi entiende, responde y escala tus
+                conversaciones en segundos.
+              </p>
             </div>
 
-            <div className="mt-12 space-y-3">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm text-[#8B1E2D] shadow-sm">
-                <Workflow className="h-4 w-4" />
+            <NexiStepsCarousel steps={stepsWithMedia} />
+
+            <div className="mt-12 space-y-4 text-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white shadow-sm">
+                <Workflow className="h-4 w-4 text-[#FFD3DC]" />
                 Nexi en el centro, con humanos cuando toca
               </div>
-              <p className="text-neutral-700">
+              <p className="text-white/80">
                 Así se ve el ruteo típico: Nexi recibe mensajes de tus canales,
                 responde lo repetitivo y entrega a tu equipo los casos
                 sensibles.
               </p>
-              <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-[0_16px_40px_rgba(0,0,0,0.1)]">
-                <Image
-                  src="/nexi-agente/ruteo-inteligente.png"
-                  alt="Nexi entregando una conversación a un agente humano cuando detecta un tema sensible"
-                  width={1600}
-                  height={900}
-                  className="h-auto w-full object-cover"
-                />
-              </div>
             </div>
           </div>
         </section>
@@ -454,7 +485,7 @@ export default function NexiProductPage() {
                 ¿Qué tareas puede automatizar Nexi?
               </h2>
               <Image
-                src="/nexi-agente/nexi-icon.png"
+                src="/Nexi.png"
                 alt="Mascota Nexi representando las tareas de automatización"
                 width={64}
                 height={64}
@@ -595,14 +626,20 @@ export default function NexiProductPage() {
                 </div>
               </div>
             </div>
-            <div className="mt-10 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-              <Image
-                src="/nexi-agente/integraciones-sistemas.jpeg"
-                alt="Nexi conectado a diferentes sistemas como CRM, ERP, calendarios y APIs"
-                width={1800}
-                height={1000}
-                className="h-auto w-full rounded-3xl object-cover"
-              />
+            <div className="mt-10 flex justify-center">
+              <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+                <video
+                  src="/nexi-agente/nexi-demo.mp4" // cambia esta ruta por la de tu video
+                  className="h-auto w-full rounded-3xl object-cover object-center"
+                  autoPlay
+                  muted
+                  loop
+                  controls
+                  playsInline
+                >
+                  Tu navegador no soporta video HTML5.
+                </video>
+              </div>
             </div>
           </div>
         </section>
@@ -660,50 +697,58 @@ export default function NexiProductPage() {
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
-            <div className="mt-6">
-              <Image
-                src="/nexi-agente/plan-starter-listo-agendar.png"
-                alt="Nexi representando la implementación del asistente virtual en diferentes planes de servicio"
-                width={1600}
-                height={900}
-                className="mx-auto mb-8 w-full max-w-3xl rounded-3xl object-cover"
-              />
-            </div>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
-              {plans.map((plan) => (
-                <div
-                  key={plan.name}
-                  className="flex h-full flex-col rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_18px_50px_rgba(0,0,0,0.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,0,0,0.12)]"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-semibold text-[#0F0F10]">
-                        {plan.name}
-                      </h3>
-                      <p className="text-sm text-neutral-600">
-                        {plan.audience}
-                      </p>
+            {/* Imagen izquierda + planes derecha */}
+            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
+              {/* Columna izquierda: imagen */}
+              <div className="flex justify-start">
+                <Image
+                  src="/nexi-agente/NexiTexto.png"
+                  alt="Nexi representando la implementación del asistente virtual en diferentes planes de servicio"
+                  width={1200}
+                  height={400}
+                  className="w-full max-w-xl rounded-3xl object-contain"
+                />
+              </div>
+
+              {/* Columna derecha: planes en una sola columna */}
+              <div className="flex flex-col gap-6">
+                {plans.map((plan) => (
+                  <div
+                    key={plan.name}
+                    className="flex h-full flex-col rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_18px_50px_rgba(0,0,0,0.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,0,0,0.12)]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold text-[#0F0F10]">
+                          {plan.name}
+                        </h3>
+                        <p className="text-sm text-neutral-600">
+                          {plan.audience}
+                        </p>
+                      </div>
+                      <span className="rounded-full bg-[#8B1E2D]/10 px-3 py-1 text-xs font-semibold text-[#8B1E2D]">
+                        Consulta el precio
+                      </span>
                     </div>
-                    <span className="rounded-full bg-[#8B1E2D]/10 px-3 py-1 text-xs font-semibold text-[#8B1E2D]">
-                      Consulta el precio
-                    </span>
+
+                    {plan.note && (
+                      <p className="mt-3 text-sm font-semibold text-neutral-700">
+                        {plan.note}
+                      </p>
+                    )}
+
+                    <ul className="mt-4 space-y-3 text-sm text-neutral-800">
+                      {plan.items.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#8B1E2D]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  {plan.note && (
-                    <p className="mt-3 text-sm font-semibold text-neutral-700">
-                      {plan.note}
-                    </p>
-                  )}
-                  <ul className="mt-4 space-y-3 text-sm text-neutral-800">
-                    {plan.items.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#8B1E2D]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -795,20 +840,9 @@ export default function NexiProductPage() {
                   </div>
                 </div>
               </div>
-              <div className="grid gap-4">
-                {faqs.map((item) => (
-                  <div
-                    key={item.q}
-                    className="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-4"
-                  >
-                    <h3 className="flex items-center gap-2 text-lg font-semibold text-[#0F0F10]">
-                      <ShieldCheck className="h-5 w-5 text-[#8B1E2D]" />
-                      {item.q}
-                    </h3>
-                    <p className="mt-2 text-neutral-700">{item.a}</p>
-                  </div>
-                ))}
-              </div>
+
+              {/* Acordeón de FAQs */}
+              <NexiFaqAccordion faqs={faqs} />
             </div>
           </div>
         </section>
