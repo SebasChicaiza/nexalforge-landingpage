@@ -18,7 +18,8 @@ const TOP_LINKS: NavLink[] = [
 
 const SOLUTIONS: NavLink[] = [
   { label: "Agente IA para Ventas", href: "/" },
-  { label: "Agente IA para Soporte", href: "/" },
+  { label: "Agente IA para Soporte", href: "/soluciones/agente-soporte-ia" },
+  { label: "Recepcionista IA para llamadas", href: "/" },
   { label: "Desarrollo Web Empresarial", href: "/" },
   { label: "Automatización Operativa", href: "/" },
   { label: "Predicción & Forecasting", href: "/" },
