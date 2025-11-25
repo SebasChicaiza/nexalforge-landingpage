@@ -91,31 +91,31 @@ const stepsWithMedia = [
 const tasks = [
   {
     title: "Atención al cliente y soporte",
-    bullets: [
-      "Responde preguntas frecuentes sobre horarios, precios y políticas.",
-      "Identifica problemas y genera tickets o casos en tus herramientas.",
-    ],
+    summary:
+      "Responde FAQs sobre horarios, precios y políticas; detecta problemas y abre tickets en tus herramientas para que el equipo actúe sin demoras.",
+    titleClass: "text-[#8B1E2D]",
+    image: "/conversaciones/conversacion1.png",
   },
   {
     title: "Ventas y pre-venta",
-    bullets: [
-      "Resuelve dudas sobre productos o servicios en tiempo real.",
-      "Califica interesados y envía la información a tu CRM.",
-    ],
+    summary:
+      "Resuelve dudas de productos en tiempo real, califica interesados, envía info a tu CRM y pasa a ventas solo a quienes están listos para comprar.",
+    titleClass: "text-[#8B1E2D]",
+    image: "/tareas/ventas-preventa.png",
   },
   {
     title: "Agendamiento de citas y reservas",
-    bullets: [
-      "Propone horarios disponibles si ya tienes calendarios conectados.",
-      "Envía recordatorios automáticos y reprogramaciones.",
-    ],
+    summary:
+      "Propone horarios según tu disponibilidad, confirma o reprograma citas y envía recordatorios automáticos para reducir ausencias.",
+    titleClass: "text-[#8B1E2D]",
+    image: "/tareas/agendamiento.png",
   },
   {
     title: "Notificaciones y seguimiento",
-    bullets: [
-      "Envía confirmaciones y actualizaciones de pedidos o citas.",
-      "Activa nudges si el cliente no responde o no completó el proceso.",
-    ],
+    summary:
+      "Envía confirmaciones y actualizaciones de pedidos o citas y activa recordatorios si el cliente no responde o dejó procesos a medias.",
+    titleClass: "text-[#8B1E2D]",
+    image: "/tareas/notificaciones.png",
   },
 ];
 
@@ -324,8 +324,7 @@ export default function NexiProductPage() {
             </div>
 
             <div className="relative">
-              <div className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4 shadow-[0_25px_60px_rgba(0,0,0,0.45)] backdrop-blur">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image
                     src="/nexi-agente/NexiChat.png"
                     alt="Nexi, asistente virtual de IA atendiendo conversaciones de WhatsApp, Instagram y Messenger"
@@ -335,7 +334,6 @@ export default function NexiProductPage() {
                     priority
                   />
                 </div>
-              </div>
             </div>
           </div>
         </section>
@@ -481,39 +479,55 @@ export default function NexiProductPage() {
           aria-labelledby="h2-tareas"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="flex items-center gap-3">
+            <div className="mx-auto max-w-3xl text-center">
               <h2
                 id="h2-tareas"
                 className="text-3xl font-semibold sm:text-4xl text-[#0F0F10]"
               >
                 ¿Qué tareas puede automatizar Nexi?
               </h2>
-              <Image
-                src="/Nexi.png"
-                alt="Mascota Nexi representando las tareas de automatización"
-                width={64}
-                height={64}
-                className="hidden h-16 w-16 rounded-full object-contain md:block"
-              />
+              <p className="mt-4 text-base text-neutral-600">
+                Nexi despliega agentes especializados que conversan como tu
+                equipo: reciben a tus clientes, venden con contexto y resuelven
+                soporte sin tiempos de espera. Esta sección resume cómo cada
+                agente trabaja en español para convertir, retener y dar una
+                experiencia impecable.
+              </p>
             </div>
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {tasks.map((task) => (
-                <div
+                <article
                   key={task.title}
-                  className="rounded-2xl border border-neutral-100 bg-white/90 p-5 shadow-[0_12px_30px_rgba(0,0,0,0.06)]"
+                  className="relative flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white p-6 shadow-[0_18px_60px_rgba(0,0,0,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
                 >
-                  <h3 className="text-xl font-semibold text-[#0F0F10]">
-                    {task.title}
-                  </h3>
-                  <ul className="mt-3 space-y-2 text-neutral-700">
-                    {task.bullets.map((b) => (
-                      <li key={b} className="flex gap-2">
-                        <CheckCircle2 className="mt-1 h-4 w-4 text-[#8B1E2D]" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div className="pointer-events-none absolute inset-x-6 bottom-0 h-20 rounded-[18px]" />
+                  <div className="relative space-y-3">
+                    <h3
+                      className={`text-xl font-semibold ${
+                        task.titleClass ?? "text-[#0F0F10]"
+                      }`}
+                    >
+                      {task.title}
+                    </h3>
+                    {task.summary ? (
+                      <p className="text-sm leading-relaxed text-neutral-700">
+                        {task.summary}
+                      </p>
+                    ) : null}
+                    {task.image && (
+                      <div className="mt-5 overflow-hidden rounded-2xl">
+                        <Image
+                          src={task.image}
+                          alt={`Ilustración de ${task.title}`}
+                          width={640}
+                          height={360}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </article>
               ))}
             </div>
           </div>
