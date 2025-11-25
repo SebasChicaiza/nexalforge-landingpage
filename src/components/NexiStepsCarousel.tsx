@@ -49,15 +49,15 @@ export default function NexiStepsCarousel({ steps }: Props) {
 
   return (
     <div className="relative mt-10">
-      <div className="absolute left-0 top-0 bottom-0 hidden w-12 bg-gradient-to-r from-[#0A0A0B] to-transparent sm:block pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 hidden w-12 bg-gradient-to-l from-[#0A0A0B] to-transparent sm:block pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 hidden w-12 bg-gradient-to-r from-[#0E0806] to-transparent sm:block pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 hidden w-12 bg-gradient-to-l from-[#0E0806] to-transparent sm:block pointer-events-none" />
 
       <div className="flex justify-end gap-3 pb-3 pr-1 sm:pr-2">
         <button
           type="button"
           onClick={() => handleScroll("prev")}
           aria-label="Ver pasos anteriores"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-[#B84550] hover:bg-[#B84550]/20"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-red-600/10 text-white transition hover:border-[#B84550] hover:bg-[#B84550]/20"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
@@ -78,7 +78,7 @@ export default function NexiStepsCarousel({ steps }: Props) {
         {steps.map((step, idx) => (
           <article
             key={step.title}
-            className="group relative min-w-[270px] max-w-[340px] snap-center overflow-hidden rounded-[22px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#B84550]/40"
+            className="group relative min-w-[270px] max-w-[340px] snap-center overflow-hidden rounded-[22px] border border-white/10 bg-[#0E0806] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#B84550]/40"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-[#8B1E2D]/10 opacity-0 transition duration-300 group-hover:opacity-100" />
 

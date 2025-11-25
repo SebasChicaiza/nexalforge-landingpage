@@ -70,8 +70,8 @@ const steps = [
     copy: "Genera respuestas claras y amigables, alineadas con el tono de tu marca y tu país.",
   },
   {
-    title: "5. Agenda o registra tickets cuando aplica",
-    copy: "Puede proponer horarios, registrar casos o enviar formularios según tu flujo.",
+    title: "5. Agenda o registra citas cuando aplica",
+    copy: "Puede proponer horarios, registrar citas y enviar formularios según tu flujo.",
   },
   {
     title: "6. Deriva a tu equipo cuando es sensible",
@@ -79,10 +79,14 @@ const steps = [
   },
 ];
 
-const stepsWithMedia = steps.map((step, idx) => ({
-  ...step,
-  image: `/nexi-agente/step-${idx + 1}.png`, // reemplaza con tus imágenes
-}));
+const stepsWithMedia = [
+  { ...steps[0], image: "/pasos-nexi/message.png" },
+  { ...steps[1], image: "/pasos-nexi/ia.png" },
+  { ...steps[2], image: "/pasos-nexi/cerebro.png" },
+  { ...steps[3], image: "/pasos-nexi/respuesta.png" },
+  { ...steps[4], image: "/pasos-nexi/calendar.png" },
+  { ...steps[5], image: "/pasos-nexi/user.png" },
+];
 
 const tasks = [
   {
@@ -252,7 +256,7 @@ export default function NexiProductPage() {
       <article className="isolate overflow-hidden">
         <section
           id="hero"
-          className="relative overflow-hidden bg-gradient-to-br from-[#0A0A0B] via-[#120A0D] to-[#1B0F13] text-white"
+          className="relative min-h-[calc(100vh-6rem)] sm:min-h-[calc(100vh-7rem)] overflow-hidden bg-gradient-to-br from-[#0A0A0B] via-[#120A0D] to-[#1B0F13] pt-24 sm:pt-28 text-white"
         >
           <div className="pointer-events-none absolute inset-0 opacity-60">
             <div className="absolute left-[-120px] top-[-80px] h-64 w-64 rounded-full bg-[#8B1E2D]/30 blur-3xl" />
@@ -353,15 +357,15 @@ export default function NexiProductPage() {
                     className="h-full w-full object-cover"
                     priority
                   />
-                  <div className="absolute bottom-6 left-6 right-6 sm:right-auto">
-                    <div className="w-full max-w-[360px] rounded-2xl bg-white/95 p-4 shadow-[0_20px_45px_rgba(0,0,0,0.25)] backdrop-blur">
-                      <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-neutral-600">
-                        <span className="rounded-full bg-neutral-100 px-2 py-1 text-neutral-700">
+                  <div className="absolute bottom-4 left-4 right-4 sm:right-auto">
+                    <div className="w-full max-w-[300px] rounded-2xl bg-white/95 p-3 shadow-[0_18px_40px_rgba(0,0,0,0.22)] backdrop-blur">
+                      <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-neutral-600">
+                        <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-neutral-700">
                           Nexi multicanal
                         </span>
                         <span className="text-neutral-500">En vivo</span>
                       </div>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1.5">
                         {contactOptions.map(({ label, value, icon: Icon }) => (
                           <li
                             key={label}
@@ -371,10 +375,10 @@ export default function NexiProductPage() {
                               <Icon className="h-4 w-4" />
                             </span>
                             <div className="leading-tight">
-                              <div className="text-sm font-semibold text-neutral-900">
+                              <div className="text-[13px] font-semibold text-neutral-900">
                                 {label}
                               </div>
-                              <div className="text-xs text-neutral-600">
+                              <div className="text-[11px] text-neutral-600">
                                 {value}
                               </div>
                             </div>
@@ -659,7 +663,7 @@ export default function NexiProductPage() {
               </div>
               <div className="overflow-hidden rounded-3xl">
                 <Image
-                  src="/nexi-agente/futuro-voz.jpeg"
+                  src="/Persona_Telefono.png"
                   alt="Versión futura de Nexi atendiendo llamadas de voz como asistente virtual"
                   width={900}
                   height={650}
