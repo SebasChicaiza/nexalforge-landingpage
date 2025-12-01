@@ -17,6 +17,10 @@ import NexiHeroCtas from "@/components/NexiHeroCtas";
 import NexiDemoForm from "@/components/NexiDemoForm";
 import NexiFaqAccordion from "@/components/NexiFaqAccordion";
 import NexiStepsCarousel from "@/components/NexiStepsCarousel";
+import NexiIndustriesGrid, {
+  type IndustryUseCase,
+} from "@/components/NexiIndustriesGrid";
+
 
 const WHATSAPP_LINK =
   "https://wa.me/593963305344?text=Hola%2C%20Nexi.%20Quiero%20informaci%C3%B3n...";
@@ -94,66 +98,135 @@ const tasks = [
     summary:
       "Responde FAQs sobre horarios, precios y políticas; detecta problemas y abre tickets en tus herramientas para que el equipo actúe sin demoras.",
     titleClass: "text-[#8B1E2D]",
-    image: "/conversaciones/conversacion1.png",
+    image: "/conversaciones/nexiAyuda.png",
   },
   {
-    title: "Ventas y pre-venta",
+    title: "Ventas y pre-venta en tiempo real",
     summary:
       "Resuelve dudas de productos en tiempo real, califica interesados, envía info a tu CRM y pasa a ventas solo a quienes están listos para comprar.",
     titleClass: "text-[#8B1E2D]",
-    image: "/tareas/ventas-preventa.png",
+    image: "/conversaciones/nexiVentas.png",
   },
   {
     title: "Agendamiento de citas y reservas",
     summary:
       "Propone horarios según tu disponibilidad, confirma o reprograma citas y envía recordatorios automáticos para reducir ausencias.",
     titleClass: "text-[#8B1E2D]",
-    image: "/tareas/agendamiento.png",
+    image: "/conversaciones/nexiCitas.png",
   },
   {
     title: "Notificaciones y seguimiento",
     summary:
       "Envía confirmaciones y actualizaciones de pedidos o citas y activa recordatorios si el cliente no responde o dejó procesos a medias.",
     titleClass: "text-[#8B1E2D]",
-    image: "/tareas/notificaciones.png",
+    image: "/conversaciones/nexiNotificaciones.png",
   },
 ];
 
-const industries = [
+const industries: IndustryUseCase[] = [
   {
     name: "Agencias de viajes y turismo",
+    headline: "Cotiza itinerarios mientras capturas datos del viajero",
+    description:
+      "Responde en segundos sobre rutas, visados y formas de pago mientras guardas leads listos para ventas.",
     bullets: [
       "Responde sobre paquetes, visas, requisitos y formas de pago.",
       "Gestiona consultas de disponibilidad y datos de contacto.",
     ],
+    image: "/casos-de-uso/viajes.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Turismo",
   },
   {
     name: "Spas, centros de estética y bienestar",
+    headline: "Agenda citas sin llamadas perdidas",
+    description:
+      "Muestra servicios, confirma horarios y envía recordatorios en WhatsApp e Instagram de forma automática.",
     bullets: [
       "Muestra servicios, precios y promociones.",
       "Agenda citas y envía recordatorios o reprogramaciones.",
     ],
+    image: "/casos-de-uso/spa.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Reservas",
   },
   {
     name: "Pastelerías y negocios de comida",
+    headline: "Toma pedidos y coordina entregas desde el chat",
+    description:
+      "Centraliza sabores, pagos y tiempos de entrega para responder sin esperar a un humano.",
     bullets: [
       "Informa sabores, tamaños, precios y tiempos de entrega.",
       "Toma pedidos simples y los envía a tu sistema para confirmación.",
     ],
+    image: "/casos-de-uso/pasteleria.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Pedidos",
   },
   {
     name: "Clínicas, consultorios y salud",
+    headline: "Clasifica consultas y agenda sin congestionar la línea",
+    description:
+      "Entrega info básica y recolecta los datos del paciente para tu sistema.",
     bullets: [
-      "Responde preguntas básicas de servicios y especialidades.",
+      "Responde preguntas de servicios y especialidades.",
       "Gestiona agendamientos y recordatorios (sin tocar temas sensibles).",
     ],
+    image: "/casos-de-uso/salud.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Salud",
   },
   {
     name: "E-commerce y retail",
+    headline: "Automatiza status de pedidos y consultas de stock",
+    description:
+      "Nexi responde en segundos y actualiza tus sistemas para que el equipo intervenga solo en casos críticos.",
     bullets: [
       "Ayuda a seguir pedidos y políticas de devolución.",
       "Entrega info de stock o variantes conectada a tus sistemas.",
     ],
+    image: "/casos-de-uso/ecommerce.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Retail",
+  },
+  {
+    name: "Educación y cursos online",
+    headline: "Inscripciones, soporte académico al instante",
+    description:
+      "Responde sobre mallas, precios y financiamiento mientras capturas leads listos para admisiones en tu CRM.",
+    bullets: [
+      "Aclara horarios, requisitos y modalidades",
+      "Califica interesados y agenda llamadas con admisiones o asesores.",
+    ],
+    image: "/casos-de-uso/educacion.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Educación",
+  },
+  {
+    name: "Servicios financieros y seguros",
+    headline: "Cotiza productos y verifica datos con trazabilidad",
+    description:
+      "Entrega coberturas, tasas y requisitos en segundos y deriva a un ejecutivo para contratar.",
+    bullets: [
+      "Cotiza pólizas o créditos con preguntas guiadas.",
+      "Valida datos básicos y agenda con un asesor según perfil de riesgo.",
+    ],
+    image: "/casos-de-uso/seguros.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Finanzas",
+  },
+  {
+    name: "Bienes raíces y proyectos inmobiliarios",
+    headline: "Califica leads y agenda visitas",
+    description:
+      "Nexi responde disponibilidad, precios y amenidades y programa recorridos con datos completos del cliente.",
+    bullets: [
+      "Envía fichas, planos y modelos de pago por torre o etapa.",
+      "Confirma presupuesto y agenda citas en agenda compartida.",
+    ],
+    image: "/casos-de-uso/inmobiliaria.png",
+    gradient: "from-[#031a30]/10 via-[#04152a]/55 to-[#050b18]/95",
+    badge: "Real Estate",
   },
 ];
 
@@ -256,7 +329,7 @@ export default function NexiProductPage() {
       <article className="isolate overflow-hidden">
         <section
           id="hero"
-          className="relative min-h-[calc(100vh-6rem)] sm:min-h-[calc(100vh-7rem)] overflow-hidden bg-gradient-to-br from-[#0A0A0B] via-[#120A0D] to-[#1B0F13] pt-24 sm:pt-28 text-white"
+          className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#0A0A0B] via-[#120A0D] to-[#1B0F13] pt-24 sm:pt-28 text-white"
         >
           <div className="pointer-events-none absolute inset-0 opacity-60">
             <div className="absolute left-[-120px] top-[-80px] h-64 w-64 rounded-full bg-[#8B1E2D]/30 blur-3xl" />
@@ -265,24 +338,7 @@ export default function NexiProductPage() {
 
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-20 lg:py-24">
             <div className="space-y-6">
-              <nav aria-label="Breadcrumb" className="text-sm text-white/70">
-                <ol className="flex items-center gap-2">
-                  <li>
-                    <Link href="/" className="hover:underline">
-                      Inicio
-                    </Link>
-                  </li>
-                  <li className="opacity-60">/</li>
-                  <li>
-                    <Link href="/#servicios" className="hover:underline">
-                      Productos
-                    </Link>
-                  </li>
-                  <li className="opacity-60">/</li>
-                  <li className="font-semibold">Nexi – Asistente virtual IA</li>
-                </ol>
-              </nav>
-
+              
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs uppercase tracking-wide text-white/80">
                 <Sparkles className="h-3.5 w-3.5 text-[#FFD3DC]" />
                 Asistente virtual con IA para empresas
@@ -292,14 +348,7 @@ export default function NexiProductPage() {
                 <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
                   Asistente virtual de IA para WhatsApp, Instagram y Messenger
                 </h1>
-                <p className="max-w-2xl text-lg text-white/80">
-                  Nexi automatiza la atención al cliente en los canales donde
-                  tus clientes ya te escriben. Responde en segundos con base en
-                  el conocimiento de tu empresa, agenda citas y transfiere la
-                  conversación a tu equipo cuando el caso lo requiere. Servicio
-                  con foco en español para Latam y opción multilenguaje; somos
-                  una empresa ecuatoriana que atiende a toda la región.
-                </p>
+                
               </div>
 
               <div className="grid gap-2 text-sm text-white/80">
@@ -545,35 +594,7 @@ export default function NexiProductPage() {
             >
               Casos de uso de Nexi por tipo de negocio
             </h2>
-            <div className="mt-6">
-              <Image
-                src="/nexi-agente/casos-uso-sectores.png"
-                alt="Nexi asistiendo a distintos tipos de negocio como agencias de viajes, spas, pastelerías y comercios"
-                width={1800}
-                height={1000}
-                className="mx-auto mb-8 w-full max-w-4xl rounded-3xl object-cover"
-              />
-            </div>
-            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {industries.map((ind) => (
-                <div
-                  key={ind.name}
-                  className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-[0_16px_35px_rgba(0,0,0,0.07)]"
-                >
-                  <h3 className="text-lg font-semibold text-[#0F0F10]">
-                    {ind.name}
-                  </h3>
-                  <ul className="mt-3 space-y-2 text-neutral-700">
-                    {ind.bullets.map((b) => (
-                      <li key={b} className="flex gap-2">
-                        <CheckCircle2 className="mt-1 h-4 w-4 text-[#8B1E2D]" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <NexiIndustriesGrid items={industries} />
           </div>
         </section>
 
@@ -644,27 +665,22 @@ export default function NexiProductPage() {
                 </div>
               </div>
             </div>
-            <div className="mt-10 flex justify-center">
-              <div className="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-                <video
-                  src="/nexi-agente/nexi-demo.mp4" // cambia esta ruta por la de tu video
-                  className="h-auto w-full rounded-3xl object-cover object-center"
-                  autoPlay
-                  muted
-                  loop
-                  controls
-                  playsInline
-                >
-                  Tu navegador no soporta video HTML5.
-                </video>
-              </div>
-            </div>
+            
           </div>
         </section>
 
         <section className="bg-neutral-50 py-12" aria-label="Nexi voz">
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
             <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+              <div className="overflow-hidden rounded-3xl">
+                <Image
+                  src="/Persona_Telefono.png"
+                  alt="Versión futura de Nexi atendiendo llamadas de voz como asistente virtual"
+                  width={800}
+                  height={550}
+                  className="h-auto w-150 rounded-3xl object-cover"
+                />
+              </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold text-[#0F0F10]">
                   Próximamente: Nexi también atenderá llamadas de voz
@@ -674,15 +690,6 @@ export default function NexiProductPage() {
                   para que Nexi pueda contestar, derivar y registrar llamadas
                   como un asistente virtual completo.
                 </p>
-              </div>
-              <div className="overflow-hidden rounded-3xl">
-                <Image
-                  src="/Persona_Telefono.png"
-                  alt="Versión futura de Nexi atendiendo llamadas de voz como asistente virtual"
-                  width={900}
-                  height={650}
-                  className="h-auto w-full rounded-3xl object-cover"
-                />
               </div>
             </div>
           </div>
@@ -841,6 +848,13 @@ export default function NexiProductPage() {
                 >
                   Preguntas frecuentes sobre el asistente virtual Nexi
                 </h2>
+                <p className="text-neutral-700">
+                  Nexi automatiza la atención al cliente en los canales donde
+                  tus clientes ya te escriben. Responde en segundos con base en
+                  el conocimiento de tu empresa, agenda citas y transfiere la
+                  conversación a tu equipo cuando el caso lo requiere. Servicio
+                  con foco en español para Latam y opción multilenguaje.
+                </p>
                 <p className="text-neutral-700">
                   Resolvemos dudas típicas para que tu equipo sepa cómo operará
                   Nexi desde el día uno, con foco en empresas de Latinoamérica

@@ -42,7 +42,7 @@ export default function NexiStepsCarousel({ steps }: Props) {
       } else {
         container.scrollBy({ left: delta, behavior: "smooth" });
       }
-    }, 4200);
+    }, 10200);
 
     return () => clearInterval(interval);
   }, []);
