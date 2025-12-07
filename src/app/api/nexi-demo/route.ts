@@ -34,7 +34,12 @@ async function readBody(req: Request) {
     return await req.json().catch(() => ({}));
   }
 
-  const fd = await req.formData();
+  const fd = await req.formData().catch((err) => {
+    console.warn("[nexi-demo] form parse failed:", err);
+    return null;
+  });
+  if (!fd) return null;
+
   const data: Record<string, unknown> = {};
   for (const [key, value] of fd.entries()) {
     const val = typeof value === "string" ? value : value.toString();
@@ -66,6 +71,13 @@ export async function POST(req: Request) {
     else item.count += 1;
 
     const raw = await readBody(req);
+    if (!raw) {
+      return NextResponse.json(
+        { ok: false, error: "Datos inválidos" },
+        { status: 400 }
+      );
+    }
+
     const parsed = FormSchema.safeParse(raw);
     if (!parsed.success) {
       console.warn("[nexi-demo] invalid payload", parsed.error.flatten());

@@ -1,0 +1,15 @@
+# Build artifacts
+.next
+node_modules
+
+# Dependency and package manager metadata
+pnpm-lock.yaml
+yarn.lock
+npm-debug.log
+
+# Local env and secrets
+.env
+
+# VCS
+.git
+.gitignore

@@ -26,8 +26,13 @@ async function readBody(req: Request) {
     return await req.json().catch(() => ({}));
   }
   // FormData (lo que envías hoy desde el <form/>)
-  const fd = await req.formData();
-  return Object.fromEntries(fd.entries());
+  try {
+    const fd = await req.formData();
+    return Object.fromEntries(fd.entries());
+  } catch (err) {
+    console.warn("[contact] form parse failed:", err);
+    return null;
+  }
 }
 
 export async function POST(req: Request) {
@@ -48,6 +53,13 @@ export async function POST(req: Request) {
     else item.count += 1;
 
     const data = await readBody(req);
+    if (!data) {
+      return NextResponse.json(
+        { ok: false, error: "Datos inválidos" },
+        { status: 400 }
+      );
+    }
+
     const parsed = FormSchema.safeParse(data);
     if (!parsed.success) {
       console.warn("[contact] invalid payload", parsed.error.flatten());
