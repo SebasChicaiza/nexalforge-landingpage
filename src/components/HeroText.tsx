@@ -52,9 +52,10 @@ export function HeroText() {
         variants={itemRight}
         className="mb-8 text-base sm:text-lg text-white/90 max-w-[48ch]"
       >
-        Agentes de IA, automatización operativa y dashboards para mover tus KPIs
-        en semanas. Somos una empresa ecuatoriana que trabaja para toda Latam,
-        con foco en español y capacidad multilenguaje.
+        En Nexal Forge implementamos agentes de IA y automatización para
+        empresas en Latinoamérica: ventas, soporte y dashboards que mueven tus
+        KPIs en semanas. Somos una empresa ecuatoriana con foco en español y
+        capacidad multilenguaje.
       </motion.p>
     </motion.div>
   );

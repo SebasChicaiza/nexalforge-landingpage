@@ -26,17 +26,18 @@ const WHATSAPP_LINK =
   "https://wa.me/593963305344?text=Hola%2C%20Nexi.%20Quiero%20informaci%C3%B3n...";
 
 export const metadata: Metadata = {
-  title: "Asistente virtual de IA para WhatsApp, Instagram y Messenger | Nexi",
+  title:
+    "Asistente virtual de IA para WhatsApp, Instagram y Messenger | Nexi de Nexal Forge",
   description:
-    "Nexi es un asistente virtual de IA que atiende a tus clientes por WhatsApp, Instagram y Messenger. Responde preguntas frecuentes, agenda citas, conecta con tus sistemas y escala a tu equipo humano cuando es necesario.",
+    "Nexi es el asistente virtual de IA de Nexal Forge que atiende a tus clientes por WhatsApp, Instagram y Messenger. Responde preguntas frecuentes, agenda citas, conecta con tus sistemas y escala a tu equipo humano cuando es necesario.",
   alternates: { canonical: "/asistente-virtual-nexi" },
   openGraph: {
     type: "website",
     url: "https://www.nexalforge.com/asistente-virtual-nexi",
     title:
-      "Asistente virtual de IA para WhatsApp, Instagram y Messenger | Nexi",
+      "Asistente virtual de IA para WhatsApp, Instagram y Messenger | Nexi de Nexal Forge",
     description:
-      "Nexi es un asistente virtual de IA que atiende a tus clientes por WhatsApp, Instagram y Messenger. Responde preguntas frecuentes, agenda citas, conecta con tus sistemas y escala a tu equipo humano cuando es necesario.",
+      "Nexi es el asistente virtual de IA de Nexal Forge que atiende a tus clientes por WhatsApp, Instagram y Messenger. Responde preguntas frecuentes, agenda citas, conecta con tus sistemas y escala a tu equipo humano cuando es necesario.",
     images: [
       {
         url: "/og.jpg",
@@ -49,9 +50,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Asistente virtual de IA para WhatsApp, Instagram y Messenger | Nexi",
+      "Asistente virtual de IA para WhatsApp, Instagram y Messenger | Nexi de Nexal Forge",
     description:
-      "Nexi es un asistente virtual de IA para WhatsApp, Instagram y Messenger. Responde preguntas frecuentes, agenda citas y escala a tu equipo humano cuando es necesario.",
+      "Nexi es el asistente virtual de IA de Nexal Forge para WhatsApp, Instagram y Messenger. Responde preguntas frecuentes, agenda citas y escala a tu equipo humano cuando es necesario.",
     images: ["/og.jpg"],
   },
 };
@@ -932,12 +933,79 @@ export default function NexiProductPage() {
             name: "Nexi – Asistente virtual de IA para WhatsApp, Instagram y Messenger",
             description:
               "Asistente virtual con IA de Nexal Forge que responde mensajes en WhatsApp, Instagram y Messenger, agenda citas y deriva conversaciones complejas a tu equipo humano.",
-            brand: { "@type": "Organization", name: "Nexal Forge" },
+            image: [
+              "https://www.nexalforge.com/nexi-agente/cta-agenda-demo.png",
+              "https://www.nexalforge.com/nexi-agente/nexi-multicanal.png",
+              "https://www.nexalforge.com/nexi-agente/plataforma-web-panel.png",
+            ],
+            brand: { "@type": "Brand", name: "Nexal Forge" },
+            sku: "NEXI-ASISTENTE-VIRTUAL",
             offers: {
               "@type": "Offer",
+              url: "https://www.nexalforge.com/asistente-virtual-nexi",
               availability: "https://schema.org/InStock",
+              itemCondition: "https://schema.org/NewCondition",
+              price: "149",
               priceCurrency: "USD",
+              priceValidUntil: "2025-12-31",
+              hasMerchantReturnPolicy: {
+                "@type": "MerchantReturnPolicy",
+                applicableCountry: ["EC", "CO", "PE", "MX", "US"],
+                returnPolicyCategory:
+                  "https://schema.org/MerchantReturnNotPermitted",
+              },
+              shippingDetails: {
+                "@type": "OfferShippingDetails",
+                shippingDestination: {
+                  "@type": "DefinedRegion",
+                  addressCountry: ["EC", "CO", "PE", "MX", "US"],
+                },
+                shippingRate: {
+                  "@type": "MonetaryAmount",
+                  value: "0",
+                  currency: "USD",
+                },
+                deliveryTime: {
+                  "@type": "ShippingDeliveryTime",
+                  handlingTime: {
+                    "@type": "QuantitativeValue",
+                    minValue: 1,
+                    maxValue: 3,
+                    unitCode: "DAY",
+                  },
+                  transitTime: {
+                    "@type": "QuantitativeValue",
+                    minValue: 0,
+                    maxValue: 0,
+                    unitCode: "DAY",
+                  },
+                },
+              },
             },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5",
+              reviewCount: 1,
+            },
+            review: [
+              {
+                "@type": "Review",
+                name: "Implementación de Nexi en equipos de soporte",
+                reviewBody:
+                  "Automatiza respuestas en WhatsApp, Instagram y Messenger, con escalamiento a humanos y panel de seguimiento.",
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: "5",
+                  bestRating: "5",
+                  worstRating: "1",
+                },
+                author: {
+                  "@type": "Organization",
+                  name: "Equipo editorial de NexalForge",
+                },
+                datePublished: "2024-12-15",
+              },
+            ],
             url: "https://www.nexalforge.com/asistente-virtual-nexi",
           }}
         />

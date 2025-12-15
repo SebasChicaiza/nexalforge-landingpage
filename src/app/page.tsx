@@ -5,9 +5,9 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title:
-    "Soluciones de IA y automatización para empresas en Latinoamérica | Nexal Forge",
+    "Automatización y agentes de IA para ventas y soporte | Nexal Forge",
   description:
-    "Nexal Forge implementa agentes de IA para ventas y soporte, automatización operativa, predicción de demanda y dashboards ejecutivos. Soluciones de inteligencia artificial para empresas de Latinoamérica con equipo basado en Ecuador.",
+    "Implementamos agentes de IA, automatización y analítica para empresas en Latinoamérica. Reduce tiempos, mejora soporte y toma decisiones con dashboards ejecutivos.",
 };
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Agentes de IA y Automatización",
-          provider: { "@type": "Organization", name: "NexalForge" },
+          provider: { "@type": "Organization", name: "Nexal Forge" },
           areaServed: "Latin America",
           serviceType:
             "Implementación de agentes de IA para ventas/soporte y automatización operativa",

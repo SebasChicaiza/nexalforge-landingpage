@@ -27,25 +27,27 @@ const FB_PIXEL_ID = "1921792838718264";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.nexalforge.com"),
   title: {
-    default: "NexalForge — Potencia tus operaciones con IA",
-    template: "%s · NexalForge",
+    default: "Nexal Forge — Potencia tus operaciones con IA",
+    template: "%s · Nexal Forge",
   },
   description:
-    "Implementamos agentes y automatizaciones que mejoran ventas, reducen tiempos y recortan costos. KPI medible en 2–3 semanas.",
+    "Implementamos agentes de IA, automatización y analítica para empresas en Latinoamérica. Reduce tiempos, mejora soporte y toma decisiones con dashboards ejecutivos.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "https://www.nexalforge.com/",
-    title: "NexalForge — Potencia tus operaciones con IA",
+    title: "Nexal Forge — Potencia tus operaciones con IA",
     description:
-      "Agentes de IA y automatización para ventas y operaciones. KPI en 2–3 semanas.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "NexalForge" }],
+      "Agentes de IA, automatización y analítica para empresas en Latinoamérica. Reduce tiempos, mejora soporte y acelera decisiones con dashboards ejecutivos.",
+    images: [
+      { url: "/og.jpg", width: 1200, height: 630, alt: "Nexal Forge" },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexalForge — Potencia tus operaciones con IA",
+    title: "Nexal Forge — Potencia tus operaciones con IA",
     description:
-      "Agentes de IA y automatización para ventas y operaciones. KPI en 2–3 semanas.",
+      "Implementamos agentes de IA, automatización y analítica para empresas en Latinoamérica. Reduce tiempos, mejora soporte y toma decisiones con dashboards ejecutivos.",
     images: ["/og.jpg"],
   },
   icons: { icon: "/favicon.ico" },
@@ -87,16 +89,6 @@ export default function RootLayout({
       <Gtm />
 
       <body className={`${headingFont.variable}`}>
-        {/* Noscript de GTM — si tu <Gtm /> ya lo incluye, puedes quitar este bloque */}
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
         <StickyHeader />
         {children}
         <Footer />
@@ -121,10 +113,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "NexalForge",
+              name: "Nexal Forge",
+              alternateName: ["NexalForge", "Nexi"],
               url: "https://www.nexalforge.com",
               logo: "https://www.nexalforge.com/logo-nexal.png",
-              sameAs: [] as string[],
+              sameAs: ["https://www.nexalforge.com/asistente-virtual-nexi"],
             }),
           }}
         />
