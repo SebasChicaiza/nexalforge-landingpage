@@ -71,6 +71,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
     },
     {
+      url: `${BASE_URL}/soluciones`,
+      priority: 0.8,
+      changeFrequency: "monthly",
+      lastModified: now,
+    },
+    {
+      url: `${BASE_URL}/cookies`,
+      priority: 0.3,
+      changeFrequency: "yearly",
+      lastModified: now,
+    },
+    {
+      url: `${BASE_URL}/privacy`,
+      priority: 0.3,
+      changeFrequency: "yearly",
+      lastModified: now,
+    },
+    {
+      url: `${BASE_URL}/forgot-password`,
+      priority: 0.2,
+      changeFrequency: "yearly",
+      lastModified: now,
+    },
+    {
       url: `${BASE_URL}/politicas-privacidad`,
       priority: 0.3,
       changeFrequency: "yearly",

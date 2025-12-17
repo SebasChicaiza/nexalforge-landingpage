@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import NewsletterForm from "@/components/newsletter/NewsletterForm";
 import AdminBlogsButton from "@/components/blog/AdminBlogsButton";
@@ -86,6 +87,7 @@ type PostRow = {
   etiquetas: { id: string; nombre: string; slug: string }[];
 };
 type PostsResp = { rows: PostRow[]; total: number; page: number; take: number };
+type BlogPageProps = { initialTag?: string | null };
 
 /** ───────────────── Helpers ───────────────── */
 function formatDate(iso?: string | null) {
@@ -103,7 +105,8 @@ const EASE = [0.2, 0, 0, 1] as const;
 const DURATION = 0.22;
 
 /** ───────────────── Page ───────────────── */
-export default function BlogPage() {
+export default function BlogPage({ initialTag = null }: BlogPageProps = {}) {
+  const searchParams = useSearchParams();
   const [meta, setMeta] = useState<MetaResp | null>(null);
   const [items, setItems] = useState<PostRow[]>([]);
   const [page, setPage] = useState(1);
@@ -112,10 +115,20 @@ export default function BlogPage() {
 
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("All");
-  const [tagSlug, setTagSlug] = useState<string | null>(null);
+  const [tagSlug, setTagSlug] = useState<string | null>(() => {
+    const tagFromUrl = searchParams.get("tag");
+    return tagFromUrl ?? initialTag ?? null;
+  });
   const [sort, setSort] = useState<"new" | "old">("new");
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  useEffect(() => {
+    const tagFromUrl = searchParams.get("tag");
+    if (tagFromUrl && tagFromUrl !== tagSlug) {
+      setTagSlug(tagFromUrl);
+    }
+  }, [searchParams, tagSlug]);
 
   // control de expansión de categorías
   const [showAllCats, setShowAllCats] = useState(false);
