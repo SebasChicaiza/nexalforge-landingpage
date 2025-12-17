@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import NewsletterForm from "@/components/newsletter/NewsletterForm";
 import AdminBlogsButton from "@/components/blog/AdminBlogsButton";
 import { AnimatePresence, motion } from "framer-motion";
@@ -105,7 +105,7 @@ const EASE = [0.2, 0, 0, 1] as const;
 const DURATION = 0.22;
 
 /** ───────────────── Page ───────────────── */
-export default function BlogPage({ initialTag = null }: BlogPageProps = {}) {
+function BlogPageInner({ initialTag = null }: BlogPageProps = {}) {
   const searchParams = useSearchParams();
   const [meta, setMeta] = useState<MetaResp | null>(null);
   const [items, setItems] = useState<PostRow[]>([]);
@@ -555,6 +555,22 @@ export default function BlogPage({ initialTag = null }: BlogPageProps = {}) {
         </aside>
       </section>
     </main>
+  );
+}
+
+export default function BlogPage(props: BlogPageProps = {}) {
+  return (
+    <Suspense
+      fallback={
+        <main className="bg-white pt-12">
+          <div className="mx-auto max-w-7xl px-4 py-10 text-neutral-600">
+            Cargando blog…
+          </div>
+        </main>
+      }
+    >
+      <BlogPageInner {...props} />
+    </Suspense>
   );
 }
 
