@@ -77,6 +77,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
     },
     {
+      url: `${BASE_URL}/soluciones/clinicas-odontologicas`,
+      priority: 0.8,
+      changeFrequency: "monthly",
+      lastModified: now,
+    },
+    {
       url: `${BASE_URL}/cookies`,
       priority: 0.3,
       changeFrequency: "yearly",
