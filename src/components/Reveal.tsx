@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Props = {
   children: ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
   className?: string;
   delay?: number;
 };
