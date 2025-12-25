@@ -21,6 +21,7 @@ export default function Reveal({
 }: Props) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
+  const Element = as as keyof JSX.IntrinsicElements;
 
   useEffect(() => {
     const node = ref.current;
@@ -39,11 +40,11 @@ export default function Reveal({
     return () => observer.disconnect();
   }, []);
 
-  const Element = as as any;
-
   return (
     <Element
-      ref={ref as any}
+      ref={(node: HTMLElement | null) => {
+        ref.current = node;
+      }}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transform-gpu transition-all duration-700 ease-out ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
