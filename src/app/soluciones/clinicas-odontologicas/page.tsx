@@ -15,6 +15,7 @@ import {
   Workflow,
 } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
+import Reveal from "@/components/Reveal";
 
 const WHATSAPP_DEMO =
   "https://wa.me/593963305344?text=Hola%2C%20quiero%20ver%20la%20demo%20de%20Nexi%20para%20mi%20cl%C3%ADnica%20odontol%C3%B3gica";
@@ -184,8 +185,8 @@ export default function NexiDentalLanding() {
         <div className="absolute -left-10 -top-24 h-64 w-64 rounded-full bg-[#B84550]/20 blur-3xl" />
         <div className="absolute bottom-10 right-0 h-72 w-72 rounded-full bg-[#7A1A28]/25 blur-3xl" />
 
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 sm:px-6">
-            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-2xl md:h-[520px] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(0,0,0,0.45)]">
+        <div className="mx-auto flex max-w-[90dvw] flex-col gap-10 px-4 sm:px-6 h-[75dvh]">
+          <Reveal className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-2xl min-h-[640px] sm:min-h-[620px] md:min-h-[720px] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(0,0,0,0.45)]">
             <Image
               src="/clinicas-odonto/clinica-atencion-pacientes.webp"
               alt="Atención real en clínica dental moderna"
@@ -194,11 +195,11 @@ export default function NexiDentalLanding() {
               className="h-full w-full object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0C0B0D]/85 via-[#0C0B0D]/55 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0C0B0D]/75 via-[#0C0B0D]/25 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0C0B0D]/70 via-transparent to-transparent" />
 
-            <div className="absolute left-0 top-0 flex h-full items-end">
-              <div className="max-w-xl space-y-4 p-6 sm:p-10">
+            <div className="absolute left-0 top-20 flex h-full items-end">
+              <div className="max-w-xl space-y-4 p-6 pb-6 sm:p-10 sm:pb-14">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-sm text-white/85">
                   <Sparkles className="h-4 w-4 text-[#B84550]" />
                   Nexi para clínicas odontológicas
@@ -206,11 +207,15 @@ export default function NexiDentalLanding() {
                 <h1 className="text-3xl font-semibold leading-tight text-white md:text-5xl">
                   Más citas. Menos recepción saturada.
                 </h1>
+                <h2 className="text-lg font-semibold text-white md:text-xl">
+                  Atención ininterrumpida: responde a tus pacientes en WhatsApp
+                  e Instagram las 24/7 sin perder consultas.
+                </h2>
                 <p className="text-base text-white/80 md:text-lg">
                   Nexi atiende tu WhatsApp 24/7, responde precios y horarios,
                   filtra y agenda. Cuando hace falta, transfiere a tu equipo.
                 </p>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3 pb-1">
                   <PrimaryCta href={WHATSAPP_DEMO}>
                     Quiero ver una demo en WhatsApp
                   </PrimaryCta>
@@ -219,36 +224,40 @@ export default function NexiDentalLanding() {
                   </SecondaryCta>
                 </div>
                 <div className="flex flex-wrap gap-3 text-xs text-white/75">
-                  <LabelPill icon={<Clock3 className="h-4 w-4" />}>24/7</LabelPill>
+                  <LabelPill icon={<Clock3 className="h-4 w-4" />}>
+                    24/7
+                  </LabelPill>
                   <LabelPill icon={<ShieldCheck className="h-4 w-4" />}>
                     Transferencia a humano
                   </LabelPill>
                   <LabelPill>Agenda llena · menos horas muertas</LabelPill>
                 </div>
                 <p className="text-sm text-white/70">
-                  Sin cambiar tu forma de trabajar. Se adapta a tu clínica y a tus
-                  protocolos.
+                  Sin cambiar tu forma de trabajar. Se adapta a tu clínica y a
+                  tus protocolos.
                 </p>
               </div>
             </div>
 
-            <div className="absolute right-4 top-4 h-16 w-16 overflow-hidden rounded-full bg-white/90 p-2 shadow-lg">
+            <div className="absolute bottom-6 right-6 hidden h-40 w-40 sm:block overflow-hidden rounded-full bg-white p-2 shadow-lg">
               <Image
                 src="/clinicas-odonto/logo-atencion247.webp"
                 alt="Sello atención 24/7"
-                width={128}
-                height={128}
+                width={360}
+                height={360}
                 className="h-full w-full object-contain"
               />
             </div>
+          </Reveal>
 
-            <div className="absolute right-4 bottom-4 w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-white/8 shadow-xl backdrop-blur">
+          <div className="sm:hidden flex justify-center">
+            <div className="mt-4 h-32 w-32 overflow-hidden rounded-full bg-white p-2 shadow-lg">
               <Image
-                src="/clinicas-odonto/chat-consultanexi.webp"
-                alt="Conversación tipo WhatsApp agendando una cita con Nexi"
-                width={1200}
-                height={900}
-                className="h-full w-full object-cover"
+                src="/clinicas-odonto/logo-atencion247.webp"
+                alt="Sello atención 24/7"
+                width={360}
+                height={360}
+                className="h-full w-full object-contain"
               />
             </div>
           </div>
@@ -258,58 +267,59 @@ export default function NexiDentalLanding() {
       <section className="bg-white text-[#0B0B0B]">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-14 sm:px-6 md:py-16">
           <div className="space-y-6">
-            <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-black/5 shadow-lg transition duration-500 hover:-translate-y-1 hover:shadow-xl">
-              <Image
-                src="/clinicas-odonto/recepcion-clinica.webp"
-                alt="Recepción odontológica con agenda digital visible"
-                width={1600}
-                height={900}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/88 via-white/65 to-transparent" />
-              <div className="absolute left-0 top-0 h-full max-w-xl space-y-3 p-6 sm:p-10">
-                <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#8B1E2D]">
-                  Dolor
-                </p>
-                <h2 className="text-3xl font-semibold leading-tight text-[#0B0B0B] md:text-4xl">
-                  Si tu clínica crece, tu WhatsApp se vuelve un cuello de botella.
-                </h2>
-                <p className="text-lg text-black/70">
-                  Nexi se encarga del primer contacto y del seguimiento para que
-                  la silla no se quede vacía.
-                </p>
-                <div className="rounded-2xl border border-black/10 bg-white/80 p-4 backdrop-blur">
-                  <ul className="grid gap-2 text-base text-black/80 md:text-lg">
-                    {painPoints.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#8B1E2D]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+            <Reveal className="overflow-hidden rounded-[28px] border border-black/10 bg-black/5 shadow-lg transition duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+                <div className="space-y-3 p-6 sm:p-8 lg:p-10">
+                  <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#8B1E2D]">
+                    Dolor
+                  </p>
+                  <h2 className="text-3xl font-semibold leading-tight text-[#0B0B0B] md:text-4xl">
+                    Si tu clínica crece, tu WhatsApp se vuelve un cuello de
+                    botella.
+                  </h2>
+                  <p className="text-lg text-black/70">
+                    Nexi se encarga del primer contacto y del seguimiento para
+                    que la silla no se quede vacía.
+                  </p>
+                  <div className="rounded-2xl border border-black/10 bg-white/85 p-4 backdrop-blur">
+                    <ul className="grid gap-2 text-base text-black/80 md:text-lg">
+                      {painPoints.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#8B1E2D]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className="relative h-full">
+                  <Image
+                    src="/clinicas-odonto/recepcion-clinica.webp"
+                    alt="Recepción odontológica con agenda digital visible"
+                    width={1600}
+                    height={900}
+                    className="h-full w-full rounded-[24px] object-cover object-[82%_center]"
+                  />
+                  <div className="absolute right-3 bottom-3 hidden w-40 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md sm:block">
+                    <Image
+                      src="/clinicas-odonto/recepcion-clinica-alternativo.webp"
+                      alt="Recepción dental organizada atendiendo pacientes"
+                      width={560}
+                      height={380}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="absolute right-4 bottom-4 hidden w-56 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-md md:block">
-                <Image
-                  src="/clinicas-odonto/recepcion-clinica-alternativo.webp"
-                  alt="Recepción dental organizada atendiendo pacientes"
-                  width={560}
-                  height={380}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      <section
-        id="valor"
-        className="bg-[#0B0B0B] px-4 py-16 sm:px-6 md:py-20"
-      >
+      <section id="valor" className="bg-[#0B0B0B] px-4 py-16 sm:px-6 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-2xl">
+            <Reveal className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-2xl">
               <Image
                 src="/clinicas-odonto/calendario-lleno.webp"
                 alt="Agenda digital semanal con múltiples citas odontológicas"
@@ -328,13 +338,17 @@ export default function NexiDentalLanding() {
                 </h2>
                 <p className="max-w-2xl text-white/80">
                   Responde, filtra, agenda, confirma y transfiere cuando es
-                  necesario. Pensado para clínicas odontológicas que ya invierten en
-                  ads y no quieren perder pacientes por demora en WhatsApp.
+                  necesario. Pensado para clínicas odontológicas que ya
+                  invierten en ads y no quieren perder pacientes por demora en
+                  WhatsApp.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="space-y-4 rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-xl">
+            <Reveal
+              delay={120}
+              className="space-y-4 rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-xl"
+            >
               <div className="relative h-60 overflow-hidden rounded-2xl border border-white/10 bg-white/10">
                 <Image
                   src="/clinicas-odonto/confirmacion-reprogramacion.webp"
@@ -352,13 +366,14 @@ export default function NexiDentalLanding() {
                 Refuerza el claim de reducción de no-shows con recordatorios y
                 reprogramaciones sin fricción.
               </p>
-            </div>
+            </Reveal>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {valueProps.map((item) => (
-              <div
+              <Reveal
                 key={item.title}
+                delay={80}
                 className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
               >
                 <div className="flex items-center gap-3 text-[#B84550]">
@@ -373,11 +388,11 @@ export default function NexiDentalLanding() {
                     {item.badge}
                   </span>
                 ) : null}
-              </div>
+              </Reveal>
             ))}
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-xl">
+            <Reveal className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-xl">
               <Image
                 src="/clinicas-odonto/calendario-lleno.webp"
                 alt="Agenda digital semanal con múltiples citas odontológicas"
@@ -388,8 +403,11 @@ export default function NexiDentalLanding() {
               <div className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-xs text-white">
                 Agenda llena / menos horas muertas
               </div>
-            </div>
-            <div className="space-y-3 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl">
+            </Reveal>
+            <Reveal
+              delay={120}
+              className="space-y-3 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl"
+            >
               <div className="relative h-56 overflow-hidden rounded-2xl border border-white/10 bg-white/10">
                 <Image
                   src="/clinicas-odonto/confirmacion-reprogramacion.webp"
@@ -407,7 +425,7 @@ export default function NexiDentalLanding() {
                 Refuerza el claim de reducción de no-shows con recordatorios y
                 reprogramaciones sin fricción.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -417,7 +435,7 @@ export default function NexiDentalLanding() {
         className="bg-gradient-to-b from-white via-white to-[#F6F7FB] text-[#0B0B0B]"
       >
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 space-y-8">
-          <div className="flex flex-col gap-3">
+          <Reveal className="flex flex-col gap-3">
             <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#8B1E2D]">
               Cómo funciona
             </p>
@@ -425,15 +443,17 @@ export default function NexiDentalLanding() {
               Así se ve en la práctica
             </h2>
             <p className="max-w-3xl text-black/70">
-              Timeline vertical: cada paso ocupa el viewport para que el flujo quede clarísimo.
+              Timeline vertical: cada paso ocupa el viewport para que el flujo
+              quede clarísimo.
             </p>
-          </div>
+          </Reveal>
 
           <div className="space-y-8">
             {steps.map((step, index) => (
-              <div
+              <Reveal
                 key={step.title}
-                className="group relative grid min-h-[70vh] gap-6 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl md:grid-cols-[0.45fr_0.55fr]"
+                delay={index * 100}
+                className="group relative grid min-h-[85vh] gap-6 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl md:grid-cols-[0.45fr_0.55fr]"
               >
                 <div className="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-[#8B1E2D]/10 px-3 py-1 text-xs font-semibold text-[#8B1E2D]">
                   Paso {index + 1} · {step.title.replace("Paso ", "")}
@@ -453,33 +473,29 @@ export default function NexiDentalLanding() {
                     alt={step.title}
                     width={1400}
                     height={900}
-                    className="h-full w-full max-h-[70vh] object-cover transition duration-500 group-hover:scale-[1.03]"
+                    className="h-full w-full max-h-[85vh] object-cover transition duration-500 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
-          <p className="text-sm text-black/60">
-            Visual recomendado: timeline con íconos + mini capturas de chat
-            estilo mensajería.
-          </p>
         </div>
       </section>
 
       <section className="bg-white px-4 py-16 sm:px-6 md:py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-2">
+          <Reveal className="flex flex-col gap-2">
             <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#8B1E2D]">
               Casos de uso odontológicos
             </p>
             <h2 className="text-3xl font-semibold md:text-4xl">
               Hecho para lo que más se repite en una clínica dental
             </h2>
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {dentalUseCases.map((item) => (
-              <div
+              <Reveal
                 key={item.text}
                 className="flex items-start gap-5 rounded-3xl border border-black/10 bg-white p-6 text-black/85 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
@@ -493,7 +509,7 @@ export default function NexiDentalLanding() {
                   />
                 </div>
                 <span className="text-lg">{item.text}</span>
-              </div>
+              </Reveal>
             ))}
           </div>
           <p className="mt-5 text-sm text-black/60">
@@ -525,8 +541,8 @@ export default function NexiDentalLanding() {
             ))}
           </div>
           <p className="mt-5 text-sm text-black/60">
-            Evita prometer integraciones no productizadas. Habla de “se alinea /
-            se puede conectar” solo si es real en Nexi.
+            Nos alineamos a tu agenda y sistemas actuales; validamos cada
+            integración antes de implementarla.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-[1.05fr_0.95fr] md:items-center">
             <div className="rounded-3xl border border-black/10 bg-white shadow-md">
@@ -551,17 +567,14 @@ export default function NexiDentalLanding() {
         </div>
       </section>
 
-      <section
-        id="faq"
-        className="bg-[#0B0B0B] px-4 py-16 sm:px-6 md:py-20"
-      >
+      <section id="faq" className="bg-[#0B0B0B] px-4 py-16 sm:px-6 md:py-20">
         <div className="mx-auto max-w-5xl">
           <div className="flex flex-col gap-2">
             <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#B84550]">
               Objeciones típicas
             </p>
             <h2 className="text-3xl font-semibold md:text-4xl">
-              FAQ que convierte
+              Preguntas frecuentes
             </h2>
           </div>
           <div className="mt-8 space-y-4">
@@ -585,7 +598,7 @@ export default function NexiDentalLanding() {
         <div className="mx-auto flex max-w-5xl flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#B84550]">
-              CTA final
+              Agenda tu demo
             </p>
             <h2 className="mt-2 text-3xl font-semibold leading-tight text-white md:text-4xl">
               Si hoy pierdes pacientes por demora en WhatsApp, esto te interesa.
@@ -600,41 +613,10 @@ export default function NexiDentalLanding() {
             </p>
           </div>
           <div className="flex flex-col items-start gap-3">
-            <PrimaryCta href={WHATSAPP_DEMO}>Agenda una demo (15 min)</PrimaryCta>
+            <PrimaryCta href={WHATSAPP_DEMO}>
+              Agenda una demo (15 min)
+            </PrimaryCta>
             <SecondaryCta href="#hero">Volver arriba</SecondaryCta>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white text-[#0B0B0B]">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-14">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-black/10 bg-black/5 p-5">
-              <h3 className="text-lg font-semibold text-[#8B1E2D]">
-                Guía visual
-              </h3>
-              <p className="mt-2 text-black/70">
-                Estética blanca/limpia, tipografía seria, fotos reales (no IA),
-                íconos simples.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-black/10 bg-black/5 p-5">
-              <h3 className="text-lg font-semibold text-[#8B1E2D]">
-                Pruebas visuales
-              </h3>
-              <p className="mt-2 text-black/70">
-                1 mock de chat + 1 “agenda llena” + 1 “recepción” (evitar stock
-                genérico cliché). Incluye transferencia a humano, confirmaciones
-                y reprogramación.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-black/10 bg-black/5 p-5">
-              <h3 className="text-lg font-semibold text-[#8B1E2D]">Evita</h3>
-              <p className="mt-2 text-black/70">
-                Robots, futurista o términos tipo “LLM / NLP / AI revolucionaria”.
-                Habla de horarios, ubicación y protocolos.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -655,13 +637,7 @@ export default function NexiDentalLanding() {
   );
 }
 
-function PrimaryCta({
-  href,
-  children,
-}: {
-  href: string;
-  children: ReactNode;
-}) {
+function PrimaryCta({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a
       href={href}
