@@ -1,6 +1,6 @@
 "use client";
 
-import type { JSX, ReactNode, RefCallback } from "react";
+import type { ElementType, ReactNode, RefCallback } from "react";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -22,7 +22,7 @@ export default function Reveal({
   const [visible, setVisible] = useState(false);
   type IntrinsicElement = HTMLElement | SVGElement;
   const ref = useRef<IntrinsicElement | null>(null);
-  const Element = as as keyof JSX.IntrinsicElements;
+  const Element = as as ElementType;
   const setRef: RefCallback<IntrinsicElement> = (node) => {
     ref.current = node;
   };
@@ -46,7 +46,7 @@ export default function Reveal({
 
   return (
     <Element
-      ref={setRef}
+      ref={setRef as unknown as React.Ref<never>}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transform-gpu transition-all duration-700 ease-out ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
