@@ -18,10 +18,6 @@ const TOP_LINKS: NavLink[] = [
 
 const SOLUTIONS: NavLink[] = [
   { label: "Asistente virtual Nexi", href: "/asistente-virtual-nexi" },
-  {
-    label: "Nexi para Clínicas Odontológicas",
-    href: "/soluciones/clinicas-odontologicas",
-  },
   { label: "Agente IA para Ventas", href: "/" },
   { label: "Agente IA para Soporte", href: "/soluciones/agente-soporte-ia" },
   { label: "Recepcionista IA para llamadas", href: "/" },
@@ -30,6 +26,14 @@ const SOLUTIONS: NavLink[] = [
   { label: "Predicción & Forecasting", href: "/" },
   { label: "Capa de Datos & Dashboards", href: "/" },
   { label: "Sprint de Implementación", href: "/" },
+];
+
+const NEXI_LINKS: NavLink[] = [
+  { label: "Asistente virtual Nexi", href: "/asistente-virtual-nexi" },
+  {
+    label: "Nexi para Clínicas Odontológicas",
+    href: "/soluciones/clinicas-odontologicas",
+  },
 ];
 
 // --- realtime auth flag
@@ -116,6 +120,8 @@ export default function StickyHeader() {
   // Desktop: Soluciones (mega)
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const hoverCloseTimer = useRef<number | null>(null);
+  const [nexiOpen, setNexiOpen] = useState(false);
+  const nexiHoverCloseTimer = useRef<number | null>(null);
 
   const openDesktop = () => {
     if (hoverCloseTimer.current) {
@@ -123,6 +129,7 @@ export default function StickyHeader() {
       hoverCloseTimer.current = null;
     }
     setSolutionsOpen(true);
+    setNexiOpen(false);
   };
   const scheduleCloseIfOutside = (e: React.PointerEvent) => {
     const to = e.relatedTarget as Node | null;
@@ -137,6 +144,29 @@ export default function StickyHeader() {
     if (hoverCloseTimer.current) {
       clearTimeout(hoverCloseTimer.current);
       hoverCloseTimer.current = null;
+    }
+  };
+  const openNexiDesktop = () => {
+    if (nexiHoverCloseTimer.current) {
+      clearTimeout(nexiHoverCloseTimer.current);
+      nexiHoverCloseTimer.current = null;
+    }
+    setNexiOpen(true);
+    setSolutionsOpen(false);
+  };
+  const scheduleCloseNexiIfOutside = (e: React.PointerEvent) => {
+    const to = e.relatedTarget as Node | null;
+    const wrap = e.currentTarget as HTMLElement;
+    if (wrap && to && wrap.contains(to)) return;
+    nexiHoverCloseTimer.current = window.setTimeout(() => {
+      setNexiOpen(false);
+      nexiHoverCloseTimer.current = null;
+    }, 120);
+  };
+  const cancelScheduledNexiClose = () => {
+    if (nexiHoverCloseTimer.current) {
+      clearTimeout(nexiHoverCloseTimer.current);
+      nexiHoverCloseTimer.current = null;
     }
   };
 
@@ -224,7 +254,13 @@ export default function StickyHeader() {
                 className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
                 aria-haspopup="true"
                 aria-expanded={solutionsOpen}
-                onClick={() => setSolutionsOpen((v) => !v)}
+                onClick={() =>
+                  setSolutionsOpen((v) => {
+                    const next = !v;
+                    if (next) setNexiOpen(false);
+                    return next;
+                  })
+                }
               >
                 Soluciones
                 <svg
@@ -299,6 +335,86 @@ export default function StickyHeader() {
                     Agendar demo
                   </a>
                 </div>
+              </div>
+            </div>
+
+            {/* Nexi (dropdown) */}
+            <div
+              className="relative"
+              onPointerEnter={openNexiDesktop}
+              onPointerLeave={scheduleCloseNexiIfOutside}
+            >
+              <button
+                className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                aria-haspopup="true"
+                aria-expanded={nexiOpen}
+                onClick={() =>
+                  setNexiOpen((v) => {
+                    const next = !v;
+                    if (next) setSolutionsOpen(false);
+                    return next;
+                  })
+                }
+              >
+                Nexi
+                <svg
+                  className={`h-4 w-4 transition-transform ${
+                    nexiOpen ? "rotate-180" : ""
+                  }`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              <div
+                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[480px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+                  nexiOpen
+                    ? "pointer-events-auto opacity-100 translate-y-0"
+                    : "pointer-events-none opacity-0 -translate-y-1"
+                }`}
+                onPointerEnter={cancelScheduledNexiClose}
+                onPointerLeave={scheduleCloseNexiIfOutside}
+              >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl"
+                  style={{
+                    background:
+                      "radial-gradient(closest-side, rgba(139,30,45,.30), transparent)",
+                  }}
+                />
+                <ul className="grid grid-cols-1 gap-1">
+                  {NEXI_LINKS.map((s) => (
+                    <li key={s.label}>
+                      <Link
+                        href={s.href}
+                        className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.98rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                        onClick={() => setNexiOpen(false)}
+                      >
+                        {s.label}
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4 opacity-70"
+                          fill="none"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -451,6 +567,50 @@ export default function StickyHeader() {
               className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
             >
               {SOLUTIONS.map((s) => (
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
+                  >
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Nexi */}
+          <div className="mb-2">
+            <button
+              onClick={() =>
+                document
+                  .getElementById("mobile-nexi")!
+                  .classList.toggle("hidden")
+              }
+              className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+              aria-controls="mobile-nexi"
+              aria-expanded={false}
+            >
+              <span>Nexi</span>
+              <svg
+                className="h-5 w-5 transition-transform"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+
+            <ul
+              id="mobile-nexi"
+              className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
+            >
+              {NEXI_LINKS.map((s) => (
                 <li key={s.label}>
                   <Link
                     href={s.href}
