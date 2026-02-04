@@ -2,12 +2,21 @@
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import Link from "next/link";
+import Image from "next/image";
+import JsonLd from "@/components/JsonLd";
 import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 import "./blog-content.css";
 import type { ComponentProps } from "react";
 
 type BlogPostPageParams = { slug: string };
+type BlogTag = { id: string; nombre: string; slug: string | null };
+
+type RelatedSolution = {
+  href: string;
+  title: string;
+  description: string;
+};
 
 function normalizeMarkdown(input: string): string {
   let s = (input ?? "").replace(/\r\n/g, "\n");
@@ -100,6 +109,39 @@ function fmtDate(d?: Date | null) {
   } catch {
     return d.toISOString().slice(0, 10);
   }
+}
+
+function normalizeForMatching(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function getRelatedSolution(title: string, tags: BlogTag[]): RelatedSolution {
+  const textToMatch = [
+    title,
+    ...tags.map((tag) => tag.nombre),
+    ...tags.map((tag) => tag.slug ?? ""),
+  ]
+    .map(normalizeForMatching)
+    .join(" ");
+
+  if (textToMatch.includes("dentist") || textToMatch.includes("citas")) {
+    return {
+      href: "/soluciones/clinicas-medicas/agendamiento-citas",
+      title: "Agendamiento de citas para clínicas médicas",
+      description:
+        "Automatiza confirmaciones y reprogramaciones para reducir no-shows y liberar al equipo de recepción.",
+    };
+  }
+
+  return {
+    href: "/soluciones",
+    title: "Descubre nuestras soluciones con IA",
+    description:
+      "Explora casos de uso por industria y conecta la estrategia de contenido con páginas transaccionales.",
+  };
 }
 
 async function getPost(slug: string) {
@@ -214,11 +256,39 @@ export default async function BlogPostPage({
   const minutes =
     post.minutosLectura ??
     Math.max(1, Math.round((post.contenidoMd ?? "").split(/\s+/).length / 220));
-  const tags = post.etiquetas.map((e) => e.etiqueta);
+  const tags: BlogTag[] = post.etiquetas.map((e) => e.etiqueta);
+  const relatedSolution = getRelatedSolution(post.titulo, tags);
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.titulo,
+    description: post.extracto ?? null,
+    image: post.portadaUrl ? [post.portadaUrl] : [],
+    datePublished: post.publicadoEn?.toISOString() ?? null,
+    dateModified:
+      post.actualizadoEn?.toISOString() ??
+      post.publicadoEn?.toISOString() ??
+      null,
+    author: {
+      "@type": "Person",
+      name: post.autor?.nombre ?? "Nexal Forge",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Nexal Forge",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.nexalforge.com/logo.png",
+      },
+    },
+    mainEntityOfPage: `https://www.nexalforge.com/blog/${post.slug}`,
+  };
 
   return (
-    <div className="min-h-screen bg-white pt-20">
-      <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
+    <>
+      <JsonLd id="blog-article-jsonld" schema={articleSchema} />
+      <div className="min-h-screen bg-white pt-20">
+        <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
         {/* Breadcrumbs */}
         <nav className="mb-6 text-sm text-neutral-500">
           <Link href="/" className="hover:text-neutral-800">
@@ -259,10 +329,11 @@ export default async function BlogPostPage({
           {post.autor && (
             <div className="flex items-center gap-2">
               {post.autor.avatarUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   src={post.autor.avatarUrl}
                   alt={post.autor.nombre ?? "Autor"}
+                  width={24}
+                  height={24}
                   className="h-6 w-6 rounded-full border border-neutral-200 object-cover"
                 />
               ) : (
@@ -286,13 +357,15 @@ export default async function BlogPostPage({
         {/* Cover */}
         {post.portadaUrl && (
           <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-200">
-            {/* Using plain img to avoid domain config hassle in dev; swap to next/image if you prefer */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={post.portadaUrl}
-              alt={post.titulo}
-              className="h-auto w-full object-cover"
-            />
+            <div className="relative aspect-[16/9] w-full">
+              <Image
+                src={post.portadaUrl}
+                alt={post.titulo}
+                fill
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="object-cover"
+              />
+            </div>
           </div>
         )}
 
@@ -317,6 +390,23 @@ export default async function BlogPostPage({
           </div>
         )}
 
+        {/* Related solution */}
+        <aside className="mt-10 rounded-2xl border border-neutral-200 bg-neutral-50/70 p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+            Solución relacionada
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-neutral-900">
+            {relatedSolution.title}
+          </h2>
+          <p className="mt-2 text-sm text-neutral-700">{relatedSolution.description}</p>
+          <Link
+            href={relatedSolution.href}
+            className="mt-4 inline-flex items-center rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-800 transition hover:border-amber-400/50 hover:bg-amber-50 hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/30"
+          >
+            Ver solución
+          </Link>
+        </aside>
+
         {/* Back link */}
         <div className="mt-12">
           <Link
@@ -326,7 +416,8 @@ export default async function BlogPostPage({
             ← Volver al blog
           </Link>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

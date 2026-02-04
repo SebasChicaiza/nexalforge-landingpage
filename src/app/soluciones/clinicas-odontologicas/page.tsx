@@ -623,7 +623,7 @@ export default function NexiDentalLanding() {
 
       <JsonLd
         id="faq-dental-jsonld"
-        data={{
+        schema={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: faqs.map((item) => ({

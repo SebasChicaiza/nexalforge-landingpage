@@ -1,0 +1,488 @@
+[
+  {
+    "industry_slug": "clinicas-medicas",
+    "use_case_slug": "agendamiento-citas",
+    "title": "Agendamiento de Citas para Clínicas Médicas con IA | Nexi",
+    "description": "Automatiza el agendamiento de citas para clínicas médicas con Nexi. Reduce no-shows, confirma citas 24/7 y libera tiempo de tu equipo.",
+    "hero_title": "Agendamiento inteligente de citas para clínicas médicas",
+    "hero_subtitle": "Nexi agenda, confirma y reprograma citas en cualquier horario para reducir ausencias y mejorar la ocupación de tu agenda médica.",
+    "pain_points": [
+      "Pacientes que no confirman y generan no-shows frecuentes.",
+      "Recepción saturada durante horas pico y fuera de horario.",
+      "Reagendamientos manuales que consumen tiempo operativo."
+    ],
+    "benefits": [
+      "Reserva y confirmación de citas 24/7 por canales digitales.",
+      "Recordatorios automáticos para disminuir inasistencias.",
+      "Mejor uso de la agenda con menos carga administrativa."
+    ]
+  },
+  {
+    "industry_slug": "inmobiliarias",
+    "use_case_slug": "calificacion-leads",
+    "title": "Calificación de Leads para Inmobiliarias con IA | Nexi",
+    "description": "Califica leads inmobiliarios al instante con Nexi. Filtra compradores y arrendatarios, prioriza oportunidades y acelera cierres comerciales.",
+    "hero_title": "Calificación automática de leads para inmobiliarias",
+    "hero_subtitle": "Nexi identifica en segundos si un contacto busca comprar o arrendar, recopila datos clave y enruta cada lead al asesor correcto.",
+    "pain_points": [
+      "Leads fríos mezclados con oportunidades reales en el mismo flujo.",
+      "Tiempo perdido en conversaciones sin intención de cierre.",
+      "Demora en asignar prospectos al asesor adecuado."
+    ],
+    "benefits": [
+      "Filtro instantáneo entre compradores, arrendatarios e inversionistas.",
+      "Priorización automática de leads con mayor intención.",
+      "Derivación rápida al equipo comercial para seguimiento efectivo."
+    ]
+  },
+  {
+    "industry_slug": "bufetes-abogados",
+    "use_case_slug": "ingesta-clientes",
+    "title": "Automatización de Ingesta de Clientes para Bufetes de Abogados con IA | Nexi",
+    "description": "Estandariza la ingesta legal con Nexi: captura hechos clave, clasifica urgencia y prepara expedientes iniciales para que el abogado entre directo al caso.",
+    "hero_title": "Ingesta legal automatizada para bufetes de abogados",
+    "hero_subtitle": "Nexi recopila la informacion inicial del potencial cliente, valida datos criticos y prioriza casos urgentes antes de que lleguen al equipo legal.",
+    "pain_points": [
+      "Paralegales invierten horas en llamadas repetitivas para levantar datos basicos de cada consulta.",
+      "Llegan formularios incompletos sin fechas clave, documentos iniciales ni contexto del conflicto.",
+      "Casos urgentes como detenciones o medidas cautelares quedan en cola junto a consultas no prioritarias."
+    ],
+    "benefits": [
+      "Captura guiada de tipo de caso, jurisdiccion, contrapartes y evidencia minima en un solo flujo.",
+      "Precalificacion por urgencia y viabilidad antes de asignar al abogado responsable.",
+      "Ficha de intake estandarizada lista para CRM legal o software de gestion de expedientes."
+    ]
+  },
+  {
+    "industry_slug": "bufetes-abogados",
+    "use_case_slug": "actualizacion-estado-casos",
+    "title": "Actualización de Estado de Casos para Bufetes de Abogados con IA | Nexi",
+    "description": "Automatiza actualizaciones de casos en etapas permitidas, reduce llamadas de seguimiento y mejora la experiencia del cliente sin exponer informacion sensible.",
+    "hero_title": "Actualizaciones de casos sin saturar al equipo legal",
+    "hero_subtitle": "Nexi envia reportes de avance aprobados por el bufete, responde preguntas frecuentes del proceso y deriva al abogado cuando se requiere criterio juridico.",
+    "pain_points": [
+      "Clientes llaman varias veces por semana para preguntar el mismo estado procesal.",
+      "Asistentes redactan manualmente correos de seguimiento para decenas de expedientes activos.",
+      "Cambios de estado en juzgados no se comunican a tiempo y aumentan reclamos por falta de visibilidad."
+    ],
+    "benefits": [
+      "Mensajes automaticos con hitos de caso segun reglas y autorizaciones definidas por el despacho.",
+      "Canal unico para consultas de estado con trazabilidad de cada respuesta enviada.",
+      "Escalamiento inmediato al abogado cuando la consulta requiere estrategia legal o revision documental."
+    ]
+  },
+  {
+    "industry_slug": "ecommerce",
+    "use_case_slug": "recuperacion-carritos-abandonados",
+    "title": "Recuperación de Carritos Abandonados para E-commerce con IA | Nexi",
+    "description": "Convierte carritos abandonados en ventas con un agente IA que contacta al cliente en minutos, resuelve objeciones y activa incentivos solo cuando conviene.",
+    "hero_title": "Recupera ventas perdidas por carritos abandonados",
+    "hero_subtitle": "Nexi detecta abandono de checkout, inicia conversaciones personalizadas y ayuda a cerrar la compra sin depender de campañas masivas con descuento.",
+    "pain_points": [
+      "El equipo no alcanza a responder dudas de envio y medios de pago dentro de los primeros minutos criticos.",
+      "Se aplican cupones generales a todos los abandonos, reduciendo margen incluso en clientes listos para pagar.",
+      "No existe visibilidad de por que se cae el checkout: costo de envio, tiempos de entrega o friccion en pago."
+    ],
+    "benefits": [
+      "Activacion automatica por WhatsApp o email con contexto real del carrito y productos vistos.",
+      "Manejo de objeciones sobre envios, devoluciones y pagos con respuestas conectadas a tu politica comercial.",
+      "Incentivos segmentados por probabilidad de cierre para recuperar conversion sin erosionar rentabilidad."
+    ]
+  },
+  {
+    "industry_slug": "ecommerce",
+    "use_case_slug": "soporte-postventa-pedidos",
+    "title": "Soporte Postventa de Pedidos para E-commerce con IA | Nexi",
+    "description": "Automatiza consultas postventa en e-commerce: estado de pedidos, incidencias y devoluciones con seguimiento claro para cliente y operaciones.",
+    "hero_title": "Postventa automatizada para pedidos de e-commerce",
+    "hero_subtitle": "Nexi resuelve consultas de seguimiento de pedidos en segundos, reduce carga del equipo de soporte y acelera resolucion de incidencias.",
+    "pain_points": [
+      "Mensajes de \"donde esta mi pedido\" consumen gran parte de los turnos del equipo de soporte.",
+      "Incidencias por paquetes incompletos o retrasados se atienden tarde por falta de contexto centralizado.",
+      "Procesos de devolucion dependen de intercambio manual de correos y validaciones repetidas."
+    ],
+    "benefits": [
+      "Consulta automatica de tracking y fechas estimadas integrada con transportadora o plataforma logistica.",
+      "Recoleccion estructurada de evidencia para reclamos antes de escalar a un agente humano.",
+      "Inicio guiado de devoluciones con validacion de politicas y generacion de instrucciones al cliente."
+    ]
+  },
+  {
+    "industry_slug": "recursos-humanos",
+    "use_case_slug": "filtrado-candidatos",
+    "title": "Filtrado de Candidatos para RRHH y Reclutamiento con IA | Nexi",
+    "description": "Acelera el screening de talento con Nexi: filtra candidatos por requisitos obligatorios, experiencia y disponibilidad para entregar shortlists accionables.",
+    "hero_title": "Screening de candidatos sin cuellos de botella",
+    "hero_subtitle": "Nexi evalua postulaciones con criterios definidos por tu equipo de RRHH y prioriza perfiles con mayor ajuste antes de la entrevista humana.",
+    "pain_points": [
+      "Reclutadores revisan manualmente cientos de hojas de vida para encontrar pocos perfiles viables.",
+      "Postulantes avanzan sin certificaciones obligatorias o sin experiencia minima para el cargo.",
+      "Se agendan entrevistas con candidatos fuera de rango salarial o sin disponibilidad real de ingreso."
+    ],
+    "benefits": [
+      "Preguntas knockout automaticas para descartar de inmediato candidatos sin requisitos criticos.",
+      "Ranking por ajuste a experiencia, habilidades, horario y ubicacion segun la vacante.",
+      "Resumen por candidato con fortalezas, alertas y recomendacion de siguiente paso para el reclutador."
+    ]
+  },
+  {
+    "industry_slug": "recursos-humanos",
+    "use_case_slug": "coordinacion-entrevistas",
+    "title": "Coordinación de Entrevistas para RRHH con IA | Nexi",
+    "description": "Automatiza la coordinación de entrevistas entre candidatos y hiring managers, reduciendo no-shows y tiempo de cierre de vacantes.",
+    "hero_title": "Entrevistas coordinadas sin ida y vuelta interminable",
+    "hero_subtitle": "Nexi propone horarios, confirma asistencia y maneja reprogramaciones para que el proceso de seleccion avance sin friccion.",
+    "pain_points": [
+      "Coordinar disponibilidad por correo entre candidatos y entrevistadores toma dias por vacante.",
+      "Invitaciones se pierden o llegan sin recordatorios, generando no-shows en etapas clave.",
+      "Reprogramaciones no quedan sincronizadas en el ATS y causan confusion operativa."
+    ],
+    "benefits": [
+      "Propuesta automatica de slots en funcion de calendarios y ventanas de contratacion.",
+      "Recordatorios multicanal con confirmacion previa para reducir ausencias de candidatos.",
+      "Actualizacion de cambios de agenda y estado de entrevista en tu flujo de reclutamiento."
+    ]
+  },
+  {
+    "industry_slug": "clinicas-odontologicas",
+    "use_case_slug": "agendamiento-citas",
+    "title": "Agendamiento de Citas para Clínicas Odontológicas con IA | Nexi",
+    "description": "Gestiona reservas odontologicas con un agente IA que responde en minutos, clasifica motivo de consulta y reduce ausencias en silla.",
+    "hero_title": "Agenda dental optimizada con respuestas inmediatas",
+    "hero_subtitle": "Nexi atiende consultas de pacientes por WhatsApp, sugiere horarios segun especialidad y confirma asistencia sin sobrecargar recepcion.",
+    "pain_points": [
+      "Consultas por precios y disponibilidad llegan fuera de horario y se enfria el lead.",
+      "Recepcion mezcla triage, llamadas y chat, provocando errores en tipo de procedimiento agendado.",
+      "Ausencias de ultima hora dejan bloques de agenda improductivos en el sillón odontologico."
+    ],
+    "benefits": [
+      "Agendamiento 24/7 por especialidad, sede y preferencia horaria del paciente.",
+      "Confirmaciones y recordatorios automaticos con opcion de reprogramar en un clic.",
+      "Captura previa de motivo de consulta para preparar mejor cada atencion clinica."
+    ]
+  },
+  {
+    "industry_slug": "clinicas-odontologicas",
+    "use_case_slug": "seguimiento-postoperatorio",
+    "title": "Seguimiento Postoperatorio para Clínicas Odontológicas con IA | Nexi",
+    "description": "Automatiza el seguimiento postoperatorio dental: monitorea sintomas, refuerza cuidados y escala alertas para una recuperacion mas segura.",
+    "hero_title": "Seguimiento postoperatorio dental automatizado",
+    "hero_subtitle": "Nexi envia controles programados tras extracciones, implantes o cirugias y detecta signos de riesgo para activar respuesta clinica a tiempo.",
+    "pain_points": [
+      "Pacientes con dudas postoperatorias escriben de noche y no reciben orientacion oportuna.",
+      "El equipo no puede monitorear manualmente evolucion de cada paciente en dias criticos.",
+      "Complicaciones tempranas se detectan tarde por falta de un protocolo de seguimiento constante."
+    ],
+    "benefits": [
+      "Flujos de seguimiento en dias 1, 3 y 7 con preguntas clinicas estructuradas.",
+      "Deteccion de alertas por dolor intenso, sangrado o fiebre para escalar al odontologo.",
+      "Envio automatizado de cuidados, higiene y medicacion para mejorar adherencia al tratamiento."
+    ]
+  },
+  {
+    "industry_slug": "clinicas-medicas",
+    "use_case_slug": "recordatorios-medicacion",
+    "title": "Recordatorios de Medicación para Clínicas Médicas con IA | Nexi",
+    "description": "Mejora la adherencia terapeutica con recordatorios de medicacion automatizados, confirmacion de tomas y alertas tempranas para seguimiento clinico.",
+    "hero_title": "Adherencia a medicacion con seguimiento inteligente",
+    "hero_subtitle": "Nexi programa recordatorios segun prescripcion, identifica omisiones repetidas y habilita intervencion oportuna del equipo asistencial.",
+    "pain_points": [
+      "Pacientes cronicos olvidan dosis y solo se detecta en controles tardios.",
+      "Enfermeria invierte tiempo en llamadas manuales para confirmar cumplimiento del tratamiento.",
+      "No hay trazabilidad consolidada de tomas omitidas para priorizar seguimiento clinico."
+    ],
+    "benefits": [
+      "Recordatorios personalizados por medicamento, horario y duracion del plan terapeutico.",
+      "Confirmacion de toma y deteccion automatica de patrones de incumplimiento.",
+      "Alertas al equipo medico para intervenir antes de una descompensacion evitable."
+    ]
+  },
+  {
+    "industry_slug": "inmobiliarias",
+    "use_case_slug": "agendamiento-visitas-propiedades",
+    "title": "Agendamiento de Visitas para Inmobiliarias con IA | Nexi",
+    "description": "Automatiza visitas inmobiliarias con un agente IA que valida disponibilidad real, confirma asistencia y reduce tiempos muertos de asesores.",
+    "hero_title": "Visitas a propiedades sin friccion operativa",
+    "hero_subtitle": "Nexi coordina agenda de visitas segun zona, presupuesto y tipo de inmueble para acelerar el paso de lead a oportunidad real.",
+    "pain_points": [
+      "Asesores dedican gran parte del dia a coordinar horarios por chat sin cierre inmediato.",
+      "Prospectos solicitan visitas a inmuebles ya tomados o fuera de su capacidad financiera.",
+      "No-shows en visitas presenciales generan desplazamientos improductivos y perdida de horas comerciales."
+    ],
+    "benefits": [
+      "Agenda automatica con inventario actualizado y franjas disponibles por asesor.",
+      "Validacion previa de presupuesto, medio de pago y urgencia de mudanza antes de confirmar visita.",
+      "Recordatorios con ubicacion y opcion de reprogramar para reducir ausencias en terreno."
+    ]
+  },
+  {
+    "industry_slug": "peluquerias-spas",
+    "use_case_slug": "agenda-whatsapp",
+    "title": "Agenda por WhatsApp para Peluquerías y Spas con IA | Nexi",
+    "description": "Convierte chats en citas confirmadas con un asistente que responde al instante, agenda servicios y mantiene tu cabina llena.",
+    "hero_title": "Agenda de peluquería y spa 24/7 por WhatsApp",
+    "hero_subtitle": "Nexi responde consultas de precios, disponibilidad y promociones mientras tu equipo se enfoca en atender clientes en el local.",
+    "pain_points": [
+      "Perder clientes por no responder mensajes mientras atiendes.",
+      "Doble reserva de estilistas por llevar la agenda en papel o chats sueltos.",
+      "Demora en confirmar citas de coloración o tratamientos largos con varios pasos."
+    ],
+    "benefits": [
+      "Tu asistente responde y agenda citas 24/7 por WhatsApp.",
+      "Confirma estilista, duración y servicio en un solo flujo sin cruces de horario.",
+      "Envía ubicación, políticas de anticipo y preparación previa automáticamente."
+    ]
+  },
+  {
+    "industry_slug": "peluquerias-spas",
+    "use_case_slug": "recordatorios-citas",
+    "title": "Recordatorios de Citas para Peluquerías y Spas con IA | Nexi",
+    "description": "Reduce huecos en agenda con recordatorios automáticos y reprogramación rápida para servicios de belleza.",
+    "hero_title": "Recordatorios automáticos para no perder turnos",
+    "hero_subtitle": "Nexi confirma asistencia antes de cada cita y abre espacios liberados para lista de espera en minutos.",
+    "pain_points": [
+      "No-shows en servicios premium como keratina o masajes de 90 minutos.",
+      "Recepción invierte tiempo llamando cliente por cliente para confirmar asistencia.",
+      "Cancelaciones de última hora dejan personal ocioso y cabinas vacías."
+    ],
+    "benefits": [
+      "Recordatorios con confirmación de asistencia 24 y 2 horas antes.",
+      "Reprogramación automática con propuestas de horario según disponibilidad real.",
+      "Activación de lista de espera para rellenar huecos de última hora."
+    ]
+  },
+  {
+    "industry_slug": "peluquerias-spas",
+    "use_case_slug": "seguimiento-post-servicio",
+    "title": "Seguimiento Post Servicio para Peluquerías y Spas con IA | Nexi",
+    "description": "Fideliza clientes con seguimiento posterior, recomendaciones personalizadas y re-agendamiento automático.",
+    "hero_title": "Seguimiento post-servicio que genera recompra",
+    "hero_subtitle": "Nexi consulta satisfacción, sugiere mantenimiento y reabre conversación para la próxima cita sin esfuerzo manual.",
+    "pain_points": [
+      "Después del servicio no existe seguimiento y se pierde oportunidad de recompra.",
+      "Clientes olvidan cuándo volver para retoque o mantenimiento del tratamiento.",
+      "Promociones se envían masivamente sin segmentación por tipo de servicio."
+    ],
+    "benefits": [
+      "Mensajes post-servicio con encuesta corta de satisfacción y NPS.",
+      "Recordatorios de mantenimiento según tipo de corte, color o tratamiento facial.",
+      "Campañas segmentadas para reactivar clientes con alta probabilidad de retorno."
+    ]
+  },
+  {
+    "industry_slug": "barberias",
+    "use_case_slug": "recordatorios-citas",
+    "title": "Recordatorios de Citas para Barberías con IA | Nexi",
+    "description": "Asegura más asistencia en tu barbería con recordatorios automáticos y confirmación de cita por WhatsApp.",
+    "hero_title": "Menos no-shows en barbería, más sillas ocupadas",
+    "hero_subtitle": "Nexi confirma cada reserva y facilita reprogramaciones para mantener la agenda productiva durante todo el día.",
+    "pain_points": [
+      "Clientes que reservan y no van (No-shows).",
+      "Turnos de la tarde se caen y quedan huecos difíciles de rellenar.",
+      "El barbero pierde tiempo escribiendo para confirmar en lugar de atender."
+    ],
+    "benefits": [
+      "Recordatorios automáticos para asegurar que el cliente llegue.",
+      "Confirmación con un toque y liberación inmediata de cupos no confirmados.",
+      "Reasignación rápida de horarios cancelados a clientes en espera."
+    ]
+  },
+  {
+    "industry_slug": "barberias",
+    "use_case_slug": "agenda-whatsapp",
+    "title": "Agenda por WhatsApp para Barberías con IA | Nexi",
+    "description": "Automatiza reservas de corte y barba por WhatsApp, mostrando horarios reales por barbero y servicio.",
+    "hero_title": "Agenda de barbería conectada a tu operación real",
+    "hero_subtitle": "Nexi toma reservas por servicio, duración y barbero favorito para evitar sobrecargas en horas pico.",
+    "pain_points": [
+      "Mensajes sin responder durante jornadas con alta rotación de clientes.",
+      "Confusión de horarios cuando varios barberos comparten el mismo número de WhatsApp.",
+      "Promesas de atención inmediata que no se cumplen y afectan reputación local."
+    ],
+    "benefits": [
+      "Reserva automática por tipo de servicio con tiempos configurables por barbero.",
+      "Visibilidad de cupos disponibles en tiempo real sin revisar chats antiguos.",
+      "Respuesta inmediata con ubicación, precios base y políticas de llegada tardía."
+    ]
+  },
+  {
+    "industry_slug": "barberias",
+    "use_case_slug": "reactivacion-clientes",
+    "title": "Reactivación de Clientes para Barberías con IA | Nexi",
+    "description": "Recupera clientes inactivos con campañas conversacionales y ofertas dirigidas según su historial de visitas.",
+    "hero_title": "Reactivación inteligente para llenar horas valle",
+    "hero_subtitle": "Nexi detecta clientes que llevan semanas sin visitar la barbería y les envía ofertas personalizadas para volver.",
+    "pain_points": [
+      "Base de clientes crece pero muchos no regresan después de la primera visita.",
+      "Horas valle entre semana quedan subutilizadas sin campañas efectivas.",
+      "Promociones iguales para todos reducen margen y no elevan recurrencia."
+    ],
+    "benefits": [
+      "Segmentación automática por frecuencia de visita y ticket promedio.",
+      "Ofertas enfocadas en horarios de baja demanda para mejorar ocupación.",
+      "Conversaciones uno a uno por WhatsApp que convierten mejor que difusión masiva."
+    ]
+  },
+  {
+    "industry_slug": "restaurantes",
+    "use_case_slug": "reservas-whatsapp",
+    "title": "Reservas por WhatsApp para Restaurantes con IA | Nexi",
+    "description": "Gestiona reservas sin saturar al equipo de sala: confirma cupos, comparte menú y evita pérdidas por sobreventa.",
+    "hero_title": "Reservas del restaurante automatizadas por WhatsApp",
+    "hero_subtitle": "Nexi toma reservas por fecha, hora y número de personas, y mantiene al cliente informado en cada paso.",
+    "pain_points": [
+      "Teléfono sonando en hora pico mientras sirves mesas.",
+      "Reservas anotadas en papel que se duplican o se pierden en cambios de turno.",
+      "Consultas repetidas sobre menú, parqueadero y horarios de atención."
+    ],
+    "benefits": [
+      "Nexi toma reservas y envía el menú automáticamente.",
+      "Confirmación de mesa con reglas de tiempo de espera y tolerancia por llegada tardía.",
+      "Menos interrupciones al personal de piso durante el servicio en hora pico."
+    ]
+  },
+  {
+    "industry_slug": "restaurantes",
+    "use_case_slug": "pedidos-whatsapp",
+    "title": "Pedidos por WhatsApp para Restaurantes con IA | Nexi",
+    "description": "Automatiza pedidos para recoger o domicilio con validación de dirección, método de pago y tiempos estimados.",
+    "hero_title": "Toma pedidos sin perder velocidad en cocina",
+    "hero_subtitle": "Nexi captura pedidos con extras, confirma total y comparte tiempo de entrega estimado sin congestionar tu línea telefónica.",
+    "pain_points": [
+      "Pedidos mal tomados por ruido en cocina o multitarea del personal.",
+      "Errores de dirección y cobertura generan devoluciones costosas.",
+      "Clientes no tienen claridad sobre tiempo de entrega y cancelan a último minuto."
+    ],
+    "benefits": [
+      "Pedido estructurado con opciones, extras y observaciones del cliente.",
+      "Validación automática de cobertura y costo de envío antes de confirmar.",
+      "Notificaciones de estado del pedido para reducir llamadas de seguimiento."
+    ]
+  },
+  {
+    "industry_slug": "restaurantes",
+    "use_case_slug": "lista-espera-mesas",
+    "title": "Lista de Espera para Restaurantes con IA | Nexi",
+    "description": "Gestiona lista de espera en tiempo real y avisa cuando una mesa está lista, mejorando la experiencia en horas de alta demanda.",
+    "hero_title": "Lista de espera digital para no perder comensales",
+    "hero_subtitle": "Nexi organiza turnos de ingreso por orden de llegada y mantiene comunicación clara con cada grupo en espera.",
+    "pain_points": [
+      "Filas físicas largas afuera del local sin información de tiempo estimado.",
+      "Clientes se retiran por falta de actualizaciones sobre disponibilidad de mesas.",
+      "Hostess anota en papel y pierde control cuando cambia el flujo del salón."
+    ],
+    "benefits": [
+      "Turnos de espera automatizados con hora estimada de asignación de mesa.",
+      "Aviso por WhatsApp cuando la mesa está lista para reducir aglomeración.",
+      "Mayor rotación de mesas con control centralizado de entradas y salidas."
+    ]
+  },
+  {
+    "industry_slug": "doctores-quito",
+    "use_case_slug": "agenda-medica",
+    "title": "Agenda Médica para Doctores en Quito con IA | Nexi",
+    "description": "Automatiza la agenda médica en Quito con atención en español, confirmaciones de cita y gestión de reprogramaciones.",
+    "hero_title": "Agenda médica local para consultorios en Quito",
+    "hero_subtitle": "Nexi atiende solicitudes de pacientes por WhatsApp, organiza horarios por especialidad y libera tiempo clínico en consulta.",
+    "pain_points": [
+      "Secretaria saturada y pacientes esperando.",
+      "Citas duplicadas por manejo manual entre llamadas y mensajes.",
+      "Pacientes se enfrían cuando no reciben respuesta rápida fuera de horario."
+    ],
+    "benefits": [
+      "Agenda inteligente por especialidad, sede y tiempo promedio de consulta.",
+      "Confirmación y reprogramación automática para mantener continuidad asistencial.",
+      "Atención local para pacientes de Quito con lenguaje claro y cercano."
+    ]
+  },
+  {
+    "industry_slug": "doctores-quito",
+    "use_case_slug": "recordatorios-controles",
+    "title": "Recordatorios de Controles para Doctores en Quito con IA | Nexi",
+    "description": "Reduce ausencias en consultas médicas con recordatorios y confirmaciones automáticas adaptadas al paciente.",
+    "hero_title": "Controles médicos confirmados sin llamadas manuales",
+    "hero_subtitle": "Nexi envía recordatorios previos a la consulta y habilita cambios de horario sin saturar la recepción.",
+    "pain_points": [
+      "Consultas de control se pierden por olvido de pacientes crónicos.",
+      "Recepción dedica horas a llamar para confirmar asistencia del día siguiente.",
+      "Reprogramaciones de última hora no se reasignan a pacientes en espera."
+    ],
+    "benefits": [
+      "Recordatorios multietapa con confirmación en uno o dos toques.",
+      "Liberación de cupos no confirmados para mejorar ocupación de agenda.",
+      "Menos carga administrativa para el personal de recepción."
+    ]
+  },
+  {
+    "industry_slug": "doctores-quito",
+    "use_case_slug": "seguimiento-pacientes",
+    "title": "Seguimiento de Pacientes para Doctores en Quito con IA | Nexi",
+    "description": "Mantén seguimiento post consulta con mensajes automatizados, señales de alerta y escalamiento clínico oportuno.",
+    "hero_title": "Seguimiento post consulta para medicina ambulatoria",
+    "hero_subtitle": "Nexi consulta evolución del paciente, refuerza indicaciones y activa alertas cuando hay síntomas de riesgo.",
+    "pain_points": [
+      "Después de la consulta no hay control sistemático de evolución clínica.",
+      "Pacientes escriben síntomas por WhatsApp y la respuesta llega tarde.",
+      "El equipo no prioriza correctamente casos que requieren revisión inmediata."
+    ],
+    "benefits": [
+      "Flujos automáticos de seguimiento según diagnóstico y tipo de tratamiento.",
+      "Detección temprana de alertas para escalar al médico responsable.",
+      "Historial de interacciones útil para continuidad de la atención."
+    ]
+  },
+  {
+    "industry_slug": "pymes-ecuador",
+    "use_case_slug": "atencion-cliente",
+    "title": "Atención al Cliente para PYMEs en Ecuador con IA | Nexi",
+    "description": "Responde a tus clientes en minutos y escala consultas complejas sin perder ventas ni reputación en canales digitales.",
+    "hero_title": "Atención al cliente para PYMEs ecuatorianas",
+    "hero_subtitle": "Nexi atiende WhatsApp y canales web con respuestas consistentes, priorizando casos urgentes para tu equipo.",
+    "pain_points": [
+      "Mensajes de clientes se quedan sin respuesta en horarios de alta carga operativa.",
+      "Consultas repetitivas consumen tiempo de personal que debería vender o entregar pedidos.",
+      "No existe trazabilidad clara de conversaciones para seguimiento comercial."
+    ],
+    "benefits": [
+      "Soporte local en Ecuador y facturación simple.",
+      "Respuesta automática 24/7 para preguntas frecuentes, estados de pedido y políticas.",
+      "Escalamiento a humano con contexto para cerrar casos complejos más rápido."
+    ]
+  },
+  {
+    "industry_slug": "pymes-ecuador",
+    "use_case_slug": "ventas-whatsapp",
+    "title": "Ventas por WhatsApp para PYMEs de Ecuador con IA | Nexi",
+    "description": "Convierte consultas en ventas con un agente que califica leads, recomienda productos y acompaña el cierre por WhatsApp.",
+    "hero_title": "WhatsApp como canal de ventas para PYMEs",
+    "hero_subtitle": "Nexi identifica intención de compra, envía catálogo relevante y deja al equipo comercial solo oportunidades calificadas.",
+    "pain_points": [
+      "Leads llegan por redes y WhatsApp sin seguimiento ordenado ni prioridad.",
+      "Asesores invierten tiempo en chats con baja intención de compra.",
+      "No hay estandarización en respuestas de precios, disponibilidad y promociones."
+    ],
+    "benefits": [
+      "Calificación automática de prospectos según presupuesto, necesidad y urgencia.",
+      "Recomendaciones de producto con mensajes consistentes y enfoque de cierre.",
+      "Derivación a vendedor correcto con contexto para acelerar la conversión."
+    ]
+  },
+  {
+    "industry_slug": "pymes-ecuador",
+    "use_case_slug": "cobranzas-recordatorios",
+    "title": "Recordatorios de Cobranza para PYMEs en Ecuador con IA | Nexi",
+    "description": "Automatiza recordatorios de pago y reduce cartera vencida con mensajes respetuosos y trazables por WhatsApp.",
+    "hero_title": "Cobranza preventiva para mejorar flujo de caja",
+    "hero_subtitle": "Nexi notifica vencimientos, confirma compromisos de pago y ordena seguimiento para el equipo administrativo.",
+    "pain_points": [
+      "Facturas vencidas se acumulan por falta de recordatorios oportunos al cliente.",
+      "Administración dedica horas semanales a perseguir pagos de bajo monto.",
+      "Compromisos de pago quedan en chats sueltos sin registro para auditoría."
+    ],
+    "benefits": [
+      "Recordatorios automáticos antes y después del vencimiento con tono profesional.",
+      "Registro de promesas de pago y estados de seguimiento por cliente.",
+      "Mejor flujo de caja sin incrementar carga operativa del área financiera."
+    ]
+  }
+]

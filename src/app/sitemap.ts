@@ -1,10 +1,13 @@
 // src/app/sitemap.ts
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
+import pseoDataRaw from "@/data/pSEO.json";
+import type { PSEOPageData } from "@/types/pseo";
 
 export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.nexalforge.com";
+const pseoData: PSEOPageData[] = pseoDataRaw as PSEOPageData[];
 
 type SitemapPost = {
   slug: string;
@@ -50,6 +53,20 @@ async function getBlogPosts(): Promise<SitemapPost[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();
   const now = new Date();
+  const pseoRoutes = Array.from(
+    new Set(
+      pseoData.map(
+        (entry) => `/soluciones/${entry.industry_slug}/${entry.use_case_slug}`
+      )
+    )
+  ).map(
+    (path): MetadataRoute.Sitemap[number] => ({
+      url: `${BASE_URL}${path}`,
+      priority: 0.8,
+      changeFrequency: "monthly",
+      lastModified: now,
+    })
+  );
 
   return [
     {
@@ -106,6 +123,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       lastModified: now,
     },
+    ...pseoRoutes,
     ...posts.map((p): MetadataRoute.Sitemap[number] => ({
       url: `${BASE_URL}/blog/${p.slug}`,
       priority: 0.8,

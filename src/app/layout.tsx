@@ -9,6 +9,7 @@ import WhatsAppOptInCard from "@/components/consent/WhatsAppOptInCard";
 import Script from "next/script";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export const headingFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -32,7 +33,15 @@ export const metadata: Metadata = {
   },
   description:
     "Implementamos agentes de IA, automatización y analítica para empresas en Latinoamérica. Reduce tiempos, mejora soporte y toma decisiones con dashboards ejecutivos.",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: {
+      es: "/",
+      "es-MX": "/",
+      "es-CO": "/",
+      "es-EC": "/",
+    },
+  },
   openGraph: {
     type: "website",
     url: "https://www.nexalforge.com/",
@@ -92,6 +101,7 @@ export default function RootLayout({
         <StickyHeader />
         {children}
         <Footer />
+        <FloatingWhatsApp />
 
         <ConsentBanner />
         {/* 

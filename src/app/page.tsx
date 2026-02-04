@@ -18,7 +18,7 @@ export default function Home() {
       {/* Schema.org: Service */}
       <JsonLd
         id="service-jsonld"
-        data={{
+        schema={{
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Agentes de IA y Automatización",
@@ -36,7 +36,7 @@ export default function Home() {
       {/* Schema.org: FAQPage (asegúrate de que coincidan con tu UI) */}
       <JsonLd
         id="faq-jsonld"
-        data={{
+        schema={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: [

@@ -19,7 +19,10 @@ export async function GET() {
   const secret = process.env.JWT_SECRET ?? '';
 
   if (!token || !secret) {
-    return NextResponse.json({ loggedIn: false }, { headers: { 'Cache-Control': 'no-store' } });
+    return NextResponse.json(
+      { loggedIn: false },
+      { headers: { 'Cache-Control': 'no-store' } }
+    );
   }
 
   try {

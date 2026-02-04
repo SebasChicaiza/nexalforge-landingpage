@@ -17,6 +17,7 @@ const TOP_LINKS: NavLink[] = [
 ];
 
 const SOLUTIONS: NavLink[] = [
+  { label: "Soluciones por industria", href: "/soluciones" },
   { label: "Asistente virtual Nexi", href: "/asistente-virtual-nexi" },
   { label: "Agente IA para Ventas", href: "/" },
   { label: "Agente IA para Soporte", href: "/soluciones/agente-soporte-ia" },

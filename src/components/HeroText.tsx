@@ -44,7 +44,7 @@ export function HeroText() {
                    font-sans"
         style={{ fontFamily: "var(--font-heading)" }}
       >
-        Inteligencia Artificial y automatización para empresas
+        Nexal Forge: Creamos Sistemas Agentes de IA para Empresas
         <br className="hidden sm:block" />
       </motion.h1>
 
@@ -52,10 +52,9 @@ export function HeroText() {
         variants={itemRight}
         className="mb-8 text-base sm:text-lg text-white/90 max-w-[48ch]"
       >
-        En Nexal Forge implementamos agentes de IA y automatización para
-        empresas en Latinoamérica: ventas, soporte y dashboards que mueven tus
-        KPIs en semanas. Somos una empresa ecuatoriana con foco en español y
-        capacidad multilenguaje.
+        Impulsa tus operaciones con Nexi, nuestro Sistema Operativo Agente
+        (Agentic OS) que maneja tareas, reservas y flujos de trabajo de
+        principio a fin.
       </motion.p>
     </motion.div>
   );

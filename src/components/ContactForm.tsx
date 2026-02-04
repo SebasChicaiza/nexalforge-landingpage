@@ -81,6 +81,14 @@ export default function ContactForm() {
 
         <InputWire label="Nombre" name="nombre" required />
         <InputWire label="Email" name="email" type="email" required />
+        <InputWire
+          label="Teléfono"
+          name="telefono"
+          type="tel"
+          placeholder="+57 300 123 4567"
+          autoComplete="tel"
+          required
+        />
         <InputWire label="Empresa" name="empresa" />
 
         <div className="grid grid-cols-2 gap-3">

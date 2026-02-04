@@ -13,6 +13,7 @@ const MAX_REQ = 5;
 const FormSchema = z.object({
   nombre: z.string().min(2).max(100),
   email: z.string().email().max(200),
+  telefono: z.string().trim().min(8).max(40),
   empresa: z.string().max(200).optional(),
   objetivo: z.enum(["Mejorar ventas", "Reducir tiempos", "Reducir costos"]),
   equipo: z.enum(["1–10", "11–50", "50+"]),
@@ -72,7 +73,7 @@ export async function POST(req: Request) {
     // Honeypot
     if (parsed.data.sitio?.trim()) return NextResponse.json({ ok: true });
 
-    const { nombre, email, empresa, objetivo, equipo } = parsed.data;
+    const { nombre, email, telefono, empresa, objetivo, equipo } = parsed.data;
 
     // Envío mail (Node runtime)
     const transporter = createTransport();
@@ -80,6 +81,7 @@ export async function POST(req: Request) {
     const text = [
       `Nombre: ${nombre}`,
       `Email: ${email}`,
+      `Teléfono: ${telefono}`,
       `Empresa: ${empresa ?? "-"}`,
       `Objetivo: ${objetivo}`,
       `Equipo: ${equipo}`,

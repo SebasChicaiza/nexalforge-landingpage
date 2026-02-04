@@ -927,92 +927,46 @@ export default function NexiProductPage() {
 
         <JsonLd
           id="nexi-product-jsonld"
-          data={{
+          schema={{
             "@context": "https://schema.org",
-            "@type": "Product",
-            name: "Nexi – Asistente virtual de IA para WhatsApp, Instagram y Messenger",
+            "@type": "SoftwareApplication",
+            name: "Nexi",
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "Web",
             description:
-              "Asistente virtual con IA de Nexal Forge que responde mensajes en WhatsApp, Instagram y Messenger, agenda citas y deriva conversaciones complejas a tu equipo humano.",
-            image: [
-              "https://www.nexalforge.com/nexi-agente/cta-agenda-demo.png",
-              "https://www.nexalforge.com/nexi-agente/nexi-multicanal.png",
-              "https://www.nexalforge.com/nexi-agente/plataforma-web-panel.png",
+              "Sistema Operativo Agente (Agentic OS) para empresas que automatiza tareas, reservas y flujos de trabajo de principio a fin en WhatsApp, Instagram y Messenger.",
+            provider: {
+              "@type": "Organization",
+              name: "Nexal Forge",
+              url: "https://www.nexalforge.com",
+            },
+            url: "https://www.nexalforge.com/asistente-virtual-nexi",
+            image: "https://www.nexalforge.com/nexi-agente/cta-agenda-demo.png",
+            featureList: [
+              "Automatización de tareas operativas",
+              "Gestión de reservas y citas",
+              "Soporte multicanal en WhatsApp, Instagram y Messenger",
+              "Escalamiento a equipo humano con contexto",
             ],
-            brand: { "@type": "Brand", name: "Nexal Forge" },
-            sku: "NEXI-ASISTENTE-VIRTUAL",
             offers: {
               "@type": "Offer",
-              url: "https://www.nexalforge.com/asistente-virtual-nexi",
-              availability: "https://schema.org/InStock",
-              itemCondition: "https://schema.org/NewCondition",
-              price: "149",
+              price: "0",
               priceCurrency: "USD",
-              priceValidUntil: "2025-12-31",
-              hasMerchantReturnPolicy: {
-                "@type": "MerchantReturnPolicy",
-                applicableCountry: ["EC", "CO", "PE", "MX", "US"],
-                returnPolicyCategory:
-                  "https://schema.org/MerchantReturnNotPermitted",
-              },
-              shippingDetails: {
-                "@type": "OfferShippingDetails",
-                shippingDestination: {
-                  "@type": "DefinedRegion",
-                  addressCountry: ["EC", "CO", "PE", "MX", "US"],
-                },
-                shippingRate: {
-                  "@type": "MonetaryAmount",
-                  value: "0",
-                  currency: "USD",
-                },
-                deliveryTime: {
-                  "@type": "ShippingDeliveryTime",
-                  handlingTime: {
-                    "@type": "QuantitativeValue",
-                    minValue: 1,
-                    maxValue: 3,
-                    unitCode: "DAY",
-                  },
-                  transitTime: {
-                    "@type": "QuantitativeValue",
-                    minValue: 0,
-                    maxValue: 0,
-                    unitCode: "DAY",
-                  },
-                },
-              },
+              description: "Diagnóstico y demo inicial",
+              availability: "https://schema.org/InStock",
+              url: "https://www.nexalforge.com/asistente-virtual-nexi",
+              eligibleRegion: [
+                { "@type": "Country", name: "Ecuador" },
+                { "@type": "Country", name: "Colombia" },
+                { "@type": "Country", name: "Mexico" },
+              ],
             },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5",
-              reviewCount: 1,
-            },
-            review: [
-              {
-                "@type": "Review",
-                name: "Implementación de Nexi en equipos de soporte",
-                reviewBody:
-                  "Automatiza respuestas en WhatsApp, Instagram y Messenger, con escalamiento a humanos y panel de seguimiento.",
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: "5",
-                  bestRating: "5",
-                  worstRating: "1",
-                },
-                author: {
-                  "@type": "Organization",
-                  name: "Equipo editorial de NexalForge",
-                },
-                datePublished: "2024-12-15",
-              },
-            ],
-            url: "https://www.nexalforge.com/asistente-virtual-nexi",
           }}
         />
 
         <JsonLd
           id="nexi-faq-jsonld"
-          data={{
+          schema={{
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: faqs.map((item) => ({
