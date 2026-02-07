@@ -53,6 +53,17 @@ async function getBlogPosts(): Promise<SitemapPost[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();
   const now = new Date();
+  const industryIndexRoutes = Array.from(
+    new Set(pseoData.map((entry) => entry.industry_slug))
+  ).map(
+    (slug): MetadataRoute.Sitemap[number] => ({
+      url: `${BASE_URL}/soluciones/${slug}`,
+      priority: 0.8,
+      changeFrequency: "monthly",
+      lastModified: now,
+    })
+  );
+
   const pseoRoutes = Array.from(
     new Set(
       pseoData.map(
@@ -93,12 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       lastModified: now,
     },
-    {
-      url: `${BASE_URL}/soluciones/clinicas-odontologicas`,
-      priority: 0.8,
-      changeFrequency: "monthly",
-      lastModified: now,
-    },
+    ...industryIndexRoutes,
     {
       url: `${BASE_URL}/cookies`,
       priority: 0.3,

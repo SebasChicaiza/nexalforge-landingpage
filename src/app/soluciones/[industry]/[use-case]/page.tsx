@@ -3,7 +3,22 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import pseoDataRaw from "@/data/pSEO.json";
 import type { PSEOPageData } from "@/types/pseo";
-import { PseoSolutionExperience } from "./PseoSolutionExperience";
+import {
+  buildSoftwareApplicationSchema,
+  buildFAQPageSchema,
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+} from "@/lib/pseo-schemas";
+
+import PseoBreadcrumb from "@/components/pseo/PseoBreadcrumb";
+import PseoHeroSection from "@/components/pseo/PseoHeroSection";
+import PseoPainPointsSection from "@/components/pseo/PseoPainPointsSection";
+import PseoBeforeAfterSection from "@/components/pseo/PseoBeforeAfterSection";
+import PseoRoiSection from "@/components/pseo/PseoRoiSection";
+import PseoHowItWorksSection from "@/components/pseo/PseoHowItWorksSection";
+import PseoFaqSection from "@/components/pseo/PseoFaqSection";
+import PseoRelatedSection from "@/components/pseo/PseoRelatedSection";
+import PseoMobileStickyCta from "@/components/pseo/PseoMobileStickyCta";
 
 type SolutionPageParams = {
   industry: string;
@@ -20,9 +35,9 @@ const DEMO_CTA_URL = "/#contacto";
 const WHATSAPP_CTA_URL =
   "https://wa.me/593963305344?text=Hola,%20quisiera%20información%20sobre%20Nexi";
 const LOCAL_TRUST_SIGNALS = [
-  "✅ Soporte nativo en español",
-  "✅ Integración oficial con WhatsApp",
-  "✅ Facturación local (Ecuador)",
+  "Soporte nativo en español",
+  "Integración oficial con WhatsApp",
+  "Facturación local (Ecuador)",
 ] as const;
 
 function findPageData(params: SolutionPageParams): PSEOPageData | undefined {
@@ -33,19 +48,8 @@ function findPageData(params: SolutionPageParams): PSEOPageData | undefined {
   );
 }
 
-function slugToTitle(slug: string): string {
-  return slug
-    .split("-")
-    .filter(Boolean)
-    .map((chunk) => `${chunk.charAt(0).toUpperCase()}${chunk.slice(1)}`)
-    .join(" ");
-}
-
 function shortenCopy(text: string, maxLength = 92): string {
-  if (text.length <= maxLength) {
-    return text;
-  }
-
+  if (text.length <= maxLength) return text;
   return `${text.slice(0, maxLength).trimEnd()}...`;
 }
 
@@ -73,18 +77,36 @@ export async function generateMetadata({
   }
 
   const canonicalPath = `/soluciones/${pageData.industry_slug}/${pageData.use_case_slug}`;
+  const industryName = pageData.industry_grammar.display_name;
+  const useCaseName = pageData.use_case_grammar.display_name;
 
   return {
     title: pageData.title,
     description: pageData.description,
     alternates: {
       canonical: canonicalPath,
+      languages: {
+        es: canonicalPath,
+        "es-EC": canonicalPath,
+        "es-CO": canonicalPath,
+        "es-MX": canonicalPath,
+      },
     },
     openGraph: {
       title: pageData.title,
       description: pageData.description,
       url: `https://www.nexalforge.com${canonicalPath}`,
       type: "website",
+      locale: "es_419",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${useCaseName} para ${industryName} | Nexi`,
+      description: pageData.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -101,11 +123,11 @@ export default async function PseoSolutionPage({
     notFound();
   }
 
-  const industryName = slugToTitle(pageData.industry_slug);
-  const useCaseName = slugToTitle(pageData.use_case_slug);
-  const canonicalPath = `/soluciones/${pageData.industry_slug}/${pageData.use_case_slug}`;
+  const industryName = pageData.industry_grammar.display_name;
+  const useCaseName = pageData.use_case_grammar.display_name;
+  const prepositionPhrase = pageData.industry_grammar.preposition_phrase;
 
-  const mockChatMessages: ChatMessage[] = [
+  const chatMessages: ChatMessage[] = [
     {
       role: "Cliente",
       text: shortenCopy(
@@ -135,44 +157,102 @@ export default async function PseoSolutionPage({
     },
   ];
 
+  const breadcrumbItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Soluciones", href: "/soluciones" },
+    { label: industryName, href: `/soluciones/${pageData.industry_slug}` },
+    {
+      label: useCaseName,
+      href: `/soluciones/${pageData.industry_slug}/${pageData.use_case_slug}`,
+    },
+  ];
+
   return (
     <>
       <JsonLd
-        id={`nexi-software-${pageData.industry_slug}-${pageData.use_case_slug}`}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: `Nexi para ${industryName}`,
-          applicationCategory: "BusinessApplication",
-          operatingSystem: "Web",
-          description: pageData.description,
-          url: `https://www.nexalforge.com${canonicalPath}`,
-          featureList: pageData.benefits,
-          offers: {
-            "@type": "Offer",
-            price: "0",
-            priceCurrency: "USD",
-            availability: "https://schema.org/InStock",
-            description: `Diagnóstico para ${useCaseName} en ${industryName}`,
-          },
-          provider: {
-            "@type": "Organization",
-            name: "Nexal Forge",
-            url: "https://www.nexalforge.com",
-          },
-        }}
+        id={`software-${pageData.industry_slug}-${pageData.use_case_slug}`}
+        schema={buildSoftwareApplicationSchema(pageData)}
+      />
+      <JsonLd
+        id={`faq-${pageData.industry_slug}-${pageData.use_case_slug}`}
+        schema={buildFAQPageSchema(pageData.faqs)}
+      />
+      <JsonLd
+        id={`service-${pageData.industry_slug}-${pageData.use_case_slug}`}
+        schema={buildServiceSchema(pageData)}
+      />
+      <JsonLd
+        id={`breadcrumb-${pageData.industry_slug}-${pageData.use_case_slug}`}
+        schema={buildBreadcrumbSchema(
+          pageData.industry_slug,
+          industryName,
+          useCaseName,
+          pageData.use_case_slug
+        )}
       />
 
-      <PseoSolutionExperience
-        industryName={industryName}
-        useCaseName={useCaseName}
-        heroTitle={pageData.hero_title}
-        heroSubtitle={pageData.hero_subtitle}
-        chatMessages={mockChatMessages}
-        benefits={pageData.benefits}
+      <main className="relative z-10 overflow-hidden bg-slate-950 text-white pb-36 md:pb-0">
+        {/* Breadcrumb */}
+        <PseoBreadcrumb items={breadcrumbItems} />
+
+        {/* Section 1: Hero — Dark radial gradient */}
+        <PseoHeroSection
+          industryName={industryName}
+          useCaseName={useCaseName}
+          heroTitle={pageData.hero_title}
+          heroSubtitle={pageData.hero_subtitle}
+          chatMessages={chatMessages}
+          benefit={pageData.benefits[0] ?? "Más reservas confirmadas cada semana"}
+          demoCtaUrl={DEMO_CTA_URL}
+          whatsappCtaUrl={WHATSAPP_CTA_URL}
+          ctaPrimaryText={pageData.cta_primary_text}
+          ctaWhatsappText={pageData.cta_whatsapp_text}
+          localTrustSignals={LOCAL_TRUST_SIGNALS}
+        />
+
+        {/* Section 2: Pain Points — Dark variant */}
+        <PseoPainPointsSection
+          painPoints={pageData.pain_points}
+          prepositionPhrase={prepositionPhrase}
+        />
+
+        {/* Section 3: Before vs After — Light */}
+        <PseoBeforeAfterSection rows={pageData.before_after} />
+
+        {/* Section 4: ROI Metrics — Dark */}
+        <PseoRoiSection
+          metrics={pageData.metrics}
+          prepositionPhrase={prepositionPhrase}
+        />
+
+        {/* Section 5: How Nexi Works — Dark variant */}
+        <PseoHowItWorksSection
+          steps={pageData.how_it_works}
+          prepositionPhrase={prepositionPhrase}
+        />
+
+        {/* Section 6: FAQ — Light */}
+        <PseoFaqSection
+          faqs={pageData.faqs}
+          useCaseName={useCaseName.toLowerCase()}
+        />
+
+        {/* Section 7: Related + CTA — Dark */}
+        <PseoRelatedSection
+          relatedPages={pageData.related_pages}
+          demoCtaUrl={DEMO_CTA_URL}
+          whatsappCtaUrl={WHATSAPP_CTA_URL}
+          ctaPrimaryText={pageData.cta_primary_text}
+          ctaWhatsappText={pageData.cta_whatsapp_text}
+          prepositionPhrase={prepositionPhrase}
+        />
+      </main>
+
+      <PseoMobileStickyCta
         demoCtaUrl={DEMO_CTA_URL}
         whatsappCtaUrl={WHATSAPP_CTA_URL}
-        localTrustSignals={LOCAL_TRUST_SIGNALS}
+        ctaPrimaryText={pageData.cta_primary_text}
+        ctaWhatsappText={pageData.cta_whatsapp_text}
       />
     </>
   );

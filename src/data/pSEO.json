@@ -15,7 +15,136 @@
       "Reserva y confirmación de citas 24/7 por canales digitales.",
       "Recordatorios automáticos para disminuir inasistencias.",
       "Mejor uso de la agenda con menos carga administrativa."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Clínicas Médicas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para clínicas médicas"
+    },
+    "use_case_grammar": {
+      "display_name": "Agendamiento de Citas",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "agendamiento citas clínica",
+      "sistema citas médicas IA",
+      "reserva citas automática clínica"
+    ],
+    "metrics": {
+      "time_saved": "72%",
+      "cost_reduction": "45%",
+      "revenue_impact": "+28%",
+      "satisfaction_rate": "94%",
+      "default_tasks_per_month": 320,
+      "default_minutes_per_task": 6,
+      "default_hourly_cost": 10
+    },
+    "before_after": [
+      {
+        "dimension": "Tiempo de respuesta",
+        "before": "2-4 horas en horario laboral",
+        "after": "Menos de 30 segundos, 24/7"
+      },
+      {
+        "dimension": "Tasa de no-shows",
+        "before": "25-35% de citas perdidas",
+        "after": "Menos de 8% con confirmación automática"
+      },
+      {
+        "dimension": "Carga de recepción",
+        "before": "6+ horas diarias en llamadas",
+        "after": "Solo casos complejos y presenciales"
+      },
+      {
+        "dimension": "Ocupación de agenda",
+        "before": "60-70% de slots ocupados",
+        "after": "85-95% con reasignación automática"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Conectamos Nexi a tu sistema",
+        "description": "Integramos WhatsApp con tu agenda médica para que Nexi vea disponibilidad en tiempo real.",
+        "icon_name": "PlugZap"
+      },
+      {
+        "title": "Nexi atiende cada solicitud",
+        "description": "El paciente escribe, Nexi identifica especialidad, propone horarios y confirma la cita.",
+        "icon_name": "BrainCircuit"
+      },
+      {
+        "title": "Tu agenda se llena sola",
+        "description": "Confirmaciones, recordatorios y reprogramaciones corren en automático sin intervención.",
+        "icon_name": "CalendarCheck2"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede manejar varias especialidades médicas a la vez?",
+        "answer": "Sí. Nexi diferencia especialidades, sedes y horarios de cada profesional para agendar correctamente sin cruces."
+      },
+      {
+        "question": "¿Qué pasa si el paciente quiere reagendar fuera de horario?",
+        "answer": "Nexi gestiona reprogramaciones 24/7. Propone alternativas disponibles y confirma el cambio sin necesidad de recepción."
+      },
+      {
+        "question": "¿Se integra con mi software de historia clínica?",
+        "answer": "Nexi se conecta con los principales sistemas de gestión clínica vía API. Consultamos compatibilidad en el diagnóstico gratuito."
+      },
+      {
+        "question": "¿Cuánto tarda la implementación?",
+        "answer": "Entre 5 y 10 días hábiles desde la firma. Incluye configuración, pruebas y capacitación de tu equipo."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Redujimos los no-shows en un 60% el primer mes. Ahora recepción se enfoca en atender pacientes presenciales.",
+        "author_name": "Dra. Carolina M.",
+        "author_role": "Directora Médica",
+        "company": "Centro Médico Vida",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal de comunicación con pacientes.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Sincronización de agenda en tiempo real.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Sistemas HIS",
+        "description": "Conexión con software de historia clínica.",
+        "icon_name": "Database"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "recordatorios-medicacion",
+        "link_text": "Recordatorios de medicación para clínicas"
+      },
+      {
+        "industry_slug": "clinicas-odontologicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento para clínicas odontológicas"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "agenda-medica",
+        "link_text": "Agenda médica para doctores en Quito"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "inmobiliarias",
@@ -33,7 +162,132 @@
       "Filtro instantáneo entre compradores, arrendatarios e inversionistas.",
       "Priorización automática de leads con mayor intención.",
       "Derivación rápida al equipo comercial para seguimiento efectivo."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Inmobiliarias",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para inmobiliarias"
+    },
+    "use_case_grammar": {
+      "display_name": "Calificación de Leads",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "calificación leads inmobiliaria",
+      "CRM inmobiliario IA",
+      "filtrar prospectos inmobiliarios"
+    ],
+    "metrics": {
+      "time_saved": "65%",
+      "cost_reduction": "40%",
+      "revenue_impact": "+35%",
+      "satisfaction_rate": "91%",
+      "default_tasks_per_month": 250,
+      "default_minutes_per_task": 10,
+      "default_hourly_cost": 12
+    },
+    "before_after": [
+      {
+        "dimension": "Calificación de lead",
+        "before": "24-48 horas por prospecto",
+        "after": "Menos de 2 minutos automáticos"
+      },
+      {
+        "dimension": "Tasa de conversión",
+        "before": "3-5% de leads a cierre",
+        "after": "8-12% con priorización inteligente"
+      },
+      {
+        "dimension": "Asignación a asesor",
+        "before": "Manual por coordinador comercial",
+        "after": "Automática por zona, presupuesto y tipo"
+      },
+      {
+        "dimension": "Seguimiento",
+        "before": "Leads olvidados después de 48h",
+        "after": "Secuencia automática hasta respuesta"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El lead escribe por WhatsApp",
+        "description": "Nexi recibe la consulta, identifica intención (compra, arriendo, inversión) y recopila datos clave.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Calificación instantánea",
+        "description": "Nexi evalúa presupuesto, zona de interés, urgencia y capacidad financiera en la misma conversación.",
+        "icon_name": "BrainCircuit"
+      },
+      {
+        "title": "Derivación al asesor correcto",
+        "description": "El lead calificado llega al asesor con ficha completa lista para agendar visita o seguimiento.",
+        "icon_name": "UserCheck"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede diferenciar entre comprador, arrendatario e inversionista?",
+        "answer": "Sí. Nexi hace preguntas específicas para clasificar el tipo de interés y ajustar el flujo de calificación."
+      },
+      {
+        "question": "¿Se integra con mi CRM inmobiliario?",
+        "answer": "Nexi se conecta con los principales CRMs del sector vía API o webhooks para enviar leads calificados directamente."
+      },
+      {
+        "question": "¿Qué pasa con los leads que no califican?",
+        "answer": "Nexi los mantiene en una secuencia de nutrición para reactivarlos cuando estén listos, sin consumir tiempo del equipo."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Antes perdíamos el 40% de leads por demora en responder. Con Nexi respondemos en segundos y solo hablamos con prospectos reales.",
+        "author_name": "Andrés V.",
+        "author_role": "Director Comercial",
+        "company": "Grupo Inmobiliario Nexo",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal para captura de leads.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "CRM Inmobiliario",
+        "description": "Envío automático de fichas calificadas.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Portal Inmobiliario",
+        "description": "Captura de leads desde portales web.",
+        "icon_name": "Globe"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "inmobiliarias",
+        "use_case_slug": "agendamiento-visitas-propiedades",
+        "link_text": "Agendamiento de visitas para inmobiliarias"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "ventas-whatsapp",
+        "link_text": "Ventas por WhatsApp para PYMEs"
+      },
+      {
+        "industry_slug": "ecommerce",
+        "use_case_slug": "recuperacion-carritos-abandonados",
+        "link_text": "Recuperación de carritos en e-commerce"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "bufetes-abogados",
@@ -41,35 +295,285 @@
     "title": "Automatización de Ingesta de Clientes para Bufetes de Abogados con IA | Nexi",
     "description": "Estandariza la ingesta legal con Nexi: captura hechos clave, clasifica urgencia y prepara expedientes iniciales para que el abogado entre directo al caso.",
     "hero_title": "Ingesta legal automatizada para bufetes de abogados",
-    "hero_subtitle": "Nexi recopila la informacion inicial del potencial cliente, valida datos criticos y prioriza casos urgentes antes de que lleguen al equipo legal.",
+    "hero_subtitle": "Nexi recopila la información inicial del potencial cliente, valida datos críticos y prioriza casos urgentes antes de que lleguen al equipo legal.",
     "pain_points": [
-      "Paralegales invierten horas en llamadas repetitivas para levantar datos basicos de cada consulta.",
+      "Paralegales invierten horas en llamadas repetitivas para levantar datos básicos de cada consulta.",
       "Llegan formularios incompletos sin fechas clave, documentos iniciales ni contexto del conflicto.",
       "Casos urgentes como detenciones o medidas cautelares quedan en cola junto a consultas no prioritarias."
     ],
     "benefits": [
-      "Captura guiada de tipo de caso, jurisdiccion, contrapartes y evidencia minima en un solo flujo.",
-      "Precalificacion por urgencia y viabilidad antes de asignar al abogado responsable.",
-      "Ficha de intake estandarizada lista para CRM legal o software de gestion de expedientes."
-    ]
+      "Captura guiada de tipo de caso, jurisdicción, contrapartes y evidencia mínima en un solo flujo.",
+      "Precalificación por urgencia y viabilidad antes de asignar al abogado responsable.",
+      "Ficha de intake estandarizada lista para CRM legal o software de gestión de expedientes."
+    ],
+    "industry_grammar": {
+      "display_name": "Bufetes de Abogados",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para bufetes de abogados"
+    },
+    "use_case_grammar": {
+      "display_name": "Ingesta de Clientes",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "ingesta clientes bufete",
+      "intake legal automatizado",
+      "CRM abogados IA"
+    ],
+    "metrics": {
+      "time_saved": "68%",
+      "cost_reduction": "50%",
+      "revenue_impact": "+22%",
+      "satisfaction_rate": "89%",
+      "default_tasks_per_month": 120,
+      "default_minutes_per_task": 25,
+      "default_hourly_cost": 18
+    },
+    "before_after": [
+      {
+        "dimension": "Tiempo de ingesta",
+        "before": "30-45 minutos por caso",
+        "after": "8-12 minutos con flujo guiado"
+      },
+      {
+        "dimension": "Datos completos",
+        "before": "60% de formularios incompletos",
+        "after": "95% de fichas completas al primer intento"
+      },
+      {
+        "dimension": "Priorización",
+        "before": "Manual, sujeta a orden de llegada",
+        "after": "Automática por urgencia y viabilidad"
+      },
+      {
+        "dimension": "Asignación",
+        "before": "Coordinador revisa caso por caso",
+        "after": "Derivación directa al abogado por especialidad"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente inicia la consulta",
+        "description": "Nexi recibe el contacto y guía una entrevista estructurada para capturar hechos, fechas y documentos.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Clasificación automática",
+        "description": "Nexi clasifica tipo de caso, jurisdicción y urgencia para priorizar sin intervención del equipo.",
+        "icon_name": "BrainCircuit"
+      },
+      {
+        "title": "Expediente listo para el abogado",
+        "description": "La ficha completa llega al abogado asignado con todo el contexto necesario para actuar.",
+        "icon_name": "FileCheck"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede manejar información confidencial de clientes?",
+        "answer": "Sí. Nexi opera con cifrado en tránsito y en reposo. No almacena datos sensibles más allá del flujo autorizado por el bufete."
+      },
+      {
+        "question": "¿Funciona para distintas áreas del derecho?",
+        "answer": "Sí. Los flujos de intake se personalizan por área: civil, penal, laboral, familiar, corporativo, entre otros."
+      },
+      {
+        "question": "¿Se integra con software de gestión legal?",
+        "answer": "Nexi se conecta con los principales sistemas de gestión de expedientes vía API para enviar fichas automáticamente."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Antes tomaba 40 minutos levantar un caso. Con Nexi, el cliente llena todo en 10 minutos y el abogado recibe un expediente completo.",
+        "author_name": "Lic. Roberto P.",
+        "author_role": "Socio Fundador",
+        "company": "P&G Abogados",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de contacto inicial con el cliente.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Software Legal",
+        "description": "Envío de fichas al sistema de gestión.",
+        "icon_name": "Scale"
+      },
+      {
+        "name": "Google Drive",
+        "description": "Almacenamiento de documentos iniciales.",
+        "icon_name": "FolderOpen"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "bufetes-abogados",
+        "use_case_slug": "actualizacion-estado-casos",
+        "link_text": "Actualización de estado de casos legales"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento de citas para clínicas"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "atencion-cliente",
+        "link_text": "Atención al cliente para PYMEs"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "bufetes-abogados",
     "use_case_slug": "actualizacion-estado-casos",
     "title": "Actualización de Estado de Casos para Bufetes de Abogados con IA | Nexi",
-    "description": "Automatiza actualizaciones de casos en etapas permitidas, reduce llamadas de seguimiento y mejora la experiencia del cliente sin exponer informacion sensible.",
+    "description": "Automatiza actualizaciones de casos en etapas permitidas, reduce llamadas de seguimiento y mejora la experiencia del cliente sin exponer información sensible.",
     "hero_title": "Actualizaciones de casos sin saturar al equipo legal",
-    "hero_subtitle": "Nexi envia reportes de avance aprobados por el bufete, responde preguntas frecuentes del proceso y deriva al abogado cuando se requiere criterio juridico.",
+    "hero_subtitle": "Nexi envía reportes de avance aprobados por el bufete, responde preguntas frecuentes del proceso y deriva al abogado cuando se requiere criterio jurídico.",
     "pain_points": [
       "Clientes llaman varias veces por semana para preguntar el mismo estado procesal.",
       "Asistentes redactan manualmente correos de seguimiento para decenas de expedientes activos.",
       "Cambios de estado en juzgados no se comunican a tiempo y aumentan reclamos por falta de visibilidad."
     ],
     "benefits": [
-      "Mensajes automaticos con hitos de caso segun reglas y autorizaciones definidas por el despacho.",
-      "Canal unico para consultas de estado con trazabilidad de cada respuesta enviada.",
-      "Escalamiento inmediato al abogado cuando la consulta requiere estrategia legal o revision documental."
-    ]
+      "Mensajes automáticos con hitos de caso según reglas y autorizaciones definidas por el despacho.",
+      "Canal único para consultas de estado con trazabilidad de cada respuesta enviada.",
+      "Escalamiento inmediato al abogado cuando la consulta requiere estrategia legal o revisión documental."
+    ],
+    "industry_grammar": {
+      "display_name": "Bufetes de Abogados",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para bufetes de abogados"
+    },
+    "use_case_grammar": {
+      "display_name": "Actualización de Estado de Casos",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "actualización casos bufete",
+      "seguimiento casos legal IA",
+      "notificación estado procesal automático"
+    ],
+    "metrics": {
+      "time_saved": "70%",
+      "cost_reduction": "55%",
+      "revenue_impact": "+18%",
+      "satisfaction_rate": "92%",
+      "default_tasks_per_month": 200,
+      "default_minutes_per_task": 8,
+      "default_hourly_cost": 15
+    },
+    "before_after": [
+      {
+        "dimension": "Llamadas de seguimiento",
+        "before": "15-20 llamadas diarias del mismo tema",
+        "after": "Consultas automáticas por WhatsApp"
+      },
+      {
+        "dimension": "Tiempo de comunicación",
+        "before": "Correos manuales redactados uno a uno",
+        "after": "Notificaciones automáticas en hitos clave"
+      },
+      {
+        "dimension": "Satisfacción del cliente",
+        "before": "Reclamos por falta de visibilidad",
+        "after": "Cliente informado en cada etapa del proceso"
+      },
+      {
+        "dimension": "Carga del asistente",
+        "before": "4+ horas diarias en seguimiento",
+        "after": "Solo escala consultas de criterio jurídico"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Configuras las reglas de comunicación",
+        "description": "Defines qué hitos se comunican, qué información es pública y cuándo escalar al abogado.",
+        "icon_name": "Settings"
+      },
+      {
+        "title": "Nexi notifica en cada avance",
+        "description": "Cuando el caso cambia de estado, Nexi envía el mensaje aprobado al cliente por WhatsApp.",
+        "icon_name": "Bell"
+      },
+      {
+        "title": "El cliente consulta sin interrumpir",
+        "description": "Si el cliente pregunta el estado, Nexi responde automáticamente o escala según las reglas.",
+        "icon_name": "MessageCircle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede exponer información confidencial del caso?",
+        "answer": "No. Nexi solo comunica hitos y estados que el bufete autoriza previamente. Información sensible requiere aprobación del abogado."
+      },
+      {
+        "question": "¿Cómo sabe Nexi cuándo cambió el estado del caso?",
+        "answer": "Se conecta a tu sistema de gestión legal o recibe actualizaciones vía webhook cuando el equipo marca un avance."
+      },
+      {
+        "question": "¿El cliente puede hacer preguntas fuera del estado del caso?",
+        "answer": "Sí. Nexi responde preguntas frecuentes del proceso y escala al abogado cuando detecta que requiere criterio jurídico."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Las llamadas de '¿cómo va mi caso?' bajaron un 75%. Los clientes están más tranquilos y nosotros más productivos.",
+        "author_name": "Dra. Sofía T.",
+        "author_role": "Socia Litigante",
+        "company": "Torres & Asociados",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de notificación y consulta para clientes.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Software Legal",
+        "description": "Fuente de estados y hitos del expediente.",
+        "icon_name": "Scale"
+      },
+      {
+        "name": "Email",
+        "description": "Canal complementario para reportes formales.",
+        "icon_name": "Mail"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "bufetes-abogados",
+        "use_case_slug": "ingesta-clientes",
+        "link_text": "Ingesta de clientes para bufetes"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "recordatorios-medicacion",
+        "link_text": "Recordatorios de medicación para clínicas"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "atencion-cliente",
+        "link_text": "Atención al cliente para PYMEs"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "ecommerce",
@@ -79,15 +583,144 @@
     "hero_title": "Recupera ventas perdidas por carritos abandonados",
     "hero_subtitle": "Nexi detecta abandono de checkout, inicia conversaciones personalizadas y ayuda a cerrar la compra sin depender de campañas masivas con descuento.",
     "pain_points": [
-      "El equipo no alcanza a responder dudas de envio y medios de pago dentro de los primeros minutos criticos.",
+      "El equipo no alcanza a responder dudas de envío y medios de pago dentro de los primeros minutos críticos.",
       "Se aplican cupones generales a todos los abandonos, reduciendo margen incluso en clientes listos para pagar.",
-      "No existe visibilidad de por que se cae el checkout: costo de envio, tiempos de entrega o friccion en pago."
+      "No existe visibilidad de por qué se cae el checkout: costo de envío, tiempos de entrega o fricción en pago."
     ],
     "benefits": [
-      "Activacion automatica por WhatsApp o email con contexto real del carrito y productos vistos.",
-      "Manejo de objeciones sobre envios, devoluciones y pagos con respuestas conectadas a tu politica comercial.",
-      "Incentivos segmentados por probabilidad de cierre para recuperar conversion sin erosionar rentabilidad."
-    ]
+      "Activación automática por WhatsApp o email con contexto real del carrito y productos vistos.",
+      "Manejo de objeciones sobre envíos, devoluciones y pagos con respuestas conectadas a tu política comercial.",
+      "Incentivos segmentados por probabilidad de cierre para recuperar conversión sin erosionar rentabilidad."
+    ],
+    "industry_grammar": {
+      "display_name": "E-commerce",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el",
+      "preposition_phrase": "para e-commerce"
+    },
+    "use_case_grammar": {
+      "display_name": "Recuperación de Carritos Abandonados",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "recuperación carritos abandonados",
+      "carrito abandonado IA",
+      "recuperar ventas e-commerce"
+    ],
+    "metrics": {
+      "time_saved": "80%",
+      "cost_reduction": "35%",
+      "revenue_impact": "+42%",
+      "satisfaction_rate": "88%",
+      "default_tasks_per_month": 500,
+      "default_minutes_per_task": 5,
+      "default_hourly_cost": 10
+    },
+    "before_after": [
+      {
+        "dimension": "Tiempo de contacto",
+        "before": "Email 24-48h después del abandono",
+        "after": "WhatsApp en menos de 5 minutos"
+      },
+      {
+        "dimension": "Tasa de recuperación",
+        "before": "3-5% con emails genéricos",
+        "after": "15-25% con conversación personalizada"
+      },
+      {
+        "dimension": "Uso de descuentos",
+        "before": "Cupón fijo para todos los abandonos",
+        "after": "Incentivos solo cuando son necesarios"
+      },
+      {
+        "dimension": "Visibilidad del motivo",
+        "before": "Sin datos de por qué abandona",
+        "after": "Registro de objeción por cada carrito"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Nexi detecta el abandono",
+        "description": "Cuando un cliente deja el checkout, Nexi recibe la alerta con el contenido del carrito.",
+        "icon_name": "ShoppingCart"
+      },
+      {
+        "title": "Conversación personalizada",
+        "description": "Nexi contacta al cliente, resuelve objeciones sobre envío, pago o disponibilidad.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Cierre o seguimiento",
+        "description": "Si el cliente está listo, Nexi facilita el pago. Si no, activa una secuencia de seguimiento.",
+        "icon_name": "CheckCircle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿En cuánto tiempo contacta Nexi después del abandono?",
+        "answer": "Nexi puede contactar al cliente en menos de 5 minutos después de detectar el abandono del carrito."
+      },
+      {
+        "question": "¿Nexi aplica descuentos automáticamente?",
+        "answer": "No. Nexi evalúa la probabilidad de cierre y solo ofrece incentivos cuando las reglas del negocio lo autorizan."
+      },
+      {
+        "question": "¿Se integra con mi plataforma de e-commerce?",
+        "answer": "Sí. Nexi se conecta con Shopify, WooCommerce y plataformas similares para detectar abandonos en tiempo real."
+      },
+      {
+        "question": "¿Puedo ver por qué abandonan los clientes?",
+        "answer": "Sí. Nexi registra el motivo de abandono de cada conversación para que puedas mejorar tu checkout."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Recuperamos el 18% de carritos abandonados el primer mes. La mejor inversión que hemos hecho en retención.",
+        "author_name": "María José L.",
+        "author_role": "Gerente E-commerce",
+        "company": "Moda EC",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de recuperación conversacional.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Shopify / WooCommerce",
+        "description": "Detección de carritos abandonados.",
+        "icon_name": "ShoppingCart"
+      },
+      {
+        "name": "Pasarela de Pago",
+        "description": "Facilitar cierre desde la conversación.",
+        "icon_name": "CreditCard"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "ecommerce",
+        "use_case_slug": "soporte-postventa-pedidos",
+        "link_text": "Soporte postventa para e-commerce"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "ventas-whatsapp",
+        "link_text": "Ventas por WhatsApp para PYMEs"
+      },
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "pedidos-whatsapp",
+        "link_text": "Pedidos por WhatsApp para restaurantes"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "ecommerce",
@@ -95,17 +728,142 @@
     "title": "Soporte Postventa de Pedidos para E-commerce con IA | Nexi",
     "description": "Automatiza consultas postventa en e-commerce: estado de pedidos, incidencias y devoluciones con seguimiento claro para cliente y operaciones.",
     "hero_title": "Postventa automatizada para pedidos de e-commerce",
-    "hero_subtitle": "Nexi resuelve consultas de seguimiento de pedidos en segundos, reduce carga del equipo de soporte y acelera resolucion de incidencias.",
+    "hero_subtitle": "Nexi resuelve consultas de seguimiento de pedidos en segundos, reduce carga del equipo de soporte y acelera resolución de incidencias.",
     "pain_points": [
-      "Mensajes de \"donde esta mi pedido\" consumen gran parte de los turnos del equipo de soporte.",
+      "Mensajes de \"¿dónde está mi pedido?\" consumen gran parte de los turnos del equipo de soporte.",
       "Incidencias por paquetes incompletos o retrasados se atienden tarde por falta de contexto centralizado.",
-      "Procesos de devolucion dependen de intercambio manual de correos y validaciones repetidas."
+      "Procesos de devolución dependen de intercambio manual de correos y validaciones repetidas."
     ],
     "benefits": [
-      "Consulta automatica de tracking y fechas estimadas integrada con transportadora o plataforma logistica.",
-      "Recoleccion estructurada de evidencia para reclamos antes de escalar a un agente humano.",
-      "Inicio guiado de devoluciones con validacion de politicas y generacion de instrucciones al cliente."
-    ]
+      "Consulta automática de tracking y fechas estimadas integrada con transportadora o plataforma logística.",
+      "Recolección estructurada de evidencia para reclamos antes de escalar a un agente humano.",
+      "Inicio guiado de devoluciones con validación de políticas y generación de instrucciones al cliente."
+    ],
+    "industry_grammar": {
+      "display_name": "E-commerce",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el",
+      "preposition_phrase": "para e-commerce"
+    },
+    "use_case_grammar": {
+      "display_name": "Soporte Postventa de Pedidos",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "soporte postventa e-commerce",
+      "seguimiento pedidos IA",
+      "atención postventa automatizada"
+    ],
+    "metrics": {
+      "time_saved": "75%",
+      "cost_reduction": "50%",
+      "revenue_impact": "+15%",
+      "satisfaction_rate": "90%",
+      "default_tasks_per_month": 600,
+      "default_minutes_per_task": 7,
+      "default_hourly_cost": 8
+    },
+    "before_after": [
+      {
+        "dimension": "Consultas de tracking",
+        "before": "Agente busca manualmente en 3 sistemas",
+        "after": "Respuesta automática con estado en tiempo real"
+      },
+      {
+        "dimension": "Tiempo de resolución",
+        "before": "24-72 horas por incidencia",
+        "after": "Menos de 4 horas con escalamiento automático"
+      },
+      {
+        "dimension": "Proceso de devolución",
+        "before": "5-8 correos de ida y vuelta",
+        "after": "Flujo guiado en una sola conversación"
+      },
+      {
+        "dimension": "Carga de soporte",
+        "before": "80% del tiempo en consultas repetitivas",
+        "after": "Solo casos complejos llegan a humanos"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente pregunta por su pedido",
+        "description": "Nexi recibe la consulta y obtiene el estado actualizado desde tu plataforma logística.",
+        "icon_name": "Package"
+      },
+      {
+        "title": "Resolución o recolección de evidencia",
+        "description": "Si hay incidencia, Nexi recopila fotos, detalles y valida políticas antes de escalar.",
+        "icon_name": "ClipboardCheck"
+      },
+      {
+        "title": "Cierre o escalamiento",
+        "description": "Nexi resuelve directamente o escala al equipo de soporte con toda la información lista.",
+        "icon_name": "CheckCircle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede consultar el tracking de cualquier transportadora?",
+        "answer": "Sí. Nexi se integra con las principales empresas de logística y plataformas de e-commerce para obtener estados en tiempo real."
+      },
+      {
+        "question": "¿Puede iniciar devoluciones automáticamente?",
+        "answer": "Nexi guía el proceso de devolución, valida políticas y genera instrucciones. La aprobación final puede requerir intervención humana según tus reglas."
+      },
+      {
+        "question": "¿Cuántas consultas puede manejar simultáneamente?",
+        "answer": "Nexi no tiene límite de conversaciones simultáneas, a diferencia de un equipo humano con turnos limitados."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Las consultas de '¿dónde está mi pedido?' bajaron un 80%. El equipo ahora se enfoca en casos que realmente necesitan atención humana.",
+        "author_name": "Carlos R.",
+        "author_role": "Head of CX",
+        "company": "TechShop EC",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de soporte para clientes.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Plataforma Logística",
+        "description": "Consulta de tracking en tiempo real.",
+        "icon_name": "Truck"
+      },
+      {
+        "name": "Shopify / WooCommerce",
+        "description": "Datos de pedido y políticas de devolución.",
+        "icon_name": "ShoppingCart"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "ecommerce",
+        "use_case_slug": "recuperacion-carritos-abandonados",
+        "link_text": "Recuperación de carritos abandonados"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "atencion-cliente",
+        "link_text": "Atención al cliente para PYMEs"
+      },
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "pedidos-whatsapp",
+        "link_text": "Pedidos por WhatsApp para restaurantes"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "recursos-humanos",
@@ -113,17 +871,142 @@
     "title": "Filtrado de Candidatos para RRHH y Reclutamiento con IA | Nexi",
     "description": "Acelera el screening de talento con Nexi: filtra candidatos por requisitos obligatorios, experiencia y disponibilidad para entregar shortlists accionables.",
     "hero_title": "Screening de candidatos sin cuellos de botella",
-    "hero_subtitle": "Nexi evalua postulaciones con criterios definidos por tu equipo de RRHH y prioriza perfiles con mayor ajuste antes de la entrevista humana.",
+    "hero_subtitle": "Nexi evalúa postulaciones con criterios definidos por tu equipo de RRHH y prioriza perfiles con mayor ajuste antes de la entrevista humana.",
     "pain_points": [
       "Reclutadores revisan manualmente cientos de hojas de vida para encontrar pocos perfiles viables.",
-      "Postulantes avanzan sin certificaciones obligatorias o sin experiencia minima para el cargo.",
+      "Postulantes avanzan sin certificaciones obligatorias o sin experiencia mínima para el cargo.",
       "Se agendan entrevistas con candidatos fuera de rango salarial o sin disponibilidad real de ingreso."
     ],
     "benefits": [
-      "Preguntas knockout automaticas para descartar de inmediato candidatos sin requisitos criticos.",
-      "Ranking por ajuste a experiencia, habilidades, horario y ubicacion segun la vacante.",
-      "Resumen por candidato con fortalezas, alertas y recomendacion de siguiente paso para el reclutador."
-    ]
+      "Preguntas knockout automáticas para descartar de inmediato candidatos sin requisitos críticos.",
+      "Ranking por ajuste a experiencia, habilidades, horario y ubicación según la vacante.",
+      "Resumen por candidato con fortalezas, alertas y recomendación de siguiente paso para el reclutador."
+    ],
+    "industry_grammar": {
+      "display_name": "Recursos Humanos",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para recursos humanos"
+    },
+    "use_case_grammar": {
+      "display_name": "Filtrado de Candidatos",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "filtrado candidatos IA",
+      "screening RRHH automatizado",
+      "reclutamiento inteligente"
+    ],
+    "metrics": {
+      "time_saved": "78%",
+      "cost_reduction": "60%",
+      "revenue_impact": "+30%",
+      "satisfaction_rate": "93%",
+      "default_tasks_per_month": 180,
+      "default_minutes_per_task": 15,
+      "default_hourly_cost": 14
+    },
+    "before_after": [
+      {
+        "dimension": "Revisión de CVs",
+        "before": "5-8 minutos por candidato, manual",
+        "after": "Filtrado automático en segundos"
+      },
+      {
+        "dimension": "Calidad de shortlist",
+        "before": "40% de candidatos no aptos pasan",
+        "after": "95% de candidatos cumplen requisitos mínimos"
+      },
+      {
+        "dimension": "Tiempo de cobertura",
+        "before": "25-40 días por vacante",
+        "after": "12-18 días con screening acelerado"
+      },
+      {
+        "dimension": "Experiencia del candidato",
+        "before": "Sin respuesta por días o semanas",
+        "after": "Feedback inmediato y transparente"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Defines los criterios de la vacante",
+        "description": "Configuras requisitos obligatorios, deseables y preguntas knockout para cada puesto.",
+        "icon_name": "ClipboardList"
+      },
+      {
+        "title": "Nexi entrevista a cada postulante",
+        "description": "Nexi hace las preguntas clave, valida requisitos y genera un perfil resumido por candidato.",
+        "icon_name": "BrainCircuit"
+      },
+      {
+        "title": "Recibes la shortlist priorizada",
+        "description": "Solo los perfiles que cumplen llegan a tu bandeja, ordenados por ajuste y disponibilidad.",
+        "icon_name": "UserCheck"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede hacer preguntas técnicas específicas del cargo?",
+        "answer": "Sí. Puedes configurar preguntas técnicas por vacante. Nexi evalúa respuestas contra criterios que defines tú."
+      },
+      {
+        "question": "¿Se integra con mi ATS o bolsa de empleo?",
+        "answer": "Nexi se conecta con ATS populares y portales de empleo para recibir postulaciones y enviar resultados."
+      },
+      {
+        "question": "¿Qué pasa con los candidatos descartados?",
+        "answer": "Nexi envía una respuesta profesional y los mantiene en base para futuras vacantes si lo configuras."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Pasamos de revisar 200 CVs a recibir shortlists de 15 candidatos calificados. El equipo de RRHH ahora se enfoca en entrevistar, no en filtrar.",
+        "author_name": "Patricia G.",
+        "author_role": "Directora de RRHH",
+        "company": "Grupo Talento",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de comunicación con candidatos.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "ATS",
+        "description": "Sincronización con sistema de seguimiento.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Email",
+        "description": "Notificaciones y respuestas formales.",
+        "icon_name": "Mail"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "recursos-humanos",
+        "use_case_slug": "coordinacion-entrevistas",
+        "link_text": "Coordinación de entrevistas para RRHH"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "atencion-cliente",
+        "link_text": "Atención al cliente para PYMEs"
+      },
+      {
+        "industry_slug": "bufetes-abogados",
+        "use_case_slug": "ingesta-clientes",
+        "link_text": "Ingesta de clientes para bufetes"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "recursos-humanos",
@@ -131,89 +1014,714 @@
     "title": "Coordinación de Entrevistas para RRHH con IA | Nexi",
     "description": "Automatiza la coordinación de entrevistas entre candidatos y hiring managers, reduciendo no-shows y tiempo de cierre de vacantes.",
     "hero_title": "Entrevistas coordinadas sin ida y vuelta interminable",
-    "hero_subtitle": "Nexi propone horarios, confirma asistencia y maneja reprogramaciones para que el proceso de seleccion avance sin friccion.",
+    "hero_subtitle": "Nexi propone horarios, confirma asistencia y maneja reprogramaciones para que el proceso de selección avance sin fricción.",
     "pain_points": [
-      "Coordinar disponibilidad por correo entre candidatos y entrevistadores toma dias por vacante.",
+      "Coordinar disponibilidad por correo entre candidatos y entrevistadores toma días por vacante.",
       "Invitaciones se pierden o llegan sin recordatorios, generando no-shows en etapas clave.",
-      "Reprogramaciones no quedan sincronizadas en el ATS y causan confusion operativa."
+      "Reprogramaciones no quedan sincronizadas en el ATS y causan confusión operativa."
     ],
     "benefits": [
-      "Propuesta automatica de slots en funcion de calendarios y ventanas de contratacion.",
-      "Recordatorios multicanal con confirmacion previa para reducir ausencias de candidatos.",
-      "Actualizacion de cambios de agenda y estado de entrevista en tu flujo de reclutamiento."
-    ]
+      "Propuesta automática de slots en función de calendarios y ventanas de contratación.",
+      "Recordatorios multicanal con confirmación previa para reducir ausencias de candidatos.",
+      "Actualización de cambios de agenda y estado de entrevista en tu flujo de reclutamiento."
+    ],
+    "industry_grammar": {
+      "display_name": "Recursos Humanos",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para recursos humanos"
+    },
+    "use_case_grammar": {
+      "display_name": "Coordinación de Entrevistas",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "coordinación entrevistas RRHH",
+      "agendar entrevistas automático",
+      "programar entrevistas IA"
+    ],
+    "metrics": {
+      "time_saved": "70%",
+      "cost_reduction": "45%",
+      "revenue_impact": "+20%",
+      "satisfaction_rate": "91%",
+      "default_tasks_per_month": 150,
+      "default_minutes_per_task": 12,
+      "default_hourly_cost": 12
+    },
+    "before_after": [
+      {
+        "dimension": "Coordinación",
+        "before": "3-5 correos por entrevista",
+        "after": "Slot propuesto y confirmado en un flujo"
+      },
+      {
+        "dimension": "No-shows",
+        "before": "20-30% de candidatos no asisten",
+        "after": "Menos de 8% con recordatorios automáticos"
+      },
+      {
+        "dimension": "Reprogramaciones",
+        "before": "Manuales, con riesgo de cruces",
+        "after": "Automáticas con validación de calendario"
+      },
+      {
+        "dimension": "Tiempo del reclutador",
+        "before": "2+ horas diarias coordinando",
+        "after": "Solo revisa confirmaciones finales"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Nexi lee los calendarios",
+        "description": "Accede a la disponibilidad de entrevistadores y propone slots viables al candidato.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "El candidato elige y confirma",
+        "description": "Nexi envía opciones por WhatsApp, el candidato elige y recibe confirmación instantánea.",
+        "icon_name": "CheckCircle"
+      },
+      {
+        "title": "Recordatorios y seguimiento",
+        "description": "Nexi envía recordatorios antes de la entrevista y gestiona reprogramaciones si es necesario.",
+        "icon_name": "Bell"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede coordinar entrevistas panel con varios entrevistadores?",
+        "answer": "Sí. Nexi cruza la disponibilidad de múltiples participantes para proponer slots donde todos estén disponibles."
+      },
+      {
+        "question": "¿Se sincroniza con Google Calendar u Outlook?",
+        "answer": "Sí. Nexi se integra con los calendarios principales para leer y crear eventos automáticamente."
+      },
+      {
+        "question": "¿Qué pasa si el candidato no responde?",
+        "answer": "Nexi envía hasta 2 recordatorios. Si no hay respuesta, notifica al reclutador y libera el slot."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Coordinar entrevistas era nuestra peor pesadilla. Ahora Nexi lo resuelve en minutos y los no-shows bajaron drásticamente.",
+        "author_name": "Lucía M.",
+        "author_role": "Talent Lead",
+        "company": "HR Solutions",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de coordinación con candidatos.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Lectura y creación de eventos.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "ATS",
+        "description": "Sincronización de estado de entrevista.",
+        "icon_name": "Database"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "recursos-humanos",
+        "use_case_slug": "filtrado-candidatos",
+        "link_text": "Filtrado de candidatos para RRHH"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento de citas para clínicas"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "agenda-medica",
+        "link_text": "Agenda médica para doctores en Quito"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "clinicas-odontologicas",
     "use_case_slug": "agendamiento-citas",
     "title": "Agendamiento de Citas para Clínicas Odontológicas con IA | Nexi",
-    "description": "Gestiona reservas odontologicas con un agente IA que responde en minutos, clasifica motivo de consulta y reduce ausencias en silla.",
+    "description": "Gestiona reservas odontológicas con un agente IA que responde en minutos, clasifica motivo de consulta y reduce ausencias en silla.",
     "hero_title": "Agenda dental optimizada con respuestas inmediatas",
-    "hero_subtitle": "Nexi atiende consultas de pacientes por WhatsApp, sugiere horarios segun especialidad y confirma asistencia sin sobrecargar recepcion.",
+    "hero_subtitle": "Nexi atiende consultas de pacientes por WhatsApp, sugiere horarios según especialidad y confirma asistencia sin sobrecargar recepción.",
     "pain_points": [
-      "Consultas por precios y disponibilidad llegan fuera de horario y se enfria el lead.",
-      "Recepcion mezcla triage, llamadas y chat, provocando errores en tipo de procedimiento agendado.",
-      "Ausencias de ultima hora dejan bloques de agenda improductivos en el sillón odontologico."
+      "Consultas por precios y disponibilidad llegan fuera de horario y se enfría el lead.",
+      "Recepción mezcla triage, llamadas y chat, provocando errores en tipo de procedimiento agendado.",
+      "Ausencias de última hora dejan bloques de agenda improductivos en el sillón odontológico."
     ],
     "benefits": [
       "Agendamiento 24/7 por especialidad, sede y preferencia horaria del paciente.",
-      "Confirmaciones y recordatorios automaticos con opcion de reprogramar en un clic.",
-      "Captura previa de motivo de consulta para preparar mejor cada atencion clinica."
-    ]
+      "Confirmaciones y recordatorios automáticos con opción de reprogramar en un clic.",
+      "Captura previa de motivo de consulta para preparar mejor cada atención clínica."
+    ],
+    "industry_grammar": {
+      "display_name": "Clínicas Odontológicas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para clínicas odontológicas"
+    },
+    "use_case_grammar": {
+      "display_name": "Agendamiento de Citas",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "agendamiento citas odontológicas",
+      "agenda dental IA",
+      "citas odontología WhatsApp"
+    ],
+    "metrics": {
+      "time_saved": "70%",
+      "cost_reduction": "42%",
+      "revenue_impact": "+32%",
+      "satisfaction_rate": "95%",
+      "default_tasks_per_month": 280,
+      "default_minutes_per_task": 6,
+      "default_hourly_cost": 9
+    },
+    "before_after": [
+      {
+        "dimension": "Tiempo de respuesta",
+        "before": "1-3 horas en horario laboral",
+        "after": "Menos de 30 segundos, 24/7"
+      },
+      {
+        "dimension": "No-shows",
+        "before": "20-30% de citas perdidas",
+        "after": "Menos de 10% con confirmación automática"
+      },
+      {
+        "dimension": "Errores de agenda",
+        "before": "Cruces entre especialidades y sedes",
+        "after": "Agenda validada por tipo de procedimiento"
+      },
+      {
+        "dimension": "Captura de motivo",
+        "before": "Paciente llega sin contexto clínico",
+        "after": "Motivo registrado antes de la cita"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El paciente escribe por WhatsApp",
+        "description": "Nexi recibe la consulta, identifica si es control, urgencia o procedimiento específico.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Nexi propone horarios",
+        "description": "Busca disponibilidad por especialista y sede, presenta opciones y confirma la cita.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Recordatorio y preparación",
+        "description": "Envía recordatorio con instrucciones previas según el tipo de procedimiento dental.",
+        "icon_name": "Bell"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi diferencia entre odontología general y especialidades?",
+        "answer": "Sí. Nexi clasifica por ortodoncia, endodoncia, periodoncia, cirugía y odontología general para agendar con el especialista correcto."
+      },
+      {
+        "question": "¿Puede enviar instrucciones previas al paciente?",
+        "answer": "Sí. Nexi envía instrucciones de preparación según el tipo de procedimiento: ayuno, medicación previa, documentos necesarios."
+      },
+      {
+        "question": "¿Se integra con software dental?",
+        "answer": "Nexi se conecta con los principales sistemas de gestión dental vía API para sincronizar agenda y datos del paciente."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Perdíamos 3 de cada 10 pacientes por no responder a tiempo. Ahora Nexi agenda mientras atendemos en el sillón.",
+        "author_name": "Dra. Verónica S.",
+        "author_role": "Directora Clínica",
+        "company": "DentalCare Plus",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal para pacientes.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Software Dental",
+        "description": "Sincronización de agenda clínica.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Respaldo de agenda para el equipo.",
+        "icon_name": "Calendar"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "clinicas-odontologicas",
+        "use_case_slug": "seguimiento-postoperatorio",
+        "link_text": "Seguimiento postoperatorio dental"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento para clínicas médicas"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "agenda-medica",
+        "link_text": "Agenda médica para doctores en Quito"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "clinicas-odontologicas",
     "use_case_slug": "seguimiento-postoperatorio",
     "title": "Seguimiento Postoperatorio para Clínicas Odontológicas con IA | Nexi",
-    "description": "Automatiza el seguimiento postoperatorio dental: monitorea sintomas, refuerza cuidados y escala alertas para una recuperacion mas segura.",
+    "description": "Automatiza el seguimiento postoperatorio dental: monitorea síntomas, refuerza cuidados y escala alertas para una recuperación más segura.",
     "hero_title": "Seguimiento postoperatorio dental automatizado",
-    "hero_subtitle": "Nexi envia controles programados tras extracciones, implantes o cirugias y detecta signos de riesgo para activar respuesta clinica a tiempo.",
+    "hero_subtitle": "Nexi envía controles programados tras extracciones, implantes o cirugías y detecta signos de riesgo para activar respuesta clínica a tiempo.",
     "pain_points": [
-      "Pacientes con dudas postoperatorias escriben de noche y no reciben orientacion oportuna.",
-      "El equipo no puede monitorear manualmente evolucion de cada paciente en dias criticos.",
+      "Pacientes con dudas postoperatorias escriben de noche y no reciben orientación oportuna.",
+      "El equipo no puede monitorear manualmente evolución de cada paciente en días críticos.",
       "Complicaciones tempranas se detectan tarde por falta de un protocolo de seguimiento constante."
     ],
     "benefits": [
-      "Flujos de seguimiento en dias 1, 3 y 7 con preguntas clinicas estructuradas.",
-      "Deteccion de alertas por dolor intenso, sangrado o fiebre para escalar al odontologo.",
-      "Envio automatizado de cuidados, higiene y medicacion para mejorar adherencia al tratamiento."
-    ]
+      "Flujos de seguimiento en días 1, 3 y 7 con preguntas clínicas estructuradas.",
+      "Detección de alertas por dolor intenso, sangrado o fiebre para escalar al odontólogo.",
+      "Envío automatizado de cuidados, higiene y medicación para mejorar adherencia al tratamiento."
+    ],
+    "industry_grammar": {
+      "display_name": "Clínicas Odontológicas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para clínicas odontológicas"
+    },
+    "use_case_grammar": {
+      "display_name": "Seguimiento Postoperatorio",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "seguimiento postoperatorio dental",
+      "control post cirugía dental IA",
+      "monitoreo pacientes odontología"
+    ],
+    "metrics": {
+      "time_saved": "65%",
+      "cost_reduction": "38%",
+      "revenue_impact": "+20%",
+      "satisfaction_rate": "96%",
+      "default_tasks_per_month": 100,
+      "default_minutes_per_task": 10,
+      "default_hourly_cost": 12
+    },
+    "before_after": [
+      {
+        "dimension": "Seguimiento post procedimiento",
+        "before": "Llamada manual a los 7 días (si hay tiempo)",
+        "after": "Flujo automático en días 1, 3 y 7"
+      },
+      {
+        "dimension": "Detección de complicaciones",
+        "before": "El paciente acude solo si empeora",
+        "after": "Alertas tempranas por síntomas reportados"
+      },
+      {
+        "dimension": "Adherencia a cuidados",
+        "before": "Instrucciones verbales que se olvidan",
+        "after": "Recordatorios escritos con indicaciones claras"
+      },
+      {
+        "dimension": "Carga del equipo",
+        "before": "Asistente llama uno a uno",
+        "after": "Solo atiende casos escalados por alerta"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Se activa el flujo postoperatorio",
+        "description": "Cuando se registra un procedimiento, Nexi inicia el protocolo de seguimiento automático.",
+        "icon_name": "Activity"
+      },
+      {
+        "title": "Nexi consulta evolución",
+        "description": "Envía preguntas clínicas estructuradas sobre dolor, sangrado, inflamación y medicación.",
+        "icon_name": "ClipboardCheck"
+      },
+      {
+        "title": "Escala si detecta riesgo",
+        "description": "Si las respuestas indican complicación, Nexi alerta al odontólogo y coordina cita urgente.",
+        "icon_name": "AlertTriangle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede dar diagnósticos médicos?",
+        "answer": "No. Nexi recopila síntomas y los compara con protocolos definidos por el odontólogo. Nunca da diagnósticos ni prescribe."
+      },
+      {
+        "question": "¿Cómo sabe Nexi qué preguntar según el procedimiento?",
+        "answer": "Cada tipo de procedimiento tiene un protocolo de seguimiento personalizable. El odontólogo define las preguntas y umbrales de alerta."
+      },
+      {
+        "question": "¿El paciente puede enviar fotos de la zona tratada?",
+        "answer": "Sí. Nexi recibe imágenes y las adjunta al reporte que revisa el odontólogo para evaluar evolución."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Detectamos una infección temprana gracias al seguimiento de Nexi. Sin el monitoreo automático, el paciente habría esperado días.",
+        "author_name": "Dr. Felipe A.",
+        "author_role": "Cirujano Maxilofacial",
+        "company": "OdontoSalud",
+        "city": "Cuenca"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de seguimiento con el paciente.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Software Dental",
+        "description": "Registro de procedimientos y alertas.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Calendario Clínico",
+        "description": "Agendamiento de citas de emergencia.",
+        "icon_name": "Calendar"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "clinicas-odontologicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento de citas odontológicas"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "recordatorios-medicacion",
+        "link_text": "Recordatorios de medicación"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "seguimiento-pacientes",
+        "link_text": "Seguimiento de pacientes en Quito"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "clinicas-medicas",
     "use_case_slug": "recordatorios-medicacion",
     "title": "Recordatorios de Medicación para Clínicas Médicas con IA | Nexi",
-    "description": "Mejora la adherencia terapeutica con recordatorios de medicacion automatizados, confirmacion de tomas y alertas tempranas para seguimiento clinico.",
-    "hero_title": "Adherencia a medicacion con seguimiento inteligente",
-    "hero_subtitle": "Nexi programa recordatorios segun prescripcion, identifica omisiones repetidas y habilita intervencion oportuna del equipo asistencial.",
+    "description": "Mejora la adherencia terapéutica con recordatorios de medicación automatizados, confirmación de tomas y alertas tempranas para seguimiento clínico.",
+    "hero_title": "Adherencia a medicación con seguimiento inteligente",
+    "hero_subtitle": "Nexi programa recordatorios según prescripción, identifica omisiones repetidas y habilita intervención oportuna del equipo asistencial.",
     "pain_points": [
-      "Pacientes cronicos olvidan dosis y solo se detecta en controles tardios.",
-      "Enfermeria invierte tiempo en llamadas manuales para confirmar cumplimiento del tratamiento.",
-      "No hay trazabilidad consolidada de tomas omitidas para priorizar seguimiento clinico."
+      "Pacientes crónicos olvidan dosis y solo se detecta en controles tardíos.",
+      "Enfermería invierte tiempo en llamadas manuales para confirmar cumplimiento del tratamiento.",
+      "No hay trazabilidad consolidada de tomas omitidas para priorizar seguimiento clínico."
     ],
     "benefits": [
-      "Recordatorios personalizados por medicamento, horario y duracion del plan terapeutico.",
-      "Confirmacion de toma y deteccion automatica de patrones de incumplimiento.",
-      "Alertas al equipo medico para intervenir antes de una descompensacion evitable."
-    ]
+      "Recordatorios personalizados por medicamento, horario y duración del plan terapéutico.",
+      "Confirmación de toma y detección automática de patrones de incumplimiento.",
+      "Alertas al equipo médico para intervenir antes de una descompensación evitable."
+    ],
+    "industry_grammar": {
+      "display_name": "Clínicas Médicas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para clínicas médicas"
+    },
+    "use_case_grammar": {
+      "display_name": "Recordatorios de Medicación",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los"
+    },
+    "target_keywords": [
+      "recordatorios medicación IA",
+      "adherencia terapéutica automatizada",
+      "seguimiento medicación clínica"
+    ],
+    "metrics": {
+      "time_saved": "60%",
+      "cost_reduction": "35%",
+      "revenue_impact": "+15%",
+      "satisfaction_rate": "93%",
+      "default_tasks_per_month": 400,
+      "default_minutes_per_task": 4,
+      "default_hourly_cost": 10
+    },
+    "before_after": [
+      {
+        "dimension": "Adherencia al tratamiento",
+        "before": "50-60% de cumplimiento",
+        "after": "85-92% con recordatorios automáticos"
+      },
+      {
+        "dimension": "Detección de omisiones",
+        "before": "Solo en control presencial",
+        "after": "Alerta automática al tercer día sin confirmación"
+      },
+      {
+        "dimension": "Carga de enfermería",
+        "before": "Llamadas manuales de seguimiento",
+        "after": "Solo atiende alertas de incumplimiento"
+      },
+      {
+        "dimension": "Información para el médico",
+        "before": "Paciente reporta de memoria",
+        "after": "Historial de tomas documentado"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Se carga el plan terapéutico",
+        "description": "El médico ingresa medicamentos, dosis y horarios. Nexi programa los recordatorios.",
+        "icon_name": "Pill"
+      },
+      {
+        "title": "Nexi recuerda cada toma",
+        "description": "Envía mensajes en el horario indicado y el paciente confirma con un toque.",
+        "icon_name": "Bell"
+      },
+      {
+        "title": "Alerta por incumplimiento",
+        "description": "Si detecta omisiones repetidas, Nexi alerta al equipo médico para intervención.",
+        "icon_name": "AlertTriangle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede manejar tratamientos con múltiples medicamentos?",
+        "answer": "Sí. Nexi gestiona planes con varios medicamentos, cada uno con su horario y duración específicos."
+      },
+      {
+        "question": "¿El paciente necesita instalar alguna app?",
+        "answer": "No. Todo funciona por WhatsApp, un canal que el paciente ya usa diariamente."
+      },
+      {
+        "question": "¿Qué tan segura es la información médica?",
+        "answer": "Nexi opera con cifrado y no almacena datos clínicos sensibles. Solo registra confirmaciones de toma."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "La adherencia de nuestros pacientes diabéticos subió del 55% al 88%. Los recordatorios por WhatsApp son más efectivos que cualquier llamada.",
+        "author_name": "Dr. Hernán C.",
+        "author_role": "Endocrinólogo",
+        "company": "Clínica MetaVida",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de recordatorios para pacientes.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Sistema HIS",
+        "description": "Fuente de planes terapéuticos.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Dashboard Médico",
+        "description": "Visualización de adherencia por paciente.",
+        "icon_name": "BarChart"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento de citas médicas"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "seguimiento-pacientes",
+        "link_text": "Seguimiento de pacientes en Quito"
+      },
+      {
+        "industry_slug": "clinicas-odontologicas",
+        "use_case_slug": "seguimiento-postoperatorio",
+        "link_text": "Seguimiento postoperatorio dental"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "inmobiliarias",
     "use_case_slug": "agendamiento-visitas-propiedades",
     "title": "Agendamiento de Visitas para Inmobiliarias con IA | Nexi",
     "description": "Automatiza visitas inmobiliarias con un agente IA que valida disponibilidad real, confirma asistencia y reduce tiempos muertos de asesores.",
-    "hero_title": "Visitas a propiedades sin friccion operativa",
-    "hero_subtitle": "Nexi coordina agenda de visitas segun zona, presupuesto y tipo de inmueble para acelerar el paso de lead a oportunidad real.",
+    "hero_title": "Visitas a propiedades sin fricción operativa",
+    "hero_subtitle": "Nexi coordina agenda de visitas según zona, presupuesto y tipo de inmueble para acelerar el paso de lead a oportunidad real.",
     "pain_points": [
-      "Asesores dedican gran parte del dia a coordinar horarios por chat sin cierre inmediato.",
+      "Asesores dedican gran parte del día a coordinar horarios por chat sin cierre inmediato.",
       "Prospectos solicitan visitas a inmuebles ya tomados o fuera de su capacidad financiera.",
-      "No-shows en visitas presenciales generan desplazamientos improductivos y perdida de horas comerciales."
+      "No-shows en visitas presenciales generan desplazamientos improductivos y pérdida de horas comerciales."
     ],
     "benefits": [
-      "Agenda automatica con inventario actualizado y franjas disponibles por asesor.",
-      "Validacion previa de presupuesto, medio de pago y urgencia de mudanza antes de confirmar visita.",
-      "Recordatorios con ubicacion y opcion de reprogramar para reducir ausencias en terreno."
-    ]
+      "Agenda automática con inventario actualizado y franjas disponibles por asesor.",
+      "Validación previa de presupuesto, medio de pago y urgencia de mudanza antes de confirmar visita.",
+      "Recordatorios con ubicación y opción de reprogramar para reducir ausencias en terreno."
+    ],
+    "industry_grammar": {
+      "display_name": "Inmobiliarias",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para inmobiliarias"
+    },
+    "use_case_grammar": {
+      "display_name": "Agendamiento de Visitas a Propiedades",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "agendar visitas inmobiliarias",
+      "coordinación visitas propiedades IA",
+      "agenda inmobiliaria WhatsApp"
+    ],
+    "metrics": {
+      "time_saved": "68%",
+      "cost_reduction": "40%",
+      "revenue_impact": "+30%",
+      "satisfaction_rate": "90%",
+      "default_tasks_per_month": 200,
+      "default_minutes_per_task": 12,
+      "default_hourly_cost": 14
+    },
+    "before_after": [
+      {
+        "dimension": "Coordinación de visita",
+        "before": "5-10 mensajes de ida y vuelta",
+        "after": "Slot confirmado en una conversación"
+      },
+      {
+        "dimension": "No-shows en visitas",
+        "before": "30-40% de prospectos no asisten",
+        "after": "Menos de 12% con recordatorios y ubicación"
+      },
+      {
+        "dimension": "Validación de prospecto",
+        "before": "Se descubre en la visita que no califica",
+        "after": "Presupuesto y urgencia validados antes"
+      },
+      {
+        "dimension": "Productividad del asesor",
+        "before": "3-4 visitas útiles por día",
+        "after": "6-8 visitas con prospectos calificados"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El prospecto solicita visita",
+        "description": "Nexi recibe el interés, valida presupuesto y zona, y muestra opciones disponibles.",
+        "icon_name": "Home"
+      },
+      {
+        "title": "Agenda y confirma",
+        "description": "Nexi coordina horario con el asesor, confirma al prospecto y envía ubicación.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Recordatorio previo",
+        "description": "Envía recordatorio con dirección, fotos del inmueble y opción de reprogramar.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede mostrar propiedades disponibles según el presupuesto del prospecto?",
+        "answer": "Sí. Nexi filtra el inventario por rango de precio, zona, tipo de inmueble y disponibilidad antes de proponer visita."
+      },
+      {
+        "question": "¿Se sincroniza con mi inventario inmobiliario?",
+        "answer": "Sí. Nexi se conecta a tu sistema para validar disponibilidad en tiempo real y evitar visitas a propiedades ya tomadas."
+      },
+      {
+        "question": "¿Puede coordinar visitas a múltiples propiedades en un recorrido?",
+        "answer": "Sí. Nexi puede agrupar visitas por zona y horario para optimizar el recorrido del asesor."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Antes hacíamos 3 visitas útiles al día. Con Nexi hacemos 7 porque solo vamos donde el prospecto realmente califica.",
+        "author_name": "Jorge P.",
+        "author_role": "Asesor Comercial",
+        "company": "InmoVista",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de coordinación con prospectos.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "CRM Inmobiliario",
+        "description": "Inventario y agenda de asesores.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Google Maps",
+        "description": "Ubicación y rutas para visitas.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "inmobiliarias",
+        "use_case_slug": "calificacion-leads",
+        "link_text": "Calificación de leads inmobiliarios"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento de citas médicas"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para peluquerías"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "peluquerias-spas",
@@ -231,7 +1739,132 @@
       "Tu asistente responde y agenda citas 24/7 por WhatsApp.",
       "Confirma estilista, duración y servicio en un solo flujo sin cruces de horario.",
       "Envía ubicación, políticas de anticipo y preparación previa automáticamente."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Peluquerías y Spas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para peluquerías y spas"
+    },
+    "use_case_grammar": {
+      "display_name": "Agenda por WhatsApp",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "agenda peluquería WhatsApp",
+      "citas spa IA",
+      "reservas salón belleza automáticas"
+    ],
+    "metrics": {
+      "time_saved": "75%",
+      "cost_reduction": "40%",
+      "revenue_impact": "+35%",
+      "satisfaction_rate": "94%",
+      "default_tasks_per_month": 350,
+      "default_minutes_per_task": 5,
+      "default_hourly_cost": 7
+    },
+    "before_after": [
+      {
+        "dimension": "Respuesta a consultas",
+        "before": "Responde cuando termina el servicio",
+        "after": "Respuesta inmediata 24/7"
+      },
+      {
+        "dimension": "Doble reserva",
+        "before": "Cruces frecuentes por agenda manual",
+        "after": "Agenda sincronizada sin conflictos"
+      },
+      {
+        "dimension": "Clientes perdidos",
+        "before": "Se van a la competencia por no responder",
+        "after": "Captura inmediata del interés"
+      },
+      {
+        "dimension": "Información previa",
+        "before": "Cliente llega sin saber preparación necesaria",
+        "after": "Instrucciones automáticas al confirmar"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente escribe por WhatsApp",
+        "description": "Nexi responde con servicios disponibles, precios y horarios del estilista preferido.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Agenda sin conflictos",
+        "description": "Nexi verifica disponibilidad real y confirma la cita con estilista, hora y duración.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Preparación automática",
+        "description": "Envía ubicación, políticas de anticipo e instrucciones previas según el servicio.",
+        "icon_name": "CheckCircle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede manejar servicios con duración variable como coloraciones?",
+        "answer": "Sí. Cada servicio tiene su duración configurada. Nexi bloquea el tiempo correcto en la agenda del estilista."
+      },
+      {
+        "question": "¿Funciona si tengo varios estilistas o cabinas?",
+        "answer": "Sí. Nexi gestiona la agenda individual de cada profesional y evita cruces entre ellos."
+      },
+      {
+        "question": "¿El cliente puede pedir un estilista específico?",
+        "answer": "Sí. Nexi muestra la disponibilidad del estilista preferido o sugiere alternativas si no hay cupos."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Antes perdía 5-6 clientes al día por no poder responder mientras atendía. Ahora Nexi agenda todo y mi cabina está llena.",
+        "author_name": "Daniela R.",
+        "author_role": "Propietaria",
+        "company": "Salón Daniela",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal de reservas.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Agenda por estilista en tiempo real.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Instagram",
+        "description": "Captura de leads desde redes.",
+        "icon_name": "Camera"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios de citas para salones"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "seguimiento-post-servicio",
+        "link_text": "Seguimiento post servicio"
+      },
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para barberías"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "peluquerias-spas",
@@ -249,7 +1882,132 @@
       "Recordatorios con confirmación de asistencia 24 y 2 horas antes.",
       "Reprogramación automática con propuestas de horario según disponibilidad real.",
       "Activación de lista de espera para rellenar huecos de última hora."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Peluquerías y Spas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para peluquerías y spas"
+    },
+    "use_case_grammar": {
+      "display_name": "Recordatorios de Citas",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los"
+    },
+    "target_keywords": [
+      "recordatorios citas peluquería",
+      "confirmar citas spa automático",
+      "reducir no-shows salón belleza"
+    ],
+    "metrics": {
+      "time_saved": "70%",
+      "cost_reduction": "38%",
+      "revenue_impact": "+28%",
+      "satisfaction_rate": "93%",
+      "default_tasks_per_month": 300,
+      "default_minutes_per_task": 3,
+      "default_hourly_cost": 7
+    },
+    "before_after": [
+      {
+        "dimension": "No-shows",
+        "before": "25-35% de citas sin asistencia",
+        "after": "Menos de 8% con doble confirmación"
+      },
+      {
+        "dimension": "Huecos de última hora",
+        "before": "Cabinas vacías sin aviso",
+        "after": "Lista de espera activada automáticamente"
+      },
+      {
+        "dimension": "Tiempo de recepción",
+        "before": "2+ horas llamando para confirmar",
+        "after": "Confirmación automática por WhatsApp"
+      },
+      {
+        "dimension": "Reprogramaciones",
+        "before": "El cliente no avisa, simplemente no va",
+        "after": "Opción de reprogramar con un clic"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Recordatorio automático",
+        "description": "Nexi envía recordatorio 24h y 2h antes con opción de confirmar o reprogramar.",
+        "icon_name": "Bell"
+      },
+      {
+        "title": "Confirmación o cambio",
+        "description": "El cliente confirma con un toque o elige nuevo horario sin llamar.",
+        "icon_name": "CheckCircle"
+      },
+      {
+        "title": "Lista de espera activa",
+        "description": "Si se libera un espacio, Nexi contacta automáticamente al siguiente en espera.",
+        "icon_name": "Users"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Cuántos recordatorios envía Nexi antes de cada cita?",
+        "answer": "Por defecto envía dos: uno 24 horas antes y otro 2 horas antes. Puedes personalizar los tiempos."
+      },
+      {
+        "question": "¿Qué pasa si el cliente no confirma?",
+        "answer": "Nexi envía un segundo aviso. Si no hay respuesta, notifica a recepción y puede liberar el cupo."
+      },
+      {
+        "question": "¿Funciona la lista de espera automáticamente?",
+        "answer": "Sí. Cuando se libera un espacio, Nexi contacta a los clientes en lista de espera por orden de prioridad."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Pasamos de 30% de no-shows a menos del 7%. La lista de espera automática nos llena los huecos en minutos.",
+        "author_name": "Karla V.",
+        "author_role": "Administradora",
+        "company": "Spa Serenity",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de recordatorios y confirmación.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Agenda y disponibilidad en tiempo real.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "CRM Salón",
+        "description": "Historial de clientes y preferencias.",
+        "icon_name": "Database"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para salones"
+      },
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios para barberías"
+      },
+      {
+        "industry_slug": "clinicas-odontologicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento odontológico"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "peluquerias-spas",
@@ -267,7 +2025,132 @@
       "Mensajes post-servicio con encuesta corta de satisfacción y NPS.",
       "Recordatorios de mantenimiento según tipo de corte, color o tratamiento facial.",
       "Campañas segmentadas para reactivar clientes con alta probabilidad de retorno."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Peluquerías y Spas",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para peluquerías y spas"
+    },
+    "use_case_grammar": {
+      "display_name": "Seguimiento Post Servicio",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "seguimiento clientes peluquería",
+      "fidelización spa IA",
+      "recompra salón belleza"
+    ],
+    "metrics": {
+      "time_saved": "60%",
+      "cost_reduction": "30%",
+      "revenue_impact": "+40%",
+      "satisfaction_rate": "92%",
+      "default_tasks_per_month": 250,
+      "default_minutes_per_task": 4,
+      "default_hourly_cost": 7
+    },
+    "before_after": [
+      {
+        "dimension": "Seguimiento post-servicio",
+        "before": "Ninguno, el cliente se va y ya",
+        "after": "Encuesta de satisfacción al día siguiente"
+      },
+      {
+        "dimension": "Tasa de recompra",
+        "before": "40-50% vuelven por iniciativa propia",
+        "after": "65-80% con recordatorios de mantenimiento"
+      },
+      {
+        "dimension": "Promociones",
+        "before": "Masivas sin segmentación",
+        "after": "Personalizadas por servicio y frecuencia"
+      },
+      {
+        "dimension": "Feedback",
+        "before": "Solo comentarios en redes (públicos)",
+        "after": "Feedback privado antes de que sea público"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Encuesta post-servicio",
+        "description": "Al día siguiente, Nexi envía una encuesta corta de satisfacción por WhatsApp.",
+        "icon_name": "Star"
+      },
+      {
+        "title": "Recordatorio de mantenimiento",
+        "description": "Según el servicio, Nexi recuerda cuándo volver para retoque o siguiente sesión.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Re-agendamiento fácil",
+        "description": "El cliente puede agendar su próxima cita directamente desde la conversación.",
+        "icon_name": "RefreshCw"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede enviar recordatorios diferentes según el servicio?",
+        "answer": "Sí. Cada servicio tiene su ciclo de mantenimiento. Coloración cada 4-6 semanas, corte cada 3-4, tratamientos faciales cada 2."
+      },
+      {
+        "question": "¿Qué hago con el feedback negativo?",
+        "answer": "Nexi te notifica inmediatamente si un cliente reporta insatisfacción para que puedas resolver antes de que escale a redes sociales."
+      },
+      {
+        "question": "¿Puedo enviar promociones solo a ciertos clientes?",
+        "answer": "Sí. Nexi segmenta por tipo de servicio, frecuencia y tiempo desde la última visita."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "La recompra subió un 35% desde que Nexi recuerda a las clientas cuándo toca su retoque de color. Es como tener una asistente personal para cada una.",
+        "author_name": "Andrea M.",
+        "author_role": "Directora Creativa",
+        "company": "Studio AM",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de seguimiento y fidelización.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "CRM Salón",
+        "description": "Historial de servicios por cliente.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Google Reviews",
+        "description": "Invitación a reseña para clientes satisfechos.",
+        "icon_name": "Star"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para salones"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios de citas"
+      },
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "reactivacion-clientes",
+        "link_text": "Reactivación de clientes en barberías"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "barberias",
@@ -277,7 +2160,7 @@
     "hero_title": "Menos no-shows en barbería, más sillas ocupadas",
     "hero_subtitle": "Nexi confirma cada reserva y facilita reprogramaciones para mantener la agenda productiva durante todo el día.",
     "pain_points": [
-      "Clientes que reservan y no van (No-shows).",
+      "Clientes que reservan y no van (no-shows).",
       "Turnos de la tarde se caen y quedan huecos difíciles de rellenar.",
       "El barbero pierde tiempo escribiendo para confirmar en lugar de atender."
     ],
@@ -285,7 +2168,132 @@
       "Recordatorios automáticos para asegurar que el cliente llegue.",
       "Confirmación con un toque y liberación inmediata de cupos no confirmados.",
       "Reasignación rápida de horarios cancelados a clientes en espera."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Barberías",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para barberías"
+    },
+    "use_case_grammar": {
+      "display_name": "Recordatorios de Citas",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los"
+    },
+    "target_keywords": [
+      "recordatorios citas barbería",
+      "confirmar citas barbershop",
+      "reducir no-shows barbería"
+    ],
+    "metrics": {
+      "time_saved": "65%",
+      "cost_reduction": "35%",
+      "revenue_impact": "+25%",
+      "satisfaction_rate": "92%",
+      "default_tasks_per_month": 250,
+      "default_minutes_per_task": 3,
+      "default_hourly_cost": 6
+    },
+    "before_after": [
+      {
+        "dimension": "No-shows",
+        "before": "20-30% de citas perdidas",
+        "after": "Menos de 8% con confirmación previa"
+      },
+      {
+        "dimension": "Huecos en agenda",
+        "before": "Turnos vacíos sin aviso",
+        "after": "Reasignación automática a lista de espera"
+      },
+      {
+        "dimension": "Tiempo del barbero",
+        "before": "Escribe para confirmar entre cortes",
+        "after": "Confirmación automática sin intervención"
+      },
+      {
+        "dimension": "Experiencia del cliente",
+        "before": "No recibe recordatorio, olvida la cita",
+        "after": "Recordatorio claro con opción de cambio"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Recordatorio previo",
+        "description": "Nexi envía recordatorio 24h y 2h antes con opción de confirmar o reprogramar.",
+        "icon_name": "Bell"
+      },
+      {
+        "title": "Confirmación instantánea",
+        "description": "El cliente confirma con un toque. Si no responde, Nexi reenvía una vez más.",
+        "icon_name": "CheckCircle"
+      },
+      {
+        "title": "Liberación de cupos",
+        "description": "Si el cliente cancela o no confirma, el espacio se ofrece a clientes en espera.",
+        "icon_name": "RefreshCw"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Cuántos recordatorios envía Nexi?",
+        "answer": "Por defecto dos: 24 horas antes y 2 horas antes. Puedes ajustar los tiempos según tu operación."
+      },
+      {
+        "question": "¿Puedo cobrar anticipo para reducir no-shows?",
+        "answer": "Sí. Nexi puede incluir link de pago en la confirmación para asegurar la reserva con anticipo."
+      },
+      {
+        "question": "¿Funciona con varios barberos?",
+        "answer": "Sí. Cada barbero tiene su agenda individual y Nexi gestiona recordatorios por separado."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Los no-shows bajaron de 25% a 6%. La silla ya no queda vacía y los clientes agradecen el recordatorio.",
+        "author_name": "Mateo C.",
+        "author_role": "Propietario",
+        "company": "BarberKing",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de recordatorios.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Agenda por barbero.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Pasarela de Pago",
+        "description": "Anticipo para confirmar reserva.",
+        "icon_name": "CreditCard"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para barberías"
+      },
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "reactivacion-clientes",
+        "link_text": "Reactivación de clientes"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios para peluquerías"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "barberias",
@@ -303,7 +2311,132 @@
       "Reserva automática por tipo de servicio con tiempos configurables por barbero.",
       "Visibilidad de cupos disponibles en tiempo real sin revisar chats antiguos.",
       "Respuesta inmediata con ubicación, precios base y políticas de llegada tardía."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Barberías",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para barberías"
+    },
+    "use_case_grammar": {
+      "display_name": "Agenda por WhatsApp",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "agenda barbería WhatsApp",
+      "reservas barbershop IA",
+      "citas barbería automáticas"
+    ],
+    "metrics": {
+      "time_saved": "72%",
+      "cost_reduction": "38%",
+      "revenue_impact": "+30%",
+      "satisfaction_rate": "93%",
+      "default_tasks_per_month": 300,
+      "default_minutes_per_task": 4,
+      "default_hourly_cost": 6
+    },
+    "before_after": [
+      {
+        "dimension": "Respuesta a mensajes",
+        "before": "Responde al terminar el corte",
+        "after": "Respuesta inmediata 24/7"
+      },
+      {
+        "dimension": "Cruces de horario",
+        "before": "Frecuentes con agenda manual",
+        "after": "Agenda sincronizada por barbero"
+      },
+      {
+        "dimension": "Clientes nuevos",
+        "before": "Se pierden por falta de respuesta",
+        "after": "Captura inmediata y agenda confirmada"
+      },
+      {
+        "dimension": "Información",
+        "before": "Cliente pregunta precios por chat",
+        "after": "Precios y servicios automáticos"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente escribe por WhatsApp",
+        "description": "Nexi muestra servicios, precios y disponibilidad del barbero preferido.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Reserva confirmada",
+        "description": "Nexi agenda el servicio con barbero, hora y duración. Sin cruces.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Info automática",
+        "description": "Envía ubicación, precios y políticas de llegada tardía al confirmar.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿El cliente puede elegir su barbero favorito?",
+        "answer": "Sí. Nexi muestra la disponibilidad de cada barbero y permite reservar con el preferido."
+      },
+      {
+        "question": "¿Funciona con varios servicios como corte, barba y combo?",
+        "answer": "Sí. Cada servicio tiene su duración y precio configurados. El cliente elige y Nexi bloquea el tiempo correcto."
+      },
+      {
+        "question": "¿Puedo configurar horarios diferentes por día?",
+        "answer": "Sí. Cada barbero puede tener horarios distintos por día de la semana, incluyendo descansos."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Antes respondía mensajes entre corte y corte. Ahora Nexi agenda todo y yo me enfoco en dar un buen servicio.",
+        "author_name": "Diego S.",
+        "author_role": "Barbero Principal",
+        "company": "The Crew Barber",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal de reservas.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Agenda por barbero.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Google Maps",
+        "description": "Ubicación automática al confirmar.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios de citas para barberías"
+      },
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "reactivacion-clientes",
+        "link_text": "Reactivación de clientes"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda para peluquerías y spas"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "barberias",
@@ -321,7 +2454,132 @@
       "Segmentación automática por frecuencia de visita y ticket promedio.",
       "Ofertas enfocadas en horarios de baja demanda para mejorar ocupación.",
       "Conversaciones uno a uno por WhatsApp que convierten mejor que difusión masiva."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Barberías",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para barberías"
+    },
+    "use_case_grammar": {
+      "display_name": "Reactivación de Clientes",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "reactivar clientes barbería",
+      "campañas barbershop WhatsApp",
+      "fidelización barbería IA"
+    ],
+    "metrics": {
+      "time_saved": "55%",
+      "cost_reduction": "30%",
+      "revenue_impact": "+38%",
+      "satisfaction_rate": "88%",
+      "default_tasks_per_month": 150,
+      "default_minutes_per_task": 3,
+      "default_hourly_cost": 6
+    },
+    "before_after": [
+      {
+        "dimension": "Clientes inactivos",
+        "before": "Se pierden sin seguimiento",
+        "after": "Contacto automático a los 21+ días"
+      },
+      {
+        "dimension": "Ocupación horas valle",
+        "before": "40-50% de capacidad",
+        "after": "70-85% con ofertas dirigidas"
+      },
+      {
+        "dimension": "Promociones",
+        "before": "Mismo descuento para todos",
+        "after": "Ofertas por frecuencia y ticket"
+      },
+      {
+        "dimension": "Tasa de retorno",
+        "before": "35% vuelve tras primera visita",
+        "after": "60%+ con reactivación personalizada"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Nexi detecta inactividad",
+        "description": "Identifica clientes que llevan más de 3 semanas sin visitar la barbería.",
+        "icon_name": "UserX"
+      },
+      {
+        "title": "Envía oferta personalizada",
+        "description": "Mensaje conversacional con oferta basada en su historial y horarios de baja demanda.",
+        "icon_name": "Gift"
+      },
+      {
+        "title": "Agenda la cita",
+        "description": "Si el cliente acepta, Nexi agenda directamente en la disponibilidad del barbero.",
+        "icon_name": "Calendar"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi envía mensajes masivos tipo spam?",
+        "answer": "No. Nexi envía mensajes individuales y conversacionales solo a clientes que ya han visitado la barbería. Cumple políticas de WhatsApp."
+      },
+      {
+        "question": "¿Puedo controlar qué ofertas se envían?",
+        "answer": "Sí. Tú defines los descuentos, los horarios objetivo y la frecuencia de contacto. Nexi ejecuta según tus reglas."
+      },
+      {
+        "question": "¿Funciona para llenar horarios específicos?",
+        "answer": "Sí. Puedes configurar ofertas que solo apliquen en horas valle como lunes a jueves por la mañana."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Las mañanas entre semana eran un desierto. Ahora Nexi llena esos turnos con clientes que estaban inactivos. Recuperamos un 25% más de ingresos semanales.",
+        "author_name": "Luis F.",
+        "author_role": "Propietario",
+        "company": "Barbería Don Luis",
+        "city": "Cuenca"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de reactivación conversacional.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "CRM / Base de Clientes",
+        "description": "Historial de visitas y frecuencia.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Disponibilidad para agendar.",
+        "icon_name": "Calendar"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para barberías"
+      },
+      {
+        "industry_slug": "barberias",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios de citas"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "seguimiento-post-servicio",
+        "link_text": "Seguimiento post servicio para salones"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "restaurantes",
@@ -339,7 +2597,132 @@
       "Nexi toma reservas y envía el menú automáticamente.",
       "Confirmación de mesa con reglas de tiempo de espera y tolerancia por llegada tardía.",
       "Menos interrupciones al personal de piso durante el servicio en hora pico."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Restaurantes",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para restaurantes"
+    },
+    "use_case_grammar": {
+      "display_name": "Reservas por WhatsApp",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las"
+    },
+    "target_keywords": [
+      "reservas restaurante WhatsApp",
+      "sistema reservas restaurante IA",
+      "agenda restaurante automática"
+    ],
+    "metrics": {
+      "time_saved": "70%",
+      "cost_reduction": "35%",
+      "revenue_impact": "+25%",
+      "satisfaction_rate": "91%",
+      "default_tasks_per_month": 400,
+      "default_minutes_per_task": 4,
+      "default_hourly_cost": 7
+    },
+    "before_after": [
+      {
+        "dimension": "Toma de reservas",
+        "before": "Teléfono + papel en hora pico",
+        "after": "Automática por WhatsApp 24/7"
+      },
+      {
+        "dimension": "Doble reserva",
+        "before": "Frecuente en cambios de turno",
+        "after": "Agenda centralizada sin duplicados"
+      },
+      {
+        "dimension": "Consultas repetitivas",
+        "before": "Menú, horarios y ubicación por teléfono",
+        "after": "Respuesta automática con toda la info"
+      },
+      {
+        "dimension": "Interrupciones en servicio",
+        "before": "Personal atiende teléfono durante servicio",
+        "after": "Solo atiende comensales presenciales"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente escribe por WhatsApp",
+        "description": "Nexi recibe la solicitud de reserva con fecha, hora y número de personas.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Confirma disponibilidad",
+        "description": "Nexi verifica cupos y confirma la reserva con menú, ubicación y políticas.",
+        "icon_name": "CheckCircle"
+      },
+      {
+        "title": "Recordatorio automático",
+        "description": "Envía recordatorio previo con opción de cancelar o modificar la reserva.",
+        "icon_name": "Bell"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede manejar distintos salones o zonas del restaurante?",
+        "answer": "Sí. Puedes configurar zonas (terraza, salón principal, privado) con capacidades diferentes."
+      },
+      {
+        "question": "¿Envía el menú automáticamente?",
+        "answer": "Sí. Nexi comparte el menú en PDF o link al confirmar la reserva, junto con información de ubicación y estacionamiento."
+      },
+      {
+        "question": "¿Qué pasa con las reservas de grupos grandes?",
+        "answer": "Nexi maneja reservas estándar y escala al equipo del restaurante las solicitudes especiales o eventos."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Dejamos de perder reservas por no contestar el teléfono durante el servicio. Nexi maneja todo y nosotros nos enfocamos en la experiencia.",
+        "author_name": "Chef Marco B.",
+        "author_role": "Propietario",
+        "company": "Restaurante Sabor",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal de reservas.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Gestión de mesas y turnos.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Google Maps",
+        "description": "Ubicación automática al confirmar.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "pedidos-whatsapp",
+        "link_text": "Pedidos por WhatsApp para restaurantes"
+      },
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "lista-espera-mesas",
+        "link_text": "Lista de espera para restaurantes"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "agenda-whatsapp",
+        "link_text": "Agenda por WhatsApp para salones"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "restaurantes",
@@ -357,7 +2740,132 @@
       "Pedido estructurado con opciones, extras y observaciones del cliente.",
       "Validación automática de cobertura y costo de envío antes de confirmar.",
       "Notificaciones de estado del pedido para reducir llamadas de seguimiento."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Restaurantes",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para restaurantes"
+    },
+    "use_case_grammar": {
+      "display_name": "Pedidos por WhatsApp",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los"
+    },
+    "target_keywords": [
+      "pedidos restaurante WhatsApp",
+      "delivery restaurante IA",
+      "tomar pedidos automático"
+    ],
+    "metrics": {
+      "time_saved": "65%",
+      "cost_reduction": "40%",
+      "revenue_impact": "+30%",
+      "satisfaction_rate": "90%",
+      "default_tasks_per_month": 500,
+      "default_minutes_per_task": 5,
+      "default_hourly_cost": 7
+    },
+    "before_after": [
+      {
+        "dimension": "Errores de pedido",
+        "before": "10-15% por ruido o multitarea",
+        "after": "Menos de 2% con pedido estructurado"
+      },
+      {
+        "dimension": "Cobertura de entrega",
+        "before": "Se descubre al despachar",
+        "after": "Validación automática antes de confirmar"
+      },
+      {
+        "dimension": "Cancelaciones",
+        "before": "Por falta de info sobre tiempo",
+        "after": "Tiempo estimado claro al confirmar"
+      },
+      {
+        "dimension": "Seguimiento",
+        "before": "Cliente llama para preguntar",
+        "after": "Notificación automática de estado"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente hace su pedido",
+        "description": "Nexi muestra el menú, captura opciones, extras y observaciones en un flujo guiado.",
+        "icon_name": "ShoppingCart"
+      },
+      {
+        "title": "Validación y confirmación",
+        "description": "Nexi valida dirección, cobertura y costo de envío. Confirma total con tiempo estimado.",
+        "icon_name": "CheckCircle"
+      },
+      {
+        "title": "Seguimiento del pedido",
+        "description": "El cliente recibe actualizaciones de estado sin necesidad de llamar.",
+        "icon_name": "Truck"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede mostrar el menú completo con precios?",
+        "answer": "Sí. Nexi presenta el menú con categorías, precios, opciones y extras para que el cliente arme su pedido fácilmente."
+      },
+      {
+        "question": "¿Valida la dirección de entrega?",
+        "answer": "Sí. Nexi verifica que la dirección esté dentro de la zona de cobertura y calcula costo de envío antes de confirmar."
+      },
+      {
+        "question": "¿Se integra con mi sistema de cocina?",
+        "answer": "Nexi envía el pedido confirmado a tu sistema o impresora de cocina para que entre directo a preparación."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Los errores de pedido bajaron de 12% a menos del 2%. Y ya no perdemos pedidos por no contestar el teléfono.",
+        "author_name": "Ana G.",
+        "author_role": "Administradora",
+        "company": "Sabores de Casa",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de pedidos.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "POS / Cocina",
+        "description": "Envío de pedido a preparación.",
+        "icon_name": "Printer"
+      },
+      {
+        "name": "Google Maps",
+        "description": "Validación de cobertura de delivery.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "reservas-whatsapp",
+        "link_text": "Reservas por WhatsApp"
+      },
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "lista-espera-mesas",
+        "link_text": "Lista de espera para restaurantes"
+      },
+      {
+        "industry_slug": "ecommerce",
+        "use_case_slug": "soporte-postventa-pedidos",
+        "link_text": "Soporte postventa e-commerce"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "restaurantes",
@@ -375,7 +2883,132 @@
       "Turnos de espera automatizados con hora estimada de asignación de mesa.",
       "Aviso por WhatsApp cuando la mesa está lista para reducir aglomeración.",
       "Mayor rotación de mesas con control centralizado de entradas y salidas."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Restaurantes",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para restaurantes"
+    },
+    "use_case_grammar": {
+      "display_name": "Lista de Espera de Mesas",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "lista espera restaurante",
+      "gestión mesas IA",
+      "turnos restaurante WhatsApp"
+    ],
+    "metrics": {
+      "time_saved": "60%",
+      "cost_reduction": "30%",
+      "revenue_impact": "+20%",
+      "satisfaction_rate": "89%",
+      "default_tasks_per_month": 300,
+      "default_minutes_per_task": 3,
+      "default_hourly_cost": 7
+    },
+    "before_after": [
+      {
+        "dimension": "Gestión de espera",
+        "before": "Lista en papel o memoria del hostess",
+        "after": "Cola digital con turnos automáticos"
+      },
+      {
+        "dimension": "Abandono en fila",
+        "before": "30%+ se va sin información",
+        "after": "Menos de 10% con tiempo estimado"
+      },
+      {
+        "dimension": "Aviso de mesa lista",
+        "before": "Grito en la puerta del local",
+        "after": "Notificación por WhatsApp"
+      },
+      {
+        "dimension": "Rotación de mesas",
+        "before": "Tiempos muertos entre grupos",
+        "after": "Asignación inmediata al liberar mesa"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente se registra",
+        "description": "Al llegar, el hostess registra al grupo o el cliente escanea un QR para entrar a la lista.",
+        "icon_name": "Users"
+      },
+      {
+        "title": "Nexi gestiona la cola",
+        "description": "Calcula tiempo estimado, muestra posición y mantiene informado al cliente.",
+        "icon_name": "Clock"
+      },
+      {
+        "title": "Aviso de mesa lista",
+        "description": "Cuando se libera una mesa, Nexi notifica al siguiente grupo por WhatsApp.",
+        "icon_name": "Bell"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿El cliente necesita descargar una app?",
+        "answer": "No. Todo funciona por WhatsApp o escaneando un QR. Sin descargas ni registros."
+      },
+      {
+        "question": "¿Nexi calcula el tiempo de espera?",
+        "answer": "Sí. Basado en la velocidad de rotación y el tamaño de los grupos en cola, Nexi estima cuándo estará lista la mesa."
+      },
+      {
+        "question": "¿Funciona para reservas y walk-ins?",
+        "answer": "Sí. Nexi gestiona tanto la lista de espera de walk-ins como las reservas confirmadas, sin conflictos entre ambos."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Los viernes y sábados perdíamos el 30% de clientes en fila. Con la lista digital de Nexi, ahora el 92% espera y entra.",
+        "author_name": "Valentina H.",
+        "author_role": "Gerente de Sala",
+        "company": "La Mesa del Chef",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Notificación de mesa lista.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "QR Code",
+        "description": "Registro rápido de walk-ins.",
+        "icon_name": "QrCode"
+      },
+      {
+        "name": "POS",
+        "description": "Sincronización con estado de mesas.",
+        "icon_name": "Monitor"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "reservas-whatsapp",
+        "link_text": "Reservas por WhatsApp"
+      },
+      {
+        "industry_slug": "restaurantes",
+        "use_case_slug": "pedidos-whatsapp",
+        "link_text": "Pedidos por WhatsApp"
+      },
+      {
+        "industry_slug": "peluquerias-spas",
+        "use_case_slug": "recordatorios-citas",
+        "link_text": "Recordatorios de citas para salones"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "doctores-quito",
@@ -393,7 +3026,132 @@
       "Agenda inteligente por especialidad, sede y tiempo promedio de consulta.",
       "Confirmación y reprogramación automática para mantener continuidad asistencial.",
       "Atención local para pacientes de Quito con lenguaje claro y cercano."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Doctores en Quito",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para doctores en Quito"
+    },
+    "use_case_grammar": {
+      "display_name": "Agenda Médica",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "agenda médica Quito",
+      "citas médicas Quito IA",
+      "doctor Quito WhatsApp"
+    ],
+    "metrics": {
+      "time_saved": "72%",
+      "cost_reduction": "45%",
+      "revenue_impact": "+28%",
+      "satisfaction_rate": "94%",
+      "default_tasks_per_month": 250,
+      "default_minutes_per_task": 6,
+      "default_hourly_cost": 10
+    },
+    "before_after": [
+      {
+        "dimension": "Atención fuera de horario",
+        "before": "Sin respuesta hasta el día siguiente",
+        "after": "Nexi agenda 24/7 por WhatsApp"
+      },
+      {
+        "dimension": "Duplicados de agenda",
+        "before": "Citas cruzadas entre llamadas y chat",
+        "after": "Agenda centralizada sin conflictos"
+      },
+      {
+        "dimension": "Carga de secretaría",
+        "before": "6+ horas diarias en teléfono",
+        "after": "Solo atiende consultas presenciales"
+      },
+      {
+        "dimension": "Pérdida de pacientes",
+        "before": "Se van por falta de respuesta",
+        "after": "Captura inmediata y cita confirmada"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El paciente escribe por WhatsApp",
+        "description": "Nexi identifica el tipo de consulta y propone horarios disponibles del doctor.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Agenda y confirma",
+        "description": "Nexi agenda la cita con fecha, hora y especialidad. Envía confirmación.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Recordatorio previo",
+        "description": "Envía recordatorio con ubicación del consultorio en Quito y opción de reprogramar.",
+        "icon_name": "Bell"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi funciona para consultorios pequeños de un solo doctor?",
+        "answer": "Sí. Nexi se adapta a consultorios de cualquier tamaño, desde un doctor independiente hasta clínicas con varios especialistas."
+      },
+      {
+        "question": "¿Es compatible con el sistema de salud ecuatoriano?",
+        "answer": "Nexi se configura según las normas y prácticas locales. Facturación local en Ecuador incluida."
+      },
+      {
+        "question": "¿Los pacientes en Quito prefieren WhatsApp sobre llamadas?",
+        "answer": "Sí. Más del 85% de pacientes en Quito prefieren agendar por WhatsApp según nuestros datos de uso."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Mi secretaria pasó de 6 horas al teléfono a enfocarse en la atención presencial. Los pacientes agendan solos por WhatsApp.",
+        "author_name": "Dr. Pablo M.",
+        "author_role": "Médico Internista",
+        "company": "Consultorio Dr. Morales",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal para pacientes en Quito.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Agenda del consultorio.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Google Maps",
+        "description": "Ubicación del consultorio.",
+        "icon_name": "MapPin"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "recordatorios-controles",
+        "link_text": "Recordatorios de controles médicos"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "seguimiento-pacientes",
+        "link_text": "Seguimiento de pacientes"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "agendamiento-citas",
+        "link_text": "Agendamiento para clínicas médicas"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "doctores-quito",
@@ -411,7 +3169,132 @@
       "Recordatorios multietapa con confirmación en uno o dos toques.",
       "Liberación de cupos no confirmados para mejorar ocupación de agenda.",
       "Menos carga administrativa para el personal de recepción."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Doctores en Quito",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para doctores en Quito"
+    },
+    "use_case_grammar": {
+      "display_name": "Recordatorios de Controles",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los"
+    },
+    "target_keywords": [
+      "recordatorios controles médicos Quito",
+      "confirmar citas doctor Quito",
+      "reducir inasistencias consultorio"
+    ],
+    "metrics": {
+      "time_saved": "68%",
+      "cost_reduction": "40%",
+      "revenue_impact": "+22%",
+      "satisfaction_rate": "93%",
+      "default_tasks_per_month": 200,
+      "default_minutes_per_task": 4,
+      "default_hourly_cost": 10
+    },
+    "before_after": [
+      {
+        "dimension": "Inasistencias",
+        "before": "25-35% de controles se pierden",
+        "after": "Menos de 10% con recordatorios"
+      },
+      {
+        "dimension": "Confirmación",
+        "before": "Llamada manual por recepcionista",
+        "after": "Confirmación automática por WhatsApp"
+      },
+      {
+        "dimension": "Cupos perdidos",
+        "before": "Se pierden sin reasignar",
+        "after": "Se ofrecen a pacientes en espera"
+      },
+      {
+        "dimension": "Reprogramación",
+        "before": "El paciente no avisa",
+        "after": "Opción de reprogramar con un clic"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Recordatorio programado",
+        "description": "Nexi envía recordatorio 48h y 2h antes del control con datos de la cita.",
+        "icon_name": "Bell"
+      },
+      {
+        "title": "Confirmación o cambio",
+        "description": "El paciente confirma o reprograma directamente desde WhatsApp.",
+        "icon_name": "CheckCircle"
+      },
+      {
+        "title": "Reasignación automática",
+        "description": "Si se libera un cupo, Nexi contacta al siguiente paciente en espera.",
+        "icon_name": "RefreshCw"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi recuerda los controles periódicos de pacientes crónicos?",
+        "answer": "Sí. Puedes programar recordatorios recurrentes según el plan de seguimiento de cada paciente."
+      },
+      {
+        "question": "¿Qué pasa si el paciente quiere cambiar de horario?",
+        "answer": "Nexi le muestra horarios disponibles y reprograma automáticamente sin necesidad de llamar."
+      },
+      {
+        "question": "¿Funciona para consultorios en el norte y sur de Quito?",
+        "answer": "Sí. Nexi envía la ubicación correcta según la sede del consultorio donde tiene la cita."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Los pacientes crónicos ya no faltan a sus controles. Los recordatorios por WhatsApp funcionan mejor que cualquier llamada.",
+        "author_name": "Dra. Isabel R.",
+        "author_role": "Cardióloga",
+        "company": "CardioVida Quito",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de recordatorios.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Google Calendar",
+        "description": "Agenda de controles.",
+        "icon_name": "Calendar"
+      },
+      {
+        "name": "Sistema HIS",
+        "description": "Planes de seguimiento.",
+        "icon_name": "Database"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "agenda-medica",
+        "link_text": "Agenda médica para doctores"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "seguimiento-pacientes",
+        "link_text": "Seguimiento de pacientes"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "recordatorios-medicacion",
+        "link_text": "Recordatorios de medicación"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "doctores-quito",
@@ -429,7 +3312,132 @@
       "Flujos automáticos de seguimiento según diagnóstico y tipo de tratamiento.",
       "Detección temprana de alertas para escalar al médico responsable.",
       "Historial de interacciones útil para continuidad de la atención."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "Doctores en Quito",
+      "gender": "m",
+      "number": "p",
+      "article_def": "los",
+      "preposition_phrase": "para doctores en Quito"
+    },
+    "use_case_grammar": {
+      "display_name": "Seguimiento de Pacientes",
+      "gender": "m",
+      "number": "s",
+      "article_def": "el"
+    },
+    "target_keywords": [
+      "seguimiento pacientes Quito",
+      "monitoreo post consulta IA",
+      "seguimiento médico WhatsApp"
+    ],
+    "metrics": {
+      "time_saved": "62%",
+      "cost_reduction": "38%",
+      "revenue_impact": "+18%",
+      "satisfaction_rate": "95%",
+      "default_tasks_per_month": 150,
+      "default_minutes_per_task": 8,
+      "default_hourly_cost": 12
+    },
+    "before_after": [
+      {
+        "dimension": "Seguimiento post consulta",
+        "before": "Ninguno hasta el próximo control",
+        "after": "Flujo automático según diagnóstico"
+      },
+      {
+        "dimension": "Respuesta a síntomas",
+        "before": "Horas o días de demora",
+        "after": "Detección y escalamiento inmediato"
+      },
+      {
+        "dimension": "Priorización",
+        "before": "Todos los mensajes son iguales",
+        "after": "Alertas automáticas por gravedad"
+      },
+      {
+        "dimension": "Historial",
+        "before": "Mensajes sueltos en WhatsApp",
+        "after": "Registro estructurado de evolución"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Se activa el seguimiento",
+        "description": "Tras la consulta, Nexi inicia un flujo de seguimiento personalizado por diagnóstico.",
+        "icon_name": "Activity"
+      },
+      {
+        "title": "Nexi consulta evolución",
+        "description": "Envía preguntas sobre síntomas, medicación y estado general en los días indicados.",
+        "icon_name": "ClipboardCheck"
+      },
+      {
+        "title": "Alerta si hay riesgo",
+        "description": "Si las respuestas indican complicación, Nexi notifica al médico y coordina cita urgente.",
+        "icon_name": "AlertTriangle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi reemplaza al médico en el seguimiento?",
+        "answer": "No. Nexi recopila información y alerta al médico. Nunca da diagnósticos ni modifica tratamientos."
+      },
+      {
+        "question": "¿Funciona para diferentes especialidades?",
+        "answer": "Sí. Cada especialidad tiene protocolos de seguimiento configurables según las prácticas del doctor."
+      },
+      {
+        "question": "¿El paciente puede enviar resultados de exámenes?",
+        "answer": "Sí. Nexi recibe imágenes y documentos que se adjuntan al historial del paciente para revisión del médico."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Un paciente reportó fiebre alta al segundo día y Nexi me alertó inmediatamente. Pudimos intervenir a tiempo.",
+        "author_name": "Dr. Fernando L.",
+        "author_role": "Médico General",
+        "company": "Centro Médico Norte",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de seguimiento con pacientes.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Sistema HIS",
+        "description": "Registro de evolución clínica.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Laboratorio",
+        "description": "Recepción de resultados.",
+        "icon_name": "FlaskConical"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "agenda-medica",
+        "link_text": "Agenda médica para doctores"
+      },
+      {
+        "industry_slug": "doctores-quito",
+        "use_case_slug": "recordatorios-controles",
+        "link_text": "Recordatorios de controles"
+      },
+      {
+        "industry_slug": "clinicas-medicas",
+        "use_case_slug": "recordatorios-medicacion",
+        "link_text": "Recordatorios de medicación"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "pymes-ecuador",
@@ -447,7 +3455,132 @@
       "Soporte local en Ecuador y facturación simple.",
       "Respuesta automática 24/7 para preguntas frecuentes, estados de pedido y políticas.",
       "Escalamiento a humano con contexto para cerrar casos complejos más rápido."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "PYMEs en Ecuador",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para PYMEs en Ecuador"
+    },
+    "use_case_grammar": {
+      "display_name": "Atención al Cliente",
+      "gender": "f",
+      "number": "s",
+      "article_def": "la"
+    },
+    "target_keywords": [
+      "atención cliente PYME Ecuador",
+      "soporte WhatsApp empresa Ecuador",
+      "chatbot PYME ecuatoriana"
+    ],
+    "metrics": {
+      "time_saved": "70%",
+      "cost_reduction": "45%",
+      "revenue_impact": "+22%",
+      "satisfaction_rate": "90%",
+      "default_tasks_per_month": 500,
+      "default_minutes_per_task": 5,
+      "default_hourly_cost": 8
+    },
+    "before_after": [
+      {
+        "dimension": "Tiempo de respuesta",
+        "before": "1-4 horas o sin respuesta",
+        "after": "Menos de 30 segundos, 24/7"
+      },
+      {
+        "dimension": "Consultas repetitivas",
+        "before": "Personal responde una por una",
+        "after": "Respuesta automática instantánea"
+      },
+      {
+        "dimension": "Trazabilidad",
+        "before": "Conversaciones sueltas sin registro",
+        "after": "Historial centralizado por cliente"
+      },
+      {
+        "dimension": "Escalamiento",
+        "before": "El cliente repite su problema",
+        "after": "Humano recibe contexto completo"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El cliente escribe por WhatsApp",
+        "description": "Nexi recibe la consulta e identifica si es FAQ, estado de pedido o caso complejo.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Respuesta o escalamiento",
+        "description": "Nexi resuelve automáticamente o escala al equipo con todo el contexto necesario.",
+        "icon_name": "BrainCircuit"
+      },
+      {
+        "title": "Seguimiento y cierre",
+        "description": "El caso queda registrado con trazabilidad para seguimiento y mejora continua.",
+        "icon_name": "CheckCircle"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi funciona para empresas pequeñas con 2-3 empleados?",
+        "answer": "Sí. Nexi se adapta a PYMEs de cualquier tamaño. No necesitas un equipo de soporte dedicado."
+      },
+      {
+        "question": "¿La facturación es local en Ecuador?",
+        "answer": "Sí. Nexal Forge factura localmente en Ecuador, facilitando el proceso contable para PYMEs."
+      },
+      {
+        "question": "¿Puedo entrenar a Nexi con las preguntas de mis clientes?",
+        "answer": "Sí. Nexi se entrena con tus FAQs, políticas y catálogo para dar respuestas precisas y consistentes."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Antes perdíamos ventas por no responder a tiempo. Ahora Nexi atiende todo el día y solo nos pasa los casos que necesitan decisión humana.",
+        "author_name": "Gabriela T.",
+        "author_role": "Gerente General",
+        "company": "Importadora GT",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal principal de atención.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "CRM",
+        "description": "Registro de conversaciones e historial.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Email",
+        "description": "Canal complementario de soporte.",
+        "icon_name": "Mail"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "ventas-whatsapp",
+        "link_text": "Ventas por WhatsApp para PYMEs"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "cobranzas-recordatorios",
+        "link_text": "Cobranzas y recordatorios"
+      },
+      {
+        "industry_slug": "ecommerce",
+        "use_case_slug": "soporte-postventa-pedidos",
+        "link_text": "Soporte postventa e-commerce"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "pymes-ecuador",
@@ -465,7 +3598,132 @@
       "Calificación automática de prospectos según presupuesto, necesidad y urgencia.",
       "Recomendaciones de producto con mensajes consistentes y enfoque de cierre.",
       "Derivación a vendedor correcto con contexto para acelerar la conversión."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "PYMEs en Ecuador",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para PYMEs en Ecuador"
+    },
+    "use_case_grammar": {
+      "display_name": "Ventas por WhatsApp",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las"
+    },
+    "target_keywords": [
+      "ventas WhatsApp PYME Ecuador",
+      "vender por WhatsApp IA",
+      "automatizar ventas Ecuador"
+    ],
+    "metrics": {
+      "time_saved": "65%",
+      "cost_reduction": "40%",
+      "revenue_impact": "+38%",
+      "satisfaction_rate": "89%",
+      "default_tasks_per_month": 350,
+      "default_minutes_per_task": 8,
+      "default_hourly_cost": 10
+    },
+    "before_after": [
+      {
+        "dimension": "Calificación de leads",
+        "before": "Manual, sin criterios claros",
+        "after": "Automática por presupuesto y urgencia"
+      },
+      {
+        "dimension": "Respuestas de precio",
+        "before": "Cada vendedor responde diferente",
+        "after": "Mensajes consistentes y actualizados"
+      },
+      {
+        "dimension": "Seguimiento",
+        "before": "Leads olvidados después de 24h",
+        "after": "Secuencia automática hasta cierre"
+      },
+      {
+        "dimension": "Conversión",
+        "before": "5-8% de consultas a venta",
+        "after": "12-18% con calificación y seguimiento"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "El prospecto escribe por WhatsApp",
+        "description": "Nexi identifica intención de compra, presupuesto y urgencia en la conversación.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "title": "Catálogo y recomendación",
+        "description": "Nexi envía productos relevantes con precios y disponibilidad actualizados.",
+        "icon_name": "ShoppingBag"
+      },
+      {
+        "title": "Derivación al vendedor",
+        "description": "El lead calificado llega al vendedor con ficha completa para cerrar.",
+        "icon_name": "UserCheck"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Nexi puede enviar catálogos de productos?",
+        "answer": "Sí. Nexi envía catálogos, fichas de producto y precios actualizados según el interés del prospecto."
+      },
+      {
+        "question": "¿Funciona para diferentes tipos de productos o servicios?",
+        "answer": "Sí. Nexi se adapta a cualquier catálogo: productos físicos, servicios, suscripciones o combos."
+      },
+      {
+        "question": "¿Puedo ver métricas de conversión?",
+        "answer": "Sí. Nexi reporta tasas de conversión, motivos de no-compra y rendimiento por producto o vendedor."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "La conversión por WhatsApp subió de 6% a 15%. Nexi califica y el equipo comercial solo habla con prospectos listos para comprar.",
+        "author_name": "Roberto A.",
+        "author_role": "Director Comercial",
+        "company": "Distribuidora Andina",
+        "city": "Guayaquil"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de ventas conversacional.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "CRM",
+        "description": "Registro de leads y seguimiento.",
+        "icon_name": "Database"
+      },
+      {
+        "name": "Catálogo Digital",
+        "description": "Productos y precios actualizados.",
+        "icon_name": "ShoppingBag"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "atencion-cliente",
+        "link_text": "Atención al cliente para PYMEs"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "cobranzas-recordatorios",
+        "link_text": "Cobranzas y recordatorios"
+      },
+      {
+        "industry_slug": "inmobiliarias",
+        "use_case_slug": "calificacion-leads",
+        "link_text": "Calificación de leads inmobiliarios"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   },
   {
     "industry_slug": "pymes-ecuador",
@@ -483,6 +3741,131 @@
       "Recordatorios automáticos antes y después del vencimiento con tono profesional.",
       "Registro de promesas de pago y estados de seguimiento por cliente.",
       "Mejor flujo de caja sin incrementar carga operativa del área financiera."
-    ]
+    ],
+    "industry_grammar": {
+      "display_name": "PYMEs en Ecuador",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las",
+      "preposition_phrase": "para PYMEs en Ecuador"
+    },
+    "use_case_grammar": {
+      "display_name": "Cobranzas y Recordatorios",
+      "gender": "f",
+      "number": "p",
+      "article_def": "las"
+    },
+    "target_keywords": [
+      "cobranza PYME Ecuador",
+      "recordatorios pago WhatsApp",
+      "cartera vencida automatizar"
+    ],
+    "metrics": {
+      "time_saved": "60%",
+      "cost_reduction": "45%",
+      "revenue_impact": "+25%",
+      "satisfaction_rate": "87%",
+      "default_tasks_per_month": 300,
+      "default_minutes_per_task": 5,
+      "default_hourly_cost": 8
+    },
+    "before_after": [
+      {
+        "dimension": "Recordatorios de pago",
+        "before": "Manual, cuando alguien se acuerda",
+        "after": "Automático antes y después del vencimiento"
+      },
+      {
+        "dimension": "Cartera vencida",
+        "before": "Crece sin control",
+        "after": "Reducción del 30-40% en 60 días"
+      },
+      {
+        "dimension": "Tiempo administrativo",
+        "before": "4+ horas semanales en cobranza",
+        "after": "Solo revisa compromisos incumplidos"
+      },
+      {
+        "dimension": "Registro",
+        "before": "Promesas en chats sueltos",
+        "after": "Historial con fechas y compromisos"
+      }
+    ],
+    "how_it_works": [
+      {
+        "title": "Nexi detecta vencimientos",
+        "description": "Se conecta a tu sistema contable y programa recordatorios antes de la fecha de pago.",
+        "icon_name": "Calendar"
+      },
+      {
+        "title": "Envía recordatorio profesional",
+        "description": "Mensaje respetuoso por WhatsApp con monto, fecha y opciones de pago.",
+        "icon_name": "Bell"
+      },
+      {
+        "title": "Registra compromisos",
+        "description": "Si el cliente promete pago, Nexi registra fecha y monto. Si incumple, escala al equipo.",
+        "icon_name": "ClipboardCheck"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿El tono de los mensajes es profesional y respetuoso?",
+        "answer": "Sí. Los mensajes siguen un tono profesional, no agresivo. Tú defines el tono y la escalación en cada etapa."
+      },
+      {
+        "question": "¿Se integra con mi sistema contable?",
+        "answer": "Nexi se conecta con los principales sistemas contables en Ecuador para obtener facturas y vencimientos."
+      },
+      {
+        "question": "¿Puedo ver un reporte de cartera?",
+        "answer": "Sí. Nexi genera reportes de cartera con estados de pago, promesas y montos pendientes por cliente."
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "La cartera vencida bajó un 35% en dos meses. Ahora el equipo administrativo se enfoca en cobros grandes, no en perseguir pagos de $50.",
+        "author_name": "María F.",
+        "author_role": "Contadora",
+        "company": "Servicios MF",
+        "city": "Quito"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "WhatsApp Business",
+        "description": "Canal de recordatorios de pago.",
+        "icon_name": "MessageCircle"
+      },
+      {
+        "name": "Sistema Contable",
+        "description": "Fuente de facturas y vencimientos.",
+        "icon_name": "Calculator"
+      },
+      {
+        "name": "Pasarela de Pago",
+        "description": "Link de pago directo en el mensaje.",
+        "icon_name": "CreditCard"
+      }
+    ],
+    "related_pages": [
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "atencion-cliente",
+        "link_text": "Atención al cliente para PYMEs"
+      },
+      {
+        "industry_slug": "pymes-ecuador",
+        "use_case_slug": "ventas-whatsapp",
+        "link_text": "Ventas por WhatsApp"
+      },
+      {
+        "industry_slug": "bufetes-abogados",
+        "use_case_slug": "actualizacion-estado-casos",
+        "link_text": "Actualización de estado de casos"
+      }
+    ],
+    "cta_primary_text": "Solicitar diagnóstico gratis",
+    "cta_whatsapp_text": "Escríbenos por WhatsApp"
   }
 ]

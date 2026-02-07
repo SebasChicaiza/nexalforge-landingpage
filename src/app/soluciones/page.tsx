@@ -2,20 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import pseoDataRaw from "@/data/pSEO.json";
 import type { PSEOPageData } from "@/types/pseo";
+import { getIndustryName, getUseCaseName } from "@/lib/spanish-grammar";
 
 export const metadata: Metadata = {
-  title: "Soluciones de IA por Industria - Nexi",
+  title: "Soluciones de IA por Industria — Nexi | Nexal Forge",
+  description:
+    "Explora soluciones de automatización con IA por industria y caso de uso. Despliega Nexi con objetivos operativos concretos.",
 };
 
 const pseoData: PSEOPageData[] = pseoDataRaw as PSEOPageData[];
-
-function slugToTitle(slug: string): string {
-  return slug
-    .split("-")
-    .filter(Boolean)
-    .map((chunk) => `${chunk.charAt(0).toUpperCase()}${chunk.slice(1)}`)
-    .join(" ");
-}
 
 type IndustrySection = {
   industrySlug: string;
@@ -24,19 +19,26 @@ type IndustrySection = {
 };
 
 function buildIndustrySections(data: PSEOPageData[]): IndustrySection[] {
-  const grouped = data.reduce((acc, entry) => {
-    const industryMap = acc.get(entry.industry_slug) ?? new Map<string, PSEOPageData>();
-    industryMap.set(entry.use_case_slug, entry);
-    acc.set(entry.industry_slug, industryMap);
-    return acc;
-  }, new Map<string, Map<string, PSEOPageData>>());
+  const grouped = data.reduce(
+    (acc, entry) => {
+      const industryMap =
+        acc.get(entry.industry_slug) ?? new Map<string, PSEOPageData>();
+      industryMap.set(entry.use_case_slug, entry);
+      acc.set(entry.industry_slug, industryMap);
+      return acc;
+    },
+    new Map<string, Map<string, PSEOPageData>>()
+  );
 
   return Array.from(grouped.entries())
     .map(([industrySlug, useCaseMap]) => ({
       industrySlug,
-      industryName: slugToTitle(industrySlug),
+      industryName: getIndustryName(industrySlug),
       pages: Array.from(useCaseMap.values()).sort((a, b) =>
-        slugToTitle(a.use_case_slug).localeCompare(slugToTitle(b.use_case_slug), "es")
+        getUseCaseName(a.use_case_slug).localeCompare(
+          getUseCaseName(b.use_case_slug),
+          "es"
+        )
       ),
     }))
     .sort((a, b) => a.industryName.localeCompare(b.industryName, "es"));
@@ -58,8 +60,8 @@ export default function SolucionesPage() {
           Soluciones de IA por industria
         </h1>
         <p className="mt-5 max-w-3xl text-white/80 md:text-lg">
-          Encuentra la solucion por industria y caso de uso para desplegar Nexi con
-          objetivos operativos concretos.
+          Encuentra la solución por industria y caso de uso para desplegar Nexi
+          con objetivos operativos concretos.
         </p>
       </section>
 
@@ -67,10 +69,20 @@ export default function SolucionesPage() {
         <div className="space-y-10">
           {industrySections.map((section) => (
             <div key={section.industrySlug}>
-              <h2 className="mb-4 text-2xl font-semibold text-white">{section.industryName}</h2>
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-2xl font-semibold text-white">
+                  {section.industryName}
+                </h2>
+                <Link
+                  href={`/soluciones/${section.industrySlug}`}
+                  className="text-sm font-medium text-[#F4C5CB] hover:text-white transition-colors"
+                >
+                  Ver todas →
+                </Link>
+              </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {section.pages.map((page) => {
-                  const useCaseName = slugToTitle(page.use_case_slug);
+                  const useCaseName = getUseCaseName(page.use_case_slug);
 
                   return (
                     <Link
@@ -81,10 +93,14 @@ export default function SolucionesPage() {
                       <p className="text-xs uppercase tracking-[0.14em] text-[#E9B7BD]">
                         {section.industryName}
                       </p>
-                      <h3 className="mt-2 text-lg font-semibold text-white">{useCaseName}</h3>
-                      <p className="mt-2 text-sm text-white/75">{page.description}</p>
+                      <h3 className="mt-2 text-lg font-semibold text-white">
+                        {useCaseName}
+                      </h3>
+                      <p className="mt-2 text-sm text-white/75">
+                        {page.description}
+                      </p>
                       <span className="mt-4 inline-block text-sm font-medium text-[#F4C5CB] group-hover:text-white">
-                        Ver solucion {"->"}
+                        Ver solución →
                       </span>
                     </Link>
                   );
