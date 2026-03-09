@@ -7,6 +7,7 @@ import BrandCtaLink from "./buttons/BrandCtaLink";
 import { ArrowRight } from "lucide-react";
 import { hasJwtCookie, watchJwtCookie } from "@/lib/auth-events";
 import { usePathname } from "next/navigation";
+import { getAllIndustrySlugs, getIndustryName } from "@/lib/spanish-grammar";
 
 type NavLink = { label: string; href: string };
 
@@ -31,11 +32,15 @@ const SOLUTIONS: NavLink[] = [
 
 const NEXI_LINKS: NavLink[] = [
   { label: "Asistente virtual Nexi", href: "/asistente-virtual-nexi" },
-  {
-    label: "Nexi para Clínicas Odontológicas",
-    href: "/soluciones/clinicas-odontologicas",
-  },
+  { label: "Ver todas las soluciones", href: "/soluciones" },
 ];
+
+const NEXI_INDUSTRY_LINKS: NavLink[] = getAllIndustrySlugs()
+  .sort((a, b) => getIndustryName(a).localeCompare(getIndustryName(b), "es"))
+  .map((slug) => ({
+    label: getIndustryName(slug),
+    href: `/soluciones/${slug}`,
+  }));
 
 // --- realtime auth flag
 function useAuthFlag() {
@@ -374,7 +379,7 @@ export default function StickyHeader() {
               </button>
 
               <div
-                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[480px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[640px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
                   nexiOpen
                     ? "pointer-events-auto opacity-100 translate-y-0"
                     : "pointer-events-none opacity-0 -translate-y-1"
@@ -390,32 +395,58 @@ export default function StickyHeader() {
                       "radial-gradient(closest-side, rgba(139,30,45,.30), transparent)",
                   }}
                 />
-                <ul className="grid grid-cols-1 gap-1">
-                  {NEXI_LINKS.map((s) => (
-                    <li key={s.label}>
-                      <Link
-                        href={s.href}
-                        className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.98rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
-                        onClick={() => setNexiOpen(false)}
-                      >
-                        {s.label}
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-4 w-4 opacity-70"
-                          fill="none"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <div className="grid gap-4 sm:grid-cols-[1fr_1.3fr]">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-2">
+                    <p className="px-2 pb-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
+                      Producto Nexi
+                    </p>
+                    <ul className="grid grid-cols-1 gap-1">
+                      {NEXI_LINKS.map((s) => (
+                        <li key={s.label}>
+                          <Link
+                            href={s.href}
+                            className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.95rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                            onClick={() => setNexiOpen(false)}
+                          >
+                            {s.label}
+                            <svg
+                              viewBox="0 0 24 24"
+                              className="h-4 w-4 opacity-70"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-2">
+                    <p className="px-2 pb-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
+                      Nexi por industria
+                    </p>
+                    <ul className="grid grid-cols-2 gap-1">
+                      {NEXI_INDUSTRY_LINKS.map((s) => (
+                        <li key={s.label}>
+                          <Link
+                            href={s.href}
+                            className="block rounded-lg border border-transparent px-3 py-2 text-[0.86rem] leading-snug text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                            onClick={() => setNexiOpen(false)}
+                          >
+                            {s.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -611,7 +642,24 @@ export default function StickyHeader() {
               id="mobile-nexi"
               className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
             >
+              <li className="px-3 pt-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/55">
+                Producto Nexi
+              </li>
               {NEXI_LINKS.map((s) => (
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
+                  >
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="px-3 pt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/55">
+                Nexi por industria
+              </li>
+              {NEXI_INDUSTRY_LINKS.map((s) => (
                 <li key={s.label}>
                   <Link
                     href={s.href}

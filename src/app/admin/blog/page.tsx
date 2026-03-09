@@ -125,9 +125,8 @@ export default function AdminBlogPage() {
   }, [data]);
 
   return (
-    <div className="min-h-screen bg-white pt-20">
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="mb-6 flex items-center justify-between">
+    <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm md:p-6">
+      <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-neutral-900">
               Publicaciones del blog
@@ -136,12 +135,20 @@ export default function AdminBlogPage() {
               Administra y revisa tus publicaciones.
             </p>
           </div>
-          <Link
-            href="/admin/blog/new"
-            className="inline-flex items-center rounded-xl bg-neutral-900 px-4 py-2 text-sm font-medium text-white shadow hover:shadow-md transition-shadow"
-          >
-            + Nueva publicación
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/admin/demo-leads"
+              className="inline-flex items-center rounded-xl border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-50"
+            >
+              Solicitudes demo
+            </Link>
+            <Link
+              href="/admin/blog/new"
+              className="inline-flex items-center rounded-xl bg-neutral-900 px-4 py-2 text-sm font-medium text-white shadow hover:shadow-md transition-shadow"
+            >
+              + Nueva publicación
+            </Link>
+          </div>
         </div>
 
         <div className="mb-4 flex items-center gap-3">
@@ -155,7 +162,7 @@ export default function AdminBlogPage() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow">
+      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-neutral-200">
               <thead className="bg-neutral-50">
@@ -333,7 +340,6 @@ export default function AdminBlogPage() {
               </button>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

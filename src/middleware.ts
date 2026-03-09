@@ -14,6 +14,7 @@ const JWT_SECRET = process.env.JWT_SECRET ?? "";
 const PUBLIC_PREFIXES = [
   "/",
   "/login",
+  "/demo-1",
   "/blog",
   "/politicas-privacidad",
   "/cookies",

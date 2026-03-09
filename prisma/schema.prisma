@@ -165,3 +165,66 @@ model WaConsent {
   @@index([phoneE164], map: "wa_consent_phone_idx")
 }
 
+//// --------- Demo clínicas ---------
+
+model PaisDemo {
+  id               Int         @id @default(autoincrement())
+  nombre           String      @unique
+  iso2             String      @unique
+  codigoTelefonico String?
+
+  ciudades         CiudadDemo[]
+
+  creadoEn         DateTime    @default(now())
+  actualizadoEn    DateTime    @updatedAt
+}
+
+model CiudadDemo {
+  id            Int             @id @default(autoincrement())
+  nombre        String
+  paisId        Int
+
+  pais          PaisDemo        @relation(fields: [paisId], references: [id], onDelete: Restrict)
+  solicitudes   SolicitudDemo[]
+
+  creadoEn      DateTime        @default(now())
+  actualizadoEn DateTime        @updatedAt
+
+  @@unique([paisId, nombre])
+  @@index([paisId])
+}
+
+model EstadoSolicitudDemo {
+  id            Int             @id @default(autoincrement())
+  nombre        String          @unique
+  solicitudes   SolicitudDemo[]
+
+  creadoEn      DateTime        @default(now())
+  actualizadoEn DateTime        @updatedAt
+}
+
+model SolicitudDemo {
+  id                       String               @id @default(cuid())
+  nombreRepresentante      String
+  nombreClinica            String
+  ciudadId                 Int
+  numeroWhatsApp           String
+  usuarioInstagram         String?
+  emailContacto            String
+  problemaPrincipal        String               @db.Text
+  profesionalesYServicios  String               @db.Text
+  comentariosAdicionales   String?              @db.Text
+  estadoId                 Int
+  origen                   String?
+
+  ciudad                   CiudadDemo           @relation(fields: [ciudadId], references: [id], onDelete: Restrict)
+  estado                   EstadoSolicitudDemo  @relation(fields: [estadoId], references: [id], onDelete: Restrict)
+
+  creadoEn                 DateTime             @default(now())
+  actualizadoEn            DateTime             @updatedAt
+
+  @@index([creadoEn])
+  @@index([estadoId])
+  @@index([ciudadId])
+  @@index([emailContacto])
+}
