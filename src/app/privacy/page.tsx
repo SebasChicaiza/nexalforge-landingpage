@@ -1,46 +1,133 @@
-import type { Metadata } from "next";
+import LegalPageLayout, { LegalSection } from "@/components/LegalPageLayout";
+import { Metadata } from "next";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Learn how Nexal Forge processes data. This page directs you to our full privacy notice in Spanish.",
-  alternates: { canonical: "/politicas-privacidad" },
+  title: "Política de Privacidad | Nexal Forge",
+  description: "Política de privacidad de Nexal Forge y el uso de datos en nuestra plataforma Nexi.",
 };
+
+const sections: LegalSection[] = [
+  {
+    id: "quienes-somos",
+    title: "1. Quiénes somos",
+    content: (
+      <p>
+        Nexal Forge opera la plataforma Nexi y el presente sitio web.
+      </p>
+    ),
+  },
+  {
+    id: "datos-recopilamos",
+    title: "2. Qué datos recopilamos",
+    content: (
+      <>
+        <p>Podemos recopilar datos como:</p>
+        <ul className="list-inside list-disc mt-2 space-y-1">
+          <li>nombre</li>
+          <li>correo electrónico</li>
+          <li>teléfono</li>
+          <li>datos de empresa</li>
+          <li>datos de uso de la plataforma</li>
+          <li>dirección IP</li>
+          <li>navegador</li>
+          <li>dispositivo</li>
+          <li>información necesaria para soporte o implementación</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    id: "uso-datos",
+    title: "3. Para qué usamos los datos",
+    content: (
+      <>
+        <p>Usamos los datos para:</p>
+        <ul className="list-inside list-disc mt-2 space-y-1">
+          <li>crear y administrar cuentas</li>
+          <li>prestar el servicio</li>
+          <li>facturar y gestionar pagos</li>
+          <li>brindar soporte</li>
+          <li>mejorar el producto</li>
+          <li>enviar comunicaciones operativas o comerciales, cuando corresponda</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    id: "base-tratamiento",
+    title: "4. Base de tratamiento",
+    content: (
+      <p>
+        Tratamos los datos para ejecutar la relación contractual, cumplir obligaciones legales, mejorar nuestros servicios y, cuando corresponda, con consentimiento del usuario.
+      </p>
+    ),
+  },
+  {
+    id: "comparticion-terceros",
+    title: "5. Compartición con terceros",
+    content: (
+      <p>
+        Compartimos datos solo con proveedores necesarios para operar el servicio, como plataformas de pago, infraestructura, analítica, mensajería o soporte, bajo condiciones de confidencialidad y seguridad.
+      </p>
+    ),
+  },
+  {
+    id: "conservacion",
+    title: "6. Conservación",
+    content: (
+      <p>
+        Conservamos los datos durante el tiempo necesario para prestar el servicio, cumplir obligaciones legales y resolver disputas.
+      </p>
+    ),
+  },
+  {
+    id: "seguridad",
+    title: "7. Seguridad",
+    content: (
+      <p>
+        Aplicamos medidas técnicas y organizativas razonables para proteger la información.
+      </p>
+    ),
+  },
+  {
+    id: "derechos-usuario",
+    title: "8. Derechos del usuario",
+    content: (
+      <p>
+        El usuario puede solicitar acceso, corrección, actualización o eliminación de su información, sujeto a la legislación aplicable.
+      </p>
+    ),
+  },
+  {
+    id: "cambios",
+    title: "9. Cambios",
+    content: (
+      <p>
+        Podemos actualizar esta política publicando una nueva versión en el sitio.
+      </p>
+    ),
+  },
+  {
+    id: "contacto",
+    title: "10. Contacto",
+    content: (
+      <p>
+        Correo de privacidad o soporte:{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="underline text-rose-700 hover:text-rose-800">
+          {CONTACT_EMAIL}
+        </a>
+      </p>
+    ),
+  },
+];
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-neutral-50 pb-16 pt-20">
-      <div className="mx-auto max-w-3xl px-4">
-        <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
-          <p className="text-sm font-medium text-rose-700">Privacy</p>
-          <h1 className="mt-2 text-3xl font-bold text-neutral-900">
-            Privacy Policy (EN)
-          </h1>
-          <p className="mt-3 text-neutral-600">
-            Our full privacy notice is available in Spanish. It covers data
-            captured via web forms, WhatsApp, analytics, and support channels.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 text-sm text-neutral-700">
-            <Link
-              href="/politicas-privacidad"
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-rose-700 px-4 py-2 text-white transition hover:bg-rose-800"
-            >
-              Ver Política de Privacidad
-            </Link>
-            <p>
-              If you have questions in English, email us at{" "}
-              <a
-                href="mailto:contact@nexalforge.com"
-                className="text-rose-700 hover:underline"
-              >
-                contact@nexalforge.com
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
+    <LegalPageLayout
+      title="Política de Privacidad de Nexal Forge"
+      sections={sections}
+    />
   );
 }

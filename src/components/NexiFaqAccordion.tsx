@@ -23,7 +23,7 @@ export default function NexiFaqAccordion({ faqs }: Props) {
         return (
           <div
             key={item.q}
-            className="rounded-2xl border border-neutral-200 bg-neutral-50/60 transition-colors duration-300"
+            className="rounded-2xl border border-slate-300 bg-white transition-colors duration-300"
           >
             <button
               type="button"
@@ -32,13 +32,13 @@ export default function NexiFaqAccordion({ faqs }: Props) {
               aria-expanded={isOpen}
             >
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-[#8B1E2D]" />
-                <h3 className="text-lg font-semibold text-[#0F0F10]">
+                <ShieldCheck className="h-5 w-5 text-nf-primary-700" />
+                <h3 className="text-lg font-semibold text-slate-900">
                   {item.q}
                 </h3>
               </div>
               <ChevronDown
-                className={`h-5 w-5 text-neutral-500 transition-transform duration-300 ${
+                className={`h-5 w-5 text-slate-600 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
                 }`}
               />
@@ -49,7 +49,7 @@ export default function NexiFaqAccordion({ faqs }: Props) {
                 isOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
               } overflow-hidden`}
             >
-              <p className="text-neutral-700">{item.a}</p>
+              <p className="text-slate-700">{item.a}</p>
             </div>
           </div>
         );

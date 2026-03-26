@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
       { protocol: "http", hostname: "**" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/politicas-privacidad',
+        destination: '/privacy',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

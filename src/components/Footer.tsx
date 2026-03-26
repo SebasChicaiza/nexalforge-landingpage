@@ -33,6 +33,11 @@ export default function Footer() {
           <div className="mb-2 font-semibold text-[#2A2A2A]">Empresa</div>
           <ul className="space-y-1">
             <li>
+              <Link className="hover:underline" href="/pricing">
+                Precios
+              </Link>
+            </li>
+            <li>
               <a className="hover:underline" href="#casos">
                 Casos
               </a>
@@ -81,18 +86,28 @@ export default function Footer() {
             </li>
           </ul>
         </nav>
-        <nav aria-label="Empresa">
-          <div className="mb-2 font-semibold text-[#2A2A2A]">Policas</div>
+        <nav aria-label="Políticas">
+          <div className="mb-2 font-semibold text-[#2A2A2A]">Políticas</div>
           <ul className="space-y-1">
             <li>
-              <a className="hover:underline" href="/politicas-privacidad">
-                Politicas de Privacidad
-              </a>
+              <Link className="hover:underline" href="/terms">
+                Términos de Servicio
+              </Link>
             </li>
             <li>
-              <a className="hover:underline" href="/cookies">
-                Politicas de Cookies
-              </a>
+              <Link className="hover:underline" href="/privacy">
+                Política de Privacidad
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/refunds">
+                Política de Reembolsos
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/cookies">
+                Política de Cookies
+              </Link>
             </li>
           </ul>
         </nav>
