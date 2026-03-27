@@ -1,6 +1,7 @@
 // components/Footer.tsx
 import Link from "next/link";
 import Image from "next/image";
+import { COMPANY_DOMICILE, CONTACT_EMAIL, TRADE_NAME } from "@/lib/legal";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -117,16 +118,16 @@ export default function Footer() {
         <div>
           <div className="mb-2 font-semibold text-[#2A2A2A]">Contacto</div>
           <p>
-            <a className="hover:underline" href="mailto:contact@nexalforge.com">
-              contact@nexalforge.com
+            <a className="hover:underline" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
             </a>
           </p>
-          <p>Quito, Ecuador</p>
+          <p>{COMPANY_DOMICILE}</p>
         </div>
       </div>
 
       <div className="mx-auto mt-8 max-w-7xl px-4 text-xs text-neutral-500">
-        © {year} NexalForge. Todos los derechos reservados.
+        © {year} {TRADE_NAME}. Todos los derechos reservados.
       </div>
     </footer>
   );

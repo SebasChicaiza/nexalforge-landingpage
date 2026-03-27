@@ -10,6 +10,12 @@ import Script from "next/script";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import {
+  COMPANY_DOMICILE,
+  COMPANY_RUC,
+  LEGAL_COMPANY_NAME,
+  TRADE_NAME,
+} from "@/lib/legal";
 
 export const headingFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -108,7 +114,7 @@ export default function RootLayout({
         <WhatsAppOptInCard
           businessName="Nexal Forge"
           purposes={["atencion_cliente", "transaccional"]}
-          privacyUrl="/politicas-privacidad"
+          privacyUrl="/privacy"
           origin="web"
         />
         */}
@@ -123,10 +129,19 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Nexal Forge",
+              name: TRADE_NAME,
+              legalName: LEGAL_COMPANY_NAME,
+              taxID: COMPANY_RUC,
               alternateName: ["NexalForge", "Nexi"],
               url: "https://www.nexalforge.com",
               logo: "https://www.nexalforge.com/logo-nexal.png",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Quito",
+                addressRegion: "Pichincha",
+                addressCountry: "EC",
+                streetAddress: COMPANY_DOMICILE,
+              },
               sameAs: ["https://www.nexalforge.com/asistente-virtual-nexi"],
             }),
           }}

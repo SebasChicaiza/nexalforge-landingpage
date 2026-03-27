@@ -60,7 +60,7 @@ export default function CookiesPage() {
             <p>
               Para más detalles sobre datos personales, consulta nuestra{" "}
               <Link
-                href="/politicas-privacidad"
+                href="/privacy"
                 className="text-rose-700 hover:underline"
               >
                 Política de Privacidad

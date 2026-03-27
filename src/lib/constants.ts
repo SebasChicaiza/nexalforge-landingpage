@@ -1,1 +1,1 @@
-export const CONTACT_EMAIL = "contact@nexalforge.com";
+export { CONTACT_EMAIL } from "@/lib/legal";

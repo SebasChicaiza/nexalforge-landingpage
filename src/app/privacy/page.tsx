@@ -1,11 +1,17 @@
 import LegalPageLayout, { LegalSection } from "@/components/LegalPageLayout";
 import { Metadata } from "next";
-import Link from "next/link";
 import { CONTACT_EMAIL } from "@/lib/constants";
+import CompanyIdentificationBlock from "@/components/CompanyIdentificationBlock";
+import {
+  LEGAL_COMPANY_NAME,
+  PRODUCT_NAME,
+  TRADE_NAME,
+} from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Política de Privacidad | Nexal Forge",
   description: "Política de privacidad de Nexal Forge y el uso de datos en nuestra plataforma Nexi.",
+  alternates: { canonical: "/privacy" },
 };
 
 const sections: LegalSection[] = [
@@ -13,9 +19,16 @@ const sections: LegalSection[] = [
     id: "quienes-somos",
     title: "1. Quiénes somos",
     content: (
-      <p>
-        Nexal Forge opera la plataforma Nexi y el presente sitio web.
-      </p>
+      <>
+        <p>
+          <strong>{LEGAL_COMPANY_NAME}</strong>, que opera comercialmente como{" "}
+          <strong>{TRADE_NAME}</strong>, es responsable del tratamiento de datos
+          asociado a {PRODUCT_NAME} y a este sitio web.
+        </p>
+        <div className="mt-4">
+          <CompanyIdentificationBlock />
+        </div>
+      </>
     ),
   },
   {
@@ -33,7 +46,7 @@ const sections: LegalSection[] = [
           <li>dirección IP</li>
           <li>navegador</li>
           <li>dispositivo</li>
-          <li>información necesaria para soporte o implementación</li>
+          <li>información necesaria para soporte, onboarding o configuración inicial</li>
         </ul>
       </>
     ),
@@ -46,9 +59,9 @@ const sections: LegalSection[] = [
         <p>Usamos los datos para:</p>
         <ul className="list-inside list-disc mt-2 space-y-1">
           <li>crear y administrar cuentas</li>
-          <li>prestar el servicio</li>
+          <li>prestar el servicio SaaS</li>
           <li>facturar y gestionar pagos</li>
-          <li>brindar soporte</li>
+          <li>brindar soporte y onboarding de implementación</li>
           <li>mejorar el producto</li>
           <li>enviar comunicaciones operativas o comerciales, cuando corresponda</li>
         </ul>
@@ -126,7 +139,7 @@ const sections: LegalSection[] = [
 export default function PrivacyPage() {
   return (
     <LegalPageLayout
-      title="Política de Privacidad de Nexal Forge"
+      title={`Política de Privacidad de ${TRADE_NAME}`}
       sections={sections}
     />
   );

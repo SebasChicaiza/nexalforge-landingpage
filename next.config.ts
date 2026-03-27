@@ -13,8 +13,48 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/politicas-privacidad',
-        destination: '/privacy',
+        source: "/politicas-privacidad",
+        destination: "/privacy",
+        permanent: true,
+      },
+      {
+        source: "/politica-privacidad",
+        destination: "/privacy",
+        permanent: true,
+      },
+      {
+        source: "/privacy-policy",
+        destination: "/privacy",
+        permanent: true,
+      },
+      {
+        source: "/terminos",
+        destination: "/terms",
+        permanent: true,
+      },
+      {
+        source: "/terminos-y-condiciones",
+        destination: "/terms",
+        permanent: true,
+      },
+      {
+        source: "/terms-and-conditions",
+        destination: "/terms",
+        permanent: true,
+      },
+      {
+        source: "/reembolsos",
+        destination: "/refunds",
+        permanent: true,
+      },
+      {
+        source: "/politica-de-reembolsos",
+        destination: "/refunds",
+        permanent: true,
+      },
+      {
+        source: "/refund-policy",
+        destination: "/refunds",
         permanent: true,
       },
     ];

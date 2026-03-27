@@ -1,10 +1,17 @@
 import LegalPageLayout, { LegalSection } from "@/components/LegalPageLayout";
 import { Metadata } from "next";
 import { CONTACT_EMAIL } from "@/lib/constants";
+import CompanyIdentificationBlock from "@/components/CompanyIdentificationBlock";
+import {
+  LEGAL_COMPANY_NAME,
+  PRODUCT_NAME,
+  TRADE_NAME,
+} from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Términos de Servicio | Nexal Forge",
   description: "Términos de Servicio de Nexal Forge y el uso de nuestra plataforma Nexi.",
+  alternates: { canonical: "/terms" },
 };
 
 const sections: LegalSection[] = [
@@ -12,9 +19,16 @@ const sections: LegalSection[] = [
     id: "identificacion",
     title: "1. Identificación",
     content: (
-      <p>
-        Estos Términos de Servicio regulan el acceso y uso de los productos y servicios ofrecidos por Nexal Forge a través de su plataforma Nexi y su sitio web.
-      </p>
+      <>
+        <p>
+          Estos Términos de Servicio regulan el acceso y uso de los servicios
+          ofrecidos por <strong>{LEGAL_COMPANY_NAME}</strong>, que opera
+          comercialmente como <strong>{TRADE_NAME}</strong>.
+        </p>
+        <div className="mt-4">
+          <CompanyIdentificationBlock />
+        </div>
+      </>
     ),
   },
   {
@@ -22,17 +36,30 @@ const sections: LegalSection[] = [
     title: "2. Qué ofrecemos",
     content: (
       <p>
-        Nexal Forge ofrece acceso a una plataforma de software como servicio (SaaS) orientada a la automatización de comunicación con clientes, gestión de conversaciones, calificación de leads y apoyo en procesos operativos de negocios.
+        {TRADE_NAME} ofrece acceso por suscripción a {PRODUCT_NAME}, una
+        plataforma de software como servicio (SaaS) para automatización de
+        comunicación con clientes, gestión de conversaciones, calificación de
+        leads y apoyo en procesos operativos de negocio.
       </p>
     ),
   },
   {
-    id: "naturaleza-servicio",
-    title: "3. Naturaleza del servicio",
+    id: "alcance-modalidad",
+    title: "3. Alcance y modalidad",
     content: (
-      <p>
-        El cliente adquiere una licencia limitada, no exclusiva, no transferible y revocable para usar la plataforma conforme al plan contratado.
-      </p>
+      <>
+        <p>
+          El cliente adquiere una licencia limitada, no exclusiva, no
+          transferible y revocable para usar la plataforma conforme al plan
+          contratado.
+        </p>
+        <p className="mt-2">
+          La oferta principal es el acceso al software. En algunos casos,
+          podemos prestar onboarding, setup o configuración inicial para
+          implementar {PRODUCT_NAME}; estas actividades son auxiliares al SaaS y
+          no constituyen un servicio independiente de agencia.
+        </p>
+      </>
     ),
   },
   {
@@ -40,16 +67,19 @@ const sections: LegalSection[] = [
     title: "4. Planes, pagos y renovación",
     content: (
       <p>
-        Los planes se cobran de forma mensual o conforme a la modalidad contratada. Salvo que se indique lo contrario, las suscripciones se renuevan automáticamente al final de cada período de facturación.
+        Los planes se cobran de forma mensual o conforme a la modalidad
+        contratada. Salvo que se indique lo contrario, las suscripciones se
+        renuevan automáticamente al final de cada período de facturación.
       </p>
     ),
   },
   {
-    id: "implementacion",
+    id: "onboarding-setup",
     title: "5. Implementación",
     content: (
       <p>
-        En caso de aplicar un cargo de implementación, este corresponderá a la configuración inicial, personalización o puesta en marcha del software.
+        En caso de aplicar un cargo de implementación, este corresponderá a la
+        configuración inicial, personalización o puesta en marcha del software.
       </p>
     ),
   },
@@ -76,7 +106,9 @@ const sections: LegalSection[] = [
     title: "8. Disponibilidad y soporte",
     content: (
       <p>
-        Nexal Forge hará esfuerzos razonables para mantener el servicio disponible, pero no garantiza disponibilidad ininterrumpida ni ausencia total de errores.
+        {LEGAL_COMPANY_NAME} hará esfuerzos razonables para mantener el
+        servicio disponible, pero no garantiza disponibilidad ininterrumpida ni
+        ausencia total de errores.
       </p>
     ),
   },
@@ -85,7 +117,9 @@ const sections: LegalSection[] = [
     title: "9. Propiedad intelectual",
     content: (
       <p>
-        Todo el software, marcas, diseños, contenidos y elementos tecnológicos de la plataforma son propiedad de Nexal Forge o de sus licenciantes.
+        Todo el software, marcas, diseños, contenidos y elementos tecnológicos
+        de la plataforma son propiedad de {LEGAL_COMPANY_NAME} o de sus
+        licenciantes.
       </p>
     ),
   },
@@ -94,7 +128,9 @@ const sections: LegalSection[] = [
     title: "10. Terminación",
     content: (
       <p>
-        Nexal Forge podrá suspender o terminar el acceso en caso de incumplimiento. El cliente podrá cancelar conforme a la política de cancelación vigente.
+        {LEGAL_COMPANY_NAME} podrá suspender o terminar el acceso en caso de
+        incumplimiento. El cliente podrá cancelar conforme a la política de
+        cancelación vigente.
       </p>
     ),
   },
@@ -103,7 +139,9 @@ const sections: LegalSection[] = [
     title: "11. Limitación de responsabilidad",
     content: (
       <p>
-        En la máxima medida permitida por la ley, Nexal Forge no será responsable por daños indirectos, pérdida de ingresos, pérdida de datos o interrupciones derivadas del uso del servicio.
+        En la máxima medida permitida por la ley, {LEGAL_COMPANY_NAME} no será
+        responsable por daños indirectos, pérdida de ingresos, pérdida de datos
+        o interrupciones derivadas del uso del servicio.
       </p>
     ),
   },
@@ -112,7 +150,8 @@ const sections: LegalSection[] = [
     title: "12. Modificaciones",
     content: (
       <p>
-        Nexal Forge podrá actualizar estos términos publicando una nueva versión en el sitio web.
+        {LEGAL_COMPANY_NAME} podrá actualizar estos términos publicando una
+        nueva versión en el sitio web.
       </p>
     ),
   },
@@ -133,7 +172,7 @@ const sections: LegalSection[] = [
 export default function TermsPage() {
   return (
     <LegalPageLayout
-      title="Términos de Servicio de Nexal Forge"
+      title={`Términos de Servicio de ${TRADE_NAME}`}
       sections={sections}
     />
   );

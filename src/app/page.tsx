@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import NexalForgeLandingWireframe from "@/components/NexalForgeLandingWireframe";
 import JsonLd from "@/components/JsonLd";
+import { COMPANY_RUC, LEGAL_COMPANY_NAME } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title:
@@ -22,7 +23,12 @@ export default function Home() {
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Agentes de IA y Automatización",
-          provider: { "@type": "Organization", name: "Nexal Forge" },
+          provider: {
+            "@type": "Organization",
+            name: "Nexal Forge",
+            legalName: LEGAL_COMPANY_NAME,
+            taxID: COMPANY_RUC,
+          },
           areaServed: "Latin America",
           serviceType:
             "Implementación de agentes de IA para ventas/soporte y automatización operativa",

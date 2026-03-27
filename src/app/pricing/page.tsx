@@ -41,6 +41,10 @@ const FAQ_ITEMS = [
     a: "No. Nexi ayuda a automatizar una parte importante de la atención, pero puede escalar la conversación a una persona cuando es necesario.",
   },
   {
+    q: "¿Nexal Forge ofrece un servicio humano gestionado continuo?",
+    a: "No. El servicio principal es el acceso a Nexi como SaaS. Podemos incluir onboarding, setup y configuración inicial para implementar la plataforma.",
+  },
+  {
     q: "¿Funciona para cualquier negocio?",
     a: "Nexi está pensado para negocios que reciben volumen de consultas y quieren ordenar mejor su atención, seguimiento y agendamiento.",
   },
@@ -77,6 +81,11 @@ export default function PricingPage() {
           responder preguntas frecuentes, captar leads, apoyar el agendamiento y
           escalar conversaciones a una persona cuando hace falta.
         </p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
+          Nuestro servicio principal es la suscripción al software (SaaS). El
+          onboarding, setup y ajustes iniciales se ofrecen solo como apoyo de
+          implementación del producto.
+        </p>
         <p className="mt-4 inline-block rounded-full border border-slate-300/80 bg-white/80 px-4 py-1.5 text-sm font-semibold text-slate-700 backdrop-blur-sm shadow-sm">
           Sin contratos complejos. Con implementación clara. Precios pensados
           para crecer.
@@ -110,6 +119,19 @@ export default function PricingPage() {
           <p className="mx-auto mt-4 max-w-2xl text-2xl font-semibold text-slate-950">
             Elige un plan según el volumen de conversaciones y el nivel de
             acompañamiento que tu negocio necesita.
+          </p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-600">
+            La venta principal corresponde a suscripciones SaaS de Nexi; el
+            setup es un cargo de implementación inicial cuando aplica. Para
+            condiciones legales y reembolsos, consulta{" "}
+            <Link href="/terms" className="font-semibold text-nf-primary-700 hover:underline">
+              Términos
+            </Link>{" "}
+            y{" "}
+            <Link href="/refunds" className="font-semibold text-nf-primary-700 hover:underline">
+              Reembolsos
+            </Link>
+            .
           </p>
         </div>
 
@@ -283,12 +305,12 @@ export default function PricingPage() {
                 <Zap className="h-3 w-3 text-amber-500" /> Setup Inicial
               </div>
               <h3 className="text-2xl font-bold text-slate-900">
-                Implementación Experta
+                Onboarding y configuración inicial
               </h3>
               <p className="mt-2 leading-relaxed text-slate-700">
                 La implementación cubre la puesta en marcha inicial de Nexi para
-                tu negocio, asegurando que todo funcione perfectamente desde el
-                día uno.
+                tu negocio. Es un apoyo de arranque para adaptar el software a
+                tu operación desde el inicio.
               </p>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                 {[

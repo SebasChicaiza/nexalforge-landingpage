@@ -1,4 +1,5 @@
 import type { PSEOPageData, FaqItem } from "@/types/pseo";
+import { COMPANY_RUC, LEGAL_COMPANY_NAME } from "@/lib/legal";
 
 const BASE_URL = "https://www.nexalforge.com";
 
@@ -26,6 +27,8 @@ export function buildSoftwareApplicationSchema(data: PSEOPageData) {
     provider: {
       "@type": "Organization",
       name: "Nexal Forge",
+      legalName: LEGAL_COMPANY_NAME,
+      taxID: COMPANY_RUC,
       url: BASE_URL,
     },
     applicationSubCategory: `${useCaseName} para ${industryName}`,
@@ -61,6 +64,8 @@ export function buildServiceSchema(data: PSEOPageData) {
     provider: {
       "@type": "Organization",
       name: "Nexal Forge",
+      legalName: LEGAL_COMPANY_NAME,
+      taxID: COMPANY_RUC,
       url: BASE_URL,
     },
     areaServed: {
