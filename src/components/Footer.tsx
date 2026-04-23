@@ -34,7 +34,7 @@ export default function Footer() {
           <div className="mb-2 font-semibold text-[#2A2A2A]">Empresa</div>
           <ul className="space-y-1">
             <li>
-              <Link className="hover:underline" href="/pricing">
+              <Link className="hover:underline" href="/nexi/precios">
                 Precios
               </Link>
             </li>

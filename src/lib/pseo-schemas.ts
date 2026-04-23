@@ -1,7 +1,7 @@
 import type { PSEOPageData, FaqItem } from "@/types/pseo";
 import { COMPANY_RUC, LEGAL_COMPANY_NAME } from "@/lib/legal";
 
-const BASE_URL = "https://www.nexalforge.com";
+const BASE_URL = "https://nexalforge.com";
 
 export function buildSoftwareApplicationSchema(data: PSEOPageData) {
   const industryName = data.industry_grammar.display_name;

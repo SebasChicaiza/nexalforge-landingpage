@@ -13,6 +13,26 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/asistente-virtual-nexi",
+        destination: "/nexi",
+        permanent: true,
+      },
+      {
+        source: "/pricing",
+        destination: "/nexi/precios",
+        permanent: true,
+      },
+      {
+        source: "/soluciones/agente-soporte-ia",
+        destination: "/nexi",
+        permanent: true,
+      },
+      {
+        source: "/soluciones/clinicas-odontologicas",
+        destination: "/nexi/clinicas-odontologicas",
+        permanent: true,
+      },
+      {
         source: "/politicas-privacidad",
         destination: "/privacy",
         permanent: true,

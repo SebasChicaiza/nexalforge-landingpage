@@ -46,7 +46,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Soluciones de IA para ${industryName} | Nexi`,
       description: `Automatización inteligente para ${industryName.toLowerCase()} con Nexi.`,
-      url: `https://www.nexalforge.com/soluciones/${industry}`,
+      url: `https://nexalforge.com/soluciones/${industry}`,
       type: "website",
     },
   };

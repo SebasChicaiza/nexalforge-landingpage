@@ -46,7 +46,7 @@ export default function ServiciosSection() {
             ]}
             tags={["asistente virtual de IA", "chatbot de IA", "WhatsApp/Instagram/Messenger"]}
             badgeLabel="Producto destacado"
-            ctaHref="/asistente-virtual-nexi"
+            ctaHref="/nexi"
             ctaLabel="Ver detalles de Nexi"
             highlight
           />

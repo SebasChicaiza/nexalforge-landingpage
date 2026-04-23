@@ -6,7 +6,7 @@ import type { PSEOPageData } from "@/types/pseo";
 
 export const dynamic = "force-dynamic";
 
-const BASE_URL = "https://www.nexalforge.com";
+const BASE_URL = "https://nexalforge.com";
 const pseoData: PSEOPageData[] = pseoDataRaw as PSEOPageData[];
 
 type SitemapPost = {
@@ -54,7 +54,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();
   const now = new Date();
   const industryIndexRoutes = Array.from(
-    new Set(pseoData.map((entry) => entry.industry_slug))
+    new Set(
+      pseoData
+        .map((entry) => entry.industry_slug)
+        .filter((slug) => slug !== "clinicas-odontologicas")
+    )
   ).map(
     (slug): MetadataRoute.Sitemap[number] => ({
       url: `${BASE_URL}/soluciones/${slug}`,
@@ -93,8 +97,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
     },
     {
-      url: `${BASE_URL}/asistente-virtual-nexi`,
+      url: `${BASE_URL}/nexi`,
       priority: 0.9,
+      changeFrequency: "monthly",
+      lastModified: now,
+    },
+    {
+      url: `${BASE_URL}/nexi/precios`,
+      priority: 0.7,
+      changeFrequency: "monthly",
+      lastModified: now,
+    },
+    {
+      url: `${BASE_URL}/nexi/clinicas-odontologicas`,
+      priority: 0.85,
       changeFrequency: "monthly",
       lastModified: now,
     },
@@ -126,18 +142,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${BASE_URL}/refunds`,
       priority: 0.3,
-      changeFrequency: "yearly",
-      lastModified: now,
-    },
-    {
-      url: `${BASE_URL}/pricing`,
-      priority: 0.7,
-      changeFrequency: "monthly",
-      lastModified: now,
-    },
-    {
-      url: `${BASE_URL}/forgot-password`,
-      priority: 0.2,
       changeFrequency: "yearly",
       lastModified: now,
     },

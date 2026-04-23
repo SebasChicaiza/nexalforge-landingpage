@@ -217,6 +217,9 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title,
       description,
@@ -278,10 +281,10 @@ export default async function BlogPostPage({
       name: "Nexal Forge",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.nexalforge.com/logo.png",
+        url: "https://nexalforge.com/logo.png",
       },
     },
-    mainEntityOfPage: `https://www.nexalforge.com/blog/${post.slug}`,
+    mainEntityOfPage: `https://nexalforge.com/blog/${post.slug}`,
   };
 
   return (

@@ -95,7 +95,7 @@ export async function generateMetadata({
     openGraph: {
       title: pageData.title,
       description: pageData.description,
-      url: `https://www.nexalforge.com${canonicalPath}`,
+      url: `https://nexalforge.com${canonicalPath}`,
       type: "website",
       locale: "es_419",
     },

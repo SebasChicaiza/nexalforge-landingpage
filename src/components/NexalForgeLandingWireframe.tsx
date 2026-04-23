@@ -72,7 +72,7 @@ export default function NexalForgeLandingWireframe() {
                   Ver caso en 60s
                 </a>
                 <Link
-                  href="/asistente-virtual-nexi"
+                  href="/nexi"
                   className="rounded-full border border-white/30 bg-white/10 px-5 py-3 text-white hover:bg-white/20"
                 >
                   Conoce al asistente Nexi
@@ -158,7 +158,7 @@ export default function NexalForgeLandingWireframe() {
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <Link
-                  href="/asistente-virtual-nexi"
+                  href="/nexi"
                   className="inline-flex items-center gap-2 rounded-full bg-[#8B1E2D] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#B84550]"
                 >
                   Ver el asistente virtual Nexi
@@ -225,7 +225,7 @@ export default function NexalForgeLandingWireframe() {
           </div>
           <div className="mt-8 flex flex-wrap gap-3 text-sm">
             <Link
-              href="/asistente-virtual-nexi"
+              href="/nexi"
               className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/15"
             >
               Conocer el asistente virtual Nexi
@@ -588,7 +588,7 @@ export default function NexalForgeLandingWireframe() {
               a={
                 <>
                   Visita la página de nuestro chatbot Nexi. Es un{" "}
-                  <Link className="text-[#8B1E2D] underline" href="/asistente-virtual-nexi">
+                  <Link className="text-[#8B1E2D] underline" href="/nexi">
                     asistente virtual de IA para WhatsApp e Instagram
                   </Link>{" "}
                   con handoff humano y panel web.

@@ -33,6 +33,7 @@ const PUBLIC_PREFIXES = [
   "/forgot-password",
   "/nexi.mp4",
   "/asistente-virtual-nexi",
+  "/nexi",
   "/soluciones",
 ];
 const isPublicPath = (p: string) =>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BlogPage from "../../page";
+import BlogIndexClient from "../../BlogIndexClient";
 
 type TagPageParams = { slug: string };
 
@@ -13,7 +13,13 @@ export async function generateMetadata({
   return {
     title: `Blog: ${readable}`,
     description: `Artículos con la etiqueta ${readable}.`,
-    alternates: { canonical: `/blog?tag=${slug}` },
+    alternates: {
+      canonical: `/blog/etiqueta/${slug}`,
+    },
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 
@@ -23,5 +29,5 @@ export default async function BlogTagPage({
   params: Promise<TagPageParams>;
 }) {
   const { slug } = await params;
-  return <BlogPage initialTag={slug} />;
+  return <BlogIndexClient initialTag={slug} />;
 }

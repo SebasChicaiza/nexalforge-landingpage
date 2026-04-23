@@ -32,7 +32,7 @@ const geistMono = Geist_Mono({
 const FB_PIXEL_ID = "1921792838718264";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.nexalforge.com"),
+  metadataBase: new URL("https://nexalforge.com"),
   title: {
     default: "Nexal Forge — Potencia tus operaciones con IA",
     template: "%s · Nexal Forge",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://www.nexalforge.com/",
+    url: "https://nexalforge.com/",
     title: "Nexal Forge — Potencia tus operaciones con IA",
     description:
       "Agentes de IA, automatización y analítica para empresas en Latinoamérica. Reduce tiempos, mejora soporte y acelera decisiones con dashboards ejecutivos.",
@@ -133,8 +133,8 @@ export default function RootLayout({
               legalName: LEGAL_COMPANY_NAME,
               taxID: COMPANY_RUC,
               alternateName: ["NexalForge", "Nexi"],
-              url: "https://www.nexalforge.com",
-              logo: "https://www.nexalforge.com/logo-nexal.png",
+              url: "https://nexalforge.com",
+              logo: "https://nexalforge.com/logo-nexal.png",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Quito",
@@ -142,7 +142,7 @@ export default function RootLayout({
                 addressCountry: "EC",
                 streetAddress: COMPANY_DOMICILE,
               },
-              sameAs: ["https://www.nexalforge.com/asistente-virtual-nexi"],
+              sameAs: ["https://nexalforge.com/nexi"],
             }),
           }}
         />

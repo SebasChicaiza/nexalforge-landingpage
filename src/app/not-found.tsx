@@ -26,7 +26,7 @@ export default function NotFound() {
             Ir a la home
           </Link>
           <Link
-            href="/asistente-virtual-nexi"
+            href="/nexi"
             className="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-5 py-3 text-sm font-semibold text-[#0D0D11] transition hover:border-[#8B1E2D] hover:text-[#8B1E2D]"
           >
             <MessageCircle className="h-4 w-4" />

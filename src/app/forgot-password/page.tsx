@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Recuperar acceso",
   description:
     "Opciones para restablecer o recuperar tu acceso a Nexal Forge. Si necesitas ayuda, contáctanos por correo o WhatsApp.",
+  alternates: {
+    canonical: "/forgot-password",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function ForgotPasswordPage() {

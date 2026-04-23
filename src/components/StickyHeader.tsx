@@ -19,9 +19,9 @@ const TOP_LINKS: NavLink[] = [
 
 const SOLUTIONS: NavLink[] = [
   { label: "Soluciones por industria", href: "/soluciones" },
-  { label: "Asistente virtual Nexi", href: "/asistente-virtual-nexi" },
+  { label: "Asistente virtual Nexi", href: "/nexi" },
   { label: "Agente IA para Ventas", href: "/" },
-  { label: "Agente IA para Soporte", href: "/soluciones/agente-soporte-ia" },
+  { label: "Agente IA para Soporte", href: "/nexi" },
   { label: "Recepcionista IA para llamadas", href: "/" },
   { label: "Desarrollo Web Empresarial", href: "/" },
   { label: "Automatización Operativa", href: "/" },
@@ -31,7 +31,7 @@ const SOLUTIONS: NavLink[] = [
 ];
 
 const NEXI_LINKS: NavLink[] = [
-  { label: "Asistente virtual Nexi", href: "/asistente-virtual-nexi" },
+  { label: "Asistente virtual Nexi", href: "/nexi" },
   { label: "Ver todas las soluciones", href: "/soluciones" },
 ];
 
