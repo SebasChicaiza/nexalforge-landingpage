@@ -1,12 +1,19 @@
 import type { PSEOPageData, FaqItem } from "@/types/pseo";
 import { COMPANY_RUC, LEGAL_COMPANY_NAME } from "@/lib/legal";
+import {
+  getCanonicalIndustryPath,
+  getCanonicalUseCasePath,
+} from "@/lib/pseo-routing";
 
 const BASE_URL = "https://nexalforge.com";
 
 export function buildSoftwareApplicationSchema(data: PSEOPageData) {
   const industryName = data.industry_grammar.display_name;
   const useCaseName = data.use_case_grammar.display_name;
-  const canonicalPath = `/soluciones/${data.industry_slug}/${data.use_case_slug}`;
+  const canonicalPath = getCanonicalUseCasePath(
+    data.industry_slug,
+    data.use_case_slug
+  );
 
   return {
     "@context": "https://schema.org",
@@ -53,7 +60,10 @@ export function buildFAQPageSchema(faqs: FaqItem[]) {
 
 export function buildServiceSchema(data: PSEOPageData) {
   const useCaseName = data.use_case_grammar.display_name;
-  const canonicalPath = `/soluciones/${data.industry_slug}/${data.use_case_slug}`;
+  const canonicalPath = getCanonicalUseCasePath(
+    data.industry_slug,
+    data.use_case_slug
+  );
 
   return {
     "@context": "https://schema.org",
@@ -96,20 +106,20 @@ export function buildBreadcrumbSchema(
       {
         "@type": "ListItem",
         position: 2,
-        name: "Soluciones",
-        item: `${BASE_URL}/soluciones`,
+        name: "Nexi",
+        item: `${BASE_URL}/nexi`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: industryName,
-        item: `${BASE_URL}/soluciones/${industrySlug}`,
+        item: `${BASE_URL}${getCanonicalIndustryPath(industrySlug)}`,
       },
       {
         "@type": "ListItem",
         position: 4,
         name: useCaseName,
-        item: `${BASE_URL}/soluciones/${industrySlug}/${useCaseSlug}`,
+        item: `${BASE_URL}${getCanonicalUseCasePath(industrySlug, useCaseSlug)}`,
       },
     ],
   };

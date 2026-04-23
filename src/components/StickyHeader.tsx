@@ -7,7 +7,11 @@ import BrandCtaLink from "./buttons/BrandCtaLink";
 import { ArrowRight } from "lucide-react";
 import { hasJwtCookie, watchJwtCookie } from "@/lib/auth-events";
 import { usePathname } from "next/navigation";
-import { getAllIndustrySlugs, getIndustryName } from "@/lib/spanish-grammar";
+import { getIndustryName } from "@/lib/spanish-grammar";
+import {
+  getActiveNexiIndustrySlugs,
+  getCanonicalIndustryPath,
+} from "@/lib/pseo-routing";
 
 type NavLink = { label: string; href: string };
 
@@ -18,7 +22,7 @@ const TOP_LINKS: NavLink[] = [
 ];
 
 const SOLUTIONS: NavLink[] = [
-  { label: "Soluciones por industria", href: "/soluciones" },
+  { label: "Industrias con Nexi", href: "/nexi" },
   { label: "Asistente virtual Nexi", href: "/nexi" },
   { label: "Agente IA para Ventas", href: "/" },
   { label: "Agente IA para Soporte", href: "/nexi" },
@@ -32,14 +36,14 @@ const SOLUTIONS: NavLink[] = [
 
 const NEXI_LINKS: NavLink[] = [
   { label: "Asistente virtual Nexi", href: "/nexi" },
-  { label: "Ver todas las soluciones", href: "/soluciones" },
+  { label: "Ver industrias Nexi", href: "/nexi" },
 ];
 
-const NEXI_INDUSTRY_LINKS: NavLink[] = getAllIndustrySlugs()
+const NEXI_INDUSTRY_LINKS: NavLink[] = getActiveNexiIndustrySlugs()
   .sort((a, b) => getIndustryName(a).localeCompare(getIndustryName(b), "es"))
   .map((slug) => ({
     label: getIndustryName(slug),
-    href: `/soluciones/${slug}`,
+    href: getCanonicalIndustryPath(slug),
   }));
 
 // --- realtime auth flag

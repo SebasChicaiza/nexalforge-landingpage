@@ -1,5 +1,6 @@
 import path from "path";
 import type { NextConfig } from "next";
+import { LEGACY_WAVE_TWO_REDIRECTS } from "./src/lib/pseo-routing";
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -32,6 +33,11 @@ const nextConfig: NextConfig = {
         destination: "/nexi/clinicas-odontologicas",
         permanent: true,
       },
+      ...LEGACY_WAVE_TWO_REDIRECTS.map(({ source, destination }) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
       {
         source: "/politicas-privacidad",
         destination: "/privacy",

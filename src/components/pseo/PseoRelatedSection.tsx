@@ -2,6 +2,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import type { RelatedPage } from "@/types/pseo";
 import { getIndustryName, getUseCaseName } from "@/lib/spanish-grammar";
+import { mapRelatedPageToCanonical } from "@/lib/pseo-routing";
 
 type Props = {
   relatedPages: RelatedPage[];
@@ -35,13 +36,22 @@ export default function PseoRelatedSection({
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {relatedPages.map((page, index) => {
-            const industryName = getIndustryName(page.industry_slug);
-            const useCaseName = getUseCaseName(page.use_case_slug);
+            const mappedPage = mapRelatedPageToCanonical(page);
+
+            if (!mappedPage) {
+              return null;
+            }
+
+            const industryName = getIndustryName(mappedPage.industry_slug);
+            const useCaseName = getUseCaseName(mappedPage.use_case_slug);
 
             return (
-              <Reveal key={`${page.industry_slug}-${page.use_case_slug}`} delay={index * 80}>
+              <Reveal
+                key={`${mappedPage.industry_slug}-${mappedPage.use_case_slug}`}
+                delay={index * 80}
+              >
                 <Link
-                  href={`/soluciones/${page.industry_slug}/${page.use_case_slug}`}
+                  href={mappedPage.href}
                   className="group block rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-[#B84550]/60 hover:bg-[#8B1E2D]/10"
                 >
                   <p className="text-xs uppercase tracking-[0.14em] text-[#E9B7BD]">
@@ -51,7 +61,7 @@ export default function PseoRelatedSection({
                     {useCaseName}
                   </h3>
                   <p className="mt-2 text-sm text-white/60">
-                    {page.link_text}
+                    {mappedPage.link_text}
                   </p>
                   <span className="mt-3 inline-block text-sm font-medium text-[#F4C5CB] group-hover:text-white">
                     Ver solución →

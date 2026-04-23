@@ -129,7 +129,7 @@ function getRelatedSolution(title: string, tags: BlogTag[]): RelatedSolution {
 
   if (textToMatch.includes("dentist") || textToMatch.includes("citas")) {
     return {
-      href: "/soluciones/clinicas-medicas/agendamiento-citas",
+      href: "/nexi/clinicas-medicas/agendamiento-citas",
       title: "Agendamiento de citas para clínicas médicas",
       description:
         "Automatiza confirmaciones y reprogramaciones para reducir no-shows y liberar al equipo de recepción.",
@@ -137,8 +137,8 @@ function getRelatedSolution(title: string, tags: BlogTag[]): RelatedSolution {
   }
 
   return {
-    href: "/soluciones",
-    title: "Descubre nuestras soluciones con IA",
+    href: "/nexi",
+    title: "Descubre Nexi y sus soluciones por industria",
     description:
       "Explora casos de uso por industria y conecta la estrategia de contenido con páginas transaccionales.",
   };
