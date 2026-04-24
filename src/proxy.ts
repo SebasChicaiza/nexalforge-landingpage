@@ -36,15 +36,30 @@ const PUBLIC_PREFIXES = [
   "/nexi",
   "/soluciones",
 ];
+const FUTURE_LOCALE_PREFIXES = new Set(["en"]);
+
+function normalizePublicPath(pathname: string): string {
+  const segments = pathname.split("/");
+  const leadingSegment = segments[1];
+
+  if (!leadingSegment || !FUTURE_LOCALE_PREFIXES.has(leadingSegment)) {
+    return pathname;
+  }
+
+  const normalized = pathname.slice(`/${leadingSegment}`.length);
+  return normalized === "" ? "/" : normalized;
+}
+
 const isPublicPath = (p: string) =>
   PUBLIC_PREFIXES.some((x) => p === x || p.startsWith(`${x}/`));
 
 // Admin-only section
 const isAdminPath = (p: string) => p === "/admin" || p.startsWith("/admin/");
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("host") || "";
+  const normalizedPathname = normalizePublicPath(pathname);
 
   // Redirect www to apex to avoid duplicate content
   if (
@@ -58,12 +73,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  // Lightweight marker to confirm middleware hit (DevTools > Network)
+  // Lightweight marker to confirm proxy hit (DevTools > Network)
   const res = NextResponse.next();
   res.headers.set("x-nf-middleware", "hit");
 
   // Skip auth for public routes
-  if (isPublicPath(pathname)) {
+  if (isPublicPath(normalizedPathname)) {
     return res;
   }
 
@@ -86,7 +101,7 @@ export async function middleware(request: NextRequest) {
     const roles = Array.isArray(claims.roles) ? claims.roles.map(String) : [];
 
     // Extra gate: /admin requires Admin role
-    if (isAdminPath(pathname)) {
+    if (isAdminPath(normalizedPathname)) {
       const isAdmin = roles.some((r) => r.toLowerCase() === "admin");
       if (!isAdmin) {
         // For non-API pages, redirect to login with a hint

@@ -3,20 +3,23 @@ FROM node:20-alpine AS deps
 # Toolchain para compilar bcrypt en Alpine (musl)
 RUN apk add --no-cache libc6-compat bash wget openssl python3 make g++
 WORKDIR /app
+RUN corepack enable
 
 # Instala deps + devDeps (incluye @types/bcrypt para el build de TS)
 ENV NODE_ENV=development
-COPY package.json package-lock.json* ./
-RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 # ---------- BUILD ----------
 FROM node:20-alpine AS builder
 ENV NODE_ENV=production
 WORKDIR /app
 RUN apk add --no-cache bash wget openssl
+RUN corepack enable
 
 # Reutiliza node_modules (incluye devDeps necesarios para el build)
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY . .
 
 # Genera Prisma Client y compila Next en modo standalone
@@ -30,6 +33,7 @@ ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /app
 RUN apk add --no-cache bash wget openssl
+RUN corepack enable
 
 # Prisma schema (para migrate deploy)
 COPY --from=builder /app/prisma ./prisma
