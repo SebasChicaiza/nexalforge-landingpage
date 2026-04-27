@@ -15,8 +15,10 @@ export type LegalSection = {
 interface LegalPageLayoutProps {
   title: string;
   lastUpdated?: string;
+  lastUpdatedLabel?: string;
   introText?: React.ReactNode;
   sections: LegalSection[];
+  tocLabel?: string;
 }
 
 const Section = ({ id, title, children }: { id: string; title: string; children: React.ReactNode }) => (
@@ -29,7 +31,7 @@ const Section = ({ id, title, children }: { id: string; title: string; children:
   </section>
 );
 
-export default function LegalPageLayout({ title, lastUpdated, introText, sections }: LegalPageLayoutProps) {
+export default function LegalPageLayout({ title, lastUpdated, lastUpdatedLabel = "Última actualización:", introText, sections, tocLabel = "Tabla de contenidos" }: LegalPageLayoutProps) {
   return (
     <main className="bg-gray-50 py-10 pt-25 pb-20 min-h-screen">
       <div className="mx-auto max-w-4xl px-4 mt-16">
@@ -41,7 +43,7 @@ export default function LegalPageLayout({ title, lastUpdated, introText, section
             </h1>
             {lastUpdated && (
               <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
-                Última actualización: {lastUpdated}
+                {lastUpdatedLabel} {lastUpdated}
               </span>
             )}
           </div>
@@ -52,7 +54,7 @@ export default function LegalPageLayout({ title, lastUpdated, introText, section
         {sections.length > 0 && (
           <nav aria-label="Tabla de contenidos" className="mt-6">
             <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-              <p className="mb-2 text-[13px] font-semibold text-gray-900">Tabla de contenidos</p>
+              <p className="mb-2 text-[13px] font-semibold text-gray-900">{tocLabel}</p>
               <ul className="grid gap-2 text-sm text-gray-700 sm:grid-cols-2">
                 {sections.map((sec) => (
                   <li key={sec.id}>

@@ -291,6 +291,48 @@ export default function PricingPage() {
             </Link>
           </div>
         </div>
+
+        {/* PADDLE DISCLOSURE */}
+        <div className="mt-10 mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-slate-50/80 px-6 py-5 text-sm text-slate-600 space-y-2">
+          <p>
+            Los pagos de Nexi son procesados por{" "}
+            <strong className="text-slate-700">Paddle</strong>. Paddle actúa
+            como reseller autorizado y Merchant of Record para las compras
+            procesadas a través de Paddle. Paddle puede aparecer en tu estado
+            de cuenta o extracto bancario.
+          </p>
+          <p>
+            Las suscripciones se renuevan automáticamente salvo cancelación
+            antes de la siguiente fecha de cobro. Los impuestos aplicables
+            pueden ser calculados y cobrados por Paddle según corresponda.
+          </p>
+          <p>
+            Ofrecemos reembolso completo durante los primeros 14 días
+            calendario desde la fecha de cada transacción de Nexi procesada
+            por Paddle, sin necesidad de explicar el motivo. Consulta nuestros{" "}
+            <Link
+              href="/terms"
+              className="font-semibold text-nf-primary-700 hover:underline"
+            >
+              Términos de Servicio
+            </Link>{" "}
+            y nuestra{" "}
+            <Link
+              href="/refunds"
+              className="font-semibold text-nf-primary-700 hover:underline"
+            >
+              Política de Reembolsos y Cancelación
+            </Link>
+            .
+          </p>
+          <p className="pt-2 border-t border-slate-200 text-xs text-slate-500">
+            Nexi es principalmente un producto SaaS. La configuración inicial,
+            onboarding o soporte de implementación, cuando aplique, es auxiliar
+            al uso del software y no se vende como consultoría independiente,
+            agencia, call center humano, servicio profesional gestionado ni
+            sustituto de personal humano del cliente.
+          </p>
+        </div>
       </section>
 
       {/* IMPLEMENTATION / SETUP */}
