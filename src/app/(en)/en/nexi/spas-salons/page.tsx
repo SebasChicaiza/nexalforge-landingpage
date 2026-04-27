@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import SpasSalonsHero from "./SpasSalonsHero";
 import SpasSalonsHowItWorks from "./SpasSalonsHowItWorks";
+import SpasSalonsWhyTrust from "./SpasSalonsWhyTrust";
+import SpasSalonsOutcomes from "./SpasSalonsOutcomes";
+import SpasSalonsCta from "./SpasSalonsCta";
 
 const CANONICAL_PATH = "/en/nexi/spas-salons";
 const TITLE =
@@ -44,6 +47,9 @@ export default function SpasSalonsPage() {
     <main lang="en" className="bg-[#0D0D0D] text-white">
       <SpasSalonsHero />
       <SpasSalonsHowItWorks />
+      <SpasSalonsWhyTrust />
+      <SpasSalonsOutcomes />
+      <SpasSalonsCta />
     </main>
   );
 }

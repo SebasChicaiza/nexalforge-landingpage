@@ -47,8 +47,20 @@ export default function SpasSalonsHero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-6">
-        {/* Eyebrow */}
+        {/* Brand mark */}
         <div className="flex justify-center">
+          <Image
+            src="/nuevo-nexi/nexi-logo-white-nobg.png"
+            alt="Nexi"
+            width={140}
+            height={56}
+            priority
+            className="h-12 w-auto sm:h-14"
+          />
+        </div>
+
+        {/* Eyebrow */}
+        <div className="mt-6 flex justify-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-sm font-medium text-white/85 backdrop-blur">
             <span className="relative inline-flex h-2 w-2">
               <span className="absolute inset-0 animate-ping rounded-full bg-[#EF0E1A]/60" />
