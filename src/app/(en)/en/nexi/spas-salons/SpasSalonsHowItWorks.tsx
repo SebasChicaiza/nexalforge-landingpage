@@ -17,17 +17,32 @@ export default function SpasSalonsHowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="bg-[#F5F2EC] py-24 text-[#111111] sm:py-28"
+      className="relative overflow-hidden bg-[#FBF8F2] py-20 text-[#111111] sm:py-28"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      {/* Soft warm gradient wash */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-10 h-[480px] w-[480px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(168,137,106,0.10), transparent 70%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-7xl px-6">
         {/* Intro */}
         <div className="max-w-3xl">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#E50914]">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#A8896A]">
             How Nexi keeps salon and spa inquiries moving
           </p>
-          <h2 className="mt-5 text-[2.4rem] font-bold leading-[1.05] tracking-[-0.025em] text-[#0D0D0D] sm:text-5xl md:text-[3.5rem]">
-            From first inquiry to booked appointment — without dropping the
-            conversation.
+          <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-[#0D0D0D] sm:text-5xl md:text-[3.5rem]">
+            From first inquiry to booked appointment —{" "}
+            <span
+              className="font-normal italic text-[#8B1E2D]"
+              style={{ fontFamily: "var(--font-serif-display)" }}
+            >
+              without dropping
+            </span>{" "}
+            the conversation.
           </h2>
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[#4a4a4a]">
             Nexi helps salons and spas respond fast, guide clients to the right
@@ -42,7 +57,7 @@ export default function SpasSalonsHowItWorks() {
         </div>
 
         {/* Row 1 */}
-        <RowLayout textSide="left" className="mt-24">
+        <RowLayout textSide="left" className="mt-16 sm:mt-24">
           <RowText
             index="01"
             title="Capture demand instantly"
@@ -54,7 +69,7 @@ export default function SpasSalonsHowItWorks() {
         <Divider />
 
         {/* Row 2 */}
-        <RowLayout textSide="right" className="mt-20">
+        <RowLayout textSide="right" className="mt-16 sm:mt-20">
           <RouteVisual />
           <RowText
             index="02"
@@ -66,7 +81,7 @@ export default function SpasSalonsHowItWorks() {
         <Divider />
 
         {/* Row 3 */}
-        <RowLayout textSide="left" className="mt-20">
+        <RowLayout textSide="left" className="mt-16 sm:mt-20">
           <RowText
             index="03"
             title="Book or hand off with context"
@@ -109,8 +124,16 @@ function RowText({
 }) {
   return (
     <div>
-      <p className="text-[15px] font-semibold text-[#E50914]">{index}</p>
-      <h3 className="mt-3 max-w-xs text-3xl font-bold leading-tight tracking-[-0.02em] text-[#0D0D0D] sm:text-[2rem]">
+      <div className="flex items-center gap-3">
+        <span
+          className="text-[28px] font-normal leading-none text-[#A8896A]"
+          style={{ fontFamily: "var(--font-serif-display)" }}
+        >
+          {index}
+        </span>
+        <span className="h-px w-10 bg-[#A8896A]/40" />
+      </div>
+      <h3 className="mt-4 max-w-xs text-[1.65rem] font-bold leading-[1.15] tracking-[-0.02em] text-[#0D0D0D] sm:text-[2rem]">
         {title}
       </h3>
       <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-[#4a4a4a]">
@@ -121,16 +144,22 @@ function RowText({
 }
 
 function Divider() {
-  return <div className="mt-20 border-t border-[#0D0D0D]/10" />;
+  return (
+    <div className="mt-16 flex items-center gap-3 sm:mt-20">
+      <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[#0D0D0D]/12 to-transparent" />
+      <span className="h-1.5 w-1.5 rounded-full bg-[#A8896A]/50" />
+      <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[#0D0D0D]/12 to-transparent" />
+    </div>
+  );
 }
 
 /* ---------------- Visuals ---------------- */
 
 function CaptureVisual() {
   return (
-    <div className="flex w-full items-stretch gap-3">
+    <div className="flex w-full flex-col items-stretch gap-3 lg:flex-row">
       {/* Source rail */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-row gap-3 lg:flex-col">
         <SourceCard icon={<Globe className="h-5 w-5" />} label="Instagram DM" />
         <SourceCard
           icon={<MessageCircle className="h-5 w-5 text-[#25D366]" />}
@@ -164,12 +193,16 @@ function CaptureVisual() {
       </Panel>
 
       {/* Arrow + N */}
-      <div className="flex flex-col items-center justify-center px-1">
-        <ArrowDots />
-        <div className="my-2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#E50914] text-[13px] font-bold text-white shadow-[0_8px_22px_rgba(229,9,20,0.4)]">
+      <div className="flex flex-row items-center justify-center gap-2 px-1 lg:flex-col lg:gap-0">
+        <span className="hidden lg:block">
+          <ArrowDots />
+        </span>
+        <div className="my-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-[#FF3344] to-[#E50914] text-[14px] font-bold text-white shadow-[0_8px_22px_rgba(229,9,20,0.4)]">
           N
         </div>
-        <ArrowDots />
+        <span className="hidden lg:block">
+          <ArrowDots />
+        </span>
       </div>
 
       {/* Nexi reply */}
@@ -280,7 +313,7 @@ function RouteVisual() {
 
 function HandoffVisual() {
   return (
-    <div className="grid w-full grid-cols-[1fr_auto_1fr] items-start gap-4">
+    <div className="grid w-full grid-cols-1 items-start gap-4 sm:grid-cols-[1fr_auto_1fr]">
       {/* Booked card */}
       <Panel className="p-5">
         <div className="flex items-start gap-3">
@@ -318,8 +351,8 @@ function HandoffVisual() {
       </Panel>
 
       {/* OR badge */}
-      <div className="flex h-full items-center justify-center pt-12">
-        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#0D0D0D]/15 bg-white text-[11px] font-semibold text-[#666]">
+      <div className="flex items-center justify-center sm:h-full sm:pt-12">
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#0D0D0D]/15 bg-white text-[11px] font-semibold text-[#666] shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
           OR
         </span>
       </div>

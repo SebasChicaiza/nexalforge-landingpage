@@ -22,17 +22,41 @@ export default function SpasSalonsOutcomes() {
   return (
     <section
       id="outcomes"
-      className="bg-[#F5F2EC] py-24 text-[#111111] sm:py-28"
+      className="relative overflow-hidden bg-[#FBF8F2] py-20 text-[#111111] sm:py-28"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      {/* Warm gradient accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-32 top-10 h-[420px] w-[420px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(168,137,106,0.12), transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(229,9,20,0.06), transparent 70%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6">
         {/* Intro — centered */}
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-[14px] font-semibold text-[#E50914]">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#A8896A]">
             What it feels like when Nexi is working
           </p>
-          <h2 className="mt-5 text-[2.4rem] font-bold leading-[1.05] tracking-[-0.025em] text-[#0D0D0D] sm:text-5xl md:text-[3.5rem]">
-            More booked appointments. Less front-desk overload. A smoother path
-            to the appointment.
+          <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] text-[#0D0D0D] sm:text-5xl md:text-[3.5rem]">
+            More booked appointments. Less front-desk overload.{" "}
+            <span
+              className="font-normal italic text-[#8B1E2D]"
+              style={{ fontFamily: "var(--font-serif-display)" }}
+            >
+              A smoother
+            </span>{" "}
+            path to the appointment.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-[#4a4a4a]">
             Nexi helps salons and spas keep high-intent clients moving — so
@@ -42,26 +66,32 @@ export default function SpasSalonsOutcomes() {
         </div>
 
         {/* Cards */}
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:mt-16 md:grid-cols-3">
           {CARDS.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="rounded-2xl bg-white/60 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] ring-1 ring-black/5"
+              className="group relative overflow-hidden rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_18px_40px_-22px_rgba(139,30,45,0.18)] ring-1 ring-black/[0.04] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_2px_4px_rgba(0,0,0,0.05),0_28px_56px_-24px_rgba(139,30,45,0.28)]"
             >
-              <div className="flex items-start gap-5">
+              {/* Bronze top accent line */}
+              <div
+                aria-hidden
+                className="absolute inset-x-7 top-0 h-px bg-gradient-to-r from-transparent via-[#A8896A]/60 to-transparent"
+              />
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
                 <div
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#E50914]/8 text-[#E50914]"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FFF1F0] to-[#F7E6DC] text-[#8B1E2D]"
                   style={{
-                    boxShadow: "inset 0 0 0 1px rgba(229,9,20,0.08)",
+                    boxShadow:
+                      "inset 0 0 0 1px rgba(168,137,106,0.15), 0 4px 12px -6px rgba(139,30,45,0.20)",
                   }}
                 >
-                  <Icon className="h-6 w-6" strokeWidth={1.8} />
+                  <Icon className="h-5 w-5" strokeWidth={1.8} />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-[1.15rem] font-bold leading-[1.2] tracking-[-0.01em] text-[#0D0D0D]">
                     {title}
                   </h3>
-                  <div className="mt-3 h-[2px] w-8 rounded-full bg-[#E50914]" />
+                  <div className="mt-3 h-px w-10 bg-[#A8896A]/50" />
                   <p className="mt-3 text-[14px] leading-relaxed text-[#555555]">
                     {body}
                   </p>
@@ -72,15 +102,16 @@ export default function SpasSalonsOutcomes() {
         </div>
 
         {/* Bottom line */}
-        <div className="mt-14 flex items-center justify-center gap-3 text-[15px]">
-          <span
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#E50914]/40 text-[#E50914]"
-          >
+        <div className="mt-14 flex flex-col items-center justify-center gap-2 text-center text-[15px] sm:flex-row sm:gap-3 sm:text-left">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#A8896A]/40 text-[#8B1E2D]">
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2.2} />
           </span>
           <span className="text-[#4a4a4a]">
             The result is not more software.{" "}
-            <span className="font-semibold text-[#E50914]">
+            <span
+              className="font-normal italic text-[#8B1E2D]"
+              style={{ fontFamily: "var(--font-serif-display)" }}
+            >
               It&apos;s more momentum.
             </span>
           </span>

@@ -25,7 +25,7 @@ export default function SpasSalonsHero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-[#0D0D0D] pb-24 pt-36 sm:pt-40"
+      className="relative overflow-hidden bg-[#0D0D0D] pb-20 pt-28 sm:pb-24 sm:pt-40"
     >
       {/* Ambient red glow — bottom-left arc, like the reference */}
       <div
@@ -36,6 +36,15 @@ export default function SpasSalonsHero() {
             "radial-gradient(closest-side, rgba(239,14,26,0.28), rgba(239,14,26,0.08) 45%, transparent 70%)",
         }}
       />
+      {/* Warm amber off-center glow — candlelit-spa mood */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 top-20 h-[640px] w-[640px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(255,170,110,0.10), transparent 70%)",
+        }}
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-72 left-1/2 h-[820px] w-[820px] -translate-x-1/2 rounded-full"
@@ -43,6 +52,15 @@ export default function SpasSalonsHero() {
           boxShadow:
             "inset 0 0 80px 4px rgba(239,14,26,0.5), 0 0 140px rgba(239,14,26,0.22)",
           opacity: 0.65,
+        }}
+      />
+      {/* Subtle film grain overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
         }}
       />
 
@@ -71,9 +89,18 @@ export default function SpasSalonsHero() {
         </div>
 
         {/* Headline */}
-        <h1 className="mx-auto mt-7 max-w-5xl text-center text-[2.6rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-6xl md:text-[4.25rem]">
+        <h1 className="mx-auto mt-7 max-w-5xl text-center text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-[4.25rem]">
           <span className="text-white">
-            Convert more salon and spa inquiries into booked appointments —{" "}
+            Convert{" "}
+          </span>
+          <span
+            className="font-normal italic text-white/95"
+            style={{ fontFamily: "var(--font-serif-display)" }}
+          >
+            more
+          </span>
+          <span className="text-white">
+            {" "}salon and spa inquiries into booked appointments —{" "}
           </span>
           <span className="bg-gradient-to-b from-[#FF3344] to-[#E50914] bg-clip-text text-transparent">
             without adding front-desk headcount.
@@ -81,7 +108,7 @@ export default function SpasSalonsHero() {
         </h1>
 
         {/* Subhead */}
-        <p className="mx-auto mt-7 max-w-3xl text-center text-base leading-relaxed text-white/70 sm:text-lg">
+        <p className="mx-auto mt-6 max-w-3xl text-center text-[15px] leading-relaxed text-white/70 sm:mt-7 sm:text-lg">
           Nexi helps salons and spas reply faster, guide clients to the right
           service or provider, support booking, and keep high-intent demand
           moving after hours.
@@ -139,9 +166,47 @@ export default function SpasSalonsHero() {
 
 function HeroMockup() {
   return (
-    <div className="relative mx-auto mt-16 max-w-6xl">
-      {/* Chat console */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#141415] shadow-[0_30px_80px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.04)]">
+    <div className="relative mx-auto mt-12 max-w-6xl sm:mt-16">
+      {/* Mobile-only condensed preview */}
+      <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#141415] p-4 shadow-[0_24px_60px_rgba(0,0,0,0.5)] md:hidden">
+        <div className="flex items-center justify-between border-b border-white/[0.04] pb-3">
+          <span className="text-[13px] font-semibold text-white">
+            Mariana López
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            Live
+          </span>
+        </div>
+        <div className="mt-3 flex flex-col gap-2.5">
+          <Bubble side="in">
+            <p>Hi, I&apos;m interested in a hydrating facial.</p>
+          </Bubble>
+          <Bubble side="out">
+            <p>
+              Lovely choice <span aria-hidden>✨</span> Would you prefer the
+              60-min Glow Facial or the 90-min Deep Hydration?
+            </p>
+          </Bubble>
+          <Bubble side="in">
+            <p>The 90-minute one, please.</p>
+          </Bubble>
+        </div>
+        <div className="mt-4 flex items-center gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] p-3">
+          <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-300">
+            <Check className="h-4 w-4" strokeWidth={3} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[12px] font-semibold text-emerald-200">
+              Appointment booked · May 27, 10:00 AM
+            </p>
+            <p className="truncate text-[11px] text-white/60">Polanco Spa</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Chat console — desktop */}
+      <div className="relative hidden overflow-hidden rounded-2xl border border-white/[0.06] bg-[#141415] shadow-[0_30px_80px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.04)] md:block">
         <div className="grid grid-cols-[56px_minmax(220px,260px)_1fr_minmax(240px,280px)]">
           {/* Rail */}
           <div className="flex flex-col items-center gap-1 border-r border-white/[0.04] bg-[#0F0F10] py-4">

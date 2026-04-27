@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
+import { Instrument_Serif } from "next/font/google";
 import SpasSalonsHero from "./SpasSalonsHero";
 import SpasSalonsHowItWorks from "./SpasSalonsHowItWorks";
 import SpasSalonsWhyTrust from "./SpasSalonsWhyTrust";
 import SpasSalonsOutcomes from "./SpasSalonsOutcomes";
 import SpasSalonsCta from "./SpasSalonsCta";
+
+const serifDisplay = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-serif-display",
+  display: "swap",
+});
 
 const CANONICAL_PATH = "/en/nexi/spas-salons";
 const TITLE =
@@ -44,7 +53,10 @@ export const metadata: Metadata = {
 
 export default function SpasSalonsPage() {
   return (
-    <main lang="en" className="bg-[#0D0D0D] text-white">
+    <main
+      lang="en"
+      className={`${serifDisplay.variable} bg-[#0D0D0D] text-white`}
+    >
       <SpasSalonsHero />
       <SpasSalonsHowItWorks />
       <SpasSalonsWhyTrust />

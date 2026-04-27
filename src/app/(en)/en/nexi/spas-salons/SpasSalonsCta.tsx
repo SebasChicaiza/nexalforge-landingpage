@@ -11,8 +11,22 @@ export default function SpasSalonsCta() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#0D0D0D] py-28 text-white sm:py-32"
+      className="relative overflow-hidden bg-[#0D0D0D] py-20 text-white sm:py-32"
     >
+      {/* Top hairline highlight */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent"
+      />
+      {/* Warm amber accent */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-32 top-10 h-[420px] w-[420px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(255,170,110,0.06), transparent 70%)",
+        }}
+      />
       {/* Bottom red glow arc */}
       <div
         aria-hidden
@@ -27,7 +41,7 @@ export default function SpasSalonsCta() {
       <svg
         aria-hidden
         viewBox="0 0 800 800"
-        className="pointer-events-none absolute -right-32 top-1/2 hidden h-[820px] w-[820px] -translate-y-1/2 select-none opacity-[0.55] sm:block"
+        className="pointer-events-none absolute -right-40 top-1/2 hidden h-[820px] w-[820px] -translate-y-1/2 select-none opacity-[0.32] sm:block"
       >
         <defs>
           <radialGradient id="ctaCoreGlow" cx="50%" cy="50%" r="50%">
@@ -171,26 +185,33 @@ export default function SpasSalonsCta() {
         {/* Top short red line */}
         <div className="mx-auto h-[2px] w-10 rounded-full bg-[#E50914]" />
 
-        <p className="mt-5 text-[14px] font-semibold text-[#E50914]">
+        <p className="mt-5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#E50914]">
           See how Nexi would work in your salon or spa
         </p>
 
-        <h2 className="mt-5 text-[2.6rem] font-bold leading-[1.05] tracking-[-0.025em] sm:text-6xl md:text-[4.2rem]">
-          Every missed inquiry is still a missed booking
+        <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] sm:text-6xl md:text-[4.2rem]">
+          Every missed inquiry is{" "}
+          <span
+            className="font-normal italic text-white/95"
+            style={{ fontFamily: "var(--font-serif-display)" }}
+          >
+            still
+          </span>{" "}
+          a missed booking
           <span className="text-[#E50914]">.</span>
         </h2>
 
-        <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-relaxed text-white/65 sm:text-[16px]">
+        <p className="mx-auto mt-6 max-w-2xl text-[14px] leading-relaxed text-white/65 sm:mt-7 sm:text-[16px]">
           Book a custom demo and see how Nexi could help your business respond
           faster, protect front-desk capacity, and move more high-intent
           clients toward booked appointments.
         </p>
 
         {/* CTAs */}
-        <div className="mt-12 flex flex-col items-center justify-center gap-5">
+        <div className="mt-10 flex flex-col items-center justify-center gap-5 sm:mt-12">
           <Link
             href="#book-demo"
-            className="group relative inline-flex w-full max-w-md items-center justify-center gap-3 rounded-2xl px-10 py-5 text-[18px] font-semibold text-white transition-all duration-200 hover:brightness-110"
+            className="group relative inline-flex w-full max-w-md items-center justify-center gap-3 rounded-2xl px-8 py-4 text-[16px] font-semibold text-white transition-all duration-200 hover:brightness-110 sm:px-10 sm:py-5 sm:text-[18px]"
             style={{
               background:
                 "linear-gradient(180deg, #FF3344 0%, #E50914 50%, #B30710 100%)",
@@ -231,20 +252,20 @@ export default function SpasSalonsCta() {
         </p>
 
         {/* Microproof row */}
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 text-[13px] text-white/65 sm:flex-row sm:gap-0">
+        <ul className="mx-auto mt-8 flex max-w-md flex-col items-stretch justify-center gap-2 text-[13px] text-white/65 sm:max-w-none sm:flex-row sm:items-center sm:gap-0">
           {MICROPROOFS.map((item) => (
-            <span
+            <li
               key={item}
-              className="flex items-center gap-2 sm:px-5 sm:[&:not(:last-child)]:border-r sm:[&:not(:last-child)]:border-white/10"
+              className="flex items-center justify-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-4 py-2 sm:rounded-none sm:border-0 sm:bg-transparent sm:px-5 sm:py-0 sm:[&:not(:last-child)]:border-r sm:[&:not(:last-child)]:border-white/10"
             >
               <CheckCircle2
-                className="h-3.5 w-3.5 text-[#E50914]"
+                className="h-3.5 w-3.5 flex-none text-[#E50914]"
                 strokeWidth={2.4}
               />
-              {item}
-            </span>
+              <span>{item}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ export default function SpasSalonsWhyTrust() {
   return (
     <section
       id="why-trust"
-      className="relative overflow-hidden bg-[#0D0D0D] py-24 text-white sm:py-28"
+      className="relative overflow-hidden bg-[#0D0D0D] py-20 text-white sm:py-28"
     >
       {/* Ambient red glow */}
       <div
@@ -28,6 +28,20 @@ export default function SpasSalonsWhyTrust() {
             "radial-gradient(closest-side, rgba(239,14,26,0.18), transparent 70%)",
         }}
       />
+      {/* Warm amber accent glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-32 top-1/3 h-[460px] w-[460px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(255,170,110,0.07), transparent 70%)",
+        }}
+      />
+      {/* Top hairline highlight */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent"
+      />
 
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Intro */}
@@ -36,9 +50,15 @@ export default function SpasSalonsWhyTrust() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#E50914]">
               Built for real salon and spa operations
             </p>
-            <h2 className="mt-5 text-[2.4rem] font-bold leading-[1.05] tracking-[-0.025em] sm:text-5xl md:text-[3.5rem]">
-              Why salons and spas trust Nexi when missed inquiries actually cost
-              them
+            <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.025em] sm:text-5xl md:text-[3.5rem]">
+              Why salons and spas{" "}
+              <span
+                className="font-normal italic text-white/95"
+                style={{ fontFamily: "var(--font-serif-display)" }}
+              >
+                trust
+              </span>{" "}
+              Nexi when missed inquiries actually cost them
               <span className="text-[#E50914]">.</span>
             </h2>
             <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/65">
@@ -347,7 +367,7 @@ function Block({
 }) {
   return (
     <div
-      className={`rounded-3xl border border-white/8 bg-[#0F0F0F] p-6 sm:p-10 ${className}`}
+      className={`relative overflow-hidden rounded-3xl border border-white/8 bg-gradient-to-br from-[#121212] via-[#0F0F0F] to-[#0C0C0C] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-10 ${className}`}
     >
       {children}
     </div>
@@ -373,7 +393,7 @@ function BlockText({
       >
         {icon}
       </div>
-      <h3 className="mt-6 text-[1.6rem] font-bold leading-[1.15] tracking-[-0.02em] sm:text-[1.85rem]">
+      <h3 className="mt-5 text-[1.4rem] font-bold leading-[1.15] tracking-[-0.02em] sm:mt-6 sm:text-[1.85rem]">
         {title}
       </h3>
       <div className="mt-4 h-[2px] w-12 rounded-full bg-[#E50914]" />
