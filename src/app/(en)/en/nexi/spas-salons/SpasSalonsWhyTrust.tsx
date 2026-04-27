@@ -81,7 +81,7 @@ export default function SpasSalonsWhyTrust() {
             />
             <div className="relative flex h-full w-full items-center justify-center rounded-[28px] border border-white/10 bg-gradient-to-br from-[#1a0a0c] via-[#0D0D0D] to-[#0a0a0a] shadow-[inset_0_0_60px_rgba(239,14,26,0.18)]">
               <Image
-                src="/nuevo-nexi/nexi-logo-white-nobg.png"
+                src="/nuevo-nexi/nexi-logo-white-v2.png"
                 alt="Nexi"
                 width={200}
                 height={200}

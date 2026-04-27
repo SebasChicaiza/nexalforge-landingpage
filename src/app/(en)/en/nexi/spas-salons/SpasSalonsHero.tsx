@@ -68,7 +68,7 @@ export default function SpasSalonsHero() {
         {/* Brand mark */}
         <div className="flex justify-center">
           <Image
-            src="/nuevo-nexi/nexi-logo-white-nobg.png"
+            src="/nuevo-nexi/nexi-logo-white-v2.png"
             alt="Nexi"
             width={140}
             height={56}
