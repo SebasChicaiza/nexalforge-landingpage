@@ -12,34 +12,65 @@ import {
   getActiveNexiIndustrySlugs,
   getCanonicalIndustryPath,
 } from "@/lib/pseo-routing";
+import {
+  ENGLISH_FALLBACK_LANDING,
+  getLanguageSwitchPath,
+  type SiteLocale,
+} from "@/lib/language-routing";
 
 type NavLink = { label: string; href: string };
 
-const TOP_LINKS: NavLink[] = [
-  { label: "Procesos", href: "#proceso" },
-  { label: "ROI Calculator", href: "#roi" },
+const SPANISH_TOP_LINKS: NavLink[] = [
+  { label: "ROI Calculator", href: "/#roi" },
   { label: "Blog", href: "/blog" },
 ];
 
-const SOLUTIONS: NavLink[] = [
-  { label: "Industrias con Nexi", href: "/nexi" },
-  { label: "Asistente virtual Nexi", href: "/nexi" },
-  { label: "Agente IA para Ventas", href: "/" },
-  { label: "Agente IA para Soporte", href: "/nexi" },
-  { label: "Recepcionista IA para llamadas", href: "/" },
-  { label: "Desarrollo Web Empresarial", href: "/" },
-  { label: "Automatización Operativa", href: "/" },
-  { label: "Predicción & Forecasting", href: "/" },
-  { label: "Capa de Datos & Dashboards", href: "/" },
-  { label: "Sprint de Implementación", href: "/" },
-];
-
-const NEXI_LINKS: NavLink[] = [
+const SPANISH_NEXI_LINKS: NavLink[] = [
   { label: "Asistente virtual Nexi", href: "/nexi" },
   { label: "Ver industrias Nexi", href: "/nexi" },
+  { label: "Precios de Nexi", href: "/nexi/precios" },
 ];
 
-const NEXI_INDUSTRY_LINKS: NavLink[] = getActiveNexiIndustrySlugs()
+const ENGLISH_TOP_LINKS: NavLink[] = [];
+const ENGLISH_NEXI_LINK: NavLink = {
+  label: "Nexi",
+  href: ENGLISH_FALLBACK_LANDING,
+};
+
+type HeaderLabels = {
+  nexi: string;
+  nexiProduct: string;
+  nexiIndustries: string;
+  login: string;
+  logout: string;
+  cta: string;
+  openMenu: string;
+  closeMenu: string;
+};
+
+const SPANISH_LABELS: HeaderLabels = {
+  nexi: "Nexi",
+  nexiProduct: "Producto Nexi",
+  nexiIndustries: "Nexi por industria",
+  login: "Iniciar sesión",
+  logout: "Cerrar sesión",
+  cta: "Pruébelo gratis",
+  openMenu: "Abrir menú",
+  closeMenu: "Cerrar menú",
+};
+
+const ENGLISH_LABELS: HeaderLabels = {
+  nexi: "Nexi",
+  nexiProduct: "Nexi",
+  nexiIndustries: "Industries",
+  login: "Log in",
+  logout: "Log out",
+  cta: "Book a demo",
+  openMenu: "Open menu",
+  closeMenu: "Close menu",
+};
+
+const SPANISH_NEXI_INDUSTRY_LINKS: NavLink[] = getActiveNexiIndustrySlugs()
   .sort((a, b) => getIndustryName(a).localeCompare(getIndustryName(b), "es"))
   .map((slug) => ({
     label: getIndustryName(slug),
@@ -118,51 +149,59 @@ async function logoutAndNotify() {
   }
 }
 
+function LanguageSwitcher({
+  currentLocale,
+  spanishHref,
+  englishHref,
+  mobile = false,
+  onNavigate,
+}: {
+  currentLocale: SiteLocale;
+  spanishHref: string;
+  englishHref: string;
+  mobile?: boolean;
+  onNavigate?: () => void;
+}) {
+  const containerClasses = mobile
+    ? "inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-2 py-2 text-sm"
+    : "hidden md:inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-2 py-1.5 text-sm";
+  const itemClasses = "rounded-md px-2 py-1 text-white/85 hover:text-white";
+  const activeClasses = "bg-white/15 text-white";
 
+  return (
+    <div className={containerClasses} aria-label="Language switcher">
+      <Link
+        href={spanishHref}
+        className={`${itemClasses} ${currentLocale === "es" ? activeClasses : ""}`}
+        onClick={onNavigate}
+      >
+        ES
+      </Link>
+      <span className="text-white/50">|</span>
+      <Link
+        href={englishHref}
+        className={`${itemClasses} ${currentLocale === "en" ? activeClasses : ""}`}
+        onClick={onNavigate}
+      >
+        EN
+      </Link>
+    </div>
+  );
+}
 
-
-
-export default function StickyHeader() {
+export default function StickyHeader({ locale }: { locale: SiteLocale }) {
   const [solid, setSolid] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
-
-  // Desktop: Soluciones (mega)
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
-  const hoverCloseTimer = useRef<number | null>(null);
   const [nexiOpen, setNexiOpen] = useState(false);
   const nexiHoverCloseTimer = useRef<number | null>(null);
 
-  const openDesktop = () => {
-    if (hoverCloseTimer.current) {
-      clearTimeout(hoverCloseTimer.current);
-      hoverCloseTimer.current = null;
-    }
-    setSolutionsOpen(true);
-    setNexiOpen(false);
-  };
-  const scheduleCloseIfOutside = (e: React.PointerEvent) => {
-    const to = e.relatedTarget as Node | null;
-    const wrap = e.currentTarget as HTMLElement;
-    if (wrap && to && wrap.contains(to)) return;
-    hoverCloseTimer.current = window.setTimeout(() => {
-      setSolutionsOpen(false);
-      hoverCloseTimer.current = null;
-    }, 120);
-  };
-  const cancelScheduledClose = () => {
-    if (hoverCloseTimer.current) {
-      clearTimeout(hoverCloseTimer.current);
-      hoverCloseTimer.current = null;
-    }
-  };
   const openNexiDesktop = () => {
     if (nexiHoverCloseTimer.current) {
       clearTimeout(nexiHoverCloseTimer.current);
       nexiHoverCloseTimer.current = null;
     }
     setNexiOpen(true);
-    setSolutionsOpen(false);
   };
   const scheduleCloseNexiIfOutside = (e: React.PointerEvent) => {
     const to = e.relatedTarget as Node | null;
@@ -211,6 +250,13 @@ export default function StickyHeader() {
   }, [mobileOpen]);
 
   const isLogged = useAuthFlag();
+  const pathname = usePathname();
+  const isEnglish = locale === "en";
+  const labels = isEnglish ? ENGLISH_LABELS : SPANISH_LABELS;
+  const topLinks = isEnglish ? ENGLISH_TOP_LINKS : SPANISH_TOP_LINKS;
+  const logoHref = isEnglish ? ENGLISH_FALLBACK_LANDING : "/";
+  const switchToSpanish = getLanguageSwitchPath(pathname, "es");
+  const switchToEnglish = getLanguageSwitchPath(pathname, "en");
 
   // ======= overlay styles (modal-like, no layout space) =======
   // El wrapper no tiene fondo ni height; solo el "pill" lo tiene.
@@ -239,7 +285,7 @@ export default function StickyHeader() {
         <div className={`${pillBase} ${solid ? pillSolid : pillLoose}`}>
           {/* Logo */}
           <Link
-            href="/"
+            href={logoHref}
             className="inline-flex items-center gap-2 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
           >
             <Image
@@ -254,207 +300,115 @@ export default function StickyHeader() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 md:flex">
-            {/* Soluciones (dropdown) */}
-            <div
-              className="relative"
-              onPointerEnter={openDesktop}
-              onPointerLeave={scheduleCloseIfOutside}
-            >
-              <button
-                className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
-                aria-haspopup="true"
-                aria-expanded={solutionsOpen}
-                onClick={() =>
-                  setSolutionsOpen((v) => {
-                    const next = !v;
-                    if (next) setNexiOpen(false);
-                    return next;
-                  })
-                }
+            {isEnglish ? (
+              <Link
+                href={ENGLISH_NEXI_LINK.href}
+                className="rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
               >
-                Soluciones
-                <svg
-                  className={`h-4 w-4 transition-transform ${
-                    solutionsOpen ? "rotate-180" : ""
-                  }`}
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-
-              {/* Mega panel */}
+                {ENGLISH_NEXI_LINK.label}
+              </Link>
+            ) : (
               <div
-                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[600px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
-                  solutionsOpen
-                    ? "pointer-events-auto opacity-100 translate-y-0"
-                    : "pointer-events-none opacity-0 -translate-y-1"
-                }`}
-                onPointerEnter={cancelScheduledClose}
-                onPointerLeave={scheduleCloseIfOutside}
-              >
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl"
-                  style={{
-                    background:
-                      "radial-gradient(closest-side, rgba(139,30,45,.30), transparent)",
-                  }}
-                />
-                <ul className="grid grid-cols-1 gap-1 sm:grid-cols-2">
-                  {SOLUTIONS.map((s) => (
-                    <li key={s.label}>
-                      <Link
-                        href={s.href}
-                        className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.98rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
-                        onClick={() => setSolutionsOpen(false)}
-                      >
-                        {s.label}
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-4 w-4 opacity-70"
-                          fill="none"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                  <span className="text-sm text-white/80">
-                    ¿Listo para automatizar tu atención?
-                  </span>
-                  <a
-                    href="#contacto"
-                    className="rounded-full bg-nf-primary-500 px-4 py-2 text-sm font-medium text-white hover:bg-nf-primary-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 shadow-[0_8px_30px_rgb(139,30,45,0.25)]"
-                    onClick={() => setSolutionsOpen(false)}
-                  >
-                    Agendar demo
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Nexi (dropdown) */}
-            <div
-              className="relative"
-              onPointerEnter={openNexiDesktop}
-              onPointerLeave={scheduleCloseNexiIfOutside}
-            >
-              <button
-                className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
-                aria-haspopup="true"
-                aria-expanded={nexiOpen}
-                onClick={() =>
-                  setNexiOpen((v) => {
-                    const next = !v;
-                    if (next) setSolutionsOpen(false);
-                    return next;
-                  })
-                }
-              >
-                Nexi
-                <svg
-                  className={`h-4 w-4 transition-transform ${
-                    nexiOpen ? "rotate-180" : ""
-                  }`}
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-
-              <div
-                className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[640px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
-                  nexiOpen
-                    ? "pointer-events-auto opacity-100 translate-y-0"
-                    : "pointer-events-none opacity-0 -translate-y-1"
-                }`}
-                onPointerEnter={cancelScheduledNexiClose}
+                className="relative"
+                onPointerEnter={openNexiDesktop}
                 onPointerLeave={scheduleCloseNexiIfOutside}
               >
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl"
-                  style={{
-                    background:
-                      "radial-gradient(closest-side, rgba(139,30,45,.30), transparent)",
-                  }}
-                />
-                <div className="grid gap-4 sm:grid-cols-[1fr_1.3fr]">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-2">
-                    <p className="px-2 pb-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
-                      Producto Nexi
-                    </p>
-                    <ul className="grid grid-cols-1 gap-1">
-                      {NEXI_LINKS.map((s) => (
-                        <li key={s.label}>
-                          <Link
-                            href={s.href}
-                            className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.95rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
-                            onClick={() => setNexiOpen(false)}
-                          >
-                            {s.label}
-                            <svg
-                              viewBox="0 0 24 24"
-                              className="h-4 w-4 opacity-70"
-                              fill="none"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <button
+                  className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                  aria-haspopup="true"
+                  aria-expanded={nexiOpen}
+                  onClick={() => setNexiOpen((v) => !v)}
+                >
+                  {labels.nexi}
+                  <svg
+                    className={`h-4 w-4 transition-transform ${
+                      nexiOpen ? "rotate-180" : ""
+                    }`}
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
 
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-2">
-                    <p className="px-2 pb-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
-                      Nexi por industria
-                    </p>
-                    <ul className="grid grid-cols-2 gap-1">
-                      {NEXI_INDUSTRY_LINKS.map((s) => (
-                        <li key={s.label}>
-                          <Link
-                            href={s.href}
-                            className="block rounded-lg border border-transparent px-3 py-2 text-[0.86rem] leading-snug text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
-                            onClick={() => setNexiOpen(false)}
-                          >
-                            {s.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                <div
+                  className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-[640px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-4 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+                    nexiOpen
+                      ? "pointer-events-auto opacity-100 translate-y-0"
+                      : "pointer-events-none opacity-0 -translate-y-1"
+                  }`}
+                  onPointerEnter={cancelScheduledNexiClose}
+                  onPointerLeave={scheduleCloseNexiIfOutside}
+                >
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl"
+                    style={{
+                      background:
+                        "radial-gradient(closest-side, rgba(139,30,45,.30), transparent)",
+                    }}
+                  />
+                  <div className="grid gap-4 sm:grid-cols-[1fr_1.3fr]">
+                    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-2">
+                      <p className="px-2 pb-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {labels.nexiProduct}
+                      </p>
+                      <ul className="grid grid-cols-1 gap-1">
+                        {SPANISH_NEXI_LINKS.map((s) => (
+                          <li key={s.label}>
+                            <Link
+                              href={s.href}
+                              className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.95rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                              onClick={() => setNexiOpen(false)}
+                            >
+                              {s.label}
+                              <svg
+                                viewBox="0 0 24 24"
+                                className="h-4 w-4 opacity-70"
+                                fill="none"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-2">
+                      <p className="px-2 pb-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
+                        {labels.nexiIndustries}
+                      </p>
+                      <ul className="grid grid-cols-2 gap-1">
+                        {SPANISH_NEXI_INDUSTRY_LINKS.map((s) => (
+                          <li key={s.label}>
+                            <Link
+                              href={s.href}
+                              className="block rounded-lg border border-transparent px-3 py-2 text-[0.86rem] leading-snug text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                              onClick={() => setNexiOpen(false)}
+                            >
+                              {s.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {TOP_LINKS.map((l) => (
+            {topLinks.map((l) => (
               <Link
                 key={l.label}
                 href={l.href}
@@ -467,30 +421,37 @@ export default function StickyHeader() {
 
           {/* Right side */}
           <div className="flex items-center gap-2 sm:gap-3">
+            <LanguageSwitcher
+              currentLocale={locale}
+              spanishHref={switchToSpanish}
+              englishHref={switchToEnglish}
+            />
+
             {isLogged ? (
               <button
                 onClick={logoutAndNotify}
                 className="hidden rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
               >
-                Cerrar sesión
+                {labels.logout}
               </button>
             ) : (
               <Link
                 href="/login"
                 className="hidden rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40 md:inline-block"
               >
-                Inicio de sesión
+                {labels.login}
               </Link>
             )}
 
-            <BrandCtaLink href="#contacto" ringOffset="dark" className="gap-2">
-              Pruébelo gratis{" "}
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </BrandCtaLink>
+            {!isEnglish && (
+              <BrandCtaLink href="/#contacto" ringOffset="dark" className="gap-2">
+                {labels.cta} <ArrowRight className="h-4 w-4" aria-hidden />
+              </BrandCtaLink>
+            )}
 
             {/* Hamburger (mobile) */}
             <button
-              aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-label={mobileOpen ? labels.closeMenu : labels.openMenu}
               onClick={() => setMobileOpen(true)}
               className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 backdrop-blur transition hover:bg-white/20 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
             >
@@ -538,7 +499,7 @@ export default function StickyHeader() {
       >
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
           <Link
-            href="/"
+            href={logoHref}
             onClick={() => setMobileOpen(false)}
             className="inline-flex items-center"
           >
@@ -554,7 +515,7 @@ export default function StickyHeader() {
             ref={closeBtnRef}
             onClick={() => setMobileOpen(false)}
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/10 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
-            aria-label="Cerrar menú"
+            aria-label={labels.closeMenu}
           >
             <svg
               viewBox="0 0 24 24"
@@ -572,114 +533,81 @@ export default function StickyHeader() {
         </div>
 
         <div className="overflow-y-auto px-4 py-3">
-          {/* Soluciones */}
-          <div className="mb-2">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("mobile-soluciones")!
-                  .classList.toggle("hidden")
-              }
-              className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
-              aria-controls="mobile-soluciones"
-              aria-expanded={false}
-            >
-              <span>Soluciones</span>
-              <svg
-                className="h-5 w-5 transition-transform"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+          {isEnglish ? (
+            <div className="mb-2">
+              <Link
+                href={ENGLISH_NEXI_LINK.href}
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg px-3 py-3 text-white/95 hover:text-white hover:bg-white/5"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-
-            <ul
-              id="mobile-soluciones"
-              className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
-            >
-              {SOLUTIONS.map((s) => (
-                <li key={s.label}>
-                  <Link
-                    href={s.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
-                  >
-                    {s.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Nexi */}
-          <div className="mb-2">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("mobile-nexi")!
-                  .classList.toggle("hidden")
-              }
-              className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
-              aria-controls="mobile-nexi"
-              aria-expanded={false}
-            >
-              <span>Nexi</span>
-              <svg
-                className="h-5 w-5 transition-transform"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+                {ENGLISH_NEXI_LINK.label}
+              </Link>
+            </div>
+          ) : (
+            <div className="mb-2">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("mobile-nexi")!
+                    .classList.toggle("hidden")
+                }
+                className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                aria-controls="mobile-nexi"
+                aria-expanded={false}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
+                <span>{labels.nexi}</span>
+                <svg
+                  className="h-5 w-5 transition-transform"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
 
-            <ul
-              id="mobile-nexi"
-              className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
-            >
-              <li className="px-3 pt-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/55">
-                Producto Nexi
-              </li>
-              {NEXI_LINKS.map((s) => (
-                <li key={s.label}>
-                  <Link
-                    href={s.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
-                  >
-                    {s.label}
-                  </Link>
+              <ul
+                id="mobile-nexi"
+                className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
+              >
+                <li className="px-3 pt-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/55">
+                  {labels.nexiProduct}
                 </li>
-              ))}
-              <li className="px-3 pt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/55">
-                Nexi por industria
-              </li>
-              {NEXI_INDUSTRY_LINKS.map((s) => (
-                <li key={s.label}>
-                  <Link
-                    href={s.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
-                  >
-                    {s.label}
-                  </Link>
+                {SPANISH_NEXI_LINKS.map((s) => (
+                  <li key={s.label}>
+                    <Link
+                      href={s.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
+                    >
+                      {s.label}
+                    </Link>
+                  </li>
+                ))}
+                <li className="px-3 pt-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/55">
+                  {labels.nexiIndustries}
                 </li>
-              ))}
-            </ul>
-          </div>
+                {SPANISH_NEXI_INDUSTRY_LINKS.map((s) => (
+                  <li key={s.label}>
+                    <Link
+                      href={s.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
+                    >
+                      {s.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Links principales */}
           <ul className="mt-2 space-y-1">
-            {TOP_LINKS.map((l) => (
+            {topLinks.map((l) => (
               <li key={l.label}>
                 <Link
                   href={l.href}
@@ -690,13 +618,33 @@ export default function StickyHeader() {
                 </Link>
               </li>
             ))}
+            <li className="px-3 py-2">
+              <LanguageSwitcher
+                currentLocale={locale}
+                spanishHref={switchToSpanish}
+                englishHref={switchToEnglish}
+                onNavigate={() => setMobileOpen(false)}
+                mobile
+              />
+            </li>
+            {!isEnglish && (
+              <li>
+                <BrandCtaLink
+                  href="/#contacto"
+                  ringOffset="dark"
+                  className="mx-3 flex justify-center"
+                >
+                  {labels.cta} <ArrowRight className="h-4 w-4" aria-hidden />
+                </BrandCtaLink>
+              </li>
+            )}
             <li className="pt-1">
               {isLogged ? (
                 <button
                   onClick={logoutAndNotify}
                   className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
                 >
-                  Cerrar sesión
+                  {labels.logout}
                 </button>
               ) : (
                 <Link
@@ -704,7 +652,7 @@ export default function StickyHeader() {
                   onClick={() => setMobileOpen(false)}
                   className="flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-center text-[0.98rem] font-medium shadow-[0_10px_30px_-10px_rgba(139,30,45,0.5)] hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
                 >
-                  Inicio de sesión
+                  {labels.login}
                 </Link>
               )}
             </li>

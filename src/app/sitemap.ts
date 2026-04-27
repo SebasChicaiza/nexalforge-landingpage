@@ -118,6 +118,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       lastModified: now,
     },
+    {
+      url: `${BASE_URL}/en/nexi/dental-clinics`,
+      priority: 0.85,
+      changeFrequency: "monthly",
+      lastModified: now,
+    },
     ...industryIndexRoutes,
     {
       url: `${BASE_URL}/cookies`,
