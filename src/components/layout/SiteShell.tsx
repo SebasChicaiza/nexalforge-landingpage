@@ -34,7 +34,7 @@ export default function SiteShell({
       <Gtm />
       <StickyHeader locale={locale} />
       {children}
-      <Footer />
+      {locale === "es" && <Footer />}
       <FloatingWhatsApp />
       <ConsentBanner />
       <GoogleAnalytics />

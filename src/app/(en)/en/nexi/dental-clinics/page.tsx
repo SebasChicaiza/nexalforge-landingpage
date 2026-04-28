@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FooterEn from "@/components/FooterEn";
 
 const CANONICAL_PATH = "/en/nexi/dental-clinics";
 
@@ -67,6 +68,7 @@ export default function EnglishDentalClinicsPage() {
           <li>Placeholder CTA block</li>
         </ul>
       </section>
+      <FooterEn />
     </main>
   );
 }

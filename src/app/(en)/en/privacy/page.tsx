@@ -1,4 +1,5 @@
 import LegalPageLayout, { LegalSection } from "@/components/LegalPageLayout";
+import FooterEn from "@/components/FooterEn";
 import { Metadata } from "next";
 import { CONTACT_EMAIL } from "@/lib/constants";
 import CompanyIdentificationBlock from "@/components/CompanyIdentificationBlock";
@@ -377,13 +378,16 @@ const sections: LegalSection[] = [
 
 export default function PrivacyEnPage() {
   return (
-    <LegalPageLayout
-      title={`${TRADE_NAME} Privacy Policy`}
-      lastUpdated="April 2026"
-      lastUpdatedLabel="Last updated:"
-      tocLabel="Table of contents"
-      introText={introText}
-      sections={sections}
-    />
+    <>
+      <LegalPageLayout
+        title={`${TRADE_NAME} Privacy Policy`}
+        lastUpdated="April 2026"
+        lastUpdatedLabel="Last updated:"
+        tocLabel="Table of contents"
+        introText={introText}
+        sections={sections}
+      />
+      <FooterEn />
+    </>
   );
 }

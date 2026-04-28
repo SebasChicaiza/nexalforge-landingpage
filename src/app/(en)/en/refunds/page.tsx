@@ -1,4 +1,5 @@
 import LegalPageLayout, { LegalSection } from "@/components/LegalPageLayout";
+import FooterEn from "@/components/FooterEn";
 import { Metadata } from "next";
 import {
   CONTACT_EMAIL,
@@ -161,13 +162,16 @@ const sections: LegalSection[] = [
 
 export default function RefundsEnPage() {
   return (
-    <LegalPageLayout
-      title="Refund and Cancellation Policy"
-      lastUpdated="April 2026"
-      lastUpdatedLabel="Last updated:"
-      tocLabel="Table of contents"
-      introText={introText}
-      sections={sections}
-    />
+    <>
+      <LegalPageLayout
+        title="Refund and Cancellation Policy"
+        lastUpdated="April 2026"
+        lastUpdatedLabel="Last updated:"
+        tocLabel="Table of contents"
+        introText={introText}
+        sections={sections}
+      />
+      <FooterEn />
+    </>
   );
 }

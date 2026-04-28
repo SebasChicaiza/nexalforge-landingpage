@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
+import FooterEn from "@/components/FooterEn";
 import SpasSalonsHero from "./SpasSalonsHero";
 import SpasSalonsHowItWorks from "./SpasSalonsHowItWorks";
 import SpasSalonsWhyTrust from "./SpasSalonsWhyTrust";
@@ -62,6 +63,7 @@ export default function SpasSalonsPage() {
       <SpasSalonsWhyTrust />
       <SpasSalonsOutcomes />
       <SpasSalonsCta />
+      <FooterEn />
     </main>
   );
 }

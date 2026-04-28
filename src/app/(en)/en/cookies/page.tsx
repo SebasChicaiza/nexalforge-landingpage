@@ -1,4 +1,5 @@
 import LegalPageLayout, { LegalSection } from "@/components/LegalPageLayout";
+import FooterEn from "@/components/FooterEn";
 import { Metadata } from "next";
 import { CONTACT_EMAIL } from "@/lib/constants";
 import { PRODUCT_NAME, TRADE_NAME } from "@/lib/legal";
@@ -149,13 +150,16 @@ const sections: LegalSection[] = [
 
 export default function CookiesEnPage() {
   return (
-    <LegalPageLayout
-      title="Cookie Policy"
-      lastUpdated="April 2026"
-      lastUpdatedLabel="Last updated:"
-      tocLabel="Table of contents"
-      introText={introText}
-      sections={sections}
-    />
+    <>
+      <LegalPageLayout
+        title="Cookie Policy"
+        lastUpdated="April 2026"
+        lastUpdatedLabel="Last updated:"
+        tocLabel="Table of contents"
+        introText={introText}
+        sections={sections}
+      />
+      <FooterEn />
+    </>
   );
 }

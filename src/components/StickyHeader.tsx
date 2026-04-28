@@ -36,6 +36,16 @@ const ENGLISH_NEXI_LINK: NavLink = {
   label: "Nexi",
   href: ENGLISH_FALLBACK_LANDING,
 };
+const ENGLISH_PRICING_LINK: NavLink = {
+  label: "Pricing",
+  href: "/en/nexi/pricing",
+};
+const ENGLISH_LEGAL_LINKS: NavLink[] = [
+  { label: "Terms", href: "/en/terms" },
+  { label: "Privacy", href: "/en/privacy" },
+  { label: "Refund Policy", href: "/en/refunds" },
+  { label: "Cookies", href: "/en/cookies" },
+];
 
 type HeaderLabels = {
   nexi: string;
@@ -219,6 +229,32 @@ export default function StickyHeader({ locale }: { locale: SiteLocale }) {
     }
   };
 
+  const [legalOpen, setLegalOpen] = useState(false);
+  const legalHoverCloseTimer = useRef<number | null>(null);
+
+  const openLegalDesktop = () => {
+    if (legalHoverCloseTimer.current) {
+      clearTimeout(legalHoverCloseTimer.current);
+      legalHoverCloseTimer.current = null;
+    }
+    setLegalOpen(true);
+  };
+  const scheduleCloseLegalIfOutside = (e: React.PointerEvent) => {
+    const to = e.relatedTarget as Node | null;
+    const wrap = e.currentTarget as HTMLElement;
+    if (wrap && to && wrap.contains(to)) return;
+    legalHoverCloseTimer.current = window.setTimeout(() => {
+      setLegalOpen(false);
+      legalHoverCloseTimer.current = null;
+    }, 120);
+  };
+  const cancelScheduledLegalClose = () => {
+    if (legalHoverCloseTimer.current) {
+      clearTimeout(legalHoverCloseTimer.current);
+      legalHoverCloseTimer.current = null;
+    }
+  };
+
   // Transparente sobre #hero; un poco más denso al salir
   useEffect(() => {
     const hero = document.getElementById("hero");
@@ -301,12 +337,81 @@ export default function StickyHeader({ locale }: { locale: SiteLocale }) {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 md:flex">
             {isEnglish ? (
-              <Link
-                href={ENGLISH_NEXI_LINK.href}
-                className="rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
-              >
-                {ENGLISH_NEXI_LINK.label}
-              </Link>
+              <>
+                <Link
+                  href={ENGLISH_NEXI_LINK.href}
+                  className="rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                >
+                  {ENGLISH_NEXI_LINK.label}
+                </Link>
+                <Link
+                  href={ENGLISH_PRICING_LINK.href}
+                  className="rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                >
+                  {ENGLISH_PRICING_LINK.label}
+                </Link>
+                <div
+                  className="relative"
+                  onPointerEnter={openLegalDesktop}
+                  onPointerLeave={scheduleCloseLegalIfOutside}
+                >
+                  <button
+                    className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-white/95 hover:text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                    aria-haspopup="true"
+                    aria-expanded={legalOpen}
+                    onClick={() => setLegalOpen((v) => !v)}
+                  >
+                    Legal
+                    <svg
+                      className={`h-4 w-4 transition-transform ${legalOpen ? "rotate-180" : ""}`}
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    className={`absolute left-1/2 top-[calc(100%+12px)] z-[60] w-48 -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgb(8_8_9_/_0.95)] p-2 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+                      legalOpen
+                        ? "pointer-events-auto opacity-100 translate-y-0"
+                        : "pointer-events-none opacity-0 -translate-y-1"
+                    }`}
+                    onPointerEnter={cancelScheduledLegalClose}
+                    onPointerLeave={scheduleCloseLegalIfOutside}
+                  >
+                    <ul className="grid gap-1">
+                      {ENGLISH_LEGAL_LINKS.map((l) => (
+                        <li key={l.href}>
+                          <Link
+                            href={l.href}
+                            className="flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-[0.9rem] text-white/95 transition hover:border-white/10 hover:bg-white/5 hover:text-white"
+                            onClick={() => setLegalOpen(false)}
+                          >
+                            {l.label}
+                            <svg
+                              viewBox="0 0 24 24"
+                              className="h-4 w-4 opacity-70"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </>
             ) : (
               <div
                 className="relative"
@@ -534,7 +639,7 @@ export default function StickyHeader({ locale }: { locale: SiteLocale }) {
 
         <div className="overflow-y-auto px-4 py-3">
           {isEnglish ? (
-            <div className="mb-2">
+            <div className="mb-2 space-y-1">
               <Link
                 href={ENGLISH_NEXI_LINK.href}
                 onClick={() => setMobileOpen(false)}
@@ -542,6 +647,53 @@ export default function StickyHeader({ locale }: { locale: SiteLocale }) {
               >
                 {ENGLISH_NEXI_LINK.label}
               </Link>
+              <Link
+                href={ENGLISH_PRICING_LINK.href}
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg px-3 py-3 text-white/95 hover:text-white hover:bg-white/5"
+              >
+                {ENGLISH_PRICING_LINK.label}
+              </Link>
+              <div>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("mobile-legal-en")!
+                      .classList.toggle("hidden")
+                  }
+                  className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base font-medium hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-nf-primary-400/40"
+                  aria-controls="mobile-legal-en"
+                >
+                  <span>Legal</span>
+                  <svg
+                    className="h-5 w-5 transition-transform"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.856a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0l-4.24-4.41a.75.75 0 01.02-1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <ul
+                  id="mobile-legal-en"
+                  className="mt-1 hidden space-y-1 rounded-lg border border-white/10 bg-white/[0.03] p-2"
+                >
+                  {ENGLISH_LEGAL_LINKS.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="block rounded px-3 py-1.5 text-sm text-white/95 hover:bg-white/5 hover:text-white"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ) : (
             <div className="mb-2">
