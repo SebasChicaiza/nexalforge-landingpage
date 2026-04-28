@@ -29,12 +29,12 @@ const introText = (
 const sections: LegalSection[] = [
   {
     id: "14-day-refund",
-    title: "1. 14-Day Refund",
+    title: "1. 14-Day Initial Purchase Refund",
     content: (
       <>
         <p>
           We offer a full refund within the first 14 calendar days from the date
-          of each {PRODUCT_NAME} transaction processed by Paddle.
+          of your initial {PRODUCT_NAME} purchase processed by Paddle.
         </p>
         <p className="mt-3">
           You do not need to explain the reason for your request. If you submit
@@ -42,21 +42,30 @@ const sections: LegalSection[] = [
           processed in accordance with Paddle&apos;s channels and controls.
         </p>
         <p className="mt-3">
-          This window applies to subscriptions, renewals, one-time charges,
-          setup fees, implementation fees, or other {PRODUCT_NAME} charges
-          processed by Paddle.
+          This voluntary 14-day refund window applies to the first paid{" "}
+          {PRODUCT_NAME} transaction for a customer account or workspace. If
+          your initial {PRODUCT_NAME} purchase includes a subscription payment,
+          setup fee, implementation fee, or other initial {PRODUCT_NAME} charge
+          processed by Paddle, those initial charges are included in this
+          14-day refund window.
         </p>
       </>
     ),
   },
   {
-    id: "after-14-days",
-    title: "2. After 14 Days",
+    id: "renewals-later-charges",
+    title: "2. Renewals and Later Charges",
     content: (
       <>
         <p>
-          After the 14 calendar days from the transaction date, refunds will be
-          handled in accordance with the{" "}
+          The voluntary 14-day refund window does not automatically apply to
+          subscription renewals, later recurring charges, plan renewals,
+          additional usage charges, add-ons, or separate charges made after
+          the initial {PRODUCT_NAME} purchase.
+        </p>
+        <p className="mt-3">
+          After the initial 14-calendar-day refund window, refund requests will
+          be handled in accordance with the{" "}
           <a
             href={PADDLE_REFUND_POLICY_URL}
             target="_blank"
@@ -112,12 +121,12 @@ const sections: LegalSection[] = [
           You may cancel your subscription to prevent future charges.
           Cancellation stops future renewals but does not automatically generate
           a refund for payments already made, unless the refund request is
-          submitted within the 14-calendar-day window or applicable law requires
-          otherwise.
+          submitted within the initial 14-calendar-day refund window or a
+          refund is required under Paddle&apos;s Refund Policy or applicable law.
         </p>
         <p className="mt-3">
           If you cancel a subscription, you will normally retain access to{" "}
-          {PRODUCT_NAME} until the end of the current billing period, unless the
+          {PRODUCT_NAME} until the end of the current billing period, unless a
           refund is approved and access must end in accordance with Paddle&apos;s
           policy.
         </p>
@@ -132,7 +141,8 @@ const sections: LegalSection[] = [
         Refunds for purchases processed by Paddle are handled by Paddle. When a
         refund is approved, Paddle will typically process it to the original
         payment method where possible. Paddle may perform checks to prevent
-        fraud, refund abuse, manipulative disputes, or unauthorized activity.
+        fraud, refund abuse, manipulative disputes, unauthorized activity, or
+        other misuse.
       </p>
     ),
   },

@@ -29,12 +29,12 @@ const introText = (
 const sections: LegalSection[] = [
   {
     id: "reembolso-14-dias",
-    title: "1. Reembolso de 14 días",
+    title: "1. Reembolso de 14 días por compra inicial",
     content: (
       <>
         <p>
           Ofrecemos un reembolso completo durante los primeros 14 días
-          calendario desde la fecha de cada transacción de {PRODUCT_NAME}{" "}
+          calendario desde la fecha de tu compra inicial de {PRODUCT_NAME}{" "}
           procesada por Paddle.
         </p>
         <p className="mt-3">
@@ -43,21 +43,31 @@ const sections: LegalSection[] = [
           será procesada conforme a los canales y controles de Paddle.
         </p>
         <p className="mt-3">
-          Esta ventana aplica a suscripciones, renovaciones, cargos únicos,
-          cargos de setup, cargos de implementación u otros cargos de{" "}
-          {PRODUCT_NAME} procesados por Paddle.
+          Esta ventana voluntaria de 14 días aplica a la primera transacción
+          pagada de {PRODUCT_NAME} para una cuenta o workspace. Si tu compra
+          inicial de {PRODUCT_NAME} incluye un pago de suscripción, cargo de
+          setup, cargo de implementación u otro cargo inicial de {PRODUCT_NAME}{" "}
+          procesado por Paddle, esos cargos iniciales están incluidos en esta
+          ventana de 14 días.
         </p>
       </>
     ),
   },
   {
-    id: "despues-14-dias",
-    title: "2. Después de los 14 días",
+    id: "renovaciones-cargos-posteriores",
+    title: "2. Renovaciones y cargos posteriores",
     content: (
       <>
         <p>
-          Después de los 14 días calendario desde la fecha de la transacción,
-          los reembolsos se gestionarán conforme a la{" "}
+          La ventana voluntaria de 14 días no aplica automáticamente a
+          renovaciones de suscripción, cargos recurrentes posteriores,
+          renovaciones de plan, cargos adicionales por uso, complementos o
+          cargos separados realizados después de la compra inicial de{" "}
+          {PRODUCT_NAME}.
+        </p>
+        <p className="mt-3">
+          Después de la ventana inicial de 14 días calendario, las solicitudes
+          de reembolso se gestionarán conforme a la{" "}
           <a
             href={PADDLE_REFUND_POLICY_URL}
             target="_blank"
@@ -116,13 +126,14 @@ const sections: LegalSection[] = [
           Puedes cancelar tu suscripción para evitar futuros cobros. La
           cancelación impide futuras renovaciones, pero no genera
           automáticamente un reembolso de pagos ya realizados, salvo que la
-          solicitud de reembolso se realice dentro del plazo de 14 días
-          calendario o que la ley aplicable indique lo contrario.
+          solicitud de reembolso se realice dentro de la ventana inicial de
+          reembolso de 14 días calendario, que Paddle lo requiera conforme a su
+          Política de Reembolsos, o que la ley aplicable lo exija.
         </p>
         <p className="mt-3">
           Si cancelas una suscripción, normalmente mantendrás acceso a{" "}
           {PRODUCT_NAME} hasta el final del período de facturación vigente,
-          salvo que el reembolso sea aprobado y el acceso deba terminar
+          salvo que un reembolso sea aprobado y el acceso deba terminar
           conforme a la política de Paddle.
         </p>
       </>
@@ -137,7 +148,7 @@ const sections: LegalSection[] = [
         Paddle. Cuando el reembolso sea aprobado, Paddle normalmente lo procesa
         al método de pago original cuando sea posible. Paddle puede realizar
         controles para prevenir fraude, abuso de reembolsos, disputas
-        manipulativas o actividad no autorizada.
+        manipulativas, actividad no autorizada u otros usos indebidos.
       </p>
     ),
   },

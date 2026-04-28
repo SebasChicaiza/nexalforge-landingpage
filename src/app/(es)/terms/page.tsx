@@ -274,8 +274,18 @@ const sections: LegalSection[] = [
         </p>
         <p className="mt-3">
           Ofrecemos un reembolso completo durante los primeros 14 días
-          calendario desde la fecha de cada transacción de {PRODUCT_NAME}{" "}
-          procesada por Paddle, sin necesidad de explicar el motivo.
+          calendario desde la fecha de la compra inicial de {PRODUCT_NAME}{" "}
+          procesada por Paddle, sin necesidad de explicar el motivo. Esta
+          ventana voluntaria aplica únicamente a la compra inicial y no se
+          extiende automáticamente a renovaciones ni cargos posteriores.
+          Consulta nuestra{" "}
+          <a
+            href="/refunds"
+            className="underline text-rose-700 hover:text-rose-800"
+          >
+            Política de Reembolsos y Cancelación
+          </a>{" "}
+          para más detalles.
         </p>
       </>
     ),

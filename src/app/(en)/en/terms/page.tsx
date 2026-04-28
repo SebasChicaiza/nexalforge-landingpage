@@ -270,8 +270,17 @@ const sections: LegalSection[] = [
         </p>
         <p className="mt-3">
           We offer a full refund within the first 14 calendar days from the date
-          of each {PRODUCT_NAME} transaction processed by Paddle, with no need to
-          explain the reason.
+          of the initial {PRODUCT_NAME} purchase processed by Paddle, with no
+          need to explain the reason. This voluntary refund window applies to
+          the initial purchase only and does not automatically extend to
+          subscription renewals or later charges. See our{" "}
+          <a
+            href="/en/refunds"
+            className="underline text-rose-700 hover:text-rose-800"
+          >
+            Refund and Cancellation Policy
+          </a>{" "}
+          for full details.
         </p>
       </>
     ),
