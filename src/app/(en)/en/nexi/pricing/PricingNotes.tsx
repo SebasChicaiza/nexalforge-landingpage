@@ -55,8 +55,9 @@ export default function PricingNotes() {
           </p>
           <p>
             We offer a full refund within the first 14 calendar days from the
-            date of each Nexi transaction processed by Paddle, no questions
-            asked. See our{" "}
+            date of your initial Nexi purchase processed by Paddle, no
+            questions asked. This applies to the initial purchase only and
+            does not extend to renewals or later charges. See our{" "}
             <Link
               href="/en/terms"
               className="font-semibold text-white/80 hover:underline"

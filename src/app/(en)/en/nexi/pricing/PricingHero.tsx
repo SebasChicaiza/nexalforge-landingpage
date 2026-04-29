@@ -93,7 +93,7 @@ export default function PricingHero() {
         <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:flex-wrap">
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/[0.08] px-4 py-1.5 text-xs font-semibold text-emerald-200 backdrop-blur">
             <ShieldCheck className="h-3.5 w-3.5" />
-            14-day full refund · no questions asked
+            14-day full refund on first purchase · no questions asked
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-white/60 backdrop-blur">
             Nexi includes its own calendar and booking system

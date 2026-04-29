@@ -308,8 +308,10 @@ export default function PricingPage() {
           </p>
           <p>
             Ofrecemos reembolso completo durante los primeros 14 días
-            calendario desde la fecha de cada transacción de Nexi procesada
-            por Paddle, sin necesidad de explicar el motivo. Consulta nuestros{" "}
+            calendario desde la fecha de tu compra inicial de Nexi procesada
+            por Paddle, sin necesidad de explicar el motivo. Esta garantía
+            aplica únicamente a la compra inicial y no se extiende a
+            renovaciones ni cargos posteriores. Consulta nuestros{" "}
             <Link
               href="/terms"
               className="font-semibold text-nf-primary-700 hover:underline"

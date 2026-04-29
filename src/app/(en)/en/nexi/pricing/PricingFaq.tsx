@@ -14,7 +14,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Can I cancel anytime? What about refunds?",
-    a: "Yes. You can cancel before the next monthly renewal and you won't be charged again. We also back every plan with a 14-day full refund — no questions asked — from the date of each Nexi transaction.",
+    a: "Yes. You can cancel before the next monthly renewal and you won't be charged again. We also back your initial Nexi purchase with a 14-day full refund — no questions asked. This applies to the first purchase for your account and does not extend to renewals or later charges.",
   },
   {
     q: "What counts as a conversation?",
